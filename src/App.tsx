@@ -50,7 +50,7 @@ export default function App() {
       {feedOpen && <button className="feed-backdrop" aria-label="Dismiss news feed" onClick={() => setFeedOpen(false)}/>}
       <NewsFeed events={DEMO_EVENTS} selectedId={selected?.id ?? null} filter={filter} onFilter={setFilter} onSelect={selectEvent} open={feedOpen} onClose={() => setFeedOpen(false)}/>
       <section className={`map ${selected ? 'has-selection' : ''}`} aria-label="Interactive world globe">
-        <button className="feed-toggle" aria-expanded={feedOpen} aria-controls="news-feed" onClick={() => setFeedOpen(!feedOpen)}><span aria-hidden="true">☰</span> Latest News <span className="toggle-count">08</span></button>
+        <button className="feed-toggle" aria-expanded={feedOpen} aria-controls="news-feed" onClick={() => setFeedOpen(!feedOpen)}><span aria-hidden="true">☰</span> Latest News <span className="toggle-count">{String(DEMO_EVENTS.length).padStart(2, '0')}</span></button>
         <div className="map-heading"><span className="eyebrow">{selected ? 'CONNECTED WORLD' : 'A GLOBAL PERSPECTIVE'}</span>{!selected && <><h2>The world, in view.</h2><p>Select a story. Discover its connections.</p></>}</div>
         <SceneBoundary><Suspense fallback={null}><GlobeScene ref={globe} selected={selected} onReady={onReady}/></Suspense></SceneBoundary>
         {!ready && <div className="loading" role="status"><span/> Preparing your perspective</div>}
