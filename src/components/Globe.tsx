@@ -39,13 +39,51 @@ function Linework() {
 }
 const vertexShader = `varying vec2 vUv; varying vec3 vNormal; varying vec3 vPosition;
 void main(){vUv=uv; vNormal=normalize(normalMatrix*normal);vec4 p=modelViewMatrix*vec4(position,1.);vPosition=p.xyz;gl_Position=projectionMatrix*p;}`;
-const fragmentShader = `uniform sampler2D dayMap;uniform sampler2D nightMap;uniform sampler2D bumpMap;varying vec2 vUv;varying vec3 vNormal;varying vec3 vPosition;
-void main(){vec3 day=texture2D(dayMap,vUv).rgb;float land=dot(day,vec3(.299,.587,.114));vec3 base=mix(vec3(.027,.052,.067),vec3(.16,.205,.24),smoothstep(.09,.48,land));float relief=texture2D(bumpMap,vUv).r;base=mix(base,vec3(land*.53,land*.62,land*.72),.48);base+=relief*.025;vec3 n=normalize(vNormal);float light=max(dot(n,normalize(vec3(-.65,.85,1.))),0.);vec3 color=base*(.28+.56*light);vec3 night=texture2D(nightMap,vUv).rgb;float city=max(max(night.r,night.g),night.b);color+=vec3(.76,.57,.31)*pow(city,1.7)*1.1;float rim=pow(1.-max(dot(n,normalize(-vPosition)),0.),4.);color+=vec3(.09,.20,.34)*rim*.48;gl_FragColor=vec4(color,1.);}`;
+const fragmentShader = `
+uniform sampler2D dayMap;
+uniform sampler2D nightMap;
+uniform sampler2D bumpMap;
+varying vec2 vUv;
+varying vec3 vNormal;
+varying vec3 vPosition;
+
+// The night atlas contains blue terrain as well as city lights. Isolate warm
+// emission so increasing the lights never makes the ocean or ice glow.
+float cityEmission(vec2 uv) {
+  vec3 night = texture2D(nightMap, uv).rgb;
+  return smoothstep(.003, .10, max(night.r - night.b * 1.05, 0.));
+}
+void main() {
+  vec3 day = texture2D(dayMap, vUv).rgb;
+  float land = dot(day, vec3(.299, .587, .114));
+  vec3 base = mix(vec3(.018, .046, .075), vec3(.135, .205, .285), smoothstep(.09, .48, land));
+  float relief = texture2D(bumpMap, vUv).r;
+  base = mix(base, vec3(land * .46, land * .61, land * .78), .42);
+  base = mix(base, day * vec3(.48, .58, .72), .12);
+  base += relief * .025;
+  vec3 n = normalize(vNormal);
+  float light = max(dot(n, normalize(vec3(-.65, .85, 1.))), 0.);
+  vec3 color = base * (.28 + .56 * light);
+
+  float city = cityEmission(vUv);
+  vec2 texel = vec2(1. / 4096., 1. / 2048.);
+  float halo = (cityEmission(vUv + vec2(texel.x, 0.))
+    + cityEmission(vUv - vec2(texel.x, 0.))
+    + cityEmission(vUv + vec2(0., texel.y))
+    + cityEmission(vUv - vec2(0., texel.y))) * .25;
+  color += vec3(1., .76, .39) * pow(city, .70) * 1.18;
+  color += vec3(.95, .53, .20) * halo * .26;
+
+  float rim = pow(1. - max(dot(n, normalize(-vPosition)), 0.), 4.);
+  color += vec3(.08, .24, .48) * rim * .62;
+  gl_FragColor = vec4(color, 1.);
+}`;
+
 function Earth({ onReady }: { onReady: () => void }) {
   const [day, night, bump] = useTexture([asset('earth-day.jpg'), asset('earth-night.jpg'), asset('earth-bump.jpg')]);
   const uniforms = useMemo(() => ({dayMap:{value:day},nightMap:{value:night},bumpMap:{value:bump}}), [day,night,bump]);
   useEffect(onReady, [onReady]);
-  return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(.21,.39,.64,rim*.32);}`}/></mesh></group>;
+  return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(.18,.41,.78,rim*.38);}`}/></mesh></group>;
 }
 function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
   const controls = useRef<OrbitControlsImpl>(null);
@@ -82,3 +120,4 @@ function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
 export const Globe = forwardRef<GlobeHandle, { onReady: () => void }>(function Globe({ onReady }, ref) {
   return <div className="globe-canvas"><Canvas camera={{ position: HOME.toArray(), fov: 38, near: .05, far: 30 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/><Controller api={ref}/></Canvas></div>;
 });
+
