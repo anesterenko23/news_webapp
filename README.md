@@ -35,7 +35,7 @@ Rendering uses React, TypeScript, Three.js, React Three Fiber and Drei. Pixel ra
 ## Asset sources
 
 - Earth day and elevation textures: NASA-derived imagery distributed by [webgl-earth](https://github.com/turban/webgl-earth/tree/master/images).
-- Earth night imagery: [three-globe example assets](https://github.com/vasturiano/three-globe/tree/master/example/img), NASA Earth at Night imagery.
+- Earth night imagery: 8K Earth Night Map by [Solar System Scope / INOVE](https://www.solarsystemscope.com/textures/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), based on NASA imagery. The globe shader isolates the city emission, recolors it to muted gold, and adjusts its brightness.
 - Country boundaries: [world-atlas](https://github.com/topojson/world-atlas), derived from public-domain [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) cartography. Borders are geographic reference data and are not a statement on territorial claims.
 
 The supplied mockup is a visual reference only; it is not included as a background or substituted for the live scene.
