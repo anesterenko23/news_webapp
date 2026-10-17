@@ -1,5 +1,6 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
+import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
@@ -63,15 +64,18 @@ void main() {
   base += relief * .025;
   vec3 n = normalize(vNormal);
   float light = max(dot(n, normalize(vec3(-.65, .85, 1.))), 0.);
-  vec3 color = base * (.28 + .56 * light);
+  // Composer outputs sRGB; convert the art-directed surface palette to linear.
+  vec3 color = pow(base * (.28 + .56 * light), vec3(2.2));
 
   float city = cityEmission(vUv);
   // Preserve the atlas intensity range: thresholding it into a mask makes
   // dense urban regions merge into large, overexposed patches.
-  color += vec3(.95, .74, .43) * pow(city, .92) * .70;
+  // HDR emission feeds the screen-space bloom. Only city cores exceed the
+  // bloom threshold; the surface, borders and atmosphere stay crisp.
+  color += vec3(1., .77, .42) * pow(city, 1.05) * 2.0;
 
   float rim = pow(1. - max(dot(n, normalize(-vPosition)), 0.), 4.);
-  color += vec3(.08, .24, .48) * rim * .62;
+  color += pow(vec3(.08, .24, .48) * rim * .62, vec3(2.2));
   gl_FragColor = vec4(color, 1.);
 }`;
 
@@ -84,7 +88,7 @@ function Earth({ onReady }: { onReady: () => void }) {
   }, [night, gl]);
   const uniforms = useMemo(() => ({dayMap:{value:day},nightMap:{value:night},bumpMap:{value:bump}}), [day,night,bump]);
   useEffect(onReady, [onReady]);
-  return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(.18,.41,.78,rim*.38);}`}/></mesh></group>;
+  return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(pow(vec3(.18,.41,.78),vec3(2.2)),rim*.38);}`}/></mesh></group>;
 }
 function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
   const controls = useRef<OrbitControlsImpl>(null);
@@ -119,5 +123,5 @@ function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
   return <OrbitControls ref={controls} enablePan={false} enableZoom={false} enableDamping dampingFactor={.065} rotateSpeed={.45} minDistance={MIN_DISTANCE} maxDistance={MAX_DISTANCE} onStart={() => {active.current = true;resetTarget.current = null;}} onEnd={() => {active.current = false;lastInteraction.current = performance.now();targetDistance.current = camera.position.length();}}/>;
 }
 export const Globe = forwardRef<GlobeHandle, { onReady: () => void }>(function Globe({ onReady }, ref) {
-  return <div className="globe-canvas"><Canvas camera={{ position: HOME.toArray(), fov: 38, near: .05, far: 30 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/><Controller api={ref}/></Canvas></div>;
+  return <div className="globe-canvas"><Canvas camera={{ position: HOME.toArray(), fov: 38, near: .05, far: 30 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/><Controller api={ref}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas></div>;
 });
