@@ -51,7 +51,7 @@ varying vec3 vPosition;
 // emission so increasing the lights never makes the ocean or ice glow.
 float cityEmission(vec2 uv) {
   vec3 night = texture2D(nightMap, uv).rgb;
-  return smoothstep(.003, .10, max(night.r - night.b * 1.05, 0.));
+  return max(night.r - night.b - .004, 0.);
 }
 void main() {
   vec3 day = texture2D(dayMap, vUv).rgb;
@@ -66,13 +66,9 @@ void main() {
   vec3 color = base * (.28 + .56 * light);
 
   float city = cityEmission(vUv);
-  vec2 texel = vec2(1. / 4096., 1. / 2048.);
-  float halo = (cityEmission(vUv + vec2(texel.x, 0.))
-    + cityEmission(vUv - vec2(texel.x, 0.))
-    + cityEmission(vUv + vec2(0., texel.y))
-    + cityEmission(vUv - vec2(0., texel.y))) * .25;
-  color += vec3(1., .76, .39) * pow(city, .70) * 1.18;
-  color += vec3(.95, .53, .20) * halo * .26;
+  // Preserve the atlas intensity range: thresholding it into a mask makes
+  // dense urban regions merge into large, overexposed patches.
+  color += vec3(.95, .74, .43) * pow(city, .92) * .70;
 
   float rim = pow(1. - max(dot(n, normalize(-vPosition)), 0.), 4.);
   color += vec3(.08, .24, .48) * rim * .62;
@@ -80,7 +76,12 @@ void main() {
 }`;
 
 function Earth({ onReady }: { onReady: () => void }) {
-  const [day, night, bump] = useTexture([asset('earth-day.jpg'), asset('earth-night.jpg'), asset('earth-bump.jpg')]);
+  const [day, night, bump] = useTexture([asset('earth-day.jpg'), asset('earth-lights-8k.jpg'), asset('earth-bump.jpg')]);
+  const { gl } = useThree();
+  useEffect(() => {
+    night.anisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
+    night.needsUpdate = true;
+  }, [night, gl]);
   const uniforms = useMemo(() => ({dayMap:{value:day},nightMap:{value:night},bumpMap:{value:bump}}), [day,night,bump]);
   useEffect(onReady, [onReady]);
   return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(.18,.41,.78,rim*.38);}`}/></mesh></group>;
@@ -120,4 +121,3 @@ function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
 export const Globe = forwardRef<GlobeHandle, { onReady: () => void }>(function Globe({ onReady }, ref) {
   return <div className="globe-canvas"><Canvas camera={{ position: HOME.toArray(), fov: 38, near: .05, far: 30 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/><Controller api={ref}/></Canvas></div>;
 });
-
