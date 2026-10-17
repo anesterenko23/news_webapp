@@ -10,7 +10,8 @@
     "assets": "node scripts/prepare-assets.mjs",
     "postinstall": "npm run assets",
     "predev": "npm run assets",
-    "prebuild": "npm run assets"
+    "prebuild": "npm run assets",
+    "test": "vitest run"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.0",
@@ -32,6 +33,7 @@
     "@vitejs/plugin-react": "^5.0.4",
     "typescript": "~5.9.3",
     "vite": "^7.1.9",
+    "vitest": "^5.0.5",
     "world-atlas": "^2.0.2"
   }
 }

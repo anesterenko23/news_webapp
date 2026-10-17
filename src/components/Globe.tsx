@@ -1,23 +1,24 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import { forwardRef, memo, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { mesh } from 'topojson-client';
 import countries from 'world-atlas/countries-50m.json';
 import type { Topology, GeometryCollection } from 'topojson-specification';
+import type { NewsEvent } from '../data/types';
+import { latLngToVector, eventCameraPosition } from '../lib/geo';
+import { CountryHighlight } from './CountryHighlight';
+import { RelationshipArcs } from './RelationshipArcs';
+export { latLngToVector } from '../lib/geo';
 
-export interface GlobeHandle { zoom: (factor: number) => void; reset: () => void }
+export interface GlobeHandle { zoom: (factor: number) => void; reset: () => void; focus: (event: NewsEvent) => void }
 const HOME = new THREE.Vector3(3.2, 1.9, -0.8).normalize().multiplyScalar(3.35);
+const CAMERA_OPTIONS = { position: HOME.toArray(), fov: 38, near: .05, far: 30 };
 const MIN_DISTANCE = 1.55;
 const MAX_DISTANCE = 5.3;
 const asset = (name: string) => `${import.meta.env.BASE_URL}textures/${name}`;
-/** Geographic convention used by borders, textures and future event layers. */
-export function latLngToVector(lat: number, lng: number, radius = 1): THREE.Vector3 {
-  const phi = THREE.MathUtils.degToRad(lat), theta = THREE.MathUtils.degToRad(lng);
-  return new THREE.Vector3(radius * Math.cos(phi) * Math.cos(theta), radius * Math.sin(phi), -radius * Math.cos(phi) * Math.sin(theta));
-}
 function Linework() {
   const borders = useMemo(() => {
     const topology = countries as unknown as Topology<{ countries: GeometryCollection }>;
@@ -90,7 +91,7 @@ function Earth({ onReady }: { onReady: () => void }) {
   useEffect(onReady, [onReady]);
   return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(pow(vec3(.18,.41,.78),vec3(2.2)),rim*.38);}`}/></mesh></group>;
 }
-function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
+function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; selected: NewsEvent | null }) {
   const controls = useRef<OrbitControlsImpl>(null);
   const { camera, gl, size } = useThree();
   useEffect(() => { const perspective = camera as THREE.PerspectiveCamera; perspective.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(19)) / Math.min(1, size.width / size.height / 1.12))); perspective.updateProjectionMatrix(); }, [camera, size.width, size.height]);
@@ -98,30 +99,47 @@ function Controller({ api }: { api: React.ForwardedRef<GlobeHandle> }) {
   const active = useRef(false);
   const targetDistance = useRef(HOME.length());
   const resetTarget = useRef<THREE.Vector3 | null>(null);
+  useEffect(() => {
+    if (selected) {
+      resetTarget.current = eventCameraPosition(selected, (camera as THREE.PerspectiveCamera).fov, size.width / size.height);
+      targetDistance.current = resetTarget.current.length();
+    } else {
+      resetTarget.current = null;
+      targetDistance.current = camera.position.length();
+    }
+    lastInteraction.current = performance.now();
+  }, [selected, camera, size.width, size.height]);
   const reducedMotion = useMemo(() => matchMedia('(prefers-reduced-motion: reduce)').matches, []);
   useImperativeHandle(api, () => ({
-    zoom(factor) { targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * factor, MIN_DISTANCE, MAX_DISTANCE); lastInteraction.current = performance.now(); },
-    reset() { targetDistance.current = HOME.length(); resetTarget.current = HOME.clone(); lastInteraction.current = performance.now(); }
-  }), []);
+    zoom(factor) { if (resetTarget.current) targetDistance.current = camera.position.length(); resetTarget.current = null; targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * factor, MIN_DISTANCE, MAX_DISTANCE); lastInteraction.current = performance.now(); },
+    reset() { targetDistance.current = HOME.length(); resetTarget.current = HOME.clone(); lastInteraction.current = performance.now(); },
+    focus(event) { resetTarget.current = eventCameraPosition(event, (camera as THREE.PerspectiveCamera).fov, size.width / size.height); targetDistance.current = resetTarget.current.length(); lastInteraction.current = performance.now(); }
+  }), [camera, size.width, size.height]);
   useFrame((_, delta) => {
     const control = controls.current;
     if (!control) return;
     if (resetTarget.current) {
-      camera.position.lerp(resetTarget.current, 1 - Math.exp(-5 * delta));
+      const target = resetTarget.current;
+      const blend = reducedMotion ? 1 : 1 - Math.exp(-4 * Math.min(delta, .05));
+      const direction = camera.position.clone().normalize();
+      const rotation = new THREE.Quaternion().setFromUnitVectors(direction, target.clone().normalize());
+      rotation.slerp(new THREE.Quaternion(), 1 - blend);
+      const radius = THREE.MathUtils.lerp(camera.position.length(), target.length(), blend);
+      camera.position.copy(direction.applyQuaternion(rotation).multiplyScalar(radius));
       if (camera.position.distanceTo(resetTarget.current) < .001) resetTarget.current = null;
     } else if (!active.current) camera.position.setLength(THREE.MathUtils.damp(camera.position.length(), targetDistance.current, 7, delta));
     const elapsed = (performance.now() - lastInteraction.current) / 1000;
-    control.autoRotate = !active.current && elapsed > 3 && !resetTarget.current && !reducedMotion;
+    control.autoRotate = !selected && !active.current && elapsed > 3 && !resetTarget.current && !reducedMotion;
     control.autoRotateSpeed = Math.min(.18, Math.max(0, (elapsed - 3) * .045));
 
   });
   useEffect(() => {
-    const wheel = (e: WheelEvent) => {e.preventDefault(); resetTarget.current = null; lastInteraction.current = performance.now(); targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * Math.exp(e.deltaY * .001), MIN_DISTANCE, MAX_DISTANCE);};
+    const wheel = (e: WheelEvent) => {e.preventDefault(); if (resetTarget.current) targetDistance.current = camera.position.length(); resetTarget.current = null; lastInteraction.current = performance.now(); targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * Math.exp(e.deltaY * .001), MIN_DISTANCE, MAX_DISTANCE);};
     gl.domElement.addEventListener('wheel', wheel, { passive: false });
     return () => gl.domElement.removeEventListener('wheel', wheel);
-  }, [gl]);
+  }, [gl, camera]);
   return <OrbitControls ref={controls} enablePan={false} enableZoom={false} enableDamping dampingFactor={.065} rotateSpeed={.45} minDistance={MIN_DISTANCE} maxDistance={MAX_DISTANCE} onStart={() => {active.current = true;resetTarget.current = null;}} onEnd={() => {active.current = false;lastInteraction.current = performance.now();targetDistance.current = camera.position.length();}}/>;
 }
-export const Globe = forwardRef<GlobeHandle, { onReady: () => void }>(function Globe({ onReady }, ref) {
-  return <div className="globe-canvas"><Canvas camera={{ position: HOME.toArray(), fov: 38, near: .05, far: 30 }} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/><Controller api={ref}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas></div>;
-});
+export const GlobeScene = memo(forwardRef<GlobeHandle, { onReady: () => void; selected: NewsEvent | null }>(function GlobeScene({ onReady, selected }, ref) {
+  return <div className="globe-canvas"><Canvas camera={CAMERA_OPTIONS} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/>{selected && <><CountryHighlight event={selected}/><RelationshipArcs relationships={selected.relationships}/></>}<Controller api={ref} selected={selected}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas></div>;
+}));
