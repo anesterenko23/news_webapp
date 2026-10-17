@@ -4,7 +4,7 @@ await mkdir(directory, { recursive: true });
 const sources = {
   'earth-day.jpg': 'https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg',
   'earth-bump.jpg': 'https://raw.githubusercontent.com/turban/webgl-earth/master/images/elev_bump_4k.jpg',
-  'earth-night.jpg': 'https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-night.jpg',
+  'earth-lights-8k.jpg': 'https://www.solarsystemscope.com/textures/download/8k_earth_nightmap.jpg',
 };
 for (const [filename, source] of Object.entries(sources)) {
   const destination = new URL(filename, directory);
