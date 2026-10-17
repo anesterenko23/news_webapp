@@ -2,4 +2,5 @@ node_modules/
 dist/
 *.local
 *.tsbuildinfo
-public/textures/
+public/textures/*
+!public/textures/earth-lights-8k.jpg

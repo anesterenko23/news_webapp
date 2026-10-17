@@ -1,6 +1,9 @@
 import { mkdir, access, writeFile, rename, rm } from 'node:fs/promises';
 const directory = new URL('../public/textures/', import.meta.url);
 await mkdir(directory, { recursive: true });
+// The licensed 8K city-light atlas is versioned with the app: no upstream
+// anti-bot page or availability change can break this essential texture.
+await access(new URL('earth-lights-8k.jpg', directory));
 const sources = {
   'flag-us.png': 'https://flagcdn.com/w40/us.png',
   'flag-ua.png': 'https://flagcdn.com/w40/ua.png',
@@ -21,7 +24,6 @@ const sources = {
   'demo-climate.jpg': 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=240&h=240&fit=crop&q=80&fm=jpg',
   'earth-day.jpg': 'https://raw.githubusercontent.com/turban/webgl-earth/master/images/2_no_clouds_4k.jpg',
   'earth-bump.jpg': 'https://raw.githubusercontent.com/turban/webgl-earth/master/images/elev_bump_4k.jpg',
-  'earth-lights-8k.jpg': 'https://www.solarsystemscope.com/textures/download/8k_earth_nightmap.jpg',
 };
 for (const [filename, source] of Object.entries(sources)) {
   const destination = new URL(filename, directory);

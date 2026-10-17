@@ -51,7 +51,7 @@ Generated geometries, country-mask textures and scene resources are disposed whe
 
 ## Assets
 
-`npm ci` and the predev/prebuild hooks run `scripts/prepare-assets.mjs`. It downloads any missing assets into ignored `public/textures/`. Assets are served locally at runtime; no remote photo or map requests are required while exploring. Retry with `npm run assets` if initial preparation fails.
+`npm ci` and the predev/prebuild hooks run `scripts/prepare-assets.mjs`. The essential 8K night atlas is committed in `public/textures/earth-lights-8k.jpg`. The script downloads other missing assets into ignored `public/textures/`. Assets are served locally at runtime; no remote photo or map requests are required while exploring. Retry with `npm run assets` if initial preparation fails.
 
 - Earth day and elevation: NASA-derived imagery from [webgl-earth](https://github.com/turban/webgl-earth/tree/master/images).
 - 8K Earth Night Map by [Solar System Scope / INOVE](https://www.solarsystemscope.com/textures/), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), based on NASA imagery. The shader isolates the city emission, recolors it to warm gold and applies HDR bloom.
