@@ -1,0 +1,35 @@
+{
+  "name": "world-lens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "assets": "node scripts/prepare-assets.mjs",
+    "postinstall": "npm run assets",
+    "predev": "npm run assets",
+    "prebuild": "npm run assets"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.0",
+    "@react-three/fiber": "^9.3.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "^0.180.0",
+    "topojson-client": "^3.1.0",
+    "three-stdlib": "^2.36.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@types/three": "^0.180.0",
+    "@types/topojson-client": "^3.1.5",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.9",
+    "world-atlas": "^2.0.2",
+    "@types/topojson-specification": "^1.0.5"
+  }
+}
