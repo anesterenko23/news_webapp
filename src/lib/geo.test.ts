@@ -53,43 +53,47 @@ describe('spherical relationship geometry', () => {
     }
   });
 });
-describe('event framing', () => {
-  it.each([[38, 1.6], [38, 1], [93, .52]])('frames all endpoints for FOV %s and aspect %s', (fov, aspect) => {
-    const halfFov = THREE.MathUtils.degToRad(fov / 2);
-    const halfAngle = Math.min(halfFov, Math.atan(Math.tan(halfFov) * aspect));
+describe('large globe camera framing', () => {
+  it.each([[46, 1.6], [46, 1], [46, .52]])('keeps event view large for FOV %s and aspect %s', (fov, aspect) => {
+    const baseline = sphereFitDistance(fov, aspect);
+    const halfAngle = Math.min(THREE.MathUtils.degToRad(fov / 2), Math.atan(Math.tan(THREE.MathUtils.degToRad(fov / 2)) * aspect));
     for (const event of DEMO_EVENTS) {
       const camera = eventCameraPosition(event, fov, aspect);
+      expect(camera.length()).toBeLessThanOrEqual(baseline + 1e-6);
+      expect(Math.asin(1.025 / camera.length())).toBeLessThan(halfAngle);
       const direction = camera.clone().normalize();
-      expect(camera.length()).toBeGreaterThanOrEqual(sphereFitDistance(fov, aspect) - 1e-6);
-      expect(camera.length()).toBeLessThanOrEqual(30);
-      for (const code of event.countries) {
-        const point = coordinateVector(COUNTRIES[code].coordinates);
-        const cosine = direction.dot(point);
-        expect(cosine).toBeGreaterThan(1 / camera.length());
-        const projected = Math.sqrt(1 - cosine * cosine) / (camera.length() - cosine);
-        expect(projected).toBeLessThan(Math.tan(halfAngle) * .85);
-      }
+      for (const code of event.countries) expect(direction.dot(coordinateVector(COUNTRIES[code].coordinates))).toBeGreaterThan(1 / camera.length());
+    }
+  });
+  it('never moves the camera out to fit a relationship arc', () => {
+    for (const event of DEMO_EVENTS) {
+      const withArcs = eventCameraPosition(event, 46, 1.5);
+      const withoutArcs = eventCameraPosition({ ...event, relationships: [] }, 46, 1.5);
+      expect(withArcs.distanceTo(withoutArcs)).toBeLessThan(1e-8);
+    }
+  });
+  it('projects an approximately 550–650px Earth at the requested desktop size', () => {
+    const height = 928 - 85, width = 1648 - 420;
+    const tangent = Math.tan(THREE.MathUtils.degToRad(23));
+    const diameter = (distance: number) => height / (tangent * Math.sqrt(distance * distance - 1));
+    expect(diameter(sphereFitDistance(46, width / height))).toBeGreaterThan(550);
+    expect(diameter(sphereFitDistance(46, width / height))).toBeLessThan(650);
+    for (const event of DEMO_EVENTS) {
+      const size = diameter(eventCameraPosition(event, 46, width / height).length());
+      expect(size).toBeGreaterThan(550);
+      expect(size).toBeLessThan(660);
     }
   });
 });
 
 describe('container-based globe fitting', () => {
-  it.each([[1440, 800], [570, 290], [390, 450], [390, 760], [1024, 230]])('fits the complete atmosphere in a %sx%s canvas', (width, height) => {
-    const halfVertical = THREE.MathUtils.degToRad(19);
+  it.each([[1228, 843], [570, 591], [390, 450], [390, 768], [1024, 230]])('fits the complete atmosphere in a %sx%s canvas', (width, height) => {
+    const halfVertical = THREE.MathUtils.degToRad(23);
     const halfHorizontal = Math.atan(Math.tan(halfVertical) * width / height);
     const halfAngle = Math.min(halfVertical, halfHorizontal);
-    const distance = sphereFitDistance(38, width / height);
+    const distance = sphereFitDistance(46, width / height);
     expect(Math.asin(1.025 / distance)).toBeLessThan(halfAngle);
-    for (const event of DEMO_EVENTS) {
-      const camera = eventCameraPosition(event, 38, width / height);
-      expect(Math.asin(1.025 / camera.length())).toBeLessThan(halfAngle);
-      const direction = camera.clone().normalize();
-      for (const link of event.relationships) for (const point of arcPoints(COUNTRIES[link.from].coordinates, COUNTRIES[link.to].coordinates)) {
-        const axial = point.dot(direction);
-        const radial = Math.sqrt(Math.max(0, point.lengthSq() - axial * axial));
-        expect(radial / (camera.length() - axial)).toBeLessThan(Math.tan(halfAngle));
-      }
-    }
+    for (const event of DEMO_EVENTS) expect(Math.asin(1.025 / eventCameraPosition(event, 46, width / height).length())).toBeLessThan(halfAngle);
   });
   it('raises longer routes further while bounding their maximum elevation', () => {
     expect(arcHeight(.2)).toBeGreaterThan(.10);

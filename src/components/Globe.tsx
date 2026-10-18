@@ -17,7 +17,7 @@ export { latLngToVector } from '../lib/geo';
 
 export interface GlobeHandle { zoom: (factor: number) => void; reset: () => void; focus: (event: NewsEvent) => void }
 const HOME = new THREE.Vector3(3.2, 1.9, -0.8).normalize().multiplyScalar(3.35);
-const CAMERA_OPTIONS = { position: HOME.toArray(), fov: 38, near: .05, far: 120 };
+const CAMERA_OPTIONS = { position: HOME.toArray(), fov: 46, near: .05, far: 120 };
 const MIN_DISTANCE = 1.55;
 const asset = (name: string) => `${import.meta.env.BASE_URL}textures/${name}`;
 function Linework() {
@@ -104,7 +104,7 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
   const reducedMotion = useMemo(() => matchMedia('(prefers-reduced-motion: reduce)').matches, []);
   useLayoutEffect(() => {
     const perspective = camera as THREE.PerspectiveCamera;
-    perspective.fov = 38;
+    perspective.fov = 46;
     perspective.updateProjectionMatrix();
     const fit = selected ? eventCameraPosition(selected, perspective.fov, size.width / size.height).length() : sphereFitDistance(perspective.fov, size.width / size.height);
     const previous = previousLayout.current;

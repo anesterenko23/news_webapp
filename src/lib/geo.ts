@@ -13,11 +13,12 @@ export function coordinateVector(point: Coordinates, radius = 1) {
 export function arcHeight(angle: number) {
   return Math.min(.55, .10 + angle * .20);
 }
-/** Fit the silhouette, including perspective and a real margin, in both axes. */
-export function sphereFitDistance(verticalFov: number, aspect: number, radius = 1.025) {
+/** Solve projected sphere diameter as a fraction of the smaller canvas axis. */
+export function sphereFitDistance(verticalFov: number, aspect: number, radius = 1.025, coverage = aspect < .8 ? .90 : .77) {
   const vertical = THREE.MathUtils.degToRad(verticalFov / 2);
   const horizontal = Math.atan(Math.tan(vertical) * Math.max(.05, aspect));
-  return radius / Math.sin(Math.min(vertical, horizontal)) / .90;
+  const tangent = Math.tan(Math.min(vertical, horizontal));
+  return radius * Math.sqrt(1 + 1 / Math.pow(tangent * coverage, 2));
 }
 /** Short great-circle path, lifted above the sphere; also safe at antipodes. */
 export function arcPoints(from: Coordinates, to: Coordinates, segments = 96) {
@@ -31,21 +32,23 @@ export function arcPoints(from: Coordinates, to: Coordinates, segments = 96) {
     return a.clone().applyAxisAngle(axis, angle * t).multiplyScalar(1.009 + Math.sin(Math.PI * t) * arcHeight(angle));
   });
 }
-/** Fit all relationship endpoints in the usable area, including horizon clearance. */
+/** A compromise surface view; arc height and extent never change camera scale. */
+export function eventViewDirection(event: NewsEvent) {
+  const points = event.countries.map(code => coordinateVector(COUNTRIES[code].coordinates));
+  const candidates = [coordinateVector(event.coordinates), points.reduce((sum, point) => sum.add(point), new THREE.Vector3())];
+  for (let i = 0; i < points.length; i++) for (let j = i + 1; j < points.length; j++) candidates.push(points[i].clone().add(points[j]));
+  const valid = candidates.filter(point => point.lengthSq() > 1e-8).map(point => point.normalize());
+  return valid.reduce((best, candidate) => {
+    const extent = Math.max(...points.map(point => candidate.angleTo(point)));
+    const bestExtent = Math.max(...points.map(point => best.angleTo(point)));
+    return extent < bestExtent ? candidate : best;
+  });
+}
 export function eventCameraPosition(event: NewsEvent, verticalFov: number, aspect: number) {
-  const direction = coordinateVector(event.coordinates);
-  const angles = event.countries.map(code => direction.angleTo(coordinateVector(COUNTRIES[code].coordinates)));
-  const extent = Math.min(THREE.MathUtils.degToRad(78), Math.max(...angles, .14));
-  const vertical = THREE.MathUtils.degToRad(verticalFov / 2);
-  const horizontal = Math.atan(Math.tan(vertical) * aspect);
-  const usable = Math.min(vertical, horizontal) * .76;
-  const routeDistance = Math.max(0, ...event.relationships.flatMap(link =>
-    arcPoints(COUNTRIES[link.from].coordinates, COUNTRIES[link.to].coordinates).map(point => {
-      const axial = point.dot(direction);
-      const radial = Math.sqrt(Math.max(0, point.lengthSq() - axial * axial));
-      return axial + radial / Math.tan(Math.min(vertical, horizontal) * .90);
-    })
-  ));
-  const distance = Math.max(sphereFitDistance(verticalFov, aspect), routeDistance, Math.cos(extent) + Math.sin(extent) / Math.tan(usable), 1 / Math.cos(extent) + .15);
-  return direction.multiplyScalar(distance);
+  const direction = eventViewDirection(event);
+  const extent = Math.max(...event.countries.map(code => direction.angleTo(coordinateVector(COUNTRIES[code].coordinates))));
+  // Nearby participants get a gentle approach; wide pairs keep the large base
+  // view. Never zoom out to frame the whole route, including its hidden part.
+  const coverage = aspect < .8 ? (extent < 1 ? .92 : .90) : (extent < 1 ? .79 : .77);
+  return direction.multiplyScalar(sphereFitDistance(verticalFov, aspect, 1.025, coverage));
 }

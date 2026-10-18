@@ -21,7 +21,7 @@ In restricted Windows sandboxes where esbuild cannot inspect parent directories,
 
 ## Explore
 
-- The initial view has no selected event and rotates automatically. The scene and compact event panel occupy separate flex rows: the panel never overlays or artificially shifts the canvas.
+- The initial view has no selected event and rotates automatically. The WebGL scene always fills the entire right-hand area. The compact event card floats over its lower edge and never changes canvas dimensions.
 - Select one of 24 demo stories to frame its countries, highlight their actual outlines, show all its relationships and open the details panel.
 - Categories filter the feed without resetting the camera or remounting the scene. A filtered-out selection remains open until another story is selected or the panel is closed.
 - Re-selecting the same story preserves the current camera position. “View on globe” deliberately recenters it.
@@ -48,8 +48,8 @@ No backend, news API, database or user account is included.
 - `src/data/types.ts`: event contract, relationship colors and filter logic.
 - `src/data/countries.ts`: geographic coordinates and ISO country identifiers, independently maintained from events.
 - `src/data/events.ts`: replaceable sample catalogue; rendering logic does not depend on its IDs or headlines.
-- `src/lib/geo.ts`: shared projection, spherical arcs and camera framing. Camera movement follows a spherical path, avoiding travel through the globe. Standard view fits the full sphere with margin using the real canvas aspect ratio. Event framing additionally fits the actual elevated arc points, rather than an unnecessarily large bounding sphere.
-- `src/lib/geo.test.ts`: data integrity, category filtering, multiple relationships, arc altitude, dateline/antipodal safety, camera framing and horizon visibility on desktop and portrait layouts. Additional tests cover full-sphere and arc fitting in five real canvas sizes, country hit tests, multiple tooltip roles and edge placement (23 tests total).
+- `src/lib/geo.ts`: shared projection, spherical arcs and camera framing. Camera movement follows a spherical path, avoiding travel through the globe. A 46° field of view and projected-diameter calculation keep Earth at about 630–650 px on a 1648×928 desktop. Event framing uses a compromise country view with the same or slightly closer camera distance. Arc height and extent never influence camera distance; routes may be partially occluded or leave the frame.
+- `src/lib/geo.test.ts`: data integrity, category filtering, multiple relationships, arc altitude, dateline/antipodal safety, camera framing and horizon visibility on desktop and portrait layouts. Additional tests cover full-sphere sizing and arc-independent camera scale in five real canvas sizes, country hit tests, multiple tooltip roles and edge placement (25 tests total).
 
 Generated geometries, country-mask textures and scene resources are disposed when their layers unmount. Earth textures use the shared loader cache. Pixel ratio is capped at 1.75, night texture anisotropy at 8, and bloom uses no multisampling. WebGL is required.
 
