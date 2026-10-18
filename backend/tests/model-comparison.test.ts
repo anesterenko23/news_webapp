@@ -5,6 +5,7 @@ import { compareEvents, summarize, pairedBootstrap, edge, consistency, pipelineP
 import { requireApproval, usageFrom, spent, run } from '../../benchmark/model-comparison/tools/run.mjs';
 import { within, isolatedDatabase, ROOT, jobs, sha, readJson } from '../../benchmark/model-comparison/tools/common.mjs';
 import { IntelligenceEngine } from '../src/engine.js';
+import { PROMPT_VERSION } from '../src/prompt.js';
 import { loadConfig } from '../src/config.js';
 import { TREATY, AUDIT_INPUTS } from './hardening-fixtures.js';
 import { validateTruth } from '../../benchmark/model-comparison/tools/analyze.mjs';
@@ -50,12 +51,12 @@ describe('Phase 4.6 execution safety', () => {
     it('has exactly 100 new metadata records and unlabelled human templates', async () => { const data = await readJson(path.join(ROOT, 'dataset.json')); const config = await readJson(path.join(ROOT, 'config.json')); const labels = await readJson(path.join(ROOT, 'ground-truth.template.json')); expect(data.articles).toHaveLength(100); expect(new Set(data.articles.map((a: any) => a.contentSha256)).size).toBe(100); expect(labels.articles.every((a: any) => a.expectedEvents === null && a.review.method === 'human_required')).toBe(true); const ctx = { config, articles: data.articles.map((a: any) => ({ ...a, article: { ...a.article, content: 'Placeholder for scheduling only, never sent.' } })), reprints: (await readJson(path.join(ROOT, 'deduplication-cases.json'))).cases }; const scheduled = jobs(ctx); expect(scheduled.filter((j: any) => j.phase === 'main')).toHaveLength(200); expect(scheduled.filter((j: any) => j.phase === 'consistency')).toHaveLength(120); expect(scheduled.filter((j: any) => j.phase === 'deduplication')).toHaveLength(20); expect(scheduled).toHaveLength(344); });
     it('runs actual pipeline/migrations in separate databases while retaining production idempotency', async () => { await fs.mkdir(path.join(ROOT, 'state'), { recursive: true }); const directory = await fs.mkdtemp(path.join(ROOT, 'state', 'test-pipeline-')); const provider = { extract: vi.fn(async () => JSON.stringify({ events: [TREATY], diagnostics: [] })) }; const config = loadConfig({}); const first = await isolatedDatabase(path.join(directory, 'first.db')), second = await isolatedDatabase(path.join(directory, 'second.db')); try {
         const engine = new IntelligenceEngine(first, config, provider);
-        const one = await engine.process(AUDIT_INPUTS[0]);
+        const one = await engine.process(AUDIT_INPUTS[0],undefined,PROMPT_VERSION);
         expect(one.claims[0].validationStatus).toBe('Valid');
         expect(one.claims[0].verificationStatus).toBe('Unverified');
         expect(one.claims[0].publicationStatus).toBe('NeedsReview');
-        expect((await engine.process(AUDIT_INPUTS[0])).cached).toBe(true);
-        expect((await new IntelligenceEngine(second, config, provider).process(AUDIT_INPUTS[0])).cached).toBe(false);
+        expect((await engine.process(AUDIT_INPUTS[0],undefined,PROMPT_VERSION)).cached).toBe(true);
+        expect((await new IntelligenceEngine(second, config, provider).process(AUDIT_INPUTS[0],undefined,PROMPT_VERSION)).cached).toBe(false);
         expect(provider.extract).toHaveBeenCalledTimes(2);
         expect((await first.canonicalEvent.count())).toBe(1);
     }

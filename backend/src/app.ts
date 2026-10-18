@@ -13,6 +13,7 @@ import { EngineError, createProvider, type Provider } from './provider.js';
 import { EventQuery } from './schemas.js';
 import { aiLabHtml } from './lab.js';
 import { globeProjection } from './globe-projection.js';
+import { SEMANTIC_VERSION } from './semantic-contract.js';
 
 const loopback = (value: string) => ['127.0.0.1','localhost','::1','[::1]','::ffff:127.0.0.1'].includes(value);
 export function createApp(config: Config, db: PrismaClient, provider?: Provider) {
@@ -58,7 +59,7 @@ export function createApp(config: Config, db: PrismaClient, provider?: Provider)
     try {
       const {retryOf:rawRetry,promptVersion:rawVersion,...input} = z.record(z.string(),z.unknown()).parse(request.body);
       const retryOf = z.string().min(1).max(100).optional().parse(rawRetry);
-      const version=z.enum([PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION]).optional().parse(rawVersion);
+      const version=z.enum([SEMANTIC_VERSION,PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION]).optional().parse(rawVersion);
       const result = await engine.process(input,retryOf,version);
       return reply.code(result.processingStatus === 'failed' ? (result.error?.includes('BUDGET_EXCEEDED') ? 429 : 502) : result.processingStatus === 'processing' ? 202 : 200).send(result);
     } finally { pending--; }
@@ -73,7 +74,7 @@ export function createApp(config: Config, db: PrismaClient, provider?: Provider)
   app.get<{Params:{code:string}}>('/api/countries/:code/events',request=>list(request.query,request.params.code));
   app.get<{Params:{id:string}}>('/api/events/:id',async(request,reply)=> {
     const event = await db.canonicalEvent.findUnique({where:{id:request.params.id},include:canonicalInclude});
-    return event ? {...canonicalDto(event),globePreview:globeProjection(event)} : reply.code(404).send({error:'EVENT_NOT_FOUND'});
+    return event ? {...canonicalDto(event),globePreview:globeProjection({...event,analysis:canonicalDto(event).analysis})} : reply.code(404).send({error:'EVENT_NOT_FOUND'});
   });
   app.get<{Params:{id:string}}>('/api/claims/:id',async(request,reply)=>{
     const claim=await db.extractedClaim.findUnique({where:{id:request.params.id},include:claimInclude});

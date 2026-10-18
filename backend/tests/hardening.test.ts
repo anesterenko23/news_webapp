@@ -16,7 +16,7 @@ import {TREATY,SANCTIONS,OIL_PLAN,ATTACK,AUDIT_INPUTS,SAVED_AUDIT}from './harden
 let storage:Awaited<ReturnType<typeof testDatabase>>;beforeAll(async()=>{storage=await testDatabase();});beforeEach(async()=>storage.clear());afterAll(async()=>storage.close());
 const config=loadConfig({MISTRAL_API_KEY:'injected-provider-only'}),headers={'content-type':'application/json','x-world-lens-client':'ai-lab',host:'127.0.0.1:3001'};
 function appFor(events:unknown[]){const provider={extract:vi.fn(async()=>JSON.stringify({events,diagnostics:[]}))};return {app:createApp(config,storage.db,provider),provider};}
-const post=(app:ReturnType<typeof createApp>,body:unknown)=>app.inject({method:'POST',url:'/api/articles/process',headers,payload:body as object});
+const post=(app:ReturnType<typeof createApp>,body:unknown)=>app.inject({method:'POST',url:'/api/articles/process',headers,payload:{promptVersion:PROMPT_VERSION,...body as object}});
 describe('preserved Phase 4 failures and hardened contracts',()=>{
  for(const [i,record]of SAVED_AUDIT.results.entries())it(`untouched audit response ${i+1}: invalid output never becomes Refuted`,async()=>{
   const provider={extract:vi.fn(async()=>record.output.rawOutput)},app=createApp(config,storage.db,provider);

@@ -86,3 +86,7 @@ See [backend/README.md](backend/README.md) for setup, architecture, API contract
 ## Phase 4.6 — isolated model comparison
 
 [Benchmark tool and dry-run](benchmark/model-comparison/README.md) compare explicit Ministral/Gemini IDs on100 new source texts. Paid generation requires human budget/plan approval. Manual ground truth is pending; no winner or quality claims are fabricated. The main World Lens interface and provider configuration are unchanged.
+
+## Phase 4.7 — simplified semantic extraction
+
+The default analysis contract is now `world-lens-semantic/4.7.0`: the LLM supplies participant names, actions, relationships, source-stated reasons and evidence. A backend mapper resolves ISO codes and organizations, creates IDs and source offsets, and retains uncertain claims for review. Existing canonical events, deduplication, history and older extraction versions remain available. See [architecture, contract and validation](docs/phase47-intelligence.md). AI Lab exposes the new mode; provider selection and the main globe are unchanged.

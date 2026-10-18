@@ -8,12 +8,14 @@ import { EngineError, type Provider } from './provider.js';
 import { validateClaim, legacyToCurrent, coverageDiagnostics } from './validation.js';
 import { canonicalInclude, claimInclude, storeClaim } from './canonical.js';
 import { claimDto, canonicalDto } from './presentation.js';
+import { SEMANTIC_VERSION } from './semantic-contract.js';
+import { mapSemanticEvent } from './semantic-mapper.js';
 export class IntelligenceEngine {
  private tail:Promise<unknown>=Promise.resolve();
  constructor(private db:PrismaClient,private config:Config,private provider:Provider){}
- process(raw:unknown,retryOf?:string,promptVersion=PROMPT_VERSION){
+ process(raw:unknown,retryOf?:string,promptVersion=SEMANTIC_VERSION){
   const normalized=normalizeArticle(raw);
-  if(![PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION].includes(promptVersion))throw new EngineError('INVALID_PROMPT_VERSION','Only the current and retained baseline prompt versions are supported',400);
+  if(![SEMANTIC_VERSION,PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION].includes(promptVersion))throw new EngineError('INVALID_PROMPT_VERSION','Only the current and retained baseline prompt versions are supported',400);
   const result=this.tail.then(()=>this.processOne(raw,normalized,retryOf,promptVersion));this.tail=result.catch(()=>{});return result;
  }
  private async result(id:string,cached=false){
@@ -33,12 +35,13 @@ export class IntelligenceEngine {
   try{
    rawOutput=await this.provider.extract({title:n.title,content:n.content,language:n.language,publishedAt:n.publishedAt.toISOString()},run.id);
    let decoded:unknown;try{decoded=JSON.parse(rawOutput);}catch{throw new EngineError('INVALID_MODEL_JSON','Output is not JSON');}
-   const envelope=z.strictObject({events:z.array(z.unknown()).max(12),diagnostics:z.array(z.unknown()).max(30)}).safeParse(decoded);
+   const semantic=promptVersion===SEMANTIC_VERSION;
+   const envelope=(semantic?z.strictObject({events:z.array(z.unknown()).max(12)}):z.strictObject({events:z.array(z.unknown()).max(12),diagnostics:z.array(z.unknown()).max(30)})).safeParse(decoded);
    if(!envelope.success)throw new EngineError('INVALID_MODEL_SCHEMA','Output envelope must contain events and diagnostics arrays');
-   const reasons=envelope.data.diagnostics.map(item=>{if(typeof item==='string')return {code:'MODEL_NOTE',message:item};const d=Diagnostic.safeParse(item);return d.success?d.data:{code:'INVALID_SCHEMA',message:'Malformed model diagnostic retained in raw output'};});
+   const reasons: {code:string;message:string}[]=('diagnostics' in envelope.data?envelope.data.diagnostics as unknown[]:[]).map(item=>{if(typeof item==='string')return {code:'MODEL_NOTE',message:item};const d=Diagnostic.safeParse(item);return d.success?d.data:{code:'INVALID_SCHEMA',message:'Malformed model diagnostic retained in raw output'};});
    const values=envelope.data.events.map((event,i)=>promptVersion===BASELINE_VERSION?legacyToCurrent(event as Record<string,unknown>,i):event);
-   const globalIds=new Map<string,number>();for(const value of values)for(const evidence of ((value as any)?.evidence??[]))if(typeof evidence.id==='string')globalIds.set(evidence.id,(globalIds.get(evidence.id)??0)+1);
-   const checks=values.map(value=>validateClaim(value,originalText(raw as ArticleInputType),globalIds));
+   const globalIds=new Map<string,number>();if(!semantic)for(const value of values)for(const evidence of (Array.isArray((value as any)?.evidence)?(value as any).evidence:[]))if(typeof evidence.id==='string')globalIds.set(evidence.id,(globalIds.get(evidence.id)??0)+1);
+   const checks=values.map(value=>semantic?mapSemanticEvent(value,originalText(raw as ArticleInputType)):validateClaim(value,originalText(raw as ArticleInputType),globalIds));
    reasons.push(...coverageDiagnostics(n,checks.map(c=>c.value).filter((v):v is NonNullable<typeof v>=>!!v)));
    await this.db.$transaction(async tx=>{
     for(let i=0;i<values.length;i++)await storeClaim(tx,envelope.data.events[i],values[i],checks[i],article,run.id);

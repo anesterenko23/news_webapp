@@ -6,6 +6,7 @@ import { outputJsonSchema as baselineJsonSchema } from './schemas-v1.js';
 import { BASELINE_PROMPT, BASELINE_VERSION, PREVIOUS_PROMPT, PREVIOUS_VERSION } from './prompt.js';
 import { outputJsonSchema } from './schemas.js';
 import { SYSTEM_PROMPT } from './prompt.js';
+import { SEMANTIC_VERSION, SEMANTIC_PROMPT, semanticJsonSchema } from './semantic-contract.js';
 
 export class EngineError extends Error {
   constructor(public code: string, message: string, public statusCode = 502, public raw?: string, public diagnostic?: unknown) { super(message); }
@@ -17,15 +18,16 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 export function extractionRequest(input:LlmInput,config:Config,promptVersion:string){
  const gemini=config.LLM_PROVIDER==='gemini';
     const baseline = promptVersion === BASELINE_VERSION;
-    const prompt=baseline ? BASELINE_PROMPT : promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT;
-    const schema=baseline ? baselineJsonSchema : outputJsonSchema;
+    const semantic=promptVersion===SEMANTIC_VERSION;
+    const prompt=semantic?SEMANTIC_PROMPT:baseline ? BASELINE_PROMPT : promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT;
+    const schema=semantic?semanticJsonSchema:baseline ? baselineJsonSchema : outputJsonSchema;
     const body = JSON.stringify(gemini ? {
       systemInstruction:{parts:[{text:prompt}]},contents:[{role:"user",parts:[{text:JSON.stringify(input)}]}],
-      generationConfig:{temperature:0,maxOutputTokens:config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:{}),responseMimeType:"application/json",responseJsonSchema:geminiJsonSchema(schema)}
+      generationConfig:{temperature:0,maxOutputTokens:config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:semantic?{thinkingConfig:{thinkingLevel:'low'}}:{}),responseMimeType:"application/json",responseJsonSchema:geminiJsonSchema(schema)}
     } : {
       model: activeModel(config), temperature: 0, max_tokens: config.LLM_MAX_OUTPUT_TOKENS,
-      messages: [{ role:'system', content:baseline ? BASELINE_PROMPT : promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
-      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema:baseline ? baselineJsonSchema : outputJsonSchema } },
+      messages: [{ role:'system', content:prompt },{ role:'user', content:JSON.stringify(input) }],
+      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema } },
     });
 
  return {body,url:gemini?`https://generativelanguage.googleapis.com/v1beta/models/${activeModel(config)}:generateContent`:'https://api.mistral.ai/v1/chat/completions'};

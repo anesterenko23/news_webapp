@@ -1,0 +1,626 @@
+{
+  "version": "phase47-regressions/1.0",
+  "note": "Offline reviewed fixtures on real source passages; no claim these are live 4.7 model outputs.",
+  "cases": [
+    {
+      "id": "bilateral-sanctions",
+      "sourceArticleId": "WL46-025",
+      "input": {
+        "title": "UK announces new economic sanctions against Russia",
+        "source": "GOV.UK / Department for International Trade; HM Treasury",
+        "url": "https://www.gov.uk/government/news/uk-announces-new-economic-sanctions-against-russia",
+        "publishedAt": "2022-03-15T09:25:00+00:00",
+        "language": "en",
+        "content": "The UK Government has today announced a ban on exports to Russia of high-end luxury goods, while also hitting hundreds of key products with new import tariffs that represent a 35 percentage point hike on current rates."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "8e0ef5c5084687e0d5a4e34b31016b8821bdd86e59acfbe62ef02bf3557a7d02",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK announces export ban and import tariffs against Russia",
+            "summary": "The United Kingdom announces export restrictions and new tariffs against Russia.",
+            "eventType": "trade_restrictions",
+            "status": "announced",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Russia",
+                "type": "country",
+                "role": "target"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Russia",
+                "type": "trade_restrictions",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "The UK Government has today announced a ban on exports to Russia of high-end luxury goods, while also hitting hundreds of key products with new import tariffs that represent a 35 percentage point hike on current rates."
+          }
+        ]
+      }
+    },
+    {
+      "id": "military-conflict",
+      "sourceArticleId": "WL46-002",
+      "input": {
+        "title": "Russian attacks on civilian infrastructure in Ukraine: UK statement to the OSCE",
+        "source": "GOV.UK / Foreign, Commonwealth & Development Office",
+        "url": "https://www.gov.uk/government/speeches/russian-attacks-on-civilian-infrastructure-in-ukraine-uk-statement-to-the-osce",
+        "publishedAt": "2022-05-04T08:34:50+01:00",
+        "language": "en",
+        "content": "Russian bombers have, in recent weeks, repeatedly and remorselessly dropped targeted munitions on civilian infrastructure in Ukraine, including government buildings, hospitals, schools, and transportation."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "7018e44bb53ea45a97c80ec5e1b8874f7428987d9783241bc352df0adffd096a",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "Russia attacks Ukrainian civilian infrastructure",
+            "summary": "Russian bombers attack civilian infrastructure in Ukraine.",
+            "eventType": "conflict",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "Russia",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Ukraine",
+                "type": "country",
+                "role": "target"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "Russia",
+                "to": "Ukraine",
+                "type": "conflict",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "Russian bombers have, in recent weeks, repeatedly and remorselessly dropped targeted munitions on civilian infrastructure in Ukraine, including government buildings, hospitals, schools, and transportation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "diplomatic-meeting",
+      "sourceArticleId": "WL46-032",
+      "input": {
+        "title": "Foreign Secretary meets Egyptian Foreign Minister",
+        "source": "GOV.UK / Foreign & Commonwealth Office",
+        "url": "https://www.gov.uk/government/news/foreign-secretary-meets-egyptian-foreign-minister--2",
+        "publishedAt": "2014-04-02T18:20:00+01:00",
+        "language": "en",
+        "content": "The Foreign Secretary William Hague met the Egyptian Foreign Minister Nabil Fahmy in Brussels on 2 April.\n\nThe Foreign Secretary raised his strong concern over the death sentence imposed on 529 people on 24 March and the case of two British journalists who have been charged in Egypt and are currently being tried in absentia. He asked the Egyptian Government to review these issues as a matter of urgency and to ensure that the individuals’ human and legal rights are properly upheld."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "05f045c43d1eeedc8032c241057e560bba4eae8ce08a1ce958f6ae35af1f869f",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK and Egyptian foreign ministers meet in Brussels",
+            "summary": "UK and Egyptian foreign ministers meet in Brussels.",
+            "eventType": "diplomacy",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "partner"
+              },
+              {
+                "name": "Egypt",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Egypt",
+                "type": "diplomacy",
+                "direction": "bidirectional"
+              }
+            ],
+            "reason": null,
+            "evidence": "The Foreign Secretary William Hague met the Egyptian Foreign Minister Nabil Fahmy in Brussels on 2 April."
+          },
+          {
+            "title": "UK asks Egypt to review death sentences and journalist cases",
+            "summary": "UK asks Egypt to review death sentences and journalist cases.",
+            "eventType": "diplomacy",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Egypt",
+                "type": "country",
+                "role": "target"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Egypt",
+                "type": "diplomacy",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "The Foreign Secretary raised his strong concern over the death sentence imposed on 529 people on 24 March and the case of two British journalists who have been charged in Egypt and are currently being tried in absentia. He asked the Egyptian Government to review these issues as a matter of urgency and to ensure that the individuals’ human and legal rights are properly upheld."
+          }
+        ]
+      }
+    },
+    {
+      "id": "international-agreement",
+      "sourceArticleId": "WL46-073",
+      "input": {
+        "title": "The UK and Spain sign an agreement on education cooperation",
+        "source": "GOV.UK / UK Government",
+        "url": "https://www.gov.uk/government/news/the-uk-and-spain-sign-an-agreement-on-education-cooperation",
+        "publishedAt": "2023-07-04T12:48:17+01:00",
+        "language": "en",
+        "content": "On Monday 3 July, the UK and Spain completed the signing of a UK-Spain bilateral agreement on cooperation in matters of education and access to university and other higher education institutions."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "874c6a529dae9556eccc897389e2568b4597676f0b656e9ae9d98f9d45ec0f06",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK and Spain complete signing an education cooperation agreement",
+            "summary": "UK and Spain complete signing an education cooperation agreement.",
+            "eventType": "international_agreement",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "partner"
+              },
+              {
+                "name": "Spain",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Spain",
+                "type": "international_agreement",
+                "direction": "bidirectional"
+              }
+            ],
+            "reason": null,
+            "evidence": "On Monday 3 July, the UK and Spain completed the signing of a UK-Spain bilateral agreement on cooperation in matters of education and access to university and other higher education institutions."
+          }
+        ]
+      }
+    },
+    {
+      "id": "unilateral-statement",
+      "sourceArticleId": "WL46-001",
+      "input": {
+        "title": "UK assesses Russian involvement in cyber attacks on Ukraine",
+        "source": "GOV.UK / Foreign, Commonwealth & Development Office; National Cyber Security Centre",
+        "url": "https://www.gov.uk/government/news/uk-assess-russian-involvement-in-cyber-attacks-on-ukraine",
+        "publishedAt": "2022-02-18T20:14:00+00:00",
+        "language": "en",
+        "content": "The government today attributed the distributed denial of service (DDoS) attacks against the Ukrainian banking sector on 15 and 16 February 2022 to have involved the Russian Main Intelligence Directorate (GRU). The decision to publicly attribute this incident underlines the fact that the UK and its allies will not tolerate malicious cyber activity."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "c5440dc267415ba51b3d5659ce14cd2a114986fb5769df5d919f31690c07c7ba",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK publicly attributes cyber attacks to Russian GRU",
+            "summary": "The UK government publicly attributes cyber attacks in Ukraine to Russian GRU involvement.",
+            "eventType": "diplomacy",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Russia",
+                "type": "country",
+                "role": "mentioned"
+              },
+              {
+                "name": "Ukraine",
+                "type": "country",
+                "role": "mentioned"
+              }
+            ],
+            "relationships": [],
+            "reason": null,
+            "evidence": "The government today attributed the distributed denial of service (DDoS) attacks against the Ukrainian banking sector on 15 and 16 February 2022 to have involved the Russian Main Intelligence Directorate (GRU). The decision to publicly attribute this incident underlines the fact that the UK and its allies will not tolerate malicious cyber activity."
+          }
+        ]
+      }
+    },
+    {
+      "id": "multiple-events",
+      "sourceArticleId": "WL46-056",
+      "input": {
+        "title": "PM to announce largest-ever military aid package to Ukraine on visit to Poland",
+        "source": "GOV.UK / Prime Minister's Office, 10 Downing Street",
+        "url": "https://www.gov.uk/government/news/pm-to-announce-largest-ever-military-aid-package-to-ukraine-on-visit-to-poland",
+        "publishedAt": "2024-04-22T00:00:00+01:00",
+        "language": "en",
+        "content": "The £500 million additional funding announced today - which takes us to £3 billion in UK military aid for Ukraine this financial year - will be used to rapidly deliver urgently-needed ammunition, air defence, drones and engineering support.\n\nHe will meet Polish Prime Minister Donald Tusk to discuss deepening UK-Poland relations, and the leaders will hold talks with NATO Secretary-General Jens Stoltenberg in Warsaw on European security and support to Ukraine.\n\nThe Prime Minister will then travel on to Germany to meet Chancellor Olaf Scholz in Berlin.\n\nBuilding on existing strong defence and security cooperation, he will offer to deploy an RAF Typhoon Squadron to carry out Nato Air Policing over Poland next year.\n\nTo further boost trade and support UK companies looking to invest in Poland, the Prime Minister will also announce today an intention to triple UK Export Finance funding available for Poland from £5 billion to £15 billion – our most generous offer to a partner country to date."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "2620c9ac6c2a87c37b8dc55b0985f051863cd6734e97bf972752880a8055671c",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK announces additional military funding and equipment for Ukraine",
+            "summary": "UK announces additional military funding and equipment for Ukraine.",
+            "eventType": "military_aid",
+            "status": "announced",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "sender"
+              },
+              {
+                "name": "Ukraine",
+                "type": "country",
+                "role": "recipient"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Ukraine",
+                "type": "military_aid",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "The £500 million additional funding announced today - which takes us to £3 billion in UK military aid for Ukraine this financial year - will be used to rapidly deliver urgently-needed ammunition, air defence, drones and engineering support."
+          },
+          {
+            "title": "UK prime minister plans talks with Poland",
+            "summary": "UK prime minister plans talks with Poland.",
+            "eventType": "diplomacy",
+            "status": "planned",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "partner"
+              },
+              {
+                "name": "Poland",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Poland",
+                "type": "diplomacy",
+                "direction": "bidirectional"
+              }
+            ],
+            "reason": null,
+            "evidence": "He will meet Polish Prime Minister Donald Tusk to discuss deepening UK-Poland relations, and the leaders will hold talks with NATO Secretary-General Jens Stoltenberg in Warsaw on European security and support to Ukraine."
+          },
+          {
+            "title": "UK prime minister plans meeting with German chancellor",
+            "summary": "UK prime minister plans meeting with German chancellor.",
+            "eventType": "diplomacy",
+            "status": "planned",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "partner"
+              },
+              {
+                "name": "Germany",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Germany",
+                "type": "diplomacy",
+                "direction": "bidirectional"
+              }
+            ],
+            "reason": null,
+            "evidence": "The Prime Minister will then travel on to Germany to meet Chancellor Olaf Scholz in Berlin."
+          },
+          {
+            "title": "UK plans to offer RAF air policing over Poland",
+            "summary": "UK plans to offer RAF air policing over Poland.",
+            "eventType": "military_cooperation",
+            "status": "proposed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Poland",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Poland",
+                "type": "military_cooperation",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "Building on existing strong defence and security cooperation, he will offer to deploy an RAF Typhoon Squadron to carry out Nato Air Policing over Poland next year."
+          },
+          {
+            "title": "UK plans announcement of increased export finance for Poland",
+            "summary": "UK plans announcement of increased export finance for Poland.",
+            "eventType": "trade",
+            "status": "planned",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Poland",
+                "type": "country",
+                "role": "recipient"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Poland",
+                "type": "trade",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "To further boost trade and support UK companies looking to invest in Poland, the Prime Minister will also announce today an intention to triple UK Export Finance funding available for Poland from £5 billion to £15 billion – our most generous offer to a partner country to date."
+          }
+        ]
+      }
+    },
+    {
+      "id": "international-organization",
+      "sourceArticleId": "WL46-077",
+      "input": {
+        "title": "Joint statement from G7 and NATO leaders: 16 November 2022",
+        "source": "GOV.UK / Prime Minister's Office, 10 Downing Street",
+        "url": "https://www.gov.uk/government/news/joint-statement-from-g7-leaders-16-november-2022",
+        "publishedAt": "2022-11-16T04:24:00+00:00",
+        "language": "en",
+        "content": "Today, the Leaders of Canada, the European Commission, the European Council, France, Germany, Italy, Japan, the Netherlands, Spain, the United States and the United Kingdom met in the margins of the G20 Summit in Bali and released the following statement:"
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "05b88a6ccf8b2a4e16e6e6275999a9504cc8b9817b0460da3c0a347d8d5a7eb0",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "Named leaders meet and issue a collective statement in Bali",
+            "summary": "Named leaders meet and issue a collective statement in Bali.",
+            "eventType": "diplomacy",
+            "status": "completed",
+            "participants": [
+              {
+                "name": "Canada",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "France",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "Germany",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "Italy",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "Japan",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "Netherlands",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "Spain",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "United States",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "participant"
+              },
+              {
+                "name": "European Union",
+                "type": "international_organization",
+                "role": "participant"
+              }
+            ],
+            "relationships": [],
+            "reason": null,
+            "evidence": "Today, the Leaders of Canada, the European Commission, the European Council, France, Germany, Italy, Japan, the Netherlands, Spain, the United States and the United Kingdom met in the margins of the G20 Summit in Bali and released the following statement:"
+          }
+        ]
+      }
+    },
+    {
+      "id": "domestic-control",
+      "sourceArticleId": "WL46-096",
+      "input": {
+        "title": "Environment Agency announces updated plans for York flood scheme",
+        "source": "GOV.UK / Environment Agency",
+        "url": "https://www.gov.uk/government/news/environment-agency-announces-updated-plans-for-york-flood-scheme",
+        "publishedAt": "2020-01-13T12:23:00+00:00",
+        "language": "en",
+        "content": "A spokesperson said that due to significant public safety concerns it will not be possible to keep a section of Terry Avenue open, between Skeldergate Bridge and Dukes Wharf, while flood defence work takes place.\n\nThe Environment Agency submitted a planning application in March 2019 with its proposals to better protect Clementhorpe from flooding. It forms part of the £45 million given to York by the government after the devastating flooding of Boxing Day 2015.\n\nBut concerns were voiced about the proposed closure of Terry Avenue for up to 18 months and the impact on local residents so an alternative solution was sought."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "5c79065f3690fd10fac7686c34bcfcc1e72ba8299afea77e3c95f05460a348de",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": []
+      }
+    },
+    {
+      "id": "planned-action",
+      "sourceArticleId": "WL46-056",
+      "input": {
+        "title": "PM to announce largest-ever military aid package to Ukraine on visit to Poland",
+        "source": "GOV.UK / Prime Minister's Office, 10 Downing Street",
+        "url": "https://www.gov.uk/government/news/pm-to-announce-largest-ever-military-aid-package-to-ukraine-on-visit-to-poland",
+        "publishedAt": "2024-04-22T00:00:00+01:00",
+        "language": "en",
+        "content": "PM to travel to Poland and Germany to cement security, trade and diplomatic ties with key European allies\n\nHe is expected to announce a £500 million boost for Ukraine and largest-ever provision of vital munitions, including some 400 vehicles, 1,600 munitions and 4 million rounds of ammunition \n\nPM to discuss the threat from Russia and UK efforts to support European security with Prime Minister Tusk and the Nato Secretary-General in Warsaw\n\nThe Prime Minister will travel to Poland today [Tuesday 23 April] to announce a massive uplift in military support for Ukraine, including £500 million in additional military funding and our largest-ever delivery of vital equipment. \n\nHe will meet Polish Prime Minister Donald Tusk to discuss deepening UK-Poland relations, and the leaders will hold talks with NATO Secretary-General Jens Stoltenberg in Warsaw on European security and support to Ukraine. The Prime Minister will then travel on to Germany to meet Chancellor Olaf Scholz in Berlin.\n\nUkraine is facing an existential threat as Russia continues its barbaric invasion, risking the security and stability of all of Europe. \n\nThe £500 million additional funding announced today - which takes us to £3 billion in UK military aid for Ukraine this financial year - will be used to rapidly deliver urgently-needed ammunition, air defence, drones and engineering support. The drones will be procured in the UK and the funds will support a scale-up in domestic defence supply chains.\n\nThe Ministry of Defence will also send our largest-ever single package of equipment from the UK, designed to help push back the Russian invasion on land, sea and air. It includes: \n\n60 boats including offshore raiding craft, rigid raiding craft and dive boats as well as maritime guns\n\nMore than 1,600 strike and air defence missiles, as well as additional Storm Shadow long-range precision-guided missiles. \n\nMore than 400 vehicles, including 160 protected mobility ‘Husky’ vehicles, 162 armoured vehicles and 78 all-terrain vehicles.\n\nNearly 4 million rounds of small arms ammunition.\n\nPrime Minister Rishi Sunak said:\n\n “Defending Ukraine against Russia’s brutal ambitions is vital for our security and for all of Europe. If Putin is allowed to succeed in this war of aggression, he will not stop at the Polish border. \n\n“I am in Warsaw today to deepen ties with our Polish partners and commit critical new military support for Ukraine’s defence.  Ukraine’s armed forces continue to fight bravely, but they need our support – and they need it now. Today’s package will help ensure Ukraine has what they need to take the fight to Russia.\n\n“The United Kingdom will always play its part at the forefront of European security, defending our national interest and standing by our Nato allies.”\n\n Defence Secretary Grant Shapps said:\n\n“This record package of military aid will give President Zelenskyy and his brave nation more of the kit they need to kick Putin out and restore peace and stability in Europe. \n\n“The UK was the first to provide NLAW missiles, the first to give modern tanks and the first to send long-range missiles. \n\n“Now, we are going even further. We will never let the world forget the existential battle Ukraine is fighting, and with our enduring support, they will win.”\n\nIn his first in-person meeting with new Polish Prime Minister Donald Tusk, the Prime Minister will also seek to deepen UK-Poland ties across a range of issues. \n\nBuilding on existing strong defence and security cooperation, he will offer to deploy an RAF Typhoon Squadron to carry out Nato Air Policing over Poland next year. \n\nTo further boost trade and support UK companies looking to invest in Poland, the Prime Minister will also announce today an intention to triple UK Export Finance funding available for Poland from £5 billion to £15 billion – our most generous offer to a partner country to date. \n\nBilateral trade between the UK and Poland has doubled in the last decade to reach £30.6 billion, with 45 million bottles of Scotch whisky bought in Poland last year and UK firms bidding for £5 billion worth of Polish opportunities across energy, defence, healthcare, and infrastructure."
+      },
+      "inputScope": "complete original government publication body, includes attribution context",
+      "fullSourceContentSha256": "2620c9ac6c2a87c37b8dc55b0985f051863cd6734e97bf972752880a8055671c",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK plans to offer RAF air policing over Poland",
+            "summary": "UK plans to offer RAF air policing over Poland.",
+            "eventType": "military_cooperation",
+            "status": "proposed",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "initiator"
+              },
+              {
+                "name": "Poland",
+                "type": "country",
+                "role": "partner"
+              }
+            ],
+            "relationships": [
+              {
+                "from": "United Kingdom",
+                "to": "Poland",
+                "type": "military_cooperation",
+                "direction": "directed"
+              }
+            ],
+            "reason": null,
+            "evidence": "Building on existing strong defence and security cooperation, he will offer to deploy an RAF Typhoon Squadron to carry out Nato Air Policing over Poland next year."
+          }
+        ]
+      }
+    },
+    {
+      "id": "contradictory-claims",
+      "sourceArticleId": "WL46-086",
+      "input": {
+        "title": "Russia Prioritises Disinformation Over Energy Ceasefire: UK statement to the OSCE",
+        "source": "GOV.UK / Foreign, Commonwealth & Development Office",
+        "url": "https://www.gov.uk/government/speeches/russia-prioritises-disinformation-over-energy-ceasefire-uk-statement-to-the-osce",
+        "publishedAt": "2026-02-04T11:36:00+00:00",
+        "language": "en",
+        "content": "For example, in this forum, Russia has alleged it has established total control over Kupiansk. This is demonstrably false."
+      },
+      "inputScope": "verbatim selected source passages, not complete publication",
+      "fullSourceContentSha256": "3ed736cab24ece5483489d8f32a791d7024b77abbe04dc905fbd9eff1ed7bb16",
+      "sourceLicence": "GOV.UK Open Government Licence v3.0; attribution/source URL retained",
+      "responseOrigin": "reviewed semantic regression fixture, NOT a fresh model API answer",
+      "response": {
+        "events": [
+          {
+            "title": "UK rejects Russia claim of control over Kupiansk",
+            "summary": "The UK statement disputes Russia claim that it has total control over Kupiansk; no completed capture is established.",
+            "eventType": "diplomacy",
+            "status": "denied",
+            "participants": [
+              {
+                "name": "United Kingdom",
+                "type": "country",
+                "role": "commentator"
+              },
+              {
+                "name": "Russia",
+                "type": "country",
+                "role": "mentioned"
+              },
+              {
+                "name": "Ukraine",
+                "type": "country",
+                "role": "mentioned"
+              }
+            ],
+            "relationships": [],
+            "reason": null,
+            "evidence": "For example, in this forum, Russia has alleged it has established total control over Kupiansk. This is demonstrably false."
+          }
+        ]
+      }
+    }
+  ]
+}

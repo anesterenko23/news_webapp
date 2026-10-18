@@ -1,8 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import type { Prisma, PrismaClient, Article } from '@prisma/client';
-import type { Extracted } from './schemas.js';
 import { ISO_CODES, ROLES } from './schemas.js';
-import { VALIDATOR_VERSION, validateClaim, type CheckResult } from './validation.js';
+import type { CheckResult } from './validation.js';
 import { publicationPolicy } from './verification.js';
 import { similarity, normalizedHeadline } from './deduplication.js';
 export const claimInclude={participants:true,relationships:true,evidence:true,mergeCandidates:true,validationHistory:true,sources:{include:{article:true}}};
@@ -52,7 +51,7 @@ export async function storeClaim(tx:Tx,raw:unknown,normalized:unknown,checks:Che
  const countries=value?.countries??partialCountries;
  const reasonList=[...checks.errors,...checks.warnings];
  const claim=await tx.extractedClaim.create({data:{id,legacyEventId:legacy?.id,runId,articleId:article.id,title:value?.title??String(source?.title??'Invalid extracted claim').slice(0,300),summary:value?.summary??String(source?.summary??'Invalid extracted claim'),eventType:value?.event_type??'unknown',eventStatus:value?.event_status??'unknown',actionText:value?.action_text??'',objectText:value?.object_text??null,occurredAt:value?.occurred_at?new Date(value.occurred_at):null,publishedAt:article.publishedAt,confidence:typeof source?.confidence==='number'&&Number.isFinite(source.confidence)?Math.min(1,Math.max(0,source.confidence)):0,rawClaim:JSON.stringify(raw),entities:JSON.stringify(value?.entities??[]),...policy,validationResults:JSON.stringify({...checks,value:undefined}),reviewReasons:JSON.stringify(reasonList),participants:{create:[...new Map(countries.map((c:any)=>[c.code,c])).values()].map((c:any)=>({countryCode:c.code,role:c.role,attributionEvidenceIds:'[]'}))}}});
- await tx.claimValidationDecision.create({data:{claimId:id,validatorVersion:VALIDATOR_VERSION,previousStatus:'NotAssessed',nextStatus:checks.status,beforeJson:'null',afterJson:JSON.stringify(checks),reasons:JSON.stringify(reasonList)}});
+ await tx.claimValidationDecision.create({data:{claimId:id,validatorVersion:checks.validatorVersion,previousStatus:'NotAssessed',nextStatus:checks.status,beforeJson:'null',afterJson:JSON.stringify(checks),reasons:JSON.stringify(reasonList)}});
  const evidenceMap=new Map<string,string>();
  for(const evidence of checks.evidence){if(evidenceMap.has(evidence.temporaryId))continue;const saved=await tx.claimEvidence.create({data:{id:randomUUID(),claimId:id,...evidence}});evidenceMap.set(evidence.temporaryId,saved.id);}
  if(value){

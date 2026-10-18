@@ -2,8 +2,9 @@ import type {PrismaClient}from '@prisma/client';
 import {VALIDATOR_VERSION,validateClaim,legacyToCurrent}from './validation.js';
 import {BASELINE_VERSION}from './prompt.js';
 import {publicationPolicy}from './verification.js';
+import {SEMANTIC_VERSION}from './semantic-contract.js';
 export async function revalidateStoredClaims(db:PrismaClient){
- const claims=await db.extractedClaim.findMany({where:{validationHistory:{none:{validatorVersion:VALIDATOR_VERSION}}},include:{article:true,run:true}});let updated=0;
+ const claims=await db.extractedClaim.findMany({where:{run:{promptVersion:{not:SEMANTIC_VERSION}},validationHistory:{none:{validatorVersion:VALIDATOR_VERSION}}},include:{article:true,run:true}});let updated=0;
  for(const claim of claims){
   const raw=JSON.parse(claim.rawClaim),converted=claim.run.promptVersion===BASELINE_VERSION?legacyToCurrent(raw,0):raw;
   let original={title:claim.article.title,content:claim.article.content};try{original=JSON.parse(claim.article.originalJson);}catch{}
