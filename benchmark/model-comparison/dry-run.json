@@ -1,0 +1,5007 @@
+{
+  "status": "dry_run_no_generation_requests",
+  "createdAt": "2026-10-18T11:54:03.344Z",
+  "planSha256": "97d4b0cbe4a0babdc79ebbf37c6370dccb0154a1b42b29282426359c4ff65cd3",
+  "frozen": {
+    "runtime": {
+      "node": "v24.21.0",
+      "platform": "win32",
+      "arch": "x64",
+      "lockfileSha256": "523e1cf02d53240e42e2a3c0c27221f71d59d3eac11df5aab1d9533df25942e9"
+    },
+    "config": {
+      "version": "world-lens-model-comparison/1.0",
+      "datasetVersion": "world-lens-holdout/2026-10-18-v1",
+      "promptVersion": "world-lens-extraction/1.2.1",
+      "schemaVersion": "world-lens-logical-schema/4.5.1",
+      "temperature": 0,
+      "maxOutputTokens": 6000,
+      "timeoutMs": 120000,
+      "max429Retries": 1,
+      "hardBudgetCapUsd": 10,
+      "monthlyVolumeScenarioArticles": 30000,
+      "bootstrapSeed": 461018,
+      "bootstrapReplicates": 5000,
+      "consistencyArticleIds": [
+        "WL46-001",
+        "WL46-002",
+        "WL46-003",
+        "WL46-016",
+        "WL46-017",
+        "WL46-018",
+        "WL46-031",
+        "WL46-032",
+        "WL46-046",
+        "WL46-047",
+        "WL46-056",
+        "WL46-057",
+        "WL46-066",
+        "WL46-067",
+        "WL46-076",
+        "WL46-077",
+        "WL46-086",
+        "WL46-087",
+        "WL46-096",
+        "WL46-097"
+      ],
+      "consistencyRepeats": 3,
+      "models": [
+        {
+          "key": "ministral",
+          "provider": "mistral",
+          "modelId": "ministral-8b-2512",
+          "inputUsdPerMillion": 0.15,
+          "outputUsdPerMillion": 0.15,
+          "pricingVerifiedAt": "2026-10-18",
+          "pricingSource": "https://docs.mistral.ai/models/ministral-3-8b-25-12"
+        },
+        {
+          "key": "gemini",
+          "provider": "gemini",
+          "modelId": "gemini-3.8-flash",
+          "inputUsdPerMillion": 0.75,
+          "outputUsdPerMillion": 3.75,
+          "pricingVerifiedAt": "2026-10-18",
+          "pricingSource": "https://ai.google.dev/gemini-api/docs/pricing"
+        }
+      ],
+      "notes": [
+        "No production provider switch. Read credentials only from backend/.env.",
+        "Same output cap includes Gemini thought tokens, which reduces visible answer allowance. Mistral is non-reasoning.",
+        "Raw quality does not treat normalized action_text mismatch as factual falsity. Level B faithfully retains the current stricter backend guard."
+      ],
+      "requiredCoverageTags": [
+        "multi_event",
+        "venue_only",
+        "international_organization",
+        "unspecified_partners",
+        "indirect_attribution",
+        "planned",
+        "announced",
+        "denied",
+        "historical_context",
+        "contradictory_claims"
+      ]
+    },
+    "datasetSha256": "ea34ba6001ab4af851304dd9713ec2f646f8d5c9113fa9cd21a61d0504b0271c",
+    "promptSha256": "ccabd6d4ac6608786f4411c6f9fd57ccd44c7d358a5ccbd143fc8a4a1226bf27",
+    "schemaSha256": "25e84635f97aee04fc9a00b764fa862f25f3a55ee307249af60f0125c436d605",
+    "codeHashes": {
+      "app.ts": "e86cda45f541e975e65641432db38b65710a03e198491939401e4ee15eda44d3",
+      "backfill.ts": "b1f27e3731cd551d8af8308ef1f68295c580138f8372c29b3cf6eca772065d99",
+      "canonical.ts": "2be59ddf9dedbb7f030e74f865ede7f0b3dc356aa76dcab630b65d64f26f5e10",
+      "config.ts": "cc2982f316e6313993070b9c1d412547d648de95bc9caec96df48bda3df9af05",
+      "countries.ts": "ce45c08c1b7aca85581f488b5eb27dafa9b68ddd4dcb0881d2f2f5dcaed6acae",
+      "database.ts": "7c2f6ee5bd76c5ef5175182fcb0c96f4420292228f4d3b84c3524f5227a6d5a9",
+      "deduplication.ts": "320937f5e5a4cc756c633d9d91119a002d7450e9232eae06d438ff7f9c058088",
+      "engine.ts": "8189e5ad9db6ab1e5564f745ab7f5352928dd9de464e1af7b41c529a06aa2d1f",
+      "entities.ts": "e8202bd48563e2100eca014b250215b948cb97a8493926eae5763f714a329dea",
+      "gemini-schema.ts": "54cdd364bb47a530d96284d3dd46fb9ecfeb7f2362c30bfa993e0e6d32965c46",
+      "globe-projection.ts": "6011e1185fa3145fb40ee71d6025c440a9beb6a0d3522d44d05894841cbdfd4b",
+      "lab.ts": "0305be8e1d0639d86e10d4a69c5642e177e8709e66f0800d9575a05945faecb4",
+      "legacy-migration.ts": "f145e59181eeeddce3d7af9a5018c0d6bc91466b199f3523dc989b881a758344",
+      "normalization.ts": "edd9c3f5f10b475ab887374333897993e42c1f7f433814215fa0b32fc3a2bf9c",
+      "presentation.ts": "cb5f15a5767fba52553191637fe97e327ecff32605f1df1286679d3437525e92",
+      "prompt-v1.ts": "045f189fa440b3230b5cbed9015cd62f4de96c038a26e5e771d332198f415abe",
+      "prompt-v120.ts": "c9ef4cadd29240e51342b58fabb51eaed166c4a43cf4e50e7d118e95b145716d",
+      "prompt.ts": "ba631ee91ac6a52adb8828171d31ad914887e5aafca7e0ed842e2ef91bc589c5",
+      "provider.ts": "cedc62f54d836d9670ee1be2fc578287adbc91461d6e9f98ee4a17186cd1304c",
+      "revalidation.ts": "851c45bb2650b46ecc601c251615f6f4c4846e8904d089c07c6587eebd93fdcf",
+      "schemas-v1.ts": "bf51b51bdd1616f4da1cd35bff43a403efb01eb664e4fb0d183469f8215a7776",
+      "schemas.ts": "fa4969b042867ffb2cb0d667ff9be6cb713d25d2f4bad42497368d83e5472eab",
+      "server.ts": "d809d678cbd6238afb5b58d41132da855954e4469ed7acf56bc54963bd722591",
+      "validation-v1.ts": "891e6b324d9463ee0e68db0bfa8b2e20ed3b8cba3277b4629f9b89192f9830a3",
+      "validation.ts": "14f47519daf4f546c30223338f7b8903601159e68862b636ed57df149e1af5b5",
+      "verification.ts": "49a0576a279fded280813294b105d810ea67b533c85e7b0fb54b755e7ac830f2",
+      "benchmark/analyze.mjs": "5012851786d8203bd66410241f28ff124970f167a48dcf9fba4ec7c393c28631",
+      "benchmark/common.mjs": "99f2bb8fdd73b66789192221e50368371f2a04bcbf15120e62c38635deceee4b",
+      "benchmark/dry-run.mjs": "11b50025697fffa8d01be950c419a80845ea21332e61563325c6e8662c940421",
+      "benchmark/hydrate.mjs": "6922958cc24d617795aa0296d43d0cb0ef56ca4708891a2505276a529681d4b3",
+      "benchmark/metrics-lib.mjs": "9b3fa62697eb9462b568936e753eb63c8c328e7ce7a0852343768748d6e0f322",
+      "benchmark/report.mjs": "c95ea7462bd9feeca8010ba3e5260f693dd8f59d72ac188b4485f610bedee367",
+      "benchmark/run.mjs": "f935821604f320675fcb89213b2edacaae8bbfa70a2d3542cffd41be871c776c",
+      "compiled/app.js": "823fcea8554459e3600b26fee8dc63139a396915d3835ecf6e739468e8009eea",
+      "compiled/backfill.js": "0fc257f35ffbc96742894b51c8b249bdcfb6a8f538d9333830c9c1f5e730cf0b",
+      "compiled/canonical.js": "90d7c994ef6413bcc235c9f197bc2633c2b95fb0fb88327395bc2b5386965471",
+      "compiled/config.js": "2b9ed6dc06f718c81bd15094766331d562634ee93be2ad9460c40d0a8757ee06",
+      "compiled/countries.js": "1f5766017214132ffa847713a2a4ad2ccda20ea31b3f17b5aee3aa09b61fc7fa",
+      "compiled/database.js": "b679cefbea3477b3a6fa78103507b679ba2c988b5a8e79abb67522ed930cbea1",
+      "compiled/deduplication.js": "f12641ec92c354bba6e5ec862a6a00c9aee08f2f8ea09e496152a2e9396d1c9f",
+      "compiled/engine.js": "1dd2bb466c4418a75eac4c991a666f263157940ffbb494e8f868199c10c97b00",
+      "compiled/entities.js": "43b5c30f4461f15adf390427869bd2851ddc0f6f35fbdefefca0707922932e59",
+      "compiled/gemini-schema.js": "fc1815a8bb4b934d974edac62ead66556df8668f85286e05df59a450bbac8222",
+      "compiled/globe-projection.js": "37e203447d1518bbb70892c54d0ee6de1235e21c7b53af06b2d948c4574e3e4f",
+      "compiled/lab.js": "b16ebca8377fe910c3d88c183f30a749daa9c91fe2cbc486f44b828e6e350676",
+      "compiled/legacy-migration.js": "bb4a1c6b50debadce528217d047dec8ce2941527464c4f81d44dded3e3e24619",
+      "compiled/normalization.js": "3f06a46f0bae227364bfadf071d7d35fa8957e55d54ab1530ef06e93941c803d",
+      "compiled/presentation.js": "213a0c74e594c75a24f67a98bed83be8928ed2241c104180e54fdc475ceeb40a",
+      "compiled/prompt-v1.js": "045f189fa440b3230b5cbed9015cd62f4de96c038a26e5e771d332198f415abe",
+      "compiled/prompt-v120.js": "34bba22f08eb5b916f490ed537aa3edea11c3dbe7531888ced2def8d57afbeff",
+      "compiled/prompt.js": "f1063e5493b43016a4d28df6bc13e17aabcac1cbc58b0190ee67f382aa518182",
+      "compiled/provider.js": "1cf1f7f34c02437edcbcedbe92bcaafc7d43ef38a39230744f77cb968a2be890",
+      "compiled/revalidation.js": "aa6949652325ab000463158a847e6feb56015d72eeadc4fc294a110c929903b2",
+      "compiled/schemas-v1.js": "0c662fa2f43a2d5a56f7b90fa851f8be5af17b443c98da5bad06f914998f9178",
+      "compiled/schemas.js": "c6cc6be9c9279839474d1c74d8dbc46123f070cee581ad22f8eb7017b6995003",
+      "compiled/server.js": "17af4e9965939272a880717e237a12685238892524a5544e8e14f95de2c875aa",
+      "compiled/validation-v1.js": "4a3a4eb5f4d6e9ea5b407402ac032a95549bc4530aba4ddb2b7dc15a7a748e25",
+      "compiled/validation.js": "f84bf3b803931d60b8b9c407b249028717dad1b8e1b24f5da1e61966e85a0b62",
+      "compiled/verification.js": "ddba3c8c16cd2e1019db185bac135266aab6025d1acb201a0e7cedfe98a351a2"
+    },
+    "reprintsSha256": "3d08fbc5f8dd714a6c9c071efa0d7e49130dba60cabdcb047c2fe534a3fde5a7"
+  },
+  "phases": {
+    "smoke": 4,
+    "main": 200,
+    "consistency": 120,
+    "deduplication": 20
+  },
+  "logicalRequests": 344,
+  "maxHttpAttempts": 688,
+  "retryPolicy": "Only explicit HTTP429, bounded exponential backoff; ambiguous 5xx/timeouts stop until reconciliation. All attempts retained.",
+  "models": [
+    {
+      "model": "ministral-8b-2512",
+      "logicalRequests": 172,
+      "upperReservationUsd": 0.7954744499999996,
+      "illustrativeScenarioUsd": 0.18519585000000002
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "logicalRequests": 172,
+      "upperReservationUsd": 6.312530249999994,
+      "illustrativeScenarioUsd": 2.41278675
+    }
+  ],
+  "totalIllustrativeScenarioUsd": 2.5979826,
+  "firstAttemptConservativeUpperUsd": 7.108004699999993,
+  "hardBudgetCapUsd": 10,
+  "keyPresence": {
+    "ministral": true,
+    "gemini": true
+  },
+  "manualLabels": {
+    "approved": 0,
+    "total": 100,
+    "status": "pending_human_annotation"
+  },
+  "scope": "No paid calls in this command. No production DB connection or provider change.",
+  "costNotice": "Scenario is a planning assumption (body chars/4 input; Mistral2000 output, Gemini3000 including thoughts), not measured cost. Upper uses UTF8 bytes+4096 input and full6000 output. No free tier/cache discounts assumed.",
+  "jobs": [
+    {
+      "id": "smoke__SMOKE-MEETING__0__ministral",
+      "phase": "smoke",
+      "caseId": "SMOKE-MEETING",
+      "category": "smoke",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d052e5bdba4addba0fab93b7eded4d693f95135d200125f890b15b37a61beed5",
+        "maxInputTokenReservation": 21519,
+        "upperUsd": 0.004127850000000001,
+        "scenarioUsd": 0.0009534
+      }
+    },
+    {
+      "id": "smoke__SMOKE-MEETING__0__gemini",
+      "phase": "smoke",
+      "caseId": "SMOKE-MEETING",
+      "category": "smoke",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "06953b814192d7e10171c884b11bce80511d5c4cbcc8bbd83ceaa26108c33ec4",
+        "maxInputTokenReservation": 15621,
+        "upperUsd": 0.03421575,
+        "scenarioUsd": 0.01341075
+      }
+    },
+    {
+      "id": "smoke__SMOKE-CONTROL__0__gemini",
+      "phase": "smoke",
+      "caseId": "SMOKE-CONTROL",
+      "category": "smoke",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8584631afea5e15fd4712640fd4693aed85f38af04df8f84521dcf373ae4cf8e",
+        "maxInputTokenReservation": 15618,
+        "upperUsd": 0.0342135,
+        "scenarioUsd": 0.01341
+      }
+    },
+    {
+      "id": "smoke__SMOKE-CONTROL__0__ministral",
+      "phase": "smoke",
+      "caseId": "SMOKE-CONTROL",
+      "category": "smoke",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "543f886f7109b97c42d1ec377a2917d9909f31eeca3869197bb6c5d7e059440b",
+        "maxInputTokenReservation": 21516,
+        "upperUsd": 0.0041274,
+        "scenarioUsd": 0.00095325
+      }
+    },
+    {
+      "id": "main__WL46-001__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "da8a1d3e2e300a75dbb090096cce7a84d04a6ff7f15678883d65cfe41ed347f6",
+        "maxInputTokenReservation": 22690,
+        "upperUsd": 0.0043035,
+        "scenarioUsd": 0.0009969
+      }
+    },
+    {
+      "id": "main__WL46-001__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "96ea20e9a5507b88e6dacaa0c844353c74a1ce7af31867a1d3fd3ac13070197b",
+        "maxInputTokenReservation": 16792,
+        "upperUsd": 0.035094,
+        "scenarioUsd": 0.013629
+      }
+    },
+    {
+      "id": "main__WL46-002__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8385864fa34e2a03851bb2eceac43cf52460a5bfa165dbc5dbd3a026e72b2a28",
+        "maxInputTokenReservation": 19348,
+        "upperUsd": 0.037011,
+        "scenarioUsd": 0.01410825
+      }
+    },
+    {
+      "id": "main__WL46-002__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "16abba7a3231e0bb5a5b1bb44390ebc8bda0d3a232ff7d2adb21341a2ddd9cb5",
+        "maxInputTokenReservation": 25246,
+        "upperUsd": 0.0046869,
+        "scenarioUsd": 0.00109275
+      }
+    },
+    {
+      "id": "main__WL46-003__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "7cc599caa72cbb8803e229638c8f11ca2a108e4e11dc931c415af7f2dee0363c",
+        "maxInputTokenReservation": 26832,
+        "upperUsd": 0.004924799999999999,
+        "scenarioUsd": 0.0011518499999999998
+      }
+    },
+    {
+      "id": "main__WL46-003__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "946d87222e533546e980027caacb591ded3202af717f8e2304ac6f7f2c5b29fb",
+        "maxInputTokenReservation": 20934,
+        "upperUsd": 0.0382005,
+        "scenarioUsd": 0.014403
+      }
+    },
+    {
+      "id": "main__WL46-004__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-004",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d4d2161d45cd759da39b55eeb49d85dc23125285ce9f8de30940ed257e98d688",
+        "maxInputTokenReservation": 17690,
+        "upperUsd": 0.0357675,
+        "scenarioUsd": 0.0137865
+      }
+    },
+    {
+      "id": "main__WL46-004__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-004",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f06f8a1561701f0f1d24fe6ee2ac2adf907a0ccaf92ab9cf720c3e651818efde",
+        "maxInputTokenReservation": 23588,
+        "upperUsd": 0.0044382,
+        "scenarioUsd": 0.0010284
+      }
+    },
+    {
+      "id": "main__WL46-005__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-005",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "20e950f56cc598b09fb9801156535f71cbdbb5e9d7fff8b84f490710d17bb174",
+        "maxInputTokenReservation": 22804,
+        "upperUsd": 0.0043206,
+        "scenarioUsd": 0.0010014
+      }
+    },
+    {
+      "id": "main__WL46-005__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-005",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c65f8fa7a579c347b943aa81a623e29f8f30fa24517649e67d88a648008220cd",
+        "maxInputTokenReservation": 16906,
+        "upperUsd": 0.0351795,
+        "scenarioUsd": 0.0136515
+      }
+    },
+    {
+      "id": "main__WL46-006__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-006",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4f4a554bf3c529dc4f19354bf6c38e5bd8a7ed535b1650bd9d535e892b293f66",
+        "maxInputTokenReservation": 17942,
+        "upperUsd": 0.0359565,
+        "scenarioUsd": 0.013842
+      }
+    },
+    {
+      "id": "main__WL46-006__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-006",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "495d78411d96474a3e2838002cc77285c5b8eb841403f6240467432408a04633",
+        "maxInputTokenReservation": 23840,
+        "upperUsd": 0.004476,
+        "scenarioUsd": 0.0010395
+      }
+    },
+    {
+      "id": "main__WL46-007__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-007",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "be7b97999a9def63422c93b9ac76e466c4765392556c8b67df061624f3fe90e7",
+        "maxInputTokenReservation": 23324,
+        "upperUsd": 0.004398600000000001,
+        "scenarioUsd": 0.0010206
+      }
+    },
+    {
+      "id": "main__WL46-007__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-007",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d1af6e44423185df61ed080fa2e610b90cfdf2db509e2661173a678479cbdf06",
+        "maxInputTokenReservation": 17426,
+        "upperUsd": 0.0355695,
+        "scenarioUsd": 0.0137475
+      }
+    },
+    {
+      "id": "main__WL46-008__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-008",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "f797b7c94786fc3784016a53fbd40566282b222d78d56de7878ec8c9f07dfcd0",
+        "maxInputTokenReservation": 19397,
+        "upperUsd": 0.03704775,
+        "scenarioUsd": 0.014115
+      }
+    },
+    {
+      "id": "main__WL46-008__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-008",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "4e3aa2d1712e569a4867305e8c91d79d9a5c6c9f82bdb7bfe70e666c0477d80f",
+        "maxInputTokenReservation": 25295,
+        "upperUsd": 0.00469425,
+        "scenarioUsd": 0.00109425
+      }
+    },
+    {
+      "id": "main__WL46-009__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-009",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "50d7cf883ccbb67736abd02df9bcddf8fa259f798d5cb87dddc23fbf67805f50",
+        "maxInputTokenReservation": 23547,
+        "upperUsd": 0.004432049999999999,
+        "scenarioUsd": 0.00102885
+      }
+    },
+    {
+      "id": "main__WL46-009__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-009",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "14d211e8c2fd75bfff614997c25ef5570a7b51989b8cf0817ed3da8fb567aa5e",
+        "maxInputTokenReservation": 17649,
+        "upperUsd": 0.03573675,
+        "scenarioUsd": 0.013788
+      }
+    },
+    {
+      "id": "main__WL46-010__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-010",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "69fd2ec25960abf29a619465c904afb52969c700fdb9948aa95637a6d6a0820b",
+        "maxInputTokenReservation": 19510,
+        "upperUsd": 0.0371325,
+        "scenarioUsd": 0.01413075
+      }
+    },
+    {
+      "id": "main__WL46-010__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-010",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "23617fed8c29414a62833cb09f620994cebaec6979e6649818d19988e6e2090f",
+        "maxInputTokenReservation": 25408,
+        "upperUsd": 0.0047112,
+        "scenarioUsd": 0.0010974000000000001
+      }
+    },
+    {
+      "id": "main__WL46-011__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-011",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f5caea041678d39d719efa9bcc232a425c7b5d18f7be4506d09297fc5a1ce325",
+        "maxInputTokenReservation": 24481,
+        "upperUsd": 0.00457215,
+        "scenarioUsd": 0.0010636500000000002
+      }
+    },
+    {
+      "id": "main__WL46-011__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-011",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4004d0d8dbf4984d6f55a9a4ad731096ee114d47df973816bc137a346cb6ec5d",
+        "maxInputTokenReservation": 18583,
+        "upperUsd": 0.03643725,
+        "scenarioUsd": 0.01396275
+      }
+    },
+    {
+      "id": "main__WL46-012__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-012",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e7aa5a78dd7f34cd7cde4f46e53ea62ab20dcfc3429a3d582c87d86927a0a547",
+        "maxInputTokenReservation": 18967,
+        "upperUsd": 0.03672525,
+        "scenarioUsd": 0.014031
+      }
+    },
+    {
+      "id": "main__WL46-012__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-012",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "712135ba64801a23518319df2a61f7ab0b6b68d2c755d7b9e131520a5f8031d1",
+        "maxInputTokenReservation": 24865,
+        "upperUsd": 0.00462975,
+        "scenarioUsd": 0.0010774499999999998
+      }
+    },
+    {
+      "id": "main__WL46-013__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-013",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "77aa02cb42d672c1f6f3ac84005254945fe6e27926cfa5706c4dde75b869c6ab",
+        "maxInputTokenReservation": 26953,
+        "upperUsd": 0.00494295,
+        "scenarioUsd": 0.00115575
+      }
+    },
+    {
+      "id": "main__WL46-013__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-013",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "72020f93c25ac09ae05b92de0a750c04d2f643886b4e88a2a34985896e8f7256",
+        "maxInputTokenReservation": 21055,
+        "upperUsd": 0.03829125,
+        "scenarioUsd": 0.01442325
+      }
+    },
+    {
+      "id": "main__WL46-014__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-014",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "201f01f658078ec4d77b51852a7a9579661765040d314d1e4fe0bc31fbdd2d19",
+        "maxInputTokenReservation": 19308,
+        "upperUsd": 0.036981,
+        "scenarioUsd": 0.01409175
+      }
+    },
+    {
+      "id": "main__WL46-014__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-014",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "33a5e7333c6bac3c2e4fe5de2b5e135f30f4ee395b3ed62dc541b8bc6ea6dc79",
+        "maxInputTokenReservation": 25206,
+        "upperUsd": 0.0046809,
+        "scenarioUsd": 0.0010895999999999998
+      }
+    },
+    {
+      "id": "main__WL46-015__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-015",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "210d838f4fabc92ff673bf3207eb056cadbde655e7c06a92a09e5c8b0719982e",
+        "maxInputTokenReservation": 23681,
+        "upperUsd": 0.004452149999999999,
+        "scenarioUsd": 0.0010331999999999997
+      }
+    },
+    {
+      "id": "main__WL46-015__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-015",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "163bf56cbe0dd5d260c3e54baf4cb9a2280cf77a787e1e97217e1286d4c55d89",
+        "maxInputTokenReservation": 17783,
+        "upperUsd": 0.03583725,
+        "scenarioUsd": 0.01380975
+      }
+    },
+    {
+      "id": "main__WL46-016__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e9c45bf6630ecd445aa53e411206e45fbbc22605df547a2b12338f12a83f8a87",
+        "maxInputTokenReservation": 18278,
+        "upperUsd": 0.0362085,
+        "scenarioUsd": 0.013905
+      }
+    },
+    {
+      "id": "main__WL46-016__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c411b1811457c7eac029a7f177ea3836d91b90f8c46096d0756702b406361dbd",
+        "maxInputTokenReservation": 24176,
+        "upperUsd": 0.0045264,
+        "scenarioUsd": 0.00105225
+      }
+    },
+    {
+      "id": "main__WL46-017__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fb9320c8178d98be0fa7e794fc312c8d95ee6d8c2f2d7169739bb3fd50000036",
+        "maxInputTokenReservation": 26716,
+        "upperUsd": 0.004907399999999999,
+        "scenarioUsd": 0.00114705
+      }
+    },
+    {
+      "id": "main__WL46-017__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "62a46dbb995f90508bf69bb3e5e246b2f9d50a4f9a860c438ed48aa0dbd885d2",
+        "maxInputTokenReservation": 20818,
+        "upperUsd": 0.0381135,
+        "scenarioUsd": 0.01437975
+      }
+    },
+    {
+      "id": "main__WL46-018__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d3988c93d5bb3954e6d7abeca8ddabd02f500023ab358b3e146fc0995ca4789d",
+        "maxInputTokenReservation": 17499,
+        "upperUsd": 0.03562425,
+        "scenarioUsd": 0.01376025
+      }
+    },
+    {
+      "id": "main__WL46-018__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ef8ad71a091cf26cd64da40f3c3b534e988c574af63f4bd397aae11ec6bea6fe",
+        "maxInputTokenReservation": 23397,
+        "upperUsd": 0.004409549999999999,
+        "scenarioUsd": 0.00102315
+      }
+    },
+    {
+      "id": "main__WL46-019__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-019",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "b8fc41dfeed7d2de1878ea3af749d71eef13acac7a8af421107c86ff7041d21d",
+        "maxInputTokenReservation": 24907,
+        "upperUsd": 0.004636049999999999,
+        "scenarioUsd": 0.0010803
+      }
+    },
+    {
+      "id": "main__WL46-019__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-019",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0348fc9508323d19aae7acf3e2443d7ca42057ddeaeb806fb7ef9f7907dcf677",
+        "maxInputTokenReservation": 19009,
+        "upperUsd": 0.03675675,
+        "scenarioUsd": 0.01404525
+      }
+    },
+    {
+      "id": "main__WL46-020__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-020",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "ff0c991bd6bf88e3feed0c52f65b185e92ef3e524cbb5d6ac84fd67a99989cab",
+        "maxInputTokenReservation": 18037,
+        "upperUsd": 0.03602775,
+        "scenarioUsd": 0.01386225
+      }
+    },
+    {
+      "id": "main__WL46-020__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-020",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ff94c649181f7a0cadf5bddb5252d22d87af051663e27c34c6228e04ad1d1aed",
+        "maxInputTokenReservation": 23935,
+        "upperUsd": 0.00449025,
+        "scenarioUsd": 0.0010435499999999999
+      }
+    },
+    {
+      "id": "main__WL46-021__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-021",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "e92cf14a0768e5a90969abaf6b7fddc2d1cc4ad5217bef1bce30c685e713ac23",
+        "maxInputTokenReservation": 27341,
+        "upperUsd": 0.005001149999999999,
+        "scenarioUsd": 0.0011696999999999999
+      }
+    },
+    {
+      "id": "main__WL46-021__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-021",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "2bd444a94f16ee12047b4333df96595e99fbd336e3789654bd6a8919396c7b79",
+        "maxInputTokenReservation": 21443,
+        "upperUsd": 0.03858225,
+        "scenarioUsd": 0.01449225
+      }
+    },
+    {
+      "id": "main__WL46-022__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-022",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "de36ebdbc6e6cc55c230c17383ade6da9e33ae0a2bd5928083349253348fa096",
+        "maxInputTokenReservation": 19942,
+        "upperUsd": 0.0374565,
+        "scenarioUsd": 0.01421925
+      }
+    },
+    {
+      "id": "main__WL46-022__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-022",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "16eec0d67ee8cd848fb11ddb5830dada2aff456e81430f46882d057718c3a3d6",
+        "maxInputTokenReservation": 25840,
+        "upperUsd": 0.004776,
+        "scenarioUsd": 0.0011149499999999998
+      }
+    },
+    {
+      "id": "main__WL46-023__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-023",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "4786beef86b0574366809dbfcda02d4cfaa15a4c53f073c402a795bb26d16d3c",
+        "maxInputTokenReservation": 25568,
+        "upperUsd": 0.0047352,
+        "scenarioUsd": 0.001104
+      }
+    },
+    {
+      "id": "main__WL46-023__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-023",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "f4bd2af34a2f26a4648143b8d45280a45432b8bf94319a6b730316297b95a94e",
+        "maxInputTokenReservation": 19670,
+        "upperUsd": 0.0372525,
+        "scenarioUsd": 0.0141645
+      }
+    },
+    {
+      "id": "main__WL46-024__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-024",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "501f812e54e0a85a5cb8408a73e9e6996d631ccdbcec970b9d047e78e7740fed",
+        "maxInputTokenReservation": 20737,
+        "upperUsd": 0.03805275,
+        "scenarioUsd": 0.01435425
+      }
+    },
+    {
+      "id": "main__WL46-024__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-024",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ec3edaf19c9abd9b0a35390bc4f3078d9866c11c43ff52325499dcb129cda6fb",
+        "maxInputTokenReservation": 26635,
+        "upperUsd": 0.00489525,
+        "scenarioUsd": 0.0011420999999999998
+      }
+    },
+    {
+      "id": "main__WL46-025__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-025",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1eb4a758b73f975ca8b05f92e931d5ded94dd941d621d1ed6a04d443f1771a8a",
+        "maxInputTokenReservation": 25959,
+        "upperUsd": 0.0047938500000000005,
+        "scenarioUsd": 0.0011193
+      }
+    },
+    {
+      "id": "main__WL46-025__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-025",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "3b4a1472ebff4cf87d6f3aa022d144c87498bdfd90f5ffa9be9da704dd274880",
+        "maxInputTokenReservation": 20061,
+        "upperUsd": 0.03754575,
+        "scenarioUsd": 0.014241
+      }
+    },
+    {
+      "id": "main__WL46-026__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-026",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d080f1f8e0b71660f54db292179198cdd85adaf8ade123bb5a9efee64663541a",
+        "maxInputTokenReservation": 21827,
+        "upperUsd": 0.03887025,
+        "scenarioUsd": 0.014568
+      }
+    },
+    {
+      "id": "main__WL46-026__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-026",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "b59fb1c38db0f945d2159716d2617ad0c07748b4059321f6d544b5d3c8a615ed",
+        "maxInputTokenReservation": 27725,
+        "upperUsd": 0.00505875,
+        "scenarioUsd": 0.0011847
+      }
+    },
+    {
+      "id": "main__WL46-027__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-027",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "e02559a40fc32b86da29ae99c1f50298069faf5b4d0c77db4d77223ab79732f4",
+        "maxInputTokenReservation": 25774,
+        "upperUsd": 0.0047661000000000005,
+        "scenarioUsd": 0.0011121
+      }
+    },
+    {
+      "id": "main__WL46-027__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-027",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c69c9a59f4fd58682d2c5776c8d890c8213c45f3b7ace9344298ac80d2bbfd44",
+        "maxInputTokenReservation": 19876,
+        "upperUsd": 0.037407,
+        "scenarioUsd": 0.014205
+      }
+    },
+    {
+      "id": "main__WL46-028__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-028",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0f961db4bef9c81362c59c4b362b0bb96997f8ef2dae0e97a633d0f8495e0a2d",
+        "maxInputTokenReservation": 22432,
+        "upperUsd": 0.039324,
+        "scenarioUsd": 0.01464675
+      }
+    },
+    {
+      "id": "main__WL46-028__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-028",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "58dd968487072d0574322ab6857fba9317cb56a03b9f891ec0c92c3926aa164f",
+        "maxInputTokenReservation": 28330,
+        "upperUsd": 0.0051495,
+        "scenarioUsd": 0.0012004499999999998
+      }
+    },
+    {
+      "id": "main__WL46-029__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-029",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "18c4599bb497cbaf9aafcf0e64b3a1109d4003af4d10332e99312e5eb070317e",
+        "maxInputTokenReservation": 24436,
+        "upperUsd": 0.0045654,
+        "scenarioUsd": 0.001062
+      }
+    },
+    {
+      "id": "main__WL46-029__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-029",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "1f9fd38e8541805fde08561c6017d58d5c2d6b23a9e2c3e50a8481ca35c2bb34",
+        "maxInputTokenReservation": 18538,
+        "upperUsd": 0.0364035,
+        "scenarioUsd": 0.01395375
+      }
+    },
+    {
+      "id": "main__WL46-030__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-030",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "5b0f761d78897d6d9cc4b157c1cb22e8a41d9fa9e4eab6189c6ac23ab4907974",
+        "maxInputTokenReservation": 21494,
+        "upperUsd": 0.0386205,
+        "scenarioUsd": 0.01447575
+      }
+    },
+    {
+      "id": "main__WL46-030__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-030",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "bf36f3210843b6f13c0792d16608ba619df98adb3cde9d1b910f6686196daf0c",
+        "maxInputTokenReservation": 27392,
+        "upperUsd": 0.0050088,
+        "scenarioUsd": 0.00116625
+      }
+    },
+    {
+      "id": "main__WL46-031__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a3ece9404744348c54e7ca095335f8c7fb4c68709667ea5d9adce894512ebb15",
+        "maxInputTokenReservation": 26594,
+        "upperUsd": 0.0048891,
+        "scenarioUsd": 0.00114285
+      }
+    },
+    {
+      "id": "main__WL46-031__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "19fca9f0a10a5693cd2259c6ef51f9c0189386f83af70fa03077d20bac1822fa",
+        "maxInputTokenReservation": 20696,
+        "upperUsd": 0.038022,
+        "scenarioUsd": 0.01435875
+      }
+    },
+    {
+      "id": "main__WL46-032__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "65db59eb79189dad3d7b1f3550ed187a571e3a49eee111bdb9510229c03649af",
+        "maxInputTokenReservation": 17209,
+        "upperUsd": 0.03540675,
+        "scenarioUsd": 0.01370775
+      }
+    },
+    {
+      "id": "main__WL46-032__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "965894471ffda8ca8ecef4927c8dfd3e7a8b960f29b3022bcf32a44a69f25a15",
+        "maxInputTokenReservation": 23107,
+        "upperUsd": 0.004366049999999999,
+        "scenarioUsd": 0.00101265
+      }
+    },
+    {
+      "id": "main__WL46-033__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-033",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "512897cccc461a17e00bf995c1085a47688e33c1d425f70ed75e8b5f2c630d7e",
+        "maxInputTokenReservation": 22084,
+        "upperUsd": 0.0042126,
+        "scenarioUsd": 0.0009745499999999999
+      }
+    },
+    {
+      "id": "main__WL46-033__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-033",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8c9a67ba17793eef41e807e6be2b9e4a0e0b62ccd77e9e2ef24e60f3a2a39a31",
+        "maxInputTokenReservation": 16186,
+        "upperUsd": 0.0346395,
+        "scenarioUsd": 0.0135165
+      }
+    },
+    {
+      "id": "main__WL46-034__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-034",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d9c3e607dbabbe1c1d2b90503021f757db228d26c43bc7772abe11c525ae1e22",
+        "maxInputTokenReservation": 16736,
+        "upperUsd": 0.035052,
+        "scenarioUsd": 0.013617
+      }
+    },
+    {
+      "id": "main__WL46-034__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-034",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fd4c35768de62020f21f0e0262868f2fb7ad0fd0f2da5415330c6cb9654969dc",
+        "maxInputTokenReservation": 22634,
+        "upperUsd": 0.0042951000000000005,
+        "scenarioUsd": 0.00099465
+      }
+    },
+    {
+      "id": "main__WL46-035__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-035",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fde6f6c45c4280a5a40f0e8c3cb1beb7c856b2ec5d067fc75e552c65666e5ba2",
+        "maxInputTokenReservation": 26596,
+        "upperUsd": 0.0048893999999999995,
+        "scenarioUsd": 0.0011431500000000001
+      }
+    },
+    {
+      "id": "main__WL46-035__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-035",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "ba4df8cab7c9cb544802f976e917e72a9ae377d681d6078b2660364ddb7e7fe7",
+        "maxInputTokenReservation": 20698,
+        "upperUsd": 0.0380235,
+        "scenarioUsd": 0.01436025
+      }
+    },
+    {
+      "id": "main__WL46-036__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-036",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "1176e0d5e1d19f073898d3c0a6121964a9ddf12be610b352e833214afab9efca",
+        "maxInputTokenReservation": 18844,
+        "upperUsd": 0.036633,
+        "scenarioUsd": 0.014013
+      }
+    },
+    {
+      "id": "main__WL46-036__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-036",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "e52fe32dc97a35c2ab8bee65199e5d9b29d66eb633b7d265ac3bc69d5b2ddbf0",
+        "maxInputTokenReservation": 24742,
+        "upperUsd": 0.0046113,
+        "scenarioUsd": 0.0010737
+      }
+    },
+    {
+      "id": "main__WL46-037__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-037",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "2fd31690e9cff3807e70c6805910221ac0cb56bf1e8766f07d719782a8922b83",
+        "maxInputTokenReservation": 23355,
+        "upperUsd": 0.00440325,
+        "scenarioUsd": 0.0010218
+      }
+    },
+    {
+      "id": "main__WL46-037__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-037",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "75162689dab7892da2b0d6944ab049ea3cdbb1d8cdb2090d77b136abbc5f80b9",
+        "maxInputTokenReservation": 17457,
+        "upperUsd": 0.03559275,
+        "scenarioUsd": 0.0137535
+      }
+    },
+    {
+      "id": "main__WL46-038__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-038",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "78cfa8d512673b38031092fa801ec499b01e80e066f87bf59810d9e186907e1b",
+        "maxInputTokenReservation": 17627,
+        "upperUsd": 0.03572025,
+        "scenarioUsd": 0.01378425
+      }
+    },
+    {
+      "id": "main__WL46-038__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-038",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1cd5a6ecb382947c00ff7e78672f089ead7fca23302f3759236fc8701ef97ece",
+        "maxInputTokenReservation": 23525,
+        "upperUsd": 0.00442875,
+        "scenarioUsd": 0.0010280999999999999
+      }
+    },
+    {
+      "id": "main__WL46-039__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-039",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "edc61d8e065f5912d8003ba33908cf8fe407cdae14ceb48ccf1121c6f4286ee9",
+        "maxInputTokenReservation": 22220,
+        "upperUsd": 0.004233,
+        "scenarioUsd": 0.00097935
+      }
+    },
+    {
+      "id": "main__WL46-039__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-039",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "6f127d8a0abad91c1581f201d54b67cb3dd22a03d75e877fda7d9ae289c30982",
+        "maxInputTokenReservation": 16322,
+        "upperUsd": 0.0347415,
+        "scenarioUsd": 0.01354125
+      }
+    },
+    {
+      "id": "main__WL46-040__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-040",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "96fe451a343c1c008c5474568a5ccbc7a0afe822f10be843065bdae2f9719f86",
+        "maxInputTokenReservation": 16435,
+        "upperUsd": 0.03482625,
+        "scenarioUsd": 0.01356225
+      }
+    },
+    {
+      "id": "main__WL46-040__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-040",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f24667abb41eaa5701647646b7e719694ba2a73c12d498fe759fd7800f8fc596",
+        "maxInputTokenReservation": 22333,
+        "upperUsd": 0.00424995,
+        "scenarioUsd": 0.00098355
+      }
+    },
+    {
+      "id": "main__WL46-041__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-041",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "391175cf247084f97a6846546b8d8a172d68548c7b1a963d72f832c78c5e02c6",
+        "maxInputTokenReservation": 27738,
+        "upperUsd": 0.0050607,
+        "scenarioUsd": 0.00118575
+      }
+    },
+    {
+      "id": "main__WL46-041__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-041",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8b0ccc94cc01fc1c19b8bc636350bb629d5cd3d2eb330dbd421b49d90288c117",
+        "maxInputTokenReservation": 21840,
+        "upperUsd": 0.03888,
+        "scenarioUsd": 0.01457325
+      }
+    },
+    {
+      "id": "main__WL46-042__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-042",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d0b7b96ba1c9ac664da02fe73d7d4900ab6ff91fa648fc385fef7a88986a375b",
+        "maxInputTokenReservation": 17627,
+        "upperUsd": 0.03572025,
+        "scenarioUsd": 0.01378125
+      }
+    },
+    {
+      "id": "main__WL46-042__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-042",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "6716bcd1ac996bf56f0ed2a9fa3f06c4418c521520165e8bb2198ffd007cb326",
+        "maxInputTokenReservation": 23525,
+        "upperUsd": 0.00442875,
+        "scenarioUsd": 0.0010275
+      }
+    },
+    {
+      "id": "main__WL46-043__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-043",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "b93794902422a34aa4f9a6021d18b175e31b21f0ebd63c8fc4efaefa6f6d0b4d",
+        "maxInputTokenReservation": 22935,
+        "upperUsd": 0.00434025,
+        "scenarioUsd": 0.00100635
+      }
+    },
+    {
+      "id": "main__WL46-043__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-043",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "941a89e237f7e992dfb103b32375a973392630a953389debe41e867c6c6922d5",
+        "maxInputTokenReservation": 17037,
+        "upperUsd": 0.03527775,
+        "scenarioUsd": 0.01367625
+      }
+    },
+    {
+      "id": "main__WL46-044__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-044",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "1a1039bbbd6f70739009d00101ec3c75e5248b21edfaac8268127695ec8c1ada",
+        "maxInputTokenReservation": 19646,
+        "upperUsd": 0.0372345,
+        "scenarioUsd": 0.01415925
+      }
+    },
+    {
+      "id": "main__WL46-044__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-044",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "4d0f35780b3ca1c66c695cc5d70e2e1eaf657ff856accae77fcc6463e8439dd9",
+        "maxInputTokenReservation": 25544,
+        "upperUsd": 0.004731600000000001,
+        "scenarioUsd": 0.0011030999999999999
+      }
+    },
+    {
+      "id": "main__WL46-045__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-045",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "81293290bbe2982d3fcaf8e53b323f21f948d7b09c7852eddd8eae041c44f07b",
+        "maxInputTokenReservation": 23771,
+        "upperUsd": 0.00446565,
+        "scenarioUsd": 0.0010374000000000002
+      }
+    },
+    {
+      "id": "main__WL46-045__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-045",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e2df42e86319fbe0e3b6913aea5bd45b4f49185bb0b7bd7646a68ca7d17c121e",
+        "maxInputTokenReservation": 17873,
+        "upperUsd": 0.03590475,
+        "scenarioUsd": 0.0138315
+      }
+    },
+    {
+      "id": "main__WL46-046__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e36e7380f049380de44ae929e8f2f332dde4577414d9f72c794ddf73d9fe3b85",
+        "maxInputTokenReservation": 22176,
+        "upperUsd": 0.039132,
+        "scenarioUsd": 0.014637
+      }
+    },
+    {
+      "id": "main__WL46-046__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1a578a3d5b36dd249cca8c3f2f5e358b4b53ca03cf81abf03c3410b0d9730377",
+        "maxInputTokenReservation": 28074,
+        "upperUsd": 0.0051110999999999995,
+        "scenarioUsd": 0.0011985
+      }
+    },
+    {
+      "id": "main__WL46-047__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "37c72d4fe04d9cc4a01c3f93a69e6f8962589112d91a249eb560bfce57bc1d12",
+        "maxInputTokenReservation": 23331,
+        "upperUsd": 0.00439965,
+        "scenarioUsd": 0.0010206
+      }
+    },
+    {
+      "id": "main__WL46-047__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "39a9dd49401afcf29d7f2bb1a1665f3991a655a4cb50676ae5f8ef1d466cfabf",
+        "maxInputTokenReservation": 17433,
+        "upperUsd": 0.03557475,
+        "scenarioUsd": 0.01374675
+      }
+    },
+    {
+      "id": "main__WL46-048__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-048",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "eb681e368c379283435b1f6130c412ce5b300350722c32c1504993ae59af1cb8",
+        "maxInputTokenReservation": 16726,
+        "upperUsd": 0.0350445,
+        "scenarioUsd": 0.013617
+      }
+    },
+    {
+      "id": "main__WL46-048__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-048",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d43ad81c9aa42d2fe73a672bb33c68171a10021529ec90d1f4dba07863e428a0",
+        "maxInputTokenReservation": 22624,
+        "upperUsd": 0.004293600000000001,
+        "scenarioUsd": 0.0009945
+      }
+    },
+    {
+      "id": "main__WL46-049__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-049",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "5211511d3871b41793fe2929bfb4d04879176c17c09426b3590b7bbde9a25635",
+        "maxInputTokenReservation": 23239,
+        "upperUsd": 0.00438585,
+        "scenarioUsd": 0.0010173
+      }
+    },
+    {
+      "id": "main__WL46-049__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-049",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "1f0c43463e8235e9ab6bd04a3184305e6d8c7f3f87158e4a1183b2555df28792",
+        "maxInputTokenReservation": 17341,
+        "upperUsd": 0.03550575,
+        "scenarioUsd": 0.013731
+      }
+    },
+    {
+      "id": "main__WL46-050__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-050",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "81fe9c335449e157d472002316daa2b2f616aee096453bbd5dbae5a30df8029e",
+        "maxInputTokenReservation": 24891,
+        "upperUsd": 0.04116825,
+        "scenarioUsd": 0.0151395
+      }
+    },
+    {
+      "id": "main__WL46-050__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-050",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "79db286d9102a2fb04a833c8731cc95fb48847393108440b3dec9cc94c3c7ca4",
+        "maxInputTokenReservation": 30789,
+        "upperUsd": 0.005518349999999999,
+        "scenarioUsd": 0.00129915
+      }
+    },
+    {
+      "id": "main__WL46-051__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-051",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "510608334470653b94906261e110caa132babe697e69fe9eec924bc94d220625",
+        "maxInputTokenReservation": 25614,
+        "upperUsd": 0.0047421,
+        "scenarioUsd": 0.00110625
+      }
+    },
+    {
+      "id": "main__WL46-051__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-051",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "43f77937f8c16f2a86013d0e24b01acc566e8e3df65f82a4584548e8b10f5d25",
+        "maxInputTokenReservation": 19716,
+        "upperUsd": 0.037287,
+        "scenarioUsd": 0.014175
+      }
+    },
+    {
+      "id": "main__WL46-052__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-052",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e37daea24b04309cb605dfa70eed8b146dea77faacb6828a24e80fd470bff7c9",
+        "maxInputTokenReservation": 17309,
+        "upperUsd": 0.03548175,
+        "scenarioUsd": 0.0137265
+      }
+    },
+    {
+      "id": "main__WL46-052__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-052",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "550cec10a9e750e337abd4c9ec1a61e5e5aeafd2169c826f316d5f4c7ab81e6d",
+        "maxInputTokenReservation": 23207,
+        "upperUsd": 0.004381049999999999,
+        "scenarioUsd": 0.00101655
+      }
+    },
+    {
+      "id": "main__WL46-053__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-053",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ae2e9514d6906a3463ad225d2e2ceb50f7663acfa7b6743ed6feeca493403b5d",
+        "maxInputTokenReservation": 22867,
+        "upperUsd": 0.004330049999999999,
+        "scenarioUsd": 0.0010038
+      }
+    },
+    {
+      "id": "main__WL46-053__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-053",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "5ba846192f9c5b5747eb8ffe1e5a017173519a6eceebc53006263ef8ea05af1f",
+        "maxInputTokenReservation": 16969,
+        "upperUsd": 0.03522675,
+        "scenarioUsd": 0.0136635
+      }
+    },
+    {
+      "id": "main__WL46-054__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-054",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "caf047569058fb9bd14d24e96685615645266d87a5adadcc52205aa101a132d9",
+        "maxInputTokenReservation": 17394,
+        "upperUsd": 0.0355455,
+        "scenarioUsd": 0.01374225
+      }
+    },
+    {
+      "id": "main__WL46-054__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-054",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "826026920cad0aea1ee0cfae7dee2fcc962d89b8f8297fa3f77eda40eaec7ed5",
+        "maxInputTokenReservation": 23292,
+        "upperUsd": 0.004393799999999999,
+        "scenarioUsd": 0.00101955
+      }
+    },
+    {
+      "id": "main__WL46-055__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-055",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f2a24ff6595607aeb6a2a5edde9973fa32f90cf4dc43c6402e5f824b16d85744",
+        "maxInputTokenReservation": 23515,
+        "upperUsd": 0.00442725,
+        "scenarioUsd": 0.0010278
+      }
+    },
+    {
+      "id": "main__WL46-055__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-055",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "433ed9260bb821ab01456f92deaeb9e4fbef8a52f791123a65f550d090084b69",
+        "maxInputTokenReservation": 17617,
+        "upperUsd": 0.03571275,
+        "scenarioUsd": 0.0137835
+      }
+    },
+    {
+      "id": "main__WL46-056__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0fe07c9f7c43e74096483a0f00e147ed15346c1d1715b93636f01c4981521d78",
+        "maxInputTokenReservation": 19862,
+        "upperUsd": 0.0373965,
+        "scenarioUsd": 0.01419825
+      }
+    },
+    {
+      "id": "main__WL46-056__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "335002b12b27e3c742594248c5cba0669e0d1bc56c01bfe6a61295d3f68c0629",
+        "maxInputTokenReservation": 25760,
+        "upperUsd": 0.004764,
+        "scenarioUsd": 0.0011109000000000002
+      }
+    },
+    {
+      "id": "main__WL46-057__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "09512abc5031b7df00e1bb94435803865d6e71606cf347a40f63857783c36595",
+        "maxInputTokenReservation": 25057,
+        "upperUsd": 0.004658549999999999,
+        "scenarioUsd": 0.0010848
+      }
+    },
+    {
+      "id": "main__WL46-057__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "016e33c0c90927c38716257f4d8eac26e987ab81b1b1735071aa78c826ea2710",
+        "maxInputTokenReservation": 19159,
+        "upperUsd": 0.03686925,
+        "scenarioUsd": 0.0140685
+      }
+    },
+    {
+      "id": "main__WL46-058__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-058",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "668b631879dedae27f73de5a05d63587eb6646eb38fa1eed1bce2e9aa8619ec7",
+        "maxInputTokenReservation": 18011,
+        "upperUsd": 0.03600825,
+        "scenarioUsd": 0.0138555
+      }
+    },
+    {
+      "id": "main__WL46-058__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-058",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9769e504da5beb6459565f4017f0b191e7a66ba47219f60abee6f1d5664911e3",
+        "maxInputTokenReservation": 23909,
+        "upperUsd": 0.00448635,
+        "scenarioUsd": 0.0010423499999999998
+      }
+    },
+    {
+      "id": "main__WL46-059__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-059",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "42f3c82b835fa6b9601169c9bd65c3927c0ef935daa247c82fa32e7336be3e76",
+        "maxInputTokenReservation": 25782,
+        "upperUsd": 0.0047672999999999995,
+        "scenarioUsd": 0.0011118
+      }
+    },
+    {
+      "id": "main__WL46-059__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-059",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "3e1cd81ccb3271e4454721a7d095ea0c7ca321ce8c193009796631516b7c4861",
+        "maxInputTokenReservation": 19884,
+        "upperUsd": 0.037413,
+        "scenarioUsd": 0.0142035
+      }
+    },
+    {
+      "id": "main__WL46-060__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-060",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "a82f1257bf2586615fe2b167ac5ff8228e9f21afe0207411e3025e1ae51a282b",
+        "maxInputTokenReservation": 20033,
+        "upperUsd": 0.03752475,
+        "scenarioUsd": 0.014235
+      }
+    },
+    {
+      "id": "main__WL46-060__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-060",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "11b251e05b62cb94eb0cd58d752a3e7e16ef299b35ef1f88f0afd3ece889486c",
+        "maxInputTokenReservation": 25931,
+        "upperUsd": 0.0047896499999999995,
+        "scenarioUsd": 0.00111825
+      }
+    },
+    {
+      "id": "main__WL46-061__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-061",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "6899f337e5b287aada9a23db38bc12090638858248cd2aca816d8b325618ac8c",
+        "maxInputTokenReservation": 25759,
+        "upperUsd": 0.00476385,
+        "scenarioUsd": 0.0011118
+      }
+    },
+    {
+      "id": "main__WL46-061__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-061",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b59aec64186691905b6d6f1b9dededb3baa4194615253e3c3d39a938d6693214",
+        "maxInputTokenReservation": 19861,
+        "upperUsd": 0.03739575,
+        "scenarioUsd": 0.01420275
+      }
+    },
+    {
+      "id": "main__WL46-062__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-062",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "53dfe2c9c58570ee1ef26d7249e42736ef5d463bc39e61430669e860f89f01f2",
+        "maxInputTokenReservation": 17471,
+        "upperUsd": 0.03560325,
+        "scenarioUsd": 0.0137565
+      }
+    },
+    {
+      "id": "main__WL46-062__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-062",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "847a5b87584906a8e3254c73a7740cc9154b96064c872e07ef50e1458f989be0",
+        "maxInputTokenReservation": 23369,
+        "upperUsd": 0.004405350000000001,
+        "scenarioUsd": 0.0010224
+      }
+    },
+    {
+      "id": "main__WL46-063__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-063",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c72294f80339710718e79cc39c5a15fb4e6996236b4c53d5f887ae600eeedee0",
+        "maxInputTokenReservation": 23695,
+        "upperUsd": 0.00445425,
+        "scenarioUsd": 0.00103335
+      }
+    },
+    {
+      "id": "main__WL46-063__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-063",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9d69a576a934ebf0512d847d556b77bf76076b6ee48ec2e2fdb3a443edea260f",
+        "maxInputTokenReservation": 17797,
+        "upperUsd": 0.03584775,
+        "scenarioUsd": 0.01381125
+      }
+    },
+    {
+      "id": "main__WL46-064__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-064",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "6534e8046ffd12fc80db1ea5c653fe48277f864de5ded1203830d55b72375b03",
+        "maxInputTokenReservation": 19095,
+        "upperUsd": 0.03682125,
+        "scenarioUsd": 0.0140535
+      }
+    },
+    {
+      "id": "main__WL46-064__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-064",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c415c4e27ec26d15f15ce713007948ce66c0054228a060c96f02783510929931",
+        "maxInputTokenReservation": 24993,
+        "upperUsd": 0.00464895,
+        "scenarioUsd": 0.0010818
+      }
+    },
+    {
+      "id": "main__WL46-065__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-065",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c503abd60928961d295d974688c5edaf1d36710a346c54fce3e702602743dd97",
+        "maxInputTokenReservation": 25222,
+        "upperUsd": 0.0046833,
+        "scenarioUsd": 0.0010911
+      }
+    },
+    {
+      "id": "main__WL46-065__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-065",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "757e761cb819bd4ca92124a71c9c8c2fc832d688974bc0bfe3dfad36fb7ed835",
+        "maxInputTokenReservation": 19324,
+        "upperUsd": 0.036993,
+        "scenarioUsd": 0.0141
+      }
+    },
+    {
+      "id": "main__WL46-066__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c67e8279176ddbdca66fcc6520c49c73aac5e22ceaab532ef50b6bfa2997bb03",
+        "maxInputTokenReservation": 17992,
+        "upperUsd": 0.035994,
+        "scenarioUsd": 0.013854
+      }
+    },
+    {
+      "id": "main__WL46-066__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "eadaf892212f4b47131a1f48c1e8d3549497ea2f2791b3a63fd8d0b22d29aa7d",
+        "maxInputTokenReservation": 23890,
+        "upperUsd": 0.0044835,
+        "scenarioUsd": 0.0010420499999999999
+      }
+    },
+    {
+      "id": "main__WL46-067__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9e445f2b8f7df071727320d652158351da8ab967ca06889c5769ddc9daf67ada",
+        "maxInputTokenReservation": 22943,
+        "upperUsd": 0.00434145,
+        "scenarioUsd": 0.0010061999999999998
+      }
+    },
+    {
+      "id": "main__WL46-067__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d372a96087022a3fb70f377f0c9f65c425c6ea687e80a9be4a11740be4c07172",
+        "maxInputTokenReservation": 17045,
+        "upperUsd": 0.03528375,
+        "scenarioUsd": 0.0136755
+      }
+    },
+    {
+      "id": "main__WL46-068__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-068",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "69802e85d01133d43ddfa0c0185b15069dc5d81cb71d1e9725fb148c98327346",
+        "maxInputTokenReservation": 20125,
+        "upperUsd": 0.03759375,
+        "scenarioUsd": 0.014253
+      }
+    },
+    {
+      "id": "main__WL46-068__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-068",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ab442205fe9765d2532c139a31c6e558b78ffcc34e0a826b9fe2db4b33d42c72",
+        "maxInputTokenReservation": 26023,
+        "upperUsd": 0.00480345,
+        "scenarioUsd": 0.0011216999999999998
+      }
+    },
+    {
+      "id": "main__WL46-069__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-069",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ebd25b95b6f3913c936cd972267ede3f843a5253d1265c5405500f87c43a3efc",
+        "maxInputTokenReservation": 24684,
+        "upperUsd": 0.0046026,
+        "scenarioUsd": 0.0010715999999999998
+      }
+    },
+    {
+      "id": "main__WL46-069__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-069",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "90f9bdbf9f3642af6f7062d295e535da1e485a80828f9ebacd5739ac2a01265c",
+        "maxInputTokenReservation": 18786,
+        "upperUsd": 0.0365895,
+        "scenarioUsd": 0.01400175
+      }
+    },
+    {
+      "id": "main__WL46-070__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-070",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9e33a69ee873878123325f8fbb51d117495a169088bafbffe4920ebca2d883dd",
+        "maxInputTokenReservation": 18983,
+        "upperUsd": 0.03673725,
+        "scenarioUsd": 0.01404
+      }
+    },
+    {
+      "id": "main__WL46-070__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-070",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9ad3e9d12e4911f8ef8f71f5fecaa3f8206d4ea3e2cdfe71a2059bf84c34d590",
+        "maxInputTokenReservation": 24881,
+        "upperUsd": 0.00463215,
+        "scenarioUsd": 0.00107925
+      }
+    },
+    {
+      "id": "main__WL46-071__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-071",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ddfe4b33acce2cba9e152ce92b70d9c87cab66abc9a864e9e894d79b1be5b7f6",
+        "maxInputTokenReservation": 23350,
+        "upperUsd": 0.0044025,
+        "scenarioUsd": 0.00102165
+      }
+    },
+    {
+      "id": "main__WL46-071__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-071",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "bfdc175b3cc208278d2160ddb740c377e4da89f88fb1e97eb21e4a22eaf65e39",
+        "maxInputTokenReservation": 17452,
+        "upperUsd": 0.035589,
+        "scenarioUsd": 0.01375275
+      }
+    },
+    {
+      "id": "main__WL46-072__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-072",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "05a1825d70622e1b6352bb5852112a5da95e19576687e6a544ef1c03a40a21ca",
+        "maxInputTokenReservation": 17527,
+        "upperUsd": 0.03564525,
+        "scenarioUsd": 0.01376775
+      }
+    },
+    {
+      "id": "main__WL46-072__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-072",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "20470a9ea525a1ea99515c8ed57ea9938a4ed2d98cbdcc8d874cec7d300a2143",
+        "maxInputTokenReservation": 23425,
+        "upperUsd": 0.00441375,
+        "scenarioUsd": 0.00102465
+      }
+    },
+    {
+      "id": "main__WL46-073__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-073",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "05d9e67d60802654eb7faebe7729c82b05e6fe90ded57ab6ab2474603759bda6",
+        "maxInputTokenReservation": 23188,
+        "upperUsd": 0.0043782,
+        "scenarioUsd": 0.0010156499999999999
+      }
+    },
+    {
+      "id": "main__WL46-073__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-073",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "2fed2289f512be0fd969645e921d55b7122e25bc1ca67e51058d677b2a50c548",
+        "maxInputTokenReservation": 17290,
+        "upperUsd": 0.0354675,
+        "scenarioUsd": 0.01372275
+      }
+    },
+    {
+      "id": "main__WL46-074__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-074",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "af633822bb859d6390f3d6d6d70e283b26c3fe0e712b7c3f2a18ff689623e7bd",
+        "maxInputTokenReservation": 20330,
+        "upperUsd": 0.0377475,
+        "scenarioUsd": 0.014292
+      }
+    },
+    {
+      "id": "main__WL46-074__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-074",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "e31f6f19f60f6ba6c3731cb8ee6e87dc9e09b908cbc5596c6ee07be96092397f",
+        "maxInputTokenReservation": 26228,
+        "upperUsd": 0.0048341999999999994,
+        "scenarioUsd": 0.0011295
+      }
+    },
+    {
+      "id": "main__WL46-075__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-075",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "db020f89cc1349cb4165bf35d14de88f748cec93ad023b6cd949a2d9e4c1c781",
+        "maxInputTokenReservation": 23747,
+        "upperUsd": 0.0044620499999999995,
+        "scenarioUsd": 0.00103665
+      }
+    },
+    {
+      "id": "main__WL46-075__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-075",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "565a411fba13cc4b471fcbcf5128fe43ebc99efbf76bf367a7ed725c8120cb22",
+        "maxInputTokenReservation": 17849,
+        "upperUsd": 0.03588675,
+        "scenarioUsd": 0.013827
+      }
+    },
+    {
+      "id": "main__WL46-076__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "04d5af8d64f327d2c461933d6cfac73cae0cf1d8d015b1f2e8997513d37f2967",
+        "maxInputTokenReservation": 20815,
+        "upperUsd": 0.03811125,
+        "scenarioUsd": 0.01437825
+      }
+    },
+    {
+      "id": "main__WL46-076__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f91064fc55b8ffa2232be8abdb584e8bd0b23a069fcdb7e201dcceb36ad6ddda",
+        "maxInputTokenReservation": 26713,
+        "upperUsd": 0.00490695,
+        "scenarioUsd": 0.0011469000000000002
+      }
+    },
+    {
+      "id": "main__WL46-077__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9d749be1d558ea37a116eab39b5663e61b457cd96a735be2cb892763b2910e05",
+        "maxInputTokenReservation": 22516,
+        "upperUsd": 0.0042774,
+        "scenarioUsd": 0.0009903
+      }
+    },
+    {
+      "id": "main__WL46-077__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0a3de49f7a94210c062a14f54c6eacf7235abb0e82ddbb70ede7b039d5f493d7",
+        "maxInputTokenReservation": 16618,
+        "upperUsd": 0.0349635,
+        "scenarioUsd": 0.013596
+      }
+    },
+    {
+      "id": "main__WL46-078__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-078",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9b47ad228d2b613c7d323d891592d74c004a36c747f6148cbcb7460a1f3dc802",
+        "maxInputTokenReservation": 17624,
+        "upperUsd": 0.035718,
+        "scenarioUsd": 0.013785
+      }
+    },
+    {
+      "id": "main__WL46-078__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-078",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "25e96e2c94ae1a1ccc5c0bacf369d7f46f2ccf209599d15624b973baffd03a57",
+        "maxInputTokenReservation": 23522,
+        "upperUsd": 0.0044283,
+        "scenarioUsd": 0.0010280999999999999
+      }
+    },
+    {
+      "id": "main__WL46-079__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-079",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "0302d776ad5b92b764b5dc30342b4f5442bb64ce179b4c3d82c83a2de13557ac",
+        "maxInputTokenReservation": 22398,
+        "upperUsd": 0.0042597,
+        "scenarioUsd": 0.0009861
+      }
+    },
+    {
+      "id": "main__WL46-079__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-079",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "355aae9cf8ba8de20ff5d0a2d2d100ada0062e29449ac34724951a6b0f44facb",
+        "maxInputTokenReservation": 16500,
+        "upperUsd": 0.034875,
+        "scenarioUsd": 0.01357425
+      }
+    },
+    {
+      "id": "main__WL46-080__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-080",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "00b7082bd3200ec7367119a47e4341a09983126b0e31210c50cc8a62598afde0",
+        "maxInputTokenReservation": 27297,
+        "upperUsd": 0.04297275,
+        "scenarioUsd": 0.015588
+      }
+    },
+    {
+      "id": "main__WL46-080__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-080",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "547e37e06c93ca5076b3da64550580caf1d46851cd4466837eabc2dff6538eff",
+        "maxInputTokenReservation": 33195,
+        "upperUsd": 0.00587925,
+        "scenarioUsd": 0.0013888499999999999
+      }
+    },
+    {
+      "id": "main__WL46-081__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-081",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "10c7a8d5325d6e1e9e480fdd7f272043ff9d137c27c3fbaa896401dca860319d",
+        "maxInputTokenReservation": 28690,
+        "upperUsd": 0.0052035,
+        "scenarioUsd": 0.001221
+      }
+    },
+    {
+      "id": "main__WL46-081__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-081",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "db39f464d9aa1875036841603dd53e0e22e6dabcd64e2f3816182c5a0d9ff2ca",
+        "maxInputTokenReservation": 22792,
+        "upperUsd": 0.039594,
+        "scenarioUsd": 0.0147495
+      }
+    },
+    {
+      "id": "main__WL46-082__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-082",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9491bfe6a1fa8ed87e7ab805017f9aeee0d2150357ac63f037b14c01b2e65cc0",
+        "maxInputTokenReservation": 19561,
+        "upperUsd": 0.03717075,
+        "scenarioUsd": 0.0141495
+      }
+    },
+    {
+      "id": "main__WL46-082__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-082",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ac9c72c99cfecf16944831f8f24154daf9126723ca74cc19bd6d3c2d7ffe4c61",
+        "maxInputTokenReservation": 25459,
+        "upperUsd": 0.00471885,
+        "scenarioUsd": 0.001101
+      }
+    },
+    {
+      "id": "main__WL46-083__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-083",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "620134959b4f8985e7f2217a570f4872dfafe92ac97df68a277c0e2469616cf5",
+        "maxInputTokenReservation": 22109,
+        "upperUsd": 0.004216350000000001,
+        "scenarioUsd": 0.0009752999999999999
+      }
+    },
+    {
+      "id": "main__WL46-083__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-083",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "3e22df02f8321cd9f78ea9bf917cbe471e3ba61f7fa39e67473796e2f3992688",
+        "maxInputTokenReservation": 16211,
+        "upperUsd": 0.03465825,
+        "scenarioUsd": 0.013521
+      }
+    },
+    {
+      "id": "main__WL46-084__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-084",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9d36e0c9871007e39ea5b3f1016f7d9a91715aef40542495ace73de2e4c31bc8",
+        "maxInputTokenReservation": 18276,
+        "upperUsd": 0.036207,
+        "scenarioUsd": 0.0139065
+      }
+    },
+    {
+      "id": "main__WL46-084__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-084",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f0248c30b2058d1b15af422f270eb31f890d7d7f1032896fa29383ba1756fd20",
+        "maxInputTokenReservation": 24174,
+        "upperUsd": 0.004526100000000001,
+        "scenarioUsd": 0.00105255
+      }
+    },
+    {
+      "id": "main__WL46-085__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-085",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "14b86e76888c757cf8395805c09b4dc65296d0be72db204649cf9ea80a72ac45",
+        "maxInputTokenReservation": 26045,
+        "upperUsd": 0.00480675,
+        "scenarioUsd": 0.00112185
+      }
+    },
+    {
+      "id": "main__WL46-085__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-085",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "7aa60065f55688ae9513f723a075d7d4e007706aecb9d5401f4606c6ff2c76e7",
+        "maxInputTokenReservation": 20147,
+        "upperUsd": 0.03761025,
+        "scenarioUsd": 0.01425375
+      }
+    },
+    {
+      "id": "main__WL46-086__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9cdd6847fd6e9245c0699c1d4786716541db97af1870f9498ad11ecaf78e8fb8",
+        "maxInputTokenReservation": 19419,
+        "upperUsd": 0.03706425,
+        "scenarioUsd": 0.014121
+      }
+    },
+    {
+      "id": "main__WL46-086__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "88cdba3578e3c52537517bbb27e45e0090782fc5ed0bf12990c4ab11e0f25f89",
+        "maxInputTokenReservation": 25317,
+        "upperUsd": 0.004697549999999999,
+        "scenarioUsd": 0.0010953
+      }
+    },
+    {
+      "id": "main__WL46-087__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d687588db71c7c4e41dd0557a23db3e8c2552d38677f7ade261042dd48d9256a",
+        "maxInputTokenReservation": 22697,
+        "upperUsd": 0.004304549999999999,
+        "scenarioUsd": 0.00099705
+      }
+    },
+    {
+      "id": "main__WL46-087__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4b3a5d0c55fcbed8a55926c25c0c25afd0cfd10517268fe0abfd50eec4b4b4f0",
+        "maxInputTokenReservation": 16799,
+        "upperUsd": 0.03509925,
+        "scenarioUsd": 0.01362975
+      }
+    },
+    {
+      "id": "main__WL46-088__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-088",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "166aaa59a4a3081ccfaee1984eca2d0d25c0591b2b9c1fff0670c734b71109f8",
+        "maxInputTokenReservation": 19850,
+        "upperUsd": 0.0373875,
+        "scenarioUsd": 0.014196
+      }
+    },
+    {
+      "id": "main__WL46-088__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-088",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "7e963725936a2a1544f6b2ad7d40acf4ae310ecfd78c58105c760badcecf274c",
+        "maxInputTokenReservation": 25748,
+        "upperUsd": 0.004762199999999999,
+        "scenarioUsd": 0.0011104499999999998
+      }
+    },
+    {
+      "id": "main__WL46-089__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-089",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "8c70a40e07a1dee2cca3433ccbd51b91bac2569cd02f19af1f58a15d73e7ffa8",
+        "maxInputTokenReservation": 26724,
+        "upperUsd": 0.0049086,
+        "scenarioUsd": 0.0011475
+      }
+    },
+    {
+      "id": "main__WL46-089__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-089",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4c8b9feb4bb07cbea0d00337934ee900e10ae8ee002ccfe1a647799a53220686",
+        "maxInputTokenReservation": 20826,
+        "upperUsd": 0.0381195,
+        "scenarioUsd": 0.014382
+      }
+    },
+    {
+      "id": "main__WL46-090__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-090",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "fb171c0d0d0b1d56f93901d77708a7eaf829dc5626dcb8339325ab4ec4059009",
+        "maxInputTokenReservation": 19735,
+        "upperUsd": 0.03730125,
+        "scenarioUsd": 0.014175
+      }
+    },
+    {
+      "id": "main__WL46-090__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-090",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d6bf84fa13bc5f9af9f286c373755ddd85a3e8b8e22cd58db707dc7377db458e",
+        "maxInputTokenReservation": 25633,
+        "upperUsd": 0.0047449499999999995,
+        "scenarioUsd": 0.00110625
+      }
+    },
+    {
+      "id": "main__WL46-091__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-091",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "869437702e675fc27d966a7e9ff342038b11abfa92ceb69ffb538751a0607da4",
+        "maxInputTokenReservation": 24411,
+        "upperUsd": 0.0045616499999999996,
+        "scenarioUsd": 0.0010614
+      }
+    },
+    {
+      "id": "main__WL46-091__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-091",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9cc5169620b26cb28567f7c0e6192431a4ae9aa580851133868613036a869a2f",
+        "maxInputTokenReservation": 18513,
+        "upperUsd": 0.03638475,
+        "scenarioUsd": 0.0139515
+      }
+    },
+    {
+      "id": "main__WL46-092__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-092",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "07de115b2b78297ee873163752474849ae2bc0efb6ad2709d9edf1ed76499c18",
+        "maxInputTokenReservation": 20683,
+        "upperUsd": 0.03801225,
+        "scenarioUsd": 0.0143535
+      }
+    },
+    {
+      "id": "main__WL46-092__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-092",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "02030faf894ed1b6fdadab5c3808f68d854d9f509a77931bda9af4e72d2685ed",
+        "maxInputTokenReservation": 26581,
+        "upperUsd": 0.00488715,
+        "scenarioUsd": 0.0011417999999999999
+      }
+    },
+    {
+      "id": "main__WL46-093__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-093",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "4dc715440634f28029bb0403c5da2e3a5e921ed66d1d80b065d7aaf354a77a4e",
+        "maxInputTokenReservation": 24226,
+        "upperUsd": 0.0045338999999999996,
+        "scenarioUsd": 0.0010539000000000002
+      }
+    },
+    {
+      "id": "main__WL46-093__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-093",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0a7a440816a0e74564b9b5127c1521315682fac3759a3aec0450d8c248f228c3",
+        "maxInputTokenReservation": 18328,
+        "upperUsd": 0.036246,
+        "scenarioUsd": 0.013914
+      }
+    },
+    {
+      "id": "main__WL46-094__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-094",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d46236dac6c6e7da8f066d7a57a2b30a798b1f23f59f2af5d63812d2a76c8ef2",
+        "maxInputTokenReservation": 18438,
+        "upperUsd": 0.0363285,
+        "scenarioUsd": 0.01393575
+      }
+    },
+    {
+      "id": "main__WL46-094__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-094",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "0986455d7abf2a989a49b836525b3743e2cf54587e32cdfab72fb59da5629f5f",
+        "maxInputTokenReservation": 24336,
+        "upperUsd": 0.0045504,
+        "scenarioUsd": 0.00105825
+      }
+    },
+    {
+      "id": "main__WL46-095__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-095",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "8c1127971cfddb079b1900a9f900abbf0ef065c743f2ebcf4aa383aad3bed7d5",
+        "maxInputTokenReservation": 22952,
+        "upperUsd": 0.004342799999999999,
+        "scenarioUsd": 0.00100665
+      }
+    },
+    {
+      "id": "main__WL46-095__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-095",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "fdc00a47fe10076679cf937ecca0a49155d2a8f826e2ef02d21d2db36c521cf8",
+        "maxInputTokenReservation": 17054,
+        "upperUsd": 0.0352905,
+        "scenarioUsd": 0.013677
+      }
+    },
+    {
+      "id": "main__WL46-096__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b30d5690acaf643a96c377b07db68c3e2d9873271a032c46ce0270538fffc764",
+        "maxInputTokenReservation": 22069,
+        "upperUsd": 0.03905175,
+        "scenarioUsd": 0.01461075
+      }
+    },
+    {
+      "id": "main__WL46-096__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "36c0c1760ef63afbe19aa2ffd3c578fba665a77b71230f4f4d5de08f21ae1288",
+        "maxInputTokenReservation": 27967,
+        "upperUsd": 0.00509505,
+        "scenarioUsd": 0.00119325
+      }
+    },
+    {
+      "id": "main__WL46-097__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a24983a2a42616152f76deca810cab24d0afcd1b041b416100da8fedc61ea09c",
+        "maxInputTokenReservation": 23974,
+        "upperUsd": 0.0044961,
+        "scenarioUsd": 0.0010451999999999998
+      }
+    },
+    {
+      "id": "main__WL46-097__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b2a53f0d17d14de4990bba2ac4309e01cd46601e87d7d66f21008346af8be59f",
+        "maxInputTokenReservation": 18076,
+        "upperUsd": 0.036057,
+        "scenarioUsd": 0.0138705
+      }
+    },
+    {
+      "id": "main__WL46-098__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-098",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "59de5d7b7f1ec5c750229602351b7ea282aa7eb8048af3e4e97907fe6cbd38f0",
+        "maxInputTokenReservation": 20808,
+        "upperUsd": 0.038106,
+        "scenarioUsd": 0.01437675
+      }
+    },
+    {
+      "id": "main__WL46-098__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-098",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "878552f34246acdf2b47ff2a91b5963803aaa876a85a861e8893db368881954e",
+        "maxInputTokenReservation": 26706,
+        "upperUsd": 0.0049058999999999995,
+        "scenarioUsd": 0.0011464499999999998
+      }
+    },
+    {
+      "id": "main__WL46-099__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-099",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c6cac591ae4c94c290a9fc6ec4a01f988f318e84e3e0ba5490e67844c91fd956",
+        "maxInputTokenReservation": 24239,
+        "upperUsd": 0.00453585,
+        "scenarioUsd": 0.0010551
+      }
+    },
+    {
+      "id": "main__WL46-099__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-099",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4875ee67b6d596e4d69c6e3e6bc6a8ee4ea09061c5cdab5e7537dfbc2432adae",
+        "maxInputTokenReservation": 18341,
+        "upperUsd": 0.03625575,
+        "scenarioUsd": 0.01391925
+      }
+    },
+    {
+      "id": "main__WL46-100__0__gemini",
+      "phase": "main",
+      "caseId": "WL46-100",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "02b3ac40e522e446177f213afdac6e36dfbdd5b85fcb20c1dcb09049807eaca8",
+        "maxInputTokenReservation": 19676,
+        "upperUsd": 0.037257,
+        "scenarioUsd": 0.01416675
+      }
+    },
+    {
+      "id": "main__WL46-100__0__ministral",
+      "phase": "main",
+      "caseId": "WL46-100",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "3de7b376f4522c8e47abfa69e1aa57a3414a6165f0c950a7601722978f0b0b83",
+        "maxInputTokenReservation": 25574,
+        "upperUsd": 0.0047361,
+        "scenarioUsd": 0.0011045999999999999
+      }
+    },
+    {
+      "id": "consistency__WL46-001__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "da8a1d3e2e300a75dbb090096cce7a84d04a6ff7f15678883d65cfe41ed347f6",
+        "maxInputTokenReservation": 22690,
+        "upperUsd": 0.0043035,
+        "scenarioUsd": 0.0009969
+      }
+    },
+    {
+      "id": "consistency__WL46-001__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "96ea20e9a5507b88e6dacaa0c844353c74a1ce7af31867a1d3fd3ac13070197b",
+        "maxInputTokenReservation": 16792,
+        "upperUsd": 0.035094,
+        "scenarioUsd": 0.013629
+      }
+    },
+    {
+      "id": "consistency__WL46-001__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "96ea20e9a5507b88e6dacaa0c844353c74a1ce7af31867a1d3fd3ac13070197b",
+        "maxInputTokenReservation": 16792,
+        "upperUsd": 0.035094,
+        "scenarioUsd": 0.013629
+      }
+    },
+    {
+      "id": "consistency__WL46-001__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "da8a1d3e2e300a75dbb090096cce7a84d04a6ff7f15678883d65cfe41ed347f6",
+        "maxInputTokenReservation": 22690,
+        "upperUsd": 0.0043035,
+        "scenarioUsd": 0.0009969
+      }
+    },
+    {
+      "id": "consistency__WL46-001__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "da8a1d3e2e300a75dbb090096cce7a84d04a6ff7f15678883d65cfe41ed347f6",
+        "maxInputTokenReservation": 22690,
+        "upperUsd": 0.0043035,
+        "scenarioUsd": 0.0009969
+      }
+    },
+    {
+      "id": "consistency__WL46-001__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-001",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "96ea20e9a5507b88e6dacaa0c844353c74a1ce7af31867a1d3fd3ac13070197b",
+        "maxInputTokenReservation": 16792,
+        "upperUsd": 0.035094,
+        "scenarioUsd": 0.013629
+      }
+    },
+    {
+      "id": "consistency__WL46-002__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8385864fa34e2a03851bb2eceac43cf52460a5bfa165dbc5dbd3a026e72b2a28",
+        "maxInputTokenReservation": 19348,
+        "upperUsd": 0.037011,
+        "scenarioUsd": 0.01410825
+      }
+    },
+    {
+      "id": "consistency__WL46-002__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "16abba7a3231e0bb5a5b1bb44390ebc8bda0d3a232ff7d2adb21341a2ddd9cb5",
+        "maxInputTokenReservation": 25246,
+        "upperUsd": 0.0046869,
+        "scenarioUsd": 0.00109275
+      }
+    },
+    {
+      "id": "consistency__WL46-002__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "16abba7a3231e0bb5a5b1bb44390ebc8bda0d3a232ff7d2adb21341a2ddd9cb5",
+        "maxInputTokenReservation": 25246,
+        "upperUsd": 0.0046869,
+        "scenarioUsd": 0.00109275
+      }
+    },
+    {
+      "id": "consistency__WL46-002__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8385864fa34e2a03851bb2eceac43cf52460a5bfa165dbc5dbd3a026e72b2a28",
+        "maxInputTokenReservation": 19348,
+        "upperUsd": 0.037011,
+        "scenarioUsd": 0.01410825
+      }
+    },
+    {
+      "id": "consistency__WL46-002__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "8385864fa34e2a03851bb2eceac43cf52460a5bfa165dbc5dbd3a026e72b2a28",
+        "maxInputTokenReservation": 19348,
+        "upperUsd": 0.037011,
+        "scenarioUsd": 0.01410825
+      }
+    },
+    {
+      "id": "consistency__WL46-002__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-002",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "16abba7a3231e0bb5a5b1bb44390ebc8bda0d3a232ff7d2adb21341a2ddd9cb5",
+        "maxInputTokenReservation": 25246,
+        "upperUsd": 0.0046869,
+        "scenarioUsd": 0.00109275
+      }
+    },
+    {
+      "id": "consistency__WL46-003__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "7cc599caa72cbb8803e229638c8f11ca2a108e4e11dc931c415af7f2dee0363c",
+        "maxInputTokenReservation": 26832,
+        "upperUsd": 0.004924799999999999,
+        "scenarioUsd": 0.0011518499999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-003__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "946d87222e533546e980027caacb591ded3202af717f8e2304ac6f7f2c5b29fb",
+        "maxInputTokenReservation": 20934,
+        "upperUsd": 0.0382005,
+        "scenarioUsd": 0.014403
+      }
+    },
+    {
+      "id": "consistency__WL46-003__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "946d87222e533546e980027caacb591ded3202af717f8e2304ac6f7f2c5b29fb",
+        "maxInputTokenReservation": 20934,
+        "upperUsd": 0.0382005,
+        "scenarioUsd": 0.014403
+      }
+    },
+    {
+      "id": "consistency__WL46-003__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "7cc599caa72cbb8803e229638c8f11ca2a108e4e11dc931c415af7f2dee0363c",
+        "maxInputTokenReservation": 26832,
+        "upperUsd": 0.004924799999999999,
+        "scenarioUsd": 0.0011518499999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-003__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "7cc599caa72cbb8803e229638c8f11ca2a108e4e11dc931c415af7f2dee0363c",
+        "maxInputTokenReservation": 26832,
+        "upperUsd": 0.004924799999999999,
+        "scenarioUsd": 0.0011518499999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-003__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-003",
+      "category": "conflict",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "946d87222e533546e980027caacb591ded3202af717f8e2304ac6f7f2c5b29fb",
+        "maxInputTokenReservation": 20934,
+        "upperUsd": 0.0382005,
+        "scenarioUsd": 0.014403
+      }
+    },
+    {
+      "id": "consistency__WL46-016__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e9c45bf6630ecd445aa53e411206e45fbbc22605df547a2b12338f12a83f8a87",
+        "maxInputTokenReservation": 18278,
+        "upperUsd": 0.0362085,
+        "scenarioUsd": 0.013905
+      }
+    },
+    {
+      "id": "consistency__WL46-016__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c411b1811457c7eac029a7f177ea3836d91b90f8c46096d0756702b406361dbd",
+        "maxInputTokenReservation": 24176,
+        "upperUsd": 0.0045264,
+        "scenarioUsd": 0.00105225
+      }
+    },
+    {
+      "id": "consistency__WL46-016__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c411b1811457c7eac029a7f177ea3836d91b90f8c46096d0756702b406361dbd",
+        "maxInputTokenReservation": 24176,
+        "upperUsd": 0.0045264,
+        "scenarioUsd": 0.00105225
+      }
+    },
+    {
+      "id": "consistency__WL46-016__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e9c45bf6630ecd445aa53e411206e45fbbc22605df547a2b12338f12a83f8a87",
+        "maxInputTokenReservation": 18278,
+        "upperUsd": 0.0362085,
+        "scenarioUsd": 0.013905
+      }
+    },
+    {
+      "id": "consistency__WL46-016__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e9c45bf6630ecd445aa53e411206e45fbbc22605df547a2b12338f12a83f8a87",
+        "maxInputTokenReservation": 18278,
+        "upperUsd": 0.0362085,
+        "scenarioUsd": 0.013905
+      }
+    },
+    {
+      "id": "consistency__WL46-016__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-016",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c411b1811457c7eac029a7f177ea3836d91b90f8c46096d0756702b406361dbd",
+        "maxInputTokenReservation": 24176,
+        "upperUsd": 0.0045264,
+        "scenarioUsd": 0.00105225
+      }
+    },
+    {
+      "id": "consistency__WL46-017__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fb9320c8178d98be0fa7e794fc312c8d95ee6d8c2f2d7169739bb3fd50000036",
+        "maxInputTokenReservation": 26716,
+        "upperUsd": 0.004907399999999999,
+        "scenarioUsd": 0.00114705
+      }
+    },
+    {
+      "id": "consistency__WL46-017__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "62a46dbb995f90508bf69bb3e5e246b2f9d50a4f9a860c438ed48aa0dbd885d2",
+        "maxInputTokenReservation": 20818,
+        "upperUsd": 0.0381135,
+        "scenarioUsd": 0.01437975
+      }
+    },
+    {
+      "id": "consistency__WL46-017__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "62a46dbb995f90508bf69bb3e5e246b2f9d50a4f9a860c438ed48aa0dbd885d2",
+        "maxInputTokenReservation": 20818,
+        "upperUsd": 0.0381135,
+        "scenarioUsd": 0.01437975
+      }
+    },
+    {
+      "id": "consistency__WL46-017__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fb9320c8178d98be0fa7e794fc312c8d95ee6d8c2f2d7169739bb3fd50000036",
+        "maxInputTokenReservation": 26716,
+        "upperUsd": 0.004907399999999999,
+        "scenarioUsd": 0.00114705
+      }
+    },
+    {
+      "id": "consistency__WL46-017__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fb9320c8178d98be0fa7e794fc312c8d95ee6d8c2f2d7169739bb3fd50000036",
+        "maxInputTokenReservation": 26716,
+        "upperUsd": 0.004907399999999999,
+        "scenarioUsd": 0.00114705
+      }
+    },
+    {
+      "id": "consistency__WL46-017__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-017",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "62a46dbb995f90508bf69bb3e5e246b2f9d50a4f9a860c438ed48aa0dbd885d2",
+        "maxInputTokenReservation": 20818,
+        "upperUsd": 0.0381135,
+        "scenarioUsd": 0.01437975
+      }
+    },
+    {
+      "id": "consistency__WL46-018__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d3988c93d5bb3954e6d7abeca8ddabd02f500023ab358b3e146fc0995ca4789d",
+        "maxInputTokenReservation": 17499,
+        "upperUsd": 0.03562425,
+        "scenarioUsd": 0.01376025
+      }
+    },
+    {
+      "id": "consistency__WL46-018__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ef8ad71a091cf26cd64da40f3c3b534e988c574af63f4bd397aae11ec6bea6fe",
+        "maxInputTokenReservation": 23397,
+        "upperUsd": 0.004409549999999999,
+        "scenarioUsd": 0.00102315
+      }
+    },
+    {
+      "id": "consistency__WL46-018__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ef8ad71a091cf26cd64da40f3c3b534e988c574af63f4bd397aae11ec6bea6fe",
+        "maxInputTokenReservation": 23397,
+        "upperUsd": 0.004409549999999999,
+        "scenarioUsd": 0.00102315
+      }
+    },
+    {
+      "id": "consistency__WL46-018__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d3988c93d5bb3954e6d7abeca8ddabd02f500023ab358b3e146fc0995ca4789d",
+        "maxInputTokenReservation": 17499,
+        "upperUsd": 0.03562425,
+        "scenarioUsd": 0.01376025
+      }
+    },
+    {
+      "id": "consistency__WL46-018__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d3988c93d5bb3954e6d7abeca8ddabd02f500023ab358b3e146fc0995ca4789d",
+        "maxInputTokenReservation": 17499,
+        "upperUsd": 0.03562425,
+        "scenarioUsd": 0.01376025
+      }
+    },
+    {
+      "id": "consistency__WL46-018__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-018",
+      "category": "sanctions",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ef8ad71a091cf26cd64da40f3c3b534e988c574af63f4bd397aae11ec6bea6fe",
+        "maxInputTokenReservation": 23397,
+        "upperUsd": 0.004409549999999999,
+        "scenarioUsd": 0.00102315
+      }
+    },
+    {
+      "id": "consistency__WL46-031__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a3ece9404744348c54e7ca095335f8c7fb4c68709667ea5d9adce894512ebb15",
+        "maxInputTokenReservation": 26594,
+        "upperUsd": 0.0048891,
+        "scenarioUsd": 0.00114285
+      }
+    },
+    {
+      "id": "consistency__WL46-031__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "19fca9f0a10a5693cd2259c6ef51f9c0189386f83af70fa03077d20bac1822fa",
+        "maxInputTokenReservation": 20696,
+        "upperUsd": 0.038022,
+        "scenarioUsd": 0.01435875
+      }
+    },
+    {
+      "id": "consistency__WL46-031__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "19fca9f0a10a5693cd2259c6ef51f9c0189386f83af70fa03077d20bac1822fa",
+        "maxInputTokenReservation": 20696,
+        "upperUsd": 0.038022,
+        "scenarioUsd": 0.01435875
+      }
+    },
+    {
+      "id": "consistency__WL46-031__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a3ece9404744348c54e7ca095335f8c7fb4c68709667ea5d9adce894512ebb15",
+        "maxInputTokenReservation": 26594,
+        "upperUsd": 0.0048891,
+        "scenarioUsd": 0.00114285
+      }
+    },
+    {
+      "id": "consistency__WL46-031__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a3ece9404744348c54e7ca095335f8c7fb4c68709667ea5d9adce894512ebb15",
+        "maxInputTokenReservation": 26594,
+        "upperUsd": 0.0048891,
+        "scenarioUsd": 0.00114285
+      }
+    },
+    {
+      "id": "consistency__WL46-031__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-031",
+      "category": "diplomacy",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "19fca9f0a10a5693cd2259c6ef51f9c0189386f83af70fa03077d20bac1822fa",
+        "maxInputTokenReservation": 20696,
+        "upperUsd": 0.038022,
+        "scenarioUsd": 0.01435875
+      }
+    },
+    {
+      "id": "consistency__WL46-032__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "65db59eb79189dad3d7b1f3550ed187a571e3a49eee111bdb9510229c03649af",
+        "maxInputTokenReservation": 17209,
+        "upperUsd": 0.03540675,
+        "scenarioUsd": 0.01370775
+      }
+    },
+    {
+      "id": "consistency__WL46-032__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "965894471ffda8ca8ecef4927c8dfd3e7a8b960f29b3022bcf32a44a69f25a15",
+        "maxInputTokenReservation": 23107,
+        "upperUsd": 0.004366049999999999,
+        "scenarioUsd": 0.00101265
+      }
+    },
+    {
+      "id": "consistency__WL46-032__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "965894471ffda8ca8ecef4927c8dfd3e7a8b960f29b3022bcf32a44a69f25a15",
+        "maxInputTokenReservation": 23107,
+        "upperUsd": 0.004366049999999999,
+        "scenarioUsd": 0.00101265
+      }
+    },
+    {
+      "id": "consistency__WL46-032__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "65db59eb79189dad3d7b1f3550ed187a571e3a49eee111bdb9510229c03649af",
+        "maxInputTokenReservation": 17209,
+        "upperUsd": 0.03540675,
+        "scenarioUsd": 0.01370775
+      }
+    },
+    {
+      "id": "consistency__WL46-032__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "65db59eb79189dad3d7b1f3550ed187a571e3a49eee111bdb9510229c03649af",
+        "maxInputTokenReservation": 17209,
+        "upperUsd": 0.03540675,
+        "scenarioUsd": 0.01370775
+      }
+    },
+    {
+      "id": "consistency__WL46-032__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-032",
+      "category": "diplomacy",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "965894471ffda8ca8ecef4927c8dfd3e7a8b960f29b3022bcf32a44a69f25a15",
+        "maxInputTokenReservation": 23107,
+        "upperUsd": 0.004366049999999999,
+        "scenarioUsd": 0.00101265
+      }
+    },
+    {
+      "id": "consistency__WL46-046__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1a578a3d5b36dd249cca8c3f2f5e358b4b53ca03cf81abf03c3410b0d9730377",
+        "maxInputTokenReservation": 28074,
+        "upperUsd": 0.0051110999999999995,
+        "scenarioUsd": 0.0011985
+      }
+    },
+    {
+      "id": "consistency__WL46-046__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e36e7380f049380de44ae929e8f2f332dde4577414d9f72c794ddf73d9fe3b85",
+        "maxInputTokenReservation": 22176,
+        "upperUsd": 0.039132,
+        "scenarioUsd": 0.014637
+      }
+    },
+    {
+      "id": "consistency__WL46-046__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e36e7380f049380de44ae929e8f2f332dde4577414d9f72c794ddf73d9fe3b85",
+        "maxInputTokenReservation": 22176,
+        "upperUsd": 0.039132,
+        "scenarioUsd": 0.014637
+      }
+    },
+    {
+      "id": "consistency__WL46-046__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1a578a3d5b36dd249cca8c3f2f5e358b4b53ca03cf81abf03c3410b0d9730377",
+        "maxInputTokenReservation": 28074,
+        "upperUsd": 0.0051110999999999995,
+        "scenarioUsd": 0.0011985
+      }
+    },
+    {
+      "id": "consistency__WL46-046__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1a578a3d5b36dd249cca8c3f2f5e358b4b53ca03cf81abf03c3410b0d9730377",
+        "maxInputTokenReservation": 28074,
+        "upperUsd": 0.0051110999999999995,
+        "scenarioUsd": 0.0011985
+      }
+    },
+    {
+      "id": "consistency__WL46-046__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-046",
+      "category": "trade",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e36e7380f049380de44ae929e8f2f332dde4577414d9f72c794ddf73d9fe3b85",
+        "maxInputTokenReservation": 22176,
+        "upperUsd": 0.039132,
+        "scenarioUsd": 0.014637
+      }
+    },
+    {
+      "id": "consistency__WL46-047__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "39a9dd49401afcf29d7f2bb1a1665f3991a655a4cb50676ae5f8ef1d466cfabf",
+        "maxInputTokenReservation": 17433,
+        "upperUsd": 0.03557475,
+        "scenarioUsd": 0.01374675
+      }
+    },
+    {
+      "id": "consistency__WL46-047__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "37c72d4fe04d9cc4a01c3f93a69e6f8962589112d91a249eb560bfce57bc1d12",
+        "maxInputTokenReservation": 23331,
+        "upperUsd": 0.00439965,
+        "scenarioUsd": 0.0010206
+      }
+    },
+    {
+      "id": "consistency__WL46-047__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "37c72d4fe04d9cc4a01c3f93a69e6f8962589112d91a249eb560bfce57bc1d12",
+        "maxInputTokenReservation": 23331,
+        "upperUsd": 0.00439965,
+        "scenarioUsd": 0.0010206
+      }
+    },
+    {
+      "id": "consistency__WL46-047__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "39a9dd49401afcf29d7f2bb1a1665f3991a655a4cb50676ae5f8ef1d466cfabf",
+        "maxInputTokenReservation": 17433,
+        "upperUsd": 0.03557475,
+        "scenarioUsd": 0.01374675
+      }
+    },
+    {
+      "id": "consistency__WL46-047__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "39a9dd49401afcf29d7f2bb1a1665f3991a655a4cb50676ae5f8ef1d466cfabf",
+        "maxInputTokenReservation": 17433,
+        "upperUsd": 0.03557475,
+        "scenarioUsd": 0.01374675
+      }
+    },
+    {
+      "id": "consistency__WL46-047__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-047",
+      "category": "trade",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "37c72d4fe04d9cc4a01c3f93a69e6f8962589112d91a249eb560bfce57bc1d12",
+        "maxInputTokenReservation": 23331,
+        "upperUsd": 0.00439965,
+        "scenarioUsd": 0.0010206
+      }
+    },
+    {
+      "id": "consistency__WL46-056__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "335002b12b27e3c742594248c5cba0669e0d1bc56c01bfe6a61295d3f68c0629",
+        "maxInputTokenReservation": 25760,
+        "upperUsd": 0.004764,
+        "scenarioUsd": 0.0011109000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-056__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0fe07c9f7c43e74096483a0f00e147ed15346c1d1715b93636f01c4981521d78",
+        "maxInputTokenReservation": 19862,
+        "upperUsd": 0.0373965,
+        "scenarioUsd": 0.01419825
+      }
+    },
+    {
+      "id": "consistency__WL46-056__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0fe07c9f7c43e74096483a0f00e147ed15346c1d1715b93636f01c4981521d78",
+        "maxInputTokenReservation": 19862,
+        "upperUsd": 0.0373965,
+        "scenarioUsd": 0.01419825
+      }
+    },
+    {
+      "id": "consistency__WL46-056__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "335002b12b27e3c742594248c5cba0669e0d1bc56c01bfe6a61295d3f68c0629",
+        "maxInputTokenReservation": 25760,
+        "upperUsd": 0.004764,
+        "scenarioUsd": 0.0011109000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-056__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "335002b12b27e3c742594248c5cba0669e0d1bc56c01bfe6a61295d3f68c0629",
+        "maxInputTokenReservation": 25760,
+        "upperUsd": 0.004764,
+        "scenarioUsd": 0.0011109000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-056__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-056",
+      "category": "military_aid",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0fe07c9f7c43e74096483a0f00e147ed15346c1d1715b93636f01c4981521d78",
+        "maxInputTokenReservation": 19862,
+        "upperUsd": 0.0373965,
+        "scenarioUsd": 0.01419825
+      }
+    },
+    {
+      "id": "consistency__WL46-057__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "016e33c0c90927c38716257f4d8eac26e987ab81b1b1735071aa78c826ea2710",
+        "maxInputTokenReservation": 19159,
+        "upperUsd": 0.03686925,
+        "scenarioUsd": 0.0140685
+      }
+    },
+    {
+      "id": "consistency__WL46-057__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "09512abc5031b7df00e1bb94435803865d6e71606cf347a40f63857783c36595",
+        "maxInputTokenReservation": 25057,
+        "upperUsd": 0.004658549999999999,
+        "scenarioUsd": 0.0010848
+      }
+    },
+    {
+      "id": "consistency__WL46-057__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "09512abc5031b7df00e1bb94435803865d6e71606cf347a40f63857783c36595",
+        "maxInputTokenReservation": 25057,
+        "upperUsd": 0.004658549999999999,
+        "scenarioUsd": 0.0010848
+      }
+    },
+    {
+      "id": "consistency__WL46-057__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "016e33c0c90927c38716257f4d8eac26e987ab81b1b1735071aa78c826ea2710",
+        "maxInputTokenReservation": 19159,
+        "upperUsd": 0.03686925,
+        "scenarioUsd": 0.0140685
+      }
+    },
+    {
+      "id": "consistency__WL46-057__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "016e33c0c90927c38716257f4d8eac26e987ab81b1b1735071aa78c826ea2710",
+        "maxInputTokenReservation": 19159,
+        "upperUsd": 0.03686925,
+        "scenarioUsd": 0.0140685
+      }
+    },
+    {
+      "id": "consistency__WL46-057__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-057",
+      "category": "military_aid",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "09512abc5031b7df00e1bb94435803865d6e71606cf347a40f63857783c36595",
+        "maxInputTokenReservation": 25057,
+        "upperUsd": 0.004658549999999999,
+        "scenarioUsd": 0.0010848
+      }
+    },
+    {
+      "id": "consistency__WL46-066__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "eadaf892212f4b47131a1f48c1e8d3549497ea2f2791b3a63fd8d0b22d29aa7d",
+        "maxInputTokenReservation": 23890,
+        "upperUsd": 0.0044835,
+        "scenarioUsd": 0.0010420499999999999
+      }
+    },
+    {
+      "id": "consistency__WL46-066__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c67e8279176ddbdca66fcc6520c49c73aac5e22ceaab532ef50b6bfa2997bb03",
+        "maxInputTokenReservation": 17992,
+        "upperUsd": 0.035994,
+        "scenarioUsd": 0.013854
+      }
+    },
+    {
+      "id": "consistency__WL46-066__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c67e8279176ddbdca66fcc6520c49c73aac5e22ceaab532ef50b6bfa2997bb03",
+        "maxInputTokenReservation": 17992,
+        "upperUsd": 0.035994,
+        "scenarioUsd": 0.013854
+      }
+    },
+    {
+      "id": "consistency__WL46-066__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "eadaf892212f4b47131a1f48c1e8d3549497ea2f2791b3a63fd8d0b22d29aa7d",
+        "maxInputTokenReservation": 23890,
+        "upperUsd": 0.0044835,
+        "scenarioUsd": 0.0010420499999999999
+      }
+    },
+    {
+      "id": "consistency__WL46-066__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "eadaf892212f4b47131a1f48c1e8d3549497ea2f2791b3a63fd8d0b22d29aa7d",
+        "maxInputTokenReservation": 23890,
+        "upperUsd": 0.0044835,
+        "scenarioUsd": 0.0010420499999999999
+      }
+    },
+    {
+      "id": "consistency__WL46-066__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-066",
+      "category": "agreements",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "c67e8279176ddbdca66fcc6520c49c73aac5e22ceaab532ef50b6bfa2997bb03",
+        "maxInputTokenReservation": 17992,
+        "upperUsd": 0.035994,
+        "scenarioUsd": 0.013854
+      }
+    },
+    {
+      "id": "consistency__WL46-067__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d372a96087022a3fb70f377f0c9f65c425c6ea687e80a9be4a11740be4c07172",
+        "maxInputTokenReservation": 17045,
+        "upperUsd": 0.03528375,
+        "scenarioUsd": 0.0136755
+      }
+    },
+    {
+      "id": "consistency__WL46-067__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9e445f2b8f7df071727320d652158351da8ab967ca06889c5769ddc9daf67ada",
+        "maxInputTokenReservation": 22943,
+        "upperUsd": 0.00434145,
+        "scenarioUsd": 0.0010061999999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-067__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9e445f2b8f7df071727320d652158351da8ab967ca06889c5769ddc9daf67ada",
+        "maxInputTokenReservation": 22943,
+        "upperUsd": 0.00434145,
+        "scenarioUsd": 0.0010061999999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-067__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d372a96087022a3fb70f377f0c9f65c425c6ea687e80a9be4a11740be4c07172",
+        "maxInputTokenReservation": 17045,
+        "upperUsd": 0.03528375,
+        "scenarioUsd": 0.0136755
+      }
+    },
+    {
+      "id": "consistency__WL46-067__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "d372a96087022a3fb70f377f0c9f65c425c6ea687e80a9be4a11740be4c07172",
+        "maxInputTokenReservation": 17045,
+        "upperUsd": 0.03528375,
+        "scenarioUsd": 0.0136755
+      }
+    },
+    {
+      "id": "consistency__WL46-067__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-067",
+      "category": "agreements",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9e445f2b8f7df071727320d652158351da8ab967ca06889c5769ddc9daf67ada",
+        "maxInputTokenReservation": 22943,
+        "upperUsd": 0.00434145,
+        "scenarioUsd": 0.0010061999999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-076__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f91064fc55b8ffa2232be8abdb584e8bd0b23a069fcdb7e201dcceb36ad6ddda",
+        "maxInputTokenReservation": 26713,
+        "upperUsd": 0.00490695,
+        "scenarioUsd": 0.0011469000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-076__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "04d5af8d64f327d2c461933d6cfac73cae0cf1d8d015b1f2e8997513d37f2967",
+        "maxInputTokenReservation": 20815,
+        "upperUsd": 0.03811125,
+        "scenarioUsd": 0.01437825
+      }
+    },
+    {
+      "id": "consistency__WL46-076__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "04d5af8d64f327d2c461933d6cfac73cae0cf1d8d015b1f2e8997513d37f2967",
+        "maxInputTokenReservation": 20815,
+        "upperUsd": 0.03811125,
+        "scenarioUsd": 0.01437825
+      }
+    },
+    {
+      "id": "consistency__WL46-076__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f91064fc55b8ffa2232be8abdb584e8bd0b23a069fcdb7e201dcceb36ad6ddda",
+        "maxInputTokenReservation": 26713,
+        "upperUsd": 0.00490695,
+        "scenarioUsd": 0.0011469000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-076__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "f91064fc55b8ffa2232be8abdb584e8bd0b23a069fcdb7e201dcceb36ad6ddda",
+        "maxInputTokenReservation": 26713,
+        "upperUsd": 0.00490695,
+        "scenarioUsd": 0.0011469000000000002
+      }
+    },
+    {
+      "id": "consistency__WL46-076__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-076",
+      "category": "multilateral",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "04d5af8d64f327d2c461933d6cfac73cae0cf1d8d015b1f2e8997513d37f2967",
+        "maxInputTokenReservation": 20815,
+        "upperUsd": 0.03811125,
+        "scenarioUsd": 0.01437825
+      }
+    },
+    {
+      "id": "consistency__WL46-077__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0a3de49f7a94210c062a14f54c6eacf7235abb0e82ddbb70ede7b039d5f493d7",
+        "maxInputTokenReservation": 16618,
+        "upperUsd": 0.0349635,
+        "scenarioUsd": 0.013596
+      }
+    },
+    {
+      "id": "consistency__WL46-077__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9d749be1d558ea37a116eab39b5663e61b457cd96a735be2cb892763b2910e05",
+        "maxInputTokenReservation": 22516,
+        "upperUsd": 0.0042774,
+        "scenarioUsd": 0.0009903
+      }
+    },
+    {
+      "id": "consistency__WL46-077__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9d749be1d558ea37a116eab39b5663e61b457cd96a735be2cb892763b2910e05",
+        "maxInputTokenReservation": 22516,
+        "upperUsd": 0.0042774,
+        "scenarioUsd": 0.0009903
+      }
+    },
+    {
+      "id": "consistency__WL46-077__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0a3de49f7a94210c062a14f54c6eacf7235abb0e82ddbb70ede7b039d5f493d7",
+        "maxInputTokenReservation": 16618,
+        "upperUsd": 0.0349635,
+        "scenarioUsd": 0.013596
+      }
+    },
+    {
+      "id": "consistency__WL46-077__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0a3de49f7a94210c062a14f54c6eacf7235abb0e82ddbb70ede7b039d5f493d7",
+        "maxInputTokenReservation": 16618,
+        "upperUsd": 0.0349635,
+        "scenarioUsd": 0.013596
+      }
+    },
+    {
+      "id": "consistency__WL46-077__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-077",
+      "category": "multilateral",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "9d749be1d558ea37a116eab39b5663e61b457cd96a735be2cb892763b2910e05",
+        "maxInputTokenReservation": 22516,
+        "upperUsd": 0.0042774,
+        "scenarioUsd": 0.0009903
+      }
+    },
+    {
+      "id": "consistency__WL46-086__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "88cdba3578e3c52537517bbb27e45e0090782fc5ed0bf12990c4ab11e0f25f89",
+        "maxInputTokenReservation": 25317,
+        "upperUsd": 0.004697549999999999,
+        "scenarioUsd": 0.0010953
+      }
+    },
+    {
+      "id": "consistency__WL46-086__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9cdd6847fd6e9245c0699c1d4786716541db97af1870f9498ad11ecaf78e8fb8",
+        "maxInputTokenReservation": 19419,
+        "upperUsd": 0.03706425,
+        "scenarioUsd": 0.014121
+      }
+    },
+    {
+      "id": "consistency__WL46-086__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9cdd6847fd6e9245c0699c1d4786716541db97af1870f9498ad11ecaf78e8fb8",
+        "maxInputTokenReservation": 19419,
+        "upperUsd": 0.03706425,
+        "scenarioUsd": 0.014121
+      }
+    },
+    {
+      "id": "consistency__WL46-086__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "88cdba3578e3c52537517bbb27e45e0090782fc5ed0bf12990c4ab11e0f25f89",
+        "maxInputTokenReservation": 25317,
+        "upperUsd": 0.004697549999999999,
+        "scenarioUsd": 0.0010953
+      }
+    },
+    {
+      "id": "consistency__WL46-086__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "88cdba3578e3c52537517bbb27e45e0090782fc5ed0bf12990c4ab11e0f25f89",
+        "maxInputTokenReservation": 25317,
+        "upperUsd": 0.004697549999999999,
+        "scenarioUsd": 0.0010953
+      }
+    },
+    {
+      "id": "consistency__WL46-086__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-086",
+      "category": "ambiguous",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "9cdd6847fd6e9245c0699c1d4786716541db97af1870f9498ad11ecaf78e8fb8",
+        "maxInputTokenReservation": 19419,
+        "upperUsd": 0.03706425,
+        "scenarioUsd": 0.014121
+      }
+    },
+    {
+      "id": "consistency__WL46-087__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4b3a5d0c55fcbed8a55926c25c0c25afd0cfd10517268fe0abfd50eec4b4b4f0",
+        "maxInputTokenReservation": 16799,
+        "upperUsd": 0.03509925,
+        "scenarioUsd": 0.01362975
+      }
+    },
+    {
+      "id": "consistency__WL46-087__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d687588db71c7c4e41dd0557a23db3e8c2552d38677f7ade261042dd48d9256a",
+        "maxInputTokenReservation": 22697,
+        "upperUsd": 0.004304549999999999,
+        "scenarioUsd": 0.00099705
+      }
+    },
+    {
+      "id": "consistency__WL46-087__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d687588db71c7c4e41dd0557a23db3e8c2552d38677f7ade261042dd48d9256a",
+        "maxInputTokenReservation": 22697,
+        "upperUsd": 0.004304549999999999,
+        "scenarioUsd": 0.00099705
+      }
+    },
+    {
+      "id": "consistency__WL46-087__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4b3a5d0c55fcbed8a55926c25c0c25afd0cfd10517268fe0abfd50eec4b4b4f0",
+        "maxInputTokenReservation": 16799,
+        "upperUsd": 0.03509925,
+        "scenarioUsd": 0.01362975
+      }
+    },
+    {
+      "id": "consistency__WL46-087__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4b3a5d0c55fcbed8a55926c25c0c25afd0cfd10517268fe0abfd50eec4b4b4f0",
+        "maxInputTokenReservation": 16799,
+        "upperUsd": 0.03509925,
+        "scenarioUsd": 0.01362975
+      }
+    },
+    {
+      "id": "consistency__WL46-087__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-087",
+      "category": "ambiguous",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d687588db71c7c4e41dd0557a23db3e8c2552d38677f7ade261042dd48d9256a",
+        "maxInputTokenReservation": 22697,
+        "upperUsd": 0.004304549999999999,
+        "scenarioUsd": 0.00099705
+      }
+    },
+    {
+      "id": "consistency__WL46-096__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "36c0c1760ef63afbe19aa2ffd3c578fba665a77b71230f4f4d5de08f21ae1288",
+        "maxInputTokenReservation": 27967,
+        "upperUsd": 0.00509505,
+        "scenarioUsd": 0.00119325
+      }
+    },
+    {
+      "id": "consistency__WL46-096__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b30d5690acaf643a96c377b07db68c3e2d9873271a032c46ce0270538fffc764",
+        "maxInputTokenReservation": 22069,
+        "upperUsd": 0.03905175,
+        "scenarioUsd": 0.01461075
+      }
+    },
+    {
+      "id": "consistency__WL46-096__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b30d5690acaf643a96c377b07db68c3e2d9873271a032c46ce0270538fffc764",
+        "maxInputTokenReservation": 22069,
+        "upperUsd": 0.03905175,
+        "scenarioUsd": 0.01461075
+      }
+    },
+    {
+      "id": "consistency__WL46-096__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "36c0c1760ef63afbe19aa2ffd3c578fba665a77b71230f4f4d5de08f21ae1288",
+        "maxInputTokenReservation": 27967,
+        "upperUsd": 0.00509505,
+        "scenarioUsd": 0.00119325
+      }
+    },
+    {
+      "id": "consistency__WL46-096__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "36c0c1760ef63afbe19aa2ffd3c578fba665a77b71230f4f4d5de08f21ae1288",
+        "maxInputTokenReservation": 27967,
+        "upperUsd": 0.00509505,
+        "scenarioUsd": 0.00119325
+      }
+    },
+    {
+      "id": "consistency__WL46-096__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-096",
+      "category": "control",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b30d5690acaf643a96c377b07db68c3e2d9873271a032c46ce0270538fffc764",
+        "maxInputTokenReservation": 22069,
+        "upperUsd": 0.03905175,
+        "scenarioUsd": 0.01461075
+      }
+    },
+    {
+      "id": "consistency__WL46-097__0__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b2a53f0d17d14de4990bba2ac4309e01cd46601e87d7d66f21008346af8be59f",
+        "maxInputTokenReservation": 18076,
+        "upperUsd": 0.036057,
+        "scenarioUsd": 0.0138705
+      }
+    },
+    {
+      "id": "consistency__WL46-097__0__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a24983a2a42616152f76deca810cab24d0afcd1b041b416100da8fedc61ea09c",
+        "maxInputTokenReservation": 23974,
+        "upperUsd": 0.0044961,
+        "scenarioUsd": 0.0010451999999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-097__1__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 1,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a24983a2a42616152f76deca810cab24d0afcd1b041b416100da8fedc61ea09c",
+        "maxInputTokenReservation": 23974,
+        "upperUsd": 0.0044961,
+        "scenarioUsd": 0.0010451999999999998
+      }
+    },
+    {
+      "id": "consistency__WL46-097__1__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 1,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b2a53f0d17d14de4990bba2ac4309e01cd46601e87d7d66f21008346af8be59f",
+        "maxInputTokenReservation": 18076,
+        "upperUsd": 0.036057,
+        "scenarioUsd": 0.0138705
+      }
+    },
+    {
+      "id": "consistency__WL46-097__2__gemini",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 2,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "b2a53f0d17d14de4990bba2ac4309e01cd46601e87d7d66f21008346af8be59f",
+        "maxInputTokenReservation": 18076,
+        "upperUsd": 0.036057,
+        "scenarioUsd": 0.0138705
+      }
+    },
+    {
+      "id": "consistency__WL46-097__2__ministral",
+      "phase": "consistency",
+      "caseId": "WL46-097",
+      "category": "control",
+      "repeat": 2,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "a24983a2a42616152f76deca810cab24d0afcd1b041b416100da8fedc61ea09c",
+        "maxInputTokenReservation": 23974,
+        "upperUsd": 0.0044961,
+        "scenarioUsd": 0.0010451999999999998
+      }
+    },
+    {
+      "id": "deduplication__RP-01__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-01",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "ba25889aa31f0a10c654962376ead98cc97a9922c447838fd83badd6474049f8",
+        "maxInputTokenReservation": 22723,
+        "upperUsd": 0.00430845,
+        "scenarioUsd": 0.0009981
+      }
+    },
+    {
+      "id": "deduplication__RP-01__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-01",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "cdf8fac010e7334f0bbb8ed6d965c543d3ddd14bad837c58d1eb60efa5a9c5c0",
+        "maxInputTokenReservation": 16825,
+        "upperUsd": 0.03511875,
+        "scenarioUsd": 0.013635
+      }
+    },
+    {
+      "id": "deduplication__RP-02__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-02",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "5019715f178264a30bba0f66121c1172072c5f03c03ee950c7226b41de4b33c4",
+        "maxInputTokenReservation": 19543,
+        "upperUsd": 0.03715725,
+        "scenarioUsd": 0.01413675
+      }
+    },
+    {
+      "id": "deduplication__RP-02__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-02",
+      "category": "conflict",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "fe71c25f2516fa2e90aab685d147977705a697021d3ecddf05b5f3c5b897f733",
+        "maxInputTokenReservation": 25441,
+        "upperUsd": 0.00471615,
+        "scenarioUsd": 0.0010984499999999997
+      }
+    },
+    {
+      "id": "deduplication__RP-03__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-03",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c9ccafda33671ddc1f183ca78ac44f7572f485bd1eaecfddfbfdb80f9187c95f",
+        "maxInputTokenReservation": 24940,
+        "upperUsd": 0.004641,
+        "scenarioUsd": 0.0010813499999999998
+      }
+    },
+    {
+      "id": "deduplication__RP-03__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-03",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "0fdb5228dfda4abd0592c1d42ec91a56e74551bc74f2e06ba2132f0ab74e1545",
+        "maxInputTokenReservation": 19042,
+        "upperUsd": 0.0367815,
+        "scenarioUsd": 0.01405125
+      }
+    },
+    {
+      "id": "deduplication__RP-04__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-04",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "fdefa1ff908937890f8cce495cddb4c4643a24d178d866041895bb7714ee884d",
+        "maxInputTokenReservation": 22465,
+        "upperUsd": 0.03934875,
+        "scenarioUsd": 0.014652
+      }
+    },
+    {
+      "id": "deduplication__RP-04__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-04",
+      "category": "sanctions",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "1c4cc328390f9cabec681f66eee2b70426709166cb0255061412e1d31d4cbe52",
+        "maxInputTokenReservation": 28363,
+        "upperUsd": 0.00515445,
+        "scenarioUsd": 0.00120165
+      }
+    },
+    {
+      "id": "deduplication__RP-05__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-05",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "6f2ebcb778f821eaf5132614943cbab826fd542adbf1349d4248dbfef90999aa",
+        "maxInputTokenReservation": 23388,
+        "upperUsd": 0.0044082,
+        "scenarioUsd": 0.001023
+      }
+    },
+    {
+      "id": "deduplication__RP-05__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-05",
+      "category": "diplomacy",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "40dece6a72c7e6e64c1d11b899742afc50ac794f8d8ee0f1feffac5066d36ceb",
+        "maxInputTokenReservation": 17490,
+        "upperUsd": 0.0356175,
+        "scenarioUsd": 0.01375875
+      }
+    },
+    {
+      "id": "deduplication__RP-06__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-06",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "4596ac4b29eaeb9862752003f05d09829ad351bcde863c6de4701539389d8bc0",
+        "maxInputTokenReservation": 22209,
+        "upperUsd": 0.03915675,
+        "scenarioUsd": 0.01464225
+      }
+    },
+    {
+      "id": "deduplication__RP-06__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-06",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "d52db51a44bd810e17cc32cc8e5c40d0f4b3f25e8e2adfeddda0a7eb5ce6ffe4",
+        "maxInputTokenReservation": 28107,
+        "upperUsd": 0.0051160500000000005,
+        "scenarioUsd": 0.0011996999999999997
+      }
+    },
+    {
+      "id": "deduplication__RP-07__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-07",
+      "category": "trade",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "c81466d8ac625542de750bbc6a94af823775fc8f9add4fd19c34203ee1a82869",
+        "maxInputTokenReservation": 23548,
+        "upperUsd": 0.0044322,
+        "scenarioUsd": 0.001029
+      }
+    },
+    {
+      "id": "deduplication__RP-07__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-07",
+      "category": "trade",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "e8bbc823a16b3840613fb6f2e2a03416d3aabd42491cf1ffc29902d628b05e70",
+        "maxInputTokenReservation": 17650,
+        "upperUsd": 0.0357375,
+        "scenarioUsd": 0.0137895
+      }
+    },
+    {
+      "id": "deduplication__RP-08__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-08",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "814b214eae942e4402355876a74d867dd7fbe92ee045719fabec009fe0ef3005",
+        "maxInputTokenReservation": 19128,
+        "upperUsd": 0.036846,
+        "scenarioUsd": 0.0140595
+      }
+    },
+    {
+      "id": "deduplication__RP-08__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-08",
+      "category": "military_aid",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "0cad186aded066dba125ec33d84637e125bd46990bd3687011c36a8417f036c3",
+        "maxInputTokenReservation": 25026,
+        "upperUsd": 0.0046539,
+        "scenarioUsd": 0.001083
+      }
+    },
+    {
+      "id": "deduplication__RP-09__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-09",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "89c922fb8e964d04912873738c7fe2bf5bcc9931f7f0a308e699deccd0d79a5d",
+        "maxInputTokenReservation": 23221,
+        "upperUsd": 0.00438315,
+        "scenarioUsd": 0.00101685
+      }
+    },
+    {
+      "id": "deduplication__RP-09__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-09",
+      "category": "agreements",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "dd7106811cce0bbdbfc6017e2299e7a3dea7122a5f4194cbce915017897e0030",
+        "maxInputTokenReservation": 17323,
+        "upperUsd": 0.03549225,
+        "scenarioUsd": 0.01372875
+      }
+    },
+    {
+      "id": "deduplication__RP-10__0__gemini",
+      "phase": "deduplication",
+      "caseId": "RP-10",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "gemini",
+      "estimate": {
+        "bodySha256": "54a224689d036ac5d91a0e618baffaa995c028b19e4d58df270e4066145d19f4",
+        "maxInputTokenReservation": 19594,
+        "upperUsd": 0.0371955,
+        "scenarioUsd": 0.01415475
+      }
+    },
+    {
+      "id": "deduplication__RP-10__0__ministral",
+      "phase": "deduplication",
+      "caseId": "RP-10",
+      "category": "multilateral",
+      "repeat": 0,
+      "model": "ministral",
+      "estimate": {
+        "bodySha256": "244eb45edf2838e02ed6b26bca9ed8bc77221221a202757a0b2a92167597189c",
+        "maxInputTokenReservation": 25492,
+        "upperUsd": 0.004723799999999999,
+        "scenarioUsd": 0.0011021999999999998
+      }
+    }
+  ]
+}

@@ -82,3 +82,7 @@ Verification includes 33 tests covering catalogue coverage, whole-territory pick
 The existing globe and demo feed remain unchanged. A separate Fastify / TypeScript / Prisma / SQLite backend provides manual Mistral extraction, evidence validation, duplicate candidates, review decisions and budget accounting. Open http://127.0.0.1:3001/dev/ai-lab after `npm run db:migrate` and `npm run backend:start`.
 
 See [backend/README.md](backend/README.md) for setup, architecture, API contracts, auth, model pricing, tests and limitations. Real API evaluation details are in [backend/EVALUATION.md](backend/EVALUATION.md). API keys, raw local runs and databases are excluded from Git.
+
+## Phase 4.6 — isolated model comparison
+
+[Benchmark tool and dry-run](benchmark/model-comparison/README.md) compare explicit Ministral/Gemini IDs on100 new source texts. Paid generation requires human budget/plan approval. Manual ground truth is pending; no winner or quality claims are fabricated. The main World Lens interface and provider configuration are unchanged.

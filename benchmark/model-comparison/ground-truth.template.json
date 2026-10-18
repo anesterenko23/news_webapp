@@ -1,0 +1,1608 @@
+{
+  "version": "world-lens-ground-truth/1.0",
+  "datasetVersion": "world-lens-holdout/2026-10-18-v1",
+  "status": "pending_human_annotation",
+  "policy": "No model-generated final labels. Empty expectedEvents is a deliberate human negative; null is unlabelled. Annotate and adjudicate without looking at model outputs.",
+  "articles": [
+    {
+      "articleId": "WL46-001",
+      "contentSha256": "c5440dc267415ba51b3d5659ce14cd2a114986fb5769df5d919f31690c07c7ba",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-002",
+      "contentSha256": "7018e44bb53ea45a97c80ec5e1b8874f7428987d9783241bc352df0adffd096a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-003",
+      "contentSha256": "536e34df9506ca4e16b2731f400d454bd1389ec5d6ea06f727ec45501b5b735d",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-004",
+      "contentSha256": "bc45243defa9d50dbef697b57a53a0b2cb4cc15d0c4856f365f8cbf8dbe151bc",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-005",
+      "contentSha256": "d5ea15d5491c0c9383750014071ff3206c2432a3cf3a14dc5371bb60fe6563e9",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-006",
+      "contentSha256": "fc835dc2da5bdc82a8214f00eefa1fc2ba88a2048b88a35a591980c64f89dba5",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-007",
+      "contentSha256": "77ce471bfd38dab00765d500a0653002cd08521a48e7972062779c3d5ff3fc04",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-008",
+      "contentSha256": "f10231e4efa543b9536d9cb2aef47994e17b8e173843eef4dcb33d72e9893e05",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-009",
+      "contentSha256": "43ef89cde121e8348b72497fc6d3dc7c157ca3b80ef4ba0273e1be38f741f2af",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-010",
+      "contentSha256": "542e5fe80c700f31cb7862f1c7dcf8bac3e9729338f2e873950e7fba8e9f984d",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-011",
+      "contentSha256": "976943ffedfa16db950821a3ab764b427bc32281e4691259cfef5c132074ea7a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-012",
+      "contentSha256": "1d645077e28e7140df2c9de4c851820b605e1046a06fd3fa5c54d11d95ac32bc",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-013",
+      "contentSha256": "a300e09a2b4c0b4b1a06083ce880d883b010762f56a1656d89b1a90969ea9830",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-014",
+      "contentSha256": "89d0603b2309419036a6d6ba119c6e2cc67603fb3e2bc405e315438b7f3c3716",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-015",
+      "contentSha256": "899d80e83ababd224344ad57b6974f4a3fc08686529ed3a841382faf8a9320e8",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-016",
+      "contentSha256": "7578aecfead33173c140e25747864fc7666f23de4a307dcf61da5855fdf97f43",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-017",
+      "contentSha256": "26cdbfb916d9a449e121e47e0841b898a79cea9c729eb434572b5457185e3465",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-018",
+      "contentSha256": "ae31bd1aed3395aac9ff8008bbca0b673f45bdb9b4a0dca2559b843dce199a9b",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-019",
+      "contentSha256": "15082ecef329d19edb68445be760c0e696a6883bcf348313db92e545304d5902",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-020",
+      "contentSha256": "58975fb466781fe3ac647ec136e4fb27e5c65052f081f4e363b086153972101c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-021",
+      "contentSha256": "10bf020bef70080f77be75ebc7508ffef550caa619c9a2de4d44f5c040b1bfad",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-022",
+      "contentSha256": "319a218a8652a208581d7e9a96128db92b71a72d9d1f1fde53fc0a58a629b64e",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-023",
+      "contentSha256": "b4b855370d90e4267fbc462418f5d3adc0ce0c74d0c56aa1cb34540c0ea89c4c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-024",
+      "contentSha256": "e1082c24aea65615f411bbb15c7df64df1b322e1dc84ed4ec68c2113a573b8bf",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-025",
+      "contentSha256": "8e0ef5c5084687e0d5a4e34b31016b8821bdd86e59acfbe62ef02bf3557a7d02",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-026",
+      "contentSha256": "6b7f833a0b366e85c5b6ecff7a29acb7af958933a421ffceef5a4b6e28910e77",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-027",
+      "contentSha256": "9d0c72227fd90fa4f27ee6e8420d15e7fd28322bfdb57a4b1bc4e8403256460a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-028",
+      "contentSha256": "95d8a4b8258df5f7d0a362f6e30c6d0680260e1e4dcbd63cecbf465ab9ff17d0",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-029",
+      "contentSha256": "a8ec0e320a9ab15b9808030e6d065a8317dc012e5afa393cc01c0e32bc3965d6",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-030",
+      "contentSha256": "41f97b7ce66a4bf99153fa4c7bb629b4f9d7327aea4498519e51e58f170aa112",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-031",
+      "contentSha256": "970006cebd0d328eb0a3d290f65453fd45ea8a91211c36f1cabd242beab85f3f",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-032",
+      "contentSha256": "05f045c43d1eeedc8032c241057e560bba4eae8ce08a1ce958f6ae35af1f869f",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-033",
+      "contentSha256": "763eabf9749dae23b10195d89214800d5a212873e08839e8a570fcdea972917f",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-034",
+      "contentSha256": "047a5cbdb08b3eda84ababc7ffb7a522b3c5f9169407fca8a4b203189cc511f9",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-035",
+      "contentSha256": "d3b3d3463b089d6abc19cdd5f2b3f4ac29ff3b97c180e7d506130a5df01c8e7f",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-036",
+      "contentSha256": "8fa9b91d5d0c1220ab7fd813610d6f453ceacd7f962b7352347424f08a3a941a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-037",
+      "contentSha256": "279da7474e2ea419ba605d7b7b89a22e79c87c3633f7c8627a6afea4d0e6b217",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-038",
+      "contentSha256": "8c7f7d405016c01bf86f5c86c902448743c6881ed7865a6ac234f3c8df9dd0e4",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-039",
+      "contentSha256": "55a332845352c0e851459f99cf384f84d26b3cc467cc1cc29318a51bb8c85b15",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-040",
+      "contentSha256": "29e9a0e160c58e776d923924e7d0b31a592ca41eb5660867ced85751f2e4c4c5",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-041",
+      "contentSha256": "513ab8ca610f7ff9e994d3e2ae60fc0c4a7ea95c5d3343559513f25961dff245",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-042",
+      "contentSha256": "8e8e29648ecbcdde60f081bad255eb6efd6d74562004f86b6825c3aecb227fbf",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-043",
+      "contentSha256": "7ef43965647f86495d397062fc8fda5c45bed000c9b74352a317fc87b4c4828c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-044",
+      "contentSha256": "992e16114dfea6609b97516f93eae59c65e18e76c5fd4562c13227df6c48f21c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-045",
+      "contentSha256": "05a7bbd46578bc6c971bbba4f57ad5d0f085eb26af19b89a1f5133b0faea8265",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-046",
+      "contentSha256": "4c36abe658e9e6a090974f95da0842ebce6c3ea720bfeff69777eaf60725a76e",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-047",
+      "contentSha256": "023b7b4b1b4e72209562941ff364b0c8aaacd86420483a6d22f56b54392d979c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-048",
+      "contentSha256": "881e25b536e17d6ed254bfe10ad3d4981e7972f5928311508317e0cc10572b7c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-049",
+      "contentSha256": "53e3a09f0156708027671fe7b8a9b8eb7cc5b9a7d6ff171e8dfec7353d5eadbe",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-050",
+      "contentSha256": "f3e78382e3c0e265fafc5979ca754ae4e299ba1c36e8a0ba3f54e16db70bf90e",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-051",
+      "contentSha256": "9198cc3d1f1a2c7b7acdde34fca18fb29e24ade6676a869cf43246959f07bbc9",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-052",
+      "contentSha256": "60c6ce8f9d59c93adae8ee3ba35c5678b3915e40dab1fdffd987297e098f4592",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-053",
+      "contentSha256": "3a4dcc2f7ca8dd1272523b7dbf6d0289e2b97ce541a7b36967d78b105bf0cd7c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-054",
+      "contentSha256": "3101a4eb3904571d00d1743872c7f9af48caff32523900af853bf20617c12899",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-055",
+      "contentSha256": "277096d285e17c285554890964b096d87b06411de322b55829e346b0f46d5418",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-056",
+      "contentSha256": "2620c9ac6c2a87c37b8dc55b0985f051863cd6734e97bf972752880a8055671c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-057",
+      "contentSha256": "7ee84934d59ba8a3c47d44f65528780cfcd4d71e4d93b17da055a39f73a6fe7b",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-058",
+      "contentSha256": "9b2adb46f4a6dbb6e72011c234e8918734a73693707619ebdc95c14452770a2b",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-059",
+      "contentSha256": "c9da7a4689b3625e0db401adf160899b00d68fc88a773be12b85ee1c204dd1eb",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-060",
+      "contentSha256": "0e70fa75655e5053ebf54d1d55025bf781a9d9b312141db57290c09c662a2c97",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-061",
+      "contentSha256": "1559d261589b62510d86cd7b6352ef66849229d70edc5af9b288dd701d704f32",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-062",
+      "contentSha256": "39847ee55fc5dab9158282c34eb7a6e6cac8152b8d4f903849612086f1f24857",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-063",
+      "contentSha256": "ac93d5f342fd3f53ceb6891e5b582bdd788c61fe42c8e28715cb96ef72d7bd95",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-064",
+      "contentSha256": "82d7366ebdc4d71f36926c1fe07d8f1cb502e4f64a8eb68819de6da95e95e80d",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-065",
+      "contentSha256": "fd2bde6f93ade3903518b7632f4bb7d78fc0bf87cd3a7b6e119c11b28771227a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-066",
+      "contentSha256": "7c8190d9bf75a0b71e6af1628047de413f08c6167409aa09e852c36eced57dc6",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-067",
+      "contentSha256": "7de1c24e7d719aa9514d319db2a4c2fd8a0dcfa07bb4d65fd7f2e5b74a8f2fc0",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-068",
+      "contentSha256": "dc95d61dec499d3c5f9be64d24f41b09fde2415e8969deca2581d73a64413983",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-069",
+      "contentSha256": "0052acfa0e30bfb76be0601e79e1b3009ba2024ec96994e3a4eb5889f85cfd75",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-070",
+      "contentSha256": "5e8ffeb555a0e903a57c7aef8840a1d96397f8e66871e46f59c1ba632f272c5b",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-071",
+      "contentSha256": "e8562077859e6f03f78b61c75c4c825985f7ffe811c06b23172aa5d7c4b23b77",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-072",
+      "contentSha256": "42ef2f1e33088b3fa10feb0af92ec72005a6194c03e6ac6634867731279944f0",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-073",
+      "contentSha256": "874c6a529dae9556eccc897389e2568b4597676f0b656e9ae9d98f9d45ec0f06",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-074",
+      "contentSha256": "b2caeb697b46eb41252475dcdb32ef37ba59cdf4f93c07f6997cca9867820d85",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-075",
+      "contentSha256": "a5da8f9bc1a8272ad71d4695651aab2bbdf5100aafb4d9427adee9327aaf3c2d",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-076",
+      "contentSha256": "fa50938e51cb061e96c4db7f7981097c88bdbfbf1cbaaf742c20ecc1ed154fb1",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-077",
+      "contentSha256": "05b88a6ccf8b2a4e16e6e6275999a9504cc8b9817b0460da3c0a347d8d5a7eb0",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-078",
+      "contentSha256": "27488ea0c652cea61eb9d7863600002dacc00bb850456565e58b4e1243b1214c",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-079",
+      "contentSha256": "2fae1cf41daf200576e2e9633fceaf8a8e9951006337e0b6563375fdd3c83347",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-080",
+      "contentSha256": "1c2d8f572e6fbf8b89741d27aa33758e36254262cf5dda7dab3799b800f9bcb2",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-081",
+      "contentSha256": "59c06ffffab2667818a1d45602bd5da34542cb6fa34d91746cf7d993fc4456a7",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-082",
+      "contentSha256": "f1d0049f9a256337f5423b9038051b64ac30c2683a07ba0a6df694ce2afac5c3",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-083",
+      "contentSha256": "32590014bd78d4dc6a334cee69c95d2d7c0610ee14fddb12d720a496fde6e874",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-084",
+      "contentSha256": "193ab30c2e00d1214ba85bec6bc56539e82526484d881ecf6c8463c12dd79b22",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-085",
+      "contentSha256": "52a9a8763b910cbf7dd1d7c89c1dc26f9ea9a56450da33049f4c7855d4874ae0",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-086",
+      "contentSha256": "3ed736cab24ece5483489d8f32a791d7024b77abbe04dc905fbd9eff1ed7bb16",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-087",
+      "contentSha256": "7ce0077b541d70cff150f33a95fce68c916a73a6025c700673991ea2ccd6f45a",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-088",
+      "contentSha256": "e660a635543c141f55bfdb3b82357c8c647d5cb3b7b7a89daca528260a278b00",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-089",
+      "contentSha256": "c195ee7d044965f76326c9a182009166a1f1868a65a99ee9c278130d90019fcc",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-090",
+      "contentSha256": "5001ac0c0103e0a336dcb05c824d2307962333c0cfd81773c33617ab4cf51594",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-091",
+      "contentSha256": "cfe0158cd9deb217361d795c57ceff39f2115a4df07edddd1796fab5bb0ad4b6",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-092",
+      "contentSha256": "059ea82ac74405210f492affa45df8d1e79c486fa5e99b20307221f2ede0d4e4",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-093",
+      "contentSha256": "988c541155ac053ec4cd843d0f16037b4b7e91c6102b803e97539d90f7e6e5ee",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-094",
+      "contentSha256": "f7951b3bba462704b357d1f5a54d64e1a08d3169079a883b256152a34dfd5700",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-095",
+      "contentSha256": "5bb7e6d26547d83e821616011bac13a4001939f7dff124534b7cd06667504541",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-096",
+      "contentSha256": "5c79065f3690fd10fac7686c34bcfcc1e72ba8299afea77e3c95f05460a348de",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-097",
+      "contentSha256": "83dd7fa41ce6526cf45c1335b3d2f709d563fcbf52cb91c4de22c3fcdc849fbc",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-098",
+      "contentSha256": "924280985881c14801985052b45e70ae5019d814ac6d4672e18e10c3d29e3c2e",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-099",
+      "contentSha256": "32410ae3b60067741a35bdbb9ca21251f8f7be23c2b6f3abf3f59ff07cc903c5",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    },
+    {
+      "articleId": "WL46-100",
+      "contentSha256": "6c3fde74016c109bae603847478939ba061e13a196d1168469e86c4d05c6f763",
+      "review": {
+        "status": "pending",
+        "annotator": null,
+        "adjudicator": null,
+        "reviewedAt": null,
+        "method": "human_required"
+      },
+      "categoryConfirmed": false,
+      "coverageTags": [],
+      "expectedEvents": null,
+      "acceptableAlternatives": [],
+      "ambiguityReasons": []
+    }
+  ]
+}

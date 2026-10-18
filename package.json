@@ -21,7 +21,11 @@
     "ai:evaluate": "node --experimental-strip-types backend/evaluate.mjs",
     "ai:benchmark": "node backend/benchmark.mjs",
     "ai:score": "node backend/score-benchmark.mjs",
-    "ai:score-duplicates": "npm run backend:build && node backend/score-duplicates.mjs"
+    "ai:score-duplicates": "npm run backend:build && node backend/score-duplicates.mjs",
+    "compare:dry": "npm run backend:build && node benchmark/model-comparison/tools/dry-run.mjs",
+    "compare:run": "node benchmark/model-comparison/tools/run.mjs",
+    "compare:score": "node benchmark/model-comparison/tools/analyze.mjs && node benchmark/model-comparison/tools/report.mjs",
+    "compare:fetch-corpus": "node benchmark/model-comparison/tools/hydrate.mjs --fetch-sources"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

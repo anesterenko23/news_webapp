@@ -14,3 +14,13 @@ backend/generated/
 
 backend/.test-*.db*
 work/
+
+# Isolated Phase 4.6 benchmark state and unreviewed source texts
+benchmark/model-comparison/corpus/
+benchmark/model-comparison/source-snapshots/
+benchmark/model-comparison/state/
+benchmark/model-comparison/approval.json
+benchmark/model-comparison/runs-*.json
+benchmark/model-comparison/errors.json
+benchmark/model-comparison/ground-truth.json
+benchmark/model-comparison/adjudication.json

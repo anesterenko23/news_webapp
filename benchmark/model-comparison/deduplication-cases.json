@@ -1,0 +1,217 @@
+{
+  "version": "world-lens-reprints/1.0",
+  "cases": [
+    {
+      "id": "RP-01",
+      "sourceArticleId": "WL46-001",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-001",
+      "lineageId": "wl46-lineage-WL46-001",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-02",
+      "sourceArticleId": "WL46-010",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-010",
+      "lineageId": "wl46-lineage-WL46-010",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-03",
+      "sourceArticleId": "WL46-019",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-019",
+      "lineageId": "wl46-lineage-WL46-019",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-04",
+      "sourceArticleId": "WL46-028",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-028",
+      "lineageId": "wl46-lineage-WL46-028",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-05",
+      "sourceArticleId": "WL46-037",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-037",
+      "lineageId": "wl46-lineage-WL46-037",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-06",
+      "sourceArticleId": "WL46-046",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-046",
+      "lineageId": "wl46-lineage-WL46-046",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-07",
+      "sourceArticleId": "WL46-055",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-055",
+      "lineageId": "wl46-lineage-WL46-055",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-08",
+      "sourceArticleId": "WL46-064",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-064",
+      "lineageId": "wl46-lineage-WL46-064",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-09",
+      "sourceArticleId": "WL46-073",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-073",
+      "lineageId": "wl46-lineage-WL46-073",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    },
+    {
+      "id": "RP-10",
+      "sourceArticleId": "WL46-082",
+      "kind": "controlled_exact_body_reprint",
+      "titleSuffix": " — controlled benchmark reprint",
+      "publisher": "BENCHMARK SYNTHETIC REPRINT — not an independent source",
+      "url": "https://example.invalid/world-lens-benchmark/reprint/WL46-082",
+      "lineageId": "wl46-lineage-WL46-082",
+      "expectedSameBody": true,
+      "independentConfirmation": false,
+      "note": "Same body by construction; event-level dedup judgement requires source/reprint claims to be manually aligned. Not part of 100 main articles."
+    }
+  ],
+  "negativePairs": [
+    {
+      "id": "NEG-01",
+      "leftArticleId": "WL46-016",
+      "rightArticleId": "WL46-046",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-02",
+      "leftArticleId": "WL46-017",
+      "rightArticleId": "WL46-047",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-03",
+      "leftArticleId": "WL46-018",
+      "rightArticleId": "WL46-048",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-04",
+      "leftArticleId": "WL46-019",
+      "rightArticleId": "WL46-049",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-05",
+      "leftArticleId": "WL46-020",
+      "rightArticleId": "WL46-050",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-06",
+      "leftArticleId": "WL46-021",
+      "rightArticleId": "WL46-051",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-07",
+      "leftArticleId": "WL46-022",
+      "rightArticleId": "WL46-052",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-08",
+      "leftArticleId": "WL46-023",
+      "rightArticleId": "WL46-053",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-09",
+      "leftArticleId": "WL46-024",
+      "rightArticleId": "WL46-054",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    },
+    {
+      "id": "NEG-10",
+      "leftArticleId": "WL46-025",
+      "rightArticleId": "WL46-055",
+      "kind": "different_publication_negative_candidate",
+      "expectedSameEvent": null,
+      "status": "pending_human_event_pair_adjudication",
+      "additionalModelRequests": 0
+    }
+  ]
+}

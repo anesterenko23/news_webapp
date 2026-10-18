@@ -1,0 +1,1981 @@
+{
+  "status": "pending_or_partial",
+  "configurationInvalidated": false,
+  "planSha256": "97d4b0cbe4a0babdc79ebbf37c6370dccb0154a1b42b29282426359c4ff65cd3",
+  "groundTruth": {
+    "ready": false,
+    "reason": "Ground truth is not human-adjudicated",
+    "approved": 0,
+    "total": 100
+  },
+  "missingManualAlignments": [],
+  "unavailableRawModelOutputs": [],
+  "completedLogicalRuns": 0,
+  "plannedLogicalRuns": 344,
+  "quality": [
+    {
+      "model": "ministral",
+      "levels": {
+        "A": {
+          "adjudicatedArticles": 0,
+          "plannedArticles": 100,
+          "metrics": null,
+          "categories": {
+            "conflict": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "sanctions": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "diplomacy": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "trade": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "military_aid": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "agreements": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "multilateral": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "ambiguous": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "control": {
+              "articles": 0,
+              "plannedArticles": 5,
+              "metrics": null
+            }
+          },
+          "multiEventArticles": {
+            "count": 0,
+            "metrics": null
+          }
+        },
+        "B": {
+          "adjudicatedArticles": 0,
+          "plannedArticles": 100,
+          "metrics": null,
+          "categories": {
+            "conflict": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "sanctions": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "diplomacy": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "trade": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "military_aid": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "agreements": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "multilateral": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "ambiguous": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "control": {
+              "articles": 0,
+              "plannedArticles": 5,
+              "metrics": null
+            }
+          },
+          "multiEventArticles": {
+            "count": 0,
+            "metrics": null
+          }
+        }
+      }
+    },
+    {
+      "model": "gemini",
+      "levels": {
+        "A": {
+          "adjudicatedArticles": 0,
+          "plannedArticles": 100,
+          "metrics": null,
+          "categories": {
+            "conflict": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "sanctions": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "diplomacy": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "trade": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "military_aid": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "agreements": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "multilateral": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "ambiguous": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "control": {
+              "articles": 0,
+              "plannedArticles": 5,
+              "metrics": null
+            }
+          },
+          "multiEventArticles": {
+            "count": 0,
+            "metrics": null
+          }
+        },
+        "B": {
+          "adjudicatedArticles": 0,
+          "plannedArticles": 100,
+          "metrics": null,
+          "categories": {
+            "conflict": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "sanctions": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "diplomacy": {
+              "articles": 0,
+              "plannedArticles": 15,
+              "metrics": null
+            },
+            "trade": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "military_aid": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "agreements": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "multilateral": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "ambiguous": {
+              "articles": 0,
+              "plannedArticles": 10,
+              "metrics": null
+            },
+            "control": {
+              "articles": 0,
+              "plannedArticles": 5,
+              "metrics": null
+            }
+          },
+          "multiEventArticles": {
+            "count": 0,
+            "metrics": null
+          }
+        }
+      }
+    }
+  ],
+  "paired": {
+    "A": {
+      "articles": 0,
+      "matchedSubset": {
+        "ministral": null,
+        "gemini": null
+      },
+      "categories": {
+        "conflict": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "sanctions": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "diplomacy": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "trade": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "military_aid": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "agreements": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "multilateral": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "ambiguous": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "control": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        }
+      },
+      "winTieLoss": {
+        "ministral": 0,
+        "gemini": 0,
+        "tie": 0
+      },
+      "decisionRule": "Descriptive lexicographic per-article comparison: fewer false relationships, then relationship/country/role F1, then event F1; not an overall significance claim.",
+      "confidenceIntervals": {
+        "eventF1Delta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        },
+        "relationshipF1Delta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        },
+        "falseRelationshipRateDelta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        }
+      }
+    },
+    "B": {
+      "articles": 0,
+      "matchedSubset": {
+        "ministral": null,
+        "gemini": null
+      },
+      "categories": {
+        "conflict": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "sanctions": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "diplomacy": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "trade": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "military_aid": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "agreements": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "multilateral": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "ambiguous": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        },
+        "control": {
+          "pairedArticles": 0,
+          "ministral": null,
+          "gemini": null
+        }
+      },
+      "winTieLoss": {
+        "ministral": 0,
+        "gemini": 0,
+        "tie": 0
+      },
+      "decisionRule": "Descriptive lexicographic per-article comparison: fewer false relationships, then relationship/country/role F1, then event F1; not an overall significance claim.",
+      "confidenceIntervals": {
+        "eventF1Delta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        },
+        "relationshipF1Delta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        },
+        "falseRelationshipRateDelta": {
+          "status": "insufficient_paired_articles",
+          "n": 0,
+          "interval": null
+        }
+      }
+    }
+  },
+  "perArticle": [],
+  "operational": [
+    {
+      "model": "ministral",
+      "logicalArticlesAttempted": 0,
+      "plannedArticles": 100,
+      "httpAttempts": 0,
+      "httpStatusCounts": {},
+      "successfulHttpRequests": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "http400": 0,
+      "http429": 0,
+      "http500_502_503": 0,
+      "timeouts": 0,
+      "otherNetworkErrors": 0,
+      "jsonValidity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "invalidJson": 0,
+      "schemaValidationFailures": 0,
+      "backendValidationFailures": 0,
+      "retryCount": 0,
+      "successfulProcessingRate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "processingDefinition": "Completed envelope and strict schema; every extracted claim Valid (including legitimate zero-event outputs). Partial valid claims are counted separately below.",
+      "partiallyAcceptedArticles": 0,
+      "latency": {
+        "allRequests": {
+          "n": 0,
+          "meanMs": null,
+          "medianMs": null,
+          "p95Ms": null
+        },
+        "successfulHttpArticles": {
+          "n": 0,
+          "medianMs": null,
+          "p95Ms": null
+        }
+      }
+    },
+    {
+      "model": "gemini",
+      "logicalArticlesAttempted": 0,
+      "plannedArticles": 100,
+      "httpAttempts": 0,
+      "httpStatusCounts": {},
+      "successfulHttpRequests": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "http400": 0,
+      "http429": 0,
+      "http500_502_503": 0,
+      "timeouts": 0,
+      "otherNetworkErrors": 0,
+      "jsonValidity": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "invalidJson": 0,
+      "schemaValidationFailures": 0,
+      "backendValidationFailures": 0,
+      "retryCount": 0,
+      "successfulProcessingRate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null
+      },
+      "processingDefinition": "Completed envelope and strict schema; every extracted claim Valid (including legitimate zero-event outputs). Partial valid claims are counted separately below.",
+      "partiallyAcceptedArticles": 0,
+      "latency": {
+        "allRequests": {
+          "n": 0,
+          "meanMs": null,
+          "medianMs": null,
+          "p95Ms": null
+        },
+        "successfulHttpArticles": {
+          "n": 0,
+          "medianMs": null,
+          "p95Ms": null
+        }
+      }
+    }
+  ],
+  "consistency": [
+    {
+      "model": "ministral",
+      "caseId": "WL46-001",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-002",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-003",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-016",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-017",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-018",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-031",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-032",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-046",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-047",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-056",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-057",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-066",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-067",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-076",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-077",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-086",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-087",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-096",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "ministral",
+      "caseId": "WL46-097",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-001",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-002",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-003",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-016",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-017",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-018",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-031",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-032",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-046",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-047",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-056",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-057",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-066",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-067",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-076",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-077",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-086",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-087",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-096",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    },
+    {
+      "model": "gemini",
+      "caseId": "WL46-097",
+      "received": 0,
+      "comparable": false,
+      "features": {
+        "count": {
+          "complete": false,
+          "agreement": null
+        },
+        "countries": {
+          "complete": false,
+          "agreement": null
+        },
+        "roles": {
+          "complete": false,
+          "agreement": null
+        },
+        "relationships": {
+          "complete": false,
+          "agreement": null
+        },
+        "modality": {
+          "complete": false,
+          "agreement": null
+        }
+      },
+      "jsonValidity": {
+        "complete": false,
+        "agreement": null
+      },
+      "allThreeJsonValid": false,
+      "note": "Structural feature consistency, order independent, not a semantic equivalence judgement."
+    }
+  ],
+  "deduplication": {
+    "status": "requires_manual_source_reprint_event_alignment",
+    "pairsPlanned": 10,
+    "observedRuns": [],
+    "humanAdjudicated": [
+      {
+        "model": "ministral",
+        "adjudicatedPairs": 0,
+        "extractionUnavailable": 0,
+        "eligiblePairs": 0,
+        "positivePairs": 0,
+        "negativePairs": 0,
+        "autoLink": {
+          "precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "f1": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0,
+          "precisionEstimableWithNegativeControls": false
+        },
+        "candidate": {
+          "precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "f1": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0,
+          "precisionEstimableWithNegativeControls": false
+        },
+        "notice": "No precision claim without manually judged negative controls; extraction-unavailable pairs are reported separately, never imputed as successful dedup."
+      },
+      {
+        "model": "gemini",
+        "adjudicatedPairs": 0,
+        "extractionUnavailable": 0,
+        "eligiblePairs": 0,
+        "positivePairs": 0,
+        "negativePairs": 0,
+        "autoLink": {
+          "precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "f1": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0,
+          "precisionEstimableWithNegativeControls": false
+        },
+        "candidate": {
+          "precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "recall": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "f1": {
+            "numerator": 0,
+            "denominator": 0,
+            "value": null
+          },
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0,
+          "precisionEstimableWithNegativeControls": false
+        },
+        "notice": "No precision claim without manually judged negative controls; extraction-unavailable pairs are reported separately, never imputed as successful dedup."
+      }
+    ],
+    "perPair": [],
+    "precision": null,
+    "recall": null
+  },
+  "recommendation": "No automatic winner or production provider switch. Human labels/adjudication and paired uncertainty are required. Prioritize false international relationships over cost."
+}

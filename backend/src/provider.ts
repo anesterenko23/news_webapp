@@ -14,6 +14,22 @@ export interface LlmInput { title: string; content: string; language: string; pu
 export interface Provider { extract(input: LlmInput, runId: string): Promise<string> }
 const usageSchema = z.object({ prompt_tokens: z.number().int().nonnegative(), completion_tokens: z.number().int().nonnegative() });
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+export function extractionRequest(input:LlmInput,config:Config,promptVersion:string){
+ const gemini=config.LLM_PROVIDER==='gemini';
+    const baseline = promptVersion === BASELINE_VERSION;
+    const prompt=baseline ? BASELINE_PROMPT : promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT;
+    const schema=baseline ? baselineJsonSchema : outputJsonSchema;
+    const body = JSON.stringify(gemini ? {
+      systemInstruction:{parts:[{text:prompt}]},contents:[{role:"user",parts:[{text:JSON.stringify(input)}]}],
+      generationConfig:{temperature:0,maxOutputTokens:config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:{}),responseMimeType:"application/json",responseJsonSchema:geminiJsonSchema(schema)}
+    } : {
+      model: activeModel(config), temperature: 0, max_tokens: config.LLM_MAX_OUTPUT_TOKENS,
+      messages: [{ role:'system', content:baseline ? BASELINE_PROMPT : promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
+      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema:baseline ? baselineJsonSchema : outputJsonSchema } },
+    });
+
+ return {body,url:gemini?`https://generativelanguage.googleapis.com/v1beta/models/${activeModel(config)}:generateContent`:'https://api.mistral.ai/v1/chat/completions'};
+}
 class MeteredProvider implements Provider {
   constructor(private db: PrismaClient, private config: Config, private fetcher: typeof fetch = fetch, private sleep = delay) {}
   async extract(input: LlmInput, runId: string) {
@@ -23,17 +39,7 @@ class MeteredProvider implements Provider {
     let rates: ReturnType<typeof pricing>;
     try { rates = pricing(this.config); } catch { throw new EngineError('PRICING_UNCONFIRMED','Confirm current model rates and pricing date in backend/.env',503); }
     const run = await this.db.processingRun.findUniqueOrThrow({where:{id:runId}});
-    const baseline = run.promptVersion === BASELINE_VERSION;
-    const prompt=baseline ? BASELINE_PROMPT : run.promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT;
-    const schema=baseline ? baselineJsonSchema : outputJsonSchema;
-    const body = JSON.stringify(gemini ? {
-      systemInstruction:{parts:[{text:prompt}]},contents:[{role:"user",parts:[{text:JSON.stringify(input)}]}],
-      generationConfig:{temperature:0,maxOutputTokens:this.config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(this.config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:{}),responseMimeType:"application/json",responseJsonSchema:geminiJsonSchema(schema)}
-    } : {
-      model: activeModel(this.config), temperature: 0, max_tokens: this.config.LLM_MAX_OUTPUT_TOKENS,
-      messages: [{ role:'system', content:baseline ? BASELINE_PROMPT : run.promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
-      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema:baseline ? baselineJsonSchema : outputJsonSchema } },
-    });
+    const {body,url}=extractionRequest(input,this.config,run.promptVersion);
     // One token per UTF-8 byte is deliberately conservative; extra room covers protocol overhead.
     const maxInput = Buffer.byteLength(body,'utf8') + 4096;
     const reserve = (maxInput * rates.input + this.config.LLM_MAX_OUTPUT_TOKENS * rates.output) / 1_000_000;
@@ -50,7 +56,7 @@ class MeteredProvider implements Provider {
       const started = Date.now();
       let response: Response;
       try {
-        response = await this.fetcher(gemini?`https://generativelanguage.googleapis.com/v1beta/models/${activeModel(this.config)}:generateContent`:'https://api.mistral.ai/v1/chat/completions',{method:'POST',headers:gemini?{'x-goog-api-key':key,'Content-Type':'application/json'}:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body,signal:AbortSignal.timeout(this.config.LLM_TIMEOUT_MS)});
+        response = await this.fetcher(url,{method:'POST',headers:gemini?{'x-goog-api-key':key,'Content-Type':'application/json'}:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body,signal:AbortSignal.timeout(this.config.LLM_TIMEOUT_MS)});
       } catch {
         await this.db.llmRequest.update({where:{id:request.id},data:{status:'uncertain',durationMs:Date.now()-started}});
         throw new EngineError('PROVIDER_CONNECTION','Provider connection failed or timed out; charge is uncertain. No automatic retry.',502);

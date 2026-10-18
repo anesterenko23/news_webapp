@@ -1,0 +1,92 @@
+{
+  "status": "not_run",
+  "main": [
+    {
+      "model": "ministral",
+      "scope": "main only; smoke/consistency/reprint costs are separately in archived attempts",
+      "pricing": {
+        "key": "ministral",
+        "provider": "mistral",
+        "modelId": "ministral-8b-2512",
+        "inputUsdPerMillion": 0.15,
+        "outputUsdPerMillion": 0.15,
+        "pricingVerifiedAt": "2026-10-18",
+        "pricingSource": "https://docs.mistral.ai/models/ministral-3-8b-25-12"
+      },
+      "knownEstimatedSubtotalUsd": 0,
+      "totalEstimatedUsd": 0,
+      "unknownRequests": 0,
+      "reservationLiabilityUsd": 0,
+      "inputTokens": 0,
+      "outputTokensIncludingThoughts": 0,
+      "providerReportedTotalTokens": 0,
+      "costPerArticle": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": false
+      },
+      "costPerValidEvent": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": false
+      },
+      "costPerCorrectEvent": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": true
+      },
+      "costPer1000ArticlesUsd": null,
+      "projectedMonthly": {
+        "scenarioArticles": 30000,
+        "estimatedUsd": null
+      },
+      "retryOverheadMs": 0
+    },
+    {
+      "model": "gemini",
+      "scope": "main only; smoke/consistency/reprint costs are separately in archived attempts",
+      "pricing": {
+        "key": "gemini",
+        "provider": "gemini",
+        "modelId": "gemini-3.8-flash",
+        "inputUsdPerMillion": 0.75,
+        "outputUsdPerMillion": 3.75,
+        "pricingVerifiedAt": "2026-10-18",
+        "pricingSource": "https://ai.google.dev/gemini-api/docs/pricing"
+      },
+      "knownEstimatedSubtotalUsd": 0,
+      "totalEstimatedUsd": 0,
+      "unknownRequests": 0,
+      "reservationLiabilityUsd": 0,
+      "inputTokens": 0,
+      "outputTokensIncludingThoughts": 0,
+      "providerReportedTotalTokens": 0,
+      "costPerArticle": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": false
+      },
+      "costPerValidEvent": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": false
+      },
+      "costPerCorrectEvent": {
+        "estimatedUsd": null,
+        "denominator": 0,
+        "unknownCost": true
+      },
+      "costPer1000ArticlesUsd": null,
+      "projectedMonthly": {
+        "scenarioArticles": 30000,
+        "estimatedUsd": null
+      },
+      "retryOverheadMs": 0
+    }
+  ],
+  "allPhases": {
+    "knownEstimatedUsd": 0,
+    "unknownRequests": 0
+  },
+  "notice": "Estimated at frozen verified rates, not provider billing. Unknown cost is never treated as zero."
+}
