@@ -11,6 +11,25 @@ const schema = z.object({
   PORT: z.coerce.number().int().min(1).max(65535).default(3001),
   NODE_ENV: z.string().default("development"),
   ADMIN_API_TOKEN: z.string().default(""),
+  COLLECTION_AUTO_ENABLED: z.enum(["true", "false"]).default("false"),
+  COLLECTION_INTERVAL_MINUTES: z.coerce
+    .number()
+    .int()
+    .min(10)
+    .max(1440)
+    .default(30),
+  COLLECTION_REQUEST_BUDGET: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(500)
+    .default(150),
+  COLLECTION_MAX_ARTICLES: z.coerce
+    .number()
+    .int()
+    .min(1)
+    .max(2000)
+    .default(200),
 });
 export type Config = z.infer<typeof schema>;
 export function loadConfig(

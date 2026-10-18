@@ -1,8 +1,8 @@
-# World Lens — Phase 5
+# World Lens — Phase 5.1
 
 Interactive news globe and Country Explorer with a manual intelligence pipeline:
 
-GOV.UK Atom / Content API → News Collection → JSON batch (1–20 articles) → external ChatGPT → validated import → globe.
+International RSS/Atom / official Content API → News Collection → JSON batch (1–20 articles) → external ChatGPT → validated import → globe.
 
 No model clients, inference, API keys, cost tracking or AI Lab are part of the running application.
 
@@ -24,3 +24,9 @@ Node 22.18+. Run npm ci, copy backend/.env.example to backend/.env, then npm run
 npm run test:backend; npm test -- --configLoader runner; npm run backend:build; npm run build -- --configLoader runner.
 
 The additive migration preserves all historical domain data. Old test events are not automatically published. Globe materials, textures, territory picking and camera framing are retained.
+
+## Multi-source collection (Phase 5.1)
+
+News Collection supports Fetch All / Selected / Source, enable/disable, historical GOV.UK retrieval, source status, region/topic/relevance filters and priority sorting. Default sources: 11 verified feeds from 8 publishers; general GOV.UK and unstable France 24 are disabled by default. Original articles and the existing 20-article analysis contract are preserved. Automatic collection stays OFF unless COLLECTION_AUTO_ENABLED=true is explicitly configured.
+
+[Sources, API, scheduling, migration and limits](docs/multi-source-collection.md). Topic/region hints are deterministic organizational aids, not confirmed events or relationships.

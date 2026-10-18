@@ -39,18 +39,40 @@ export async function createBatch(db: PrismaClient, ids?: string[]) {
         "INVALID_SELECTION",
         "Select 1–20 different articles",
       );
-    const articles = await tx.collectedArticle.findMany({
+    let articles = await tx.collectedArticle.findMany({
       where: ids
         ? { id: { in: ids } }
         : { analysisStatus: "collected", reservation: null },
-      orderBy: { collectedAt: "asc" },
-      take: 20,
+      orderBy: [
+        { priorityScore: "desc" },
+        { publishedAt: "desc" },
+        { collectedAt: "asc" },
+      ],
+      take: ids ? 20 : 500,
       include: { reservation: true },
     });
+    if (!ids) {
+      const grouped = new Map<string, typeof articles>();
+      for (const article of articles) {
+        const key = article.publisher || article.source;
+        const group = grouped.get(key) ?? [];
+        group.push(article);
+        grouped.set(key, group);
+      }
+      const balanced: typeof articles = [];
+      while (
+        balanced.length < 20 &&
+        [...grouped.values()].some((g) => g.length)
+      )
+        for (const group of grouped.values())
+          if (group.length && balanced.length < 20)
+            balanced.push(group.shift()!);
+      articles = balanced;
+    }
     if (!articles.length)
       throw new PipelineError(
         "NO_ARTICLES",
-        "No unprocessed articles available",
+        "No unprocessed articles available. Existing articles may already belong to a batch; use Batch History → Export JSON, or fetch more news.",
       );
     if (ids && articles.length !== ids.length)
       throw new PipelineError(

@@ -4,7 +4,15 @@ import { readFile } from "node:fs/promises";
 import { z, ZodError } from "zod";
 import type { PrismaClient } from "@prisma/client";
 import type { Config } from "./config.js";
-import { SOURCES, collect } from "./collector.js";
+import {
+  SOURCES,
+  sourceStates,
+  collectMany,
+  CollectOptions,
+} from "./collector.js";
+import { knownSource } from "./source-registry.js";
+import { listCollected, collectionStats } from "./collection-service.js";
+import type { HttpBudget } from "./source-http.js";
 import {
   createBatch,
   getBatch,
@@ -22,6 +30,9 @@ export function createApp(
   config: Config,
   db: PrismaClient,
   fetcher: typeof fetch = fetch,
+  collectionDependencies: Partial<
+    Pick<HttpBudget, "resolver" | "skipThrottle">
+  > = {},
 ) {
   const app = Fastify({
     logger: false,
@@ -92,13 +103,11 @@ export function createApp(
       "code" in e &&
       (e.code === "P2002" || e.code === "P2034" || e.code === "P2028")
     )
-      return reply
-        .code(409)
-        .send({
-          error: "CONCURRENT_CHANGE",
-          message:
-            "Another request changed this batch or selection. Refresh and retry.",
-        });
+      return reply.code(409).send({
+        error: "CONCURRENT_CHANGE",
+        message:
+          "Another request changed this batch or selection. Refresh and retry.",
+      });
     if (
       e instanceof Error &&
       "statusCode" in e &&
@@ -106,13 +115,11 @@ export function createApp(
       e.statusCode < 500
     )
       return reply.code(e.statusCode).send({ error: "INVALID_REQUEST" });
-    return reply
-      .code(500)
-      .send({
-        error: "REQUEST_FAILED",
-        message:
-          "No changes were saved. Check source availability or server logs.",
-      });
+    return reply.code(500).send({
+      error: "REQUEST_FAILED",
+      message:
+        "No changes were saved. Check source availability or server logs.",
+    });
   });
   app.get("/health", async () => ({
     status: "ok",
@@ -127,84 +134,61 @@ export function createApp(
       .type("text/html; charset=utf-8")
       .send(collectionHtml(!localOnly)),
   );
-  app.get("/api/sources", async () => SOURCES);
-  let fetching = false;
-  app.post("/api/collection/fetch", async (req) => {
-    const { sourceId } = z
-      .strictObject({ sourceId: z.enum(["govuk"]) })
+
+  app.get("/api/sources", () => sourceStates(db));
+  app.post<{ Params: { id: string } }>("/api/sources/:id", async (req) => {
+    knownSource(req.params.id);
+    const { enabled } = z
+      .strictObject({ enabled: z.boolean() })
       .parse(req.body);
-    if (fetching)
-      throw new PipelineError(
-        "FETCH_RUNNING",
-        "Collection is already running",
-        409,
-      );
-    fetching = true;
+    return db.newsSourceState.upsert({
+      where: { id: req.params.id },
+      create: { id: req.params.id, enabled },
+      update: { enabled },
+    });
+  });
+  app.post("/api/collection/fetch", async (req) => {
+    const options = CollectOptions.parse({
+      ...{
+        requestBudget: config.COLLECTION_REQUEST_BUDGET,
+        maxArticles: config.COLLECTION_MAX_ARTICLES,
+      },
+      ...(req.body as object),
+    });
     try {
-      return await collect(db, sourceId, fetcher);
-    } finally {
-      fetching = false;
+      const result = await collectMany(
+        db,
+        options,
+        fetcher,
+        collectionDependencies,
+      );
+      return options.sourceId ? { ...result, ...result.sources[0] } : result;
+    } catch (e) {
+      if (e instanceof Error && e.message.startsWith("FETCH_RUNNING"))
+        throw new PipelineError(
+          "FETCH_RUNNING",
+          "Collection already running; try again after the current job finishes",
+          409,
+        );
+      if (
+        e instanceof Error &&
+        /Unknown registered source|No enabled/.test(e.message)
+      )
+        throw new PipelineError("INVALID_SOURCE", e.message, 400);
+      throw e;
     }
   });
-  app.get("/api/collection", async (req) => {
-    const q = z
-      .object({
-        source: z.string().optional(),
-        status: z.string().optional(),
-        contentStatus: z.string().optional(),
-        search: z.string().max(300).optional(),
-        from: z.iso.date().optional(),
-        to: z.iso.date().optional(),
-        offset: z.coerce.number().int().min(0).default(0),
-      })
-      .parse(req.query);
-    const where = {
-      ...(q.source ? { source: q.source } : {}),
-      ...(q.status ? { analysisStatus: q.status } : {}),
-      ...(q.contentStatus ? { contentStatus: q.contentStatus } : {}),
-      ...(q.search ? { title: { contains: q.search } } : {}),
-      ...(q.from || q.to
-        ? {
-            publishedAt: {
-              ...(q.from ? { gte: new Date(q.from) } : {}),
-              ...(q.to ? { lt: new Date(Date.parse(q.to) + 86400000) } : {}),
-            },
-          }
-        : {}),
-    };
-    const [articles, total] = await Promise.all([
-      db.collectedArticle.findMany({
-        where,
-        orderBy: { collectedAt: "desc" },
-        take: 100,
-        skip: q.offset,
-        select: {
-          id: true,
-          source: true,
-          sourceUrl: true,
-          title: true,
-          url: true,
-          publishedAt: true,
-          collectedAt: true,
-          author: true,
-          language: true,
-          contentStatus: true,
-          analysisStatus: true,
-          analysisBatchId: true,
-          analysisVersion: true,
-          reservation: true,
-          eventSources: {
-            where: {
-              event: { archived: false, publicationStatus: "Published" },
-            },
-            select: { eventId: true },
-          },
-        },
-      }),
-      db.collectedArticle.count({ where }),
-    ]);
-    return { articles, total, offset: q.offset, limit: 100 };
-  });
+  app.get("/api/collection", (req) => listCollected(db, req.query));
+  app.get("/api/collection/stats", () => collectionStats(db));
+  app.get("/api/collection/runs", () =>
+    db.collectionRun.findMany({ orderBy: { startedAt: "desc" }, take: 20 }),
+  );
+  app.get("/api/collection/schedule", async () => ({
+    enabled: config.COLLECTION_AUTO_ENABLED === "true",
+    intervalMinutes: config.COLLECTION_INTERVAL_MINUTES,
+    maxArticles: config.COLLECTION_MAX_ARTICLES,
+    requestBudget: config.COLLECTION_REQUEST_BUDGET,
+  }));
   app.get<{ Params: { id: string } }>("/api/collection/:id", async (req) => {
     const a = await db.collectedArticle.findUnique({
       where: { id: req.params.id },

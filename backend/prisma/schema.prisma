@@ -339,6 +339,17 @@ model ClaimValidationDecision {
 // Legacy intelligence tables above are retained read-only for historical data.
 model CollectedArticle {
  id String @id @default(cuid())
+ sourceId String?
+ publisher String @default("")
+ canonicalUrl String? @unique
+ description String @default("")
+ categoriesJson String @default("[]")
+ regionsJson String @default("[]")
+ primaryRegion String @default("Unknown")
+ priorityScore Int @default(0)
+ relevanceHint String @default("unclassified")
+ extractionMethod String @default("legacy")
+ extractionStatus String @default("legacy")
  source String
  sourceUrl String
  sourceArticleId String?
@@ -363,6 +374,33 @@ model CollectedArticle {
  @@unique([source,sourceArticleId])
  @@index([analysisStatus,collectedAt])
  @@index([source,contentHash])
+ @@index([sourceId,publishedAt])
+ @@index([primaryRegion,publishedAt])
+ @@index([analysisStatus,priorityScore])
+ @@index([publisher,contentHash])
+}
+model NewsSourceState {
+ id String @id
+ enabled Boolean
+ lastAttemptAt DateTime?
+ lastSuccessAt DateTime?
+ lastError String?
+ etag String?
+ lastModified String?
+ checkpointJson String @default("{}")
+}
+model CollectionRun {
+ id String @id @default(cuid())
+ status String
+ startedAt DateTime @default(now())
+ finishedAt DateTime?
+ optionsJson String
+ resultJson String @default("{}")
+}
+model CollectorLease {
+ id String @id
+ token String
+ expiresAt DateTime
 }
 model NewsBatch {
  id String @id @default(cuid())

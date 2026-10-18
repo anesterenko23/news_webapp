@@ -12,6 +12,10 @@ import { collect, hash, parseFeed } from "../src/collector.js";
 import { ExportBatch, eventIssues } from "../src/batch-contract.js";
 import { globeEvents } from "../src/manual-globe.js";
 import type { ImportEventData } from "../src/batch-contract.js";
+const transport = {
+  resolver: (async () => [{ address: "93.184.216.34", family: 4 }]) as any,
+  skipThrottle: true,
+};
 const fixture = await testDatabase(),
   db = fixture.db;
 beforeEach(async () => {
@@ -107,8 +111,8 @@ describe("manual collection and batch pipeline", () => {
               },
             }),
           )) as typeof fetch;
-    expect((await collect(db, "govuk", fake)).added).toBe(1);
-    expect((await collect(db, "govuk", fake)).duplicates).toBe(1);
+    expect((await collect(db, "govuk", fake, transport)).added).toBe(1);
+    expect((await collect(db, "govuk", fake, transport)).duplicates).toBe(1);
     const a = await db.collectedArticle.findFirstOrThrow();
     expect(a.contentStatus).toBe("full");
     expect(a.content).toBe("France and Germany signed an energy agreement.");
@@ -120,7 +124,7 @@ describe("manual collection and batch pipeline", () => {
             '<feed><entry><title>Story</title><link href="https://www.gov.uk/news/x"/><summary>Only this excerpt</summary></entry></feed>',
           )
         : new Response("", { status: 404 })) as typeof fetch;
-    await collect(db, "govuk", fake);
+    await collect(db, "govuk", fake, transport);
     const a = await db.collectedArticle.findFirstOrThrow();
     expect(a.contentStatus).toBe("excerpt");
     expect(a.publishedAt).toBeNull();
@@ -406,7 +410,7 @@ describe("manual collection and batch pipeline", () => {
               },
             }),
           )) as typeof fetch;
-    const app = createApp(loadConfig({}), db, fake);
+    const app = createApp(loadConfig({}), db, fake, transport);
     const headers = {
       host: "127.0.0.1:3001",
       "x-world-lens-client": "collection",
