@@ -104,3 +104,11 @@ describe('Gemini transport and cost safety (mock HTTP, no real API calls)',()=>{
   const run=await runRecord(),fetcher=vi.fn(async()=>reply());await expect(new GeminiProvider(db,{...settings(),GEMINI_MODEL:'unknown-model'},fetcher).extract(input,run.id)).rejects.toMatchObject({code:'PRICING_UNCONFIRMED'});expect(fetcher).not.toHaveBeenCalled();
  });
 });
+
+
+describe('Provider error diagnostics',()=>{
+ it('preserves Google field violations and request ID while redacting credentials from saved API results',async()=>{
+  const config=loadConfig({LLM_PROVIDER:'gemini',GEMINI_API_KEY:'test-secret-key'});const fetcher=vi.fn(async()=>new Response(JSON.stringify({error:{code:400,status:'INVALID_ARGUMENT',message:'Invalid schema with test-secret-key',details:[{fieldViolations:[{field:'generation_config.response_format.text.mime_type',description:'bad test-secret-key'}]}]}}),{status:400,headers:{'x-request-id':'test-google-request-id'}}));const app=createApp(config,db,new GeminiProvider(db,config,fetcher));
+  const response=await app.inject({method:'POST',url:'/api/articles/process',headers,payload:fixture.article});const data=response.json();expect(response.statusCode).toBe(502);expect(JSON.stringify(data)).not.toContain(config.GEMINI_API_KEY);expect(data.error).toContain('[REDACTED]');expect(data.reviewReasons[0].providerDiagnostic.error.details[0].fieldViolations[0].field).toContain('mime_type');expect(data.reviewReasons[0].providerDiagnostic.headers['x-request-id']).toBe('test-google-request-id');expect((await db.processingRun.findUniqueOrThrow({where:{id:data.runId}})).reviewReasons).not.toContain(config.GEMINI_API_KEY);await app.close();
+ });
+});

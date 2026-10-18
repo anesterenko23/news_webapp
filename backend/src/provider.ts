@@ -1,3 +1,4 @@
+import { geminiJsonSchema } from './gemini-schema.js';
 import type { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { activeModel, pricing, type Config } from './config.js';
@@ -7,7 +8,7 @@ import { outputJsonSchema } from './schemas.js';
 import { SYSTEM_PROMPT } from './prompt.js';
 
 export class EngineError extends Error {
-  constructor(public code: string, message: string, public statusCode = 502, public raw?: string) { super(message); }
+  constructor(public code: string, message: string, public statusCode = 502, public raw?: string, public diagnostic?: unknown) { super(message); }
 }
 export interface LlmInput { title: string; content: string; language: string; publishedAt: string }
 export interface Provider { extract(input: LlmInput, runId: string): Promise<string> }
@@ -27,7 +28,7 @@ class MeteredProvider implements Provider {
     const schema=baseline ? baselineJsonSchema : outputJsonSchema;
     const body = JSON.stringify(gemini ? {
       systemInstruction:{parts:[{text:prompt}]},contents:[{role:"user",parts:[{text:JSON.stringify(input)}]}],
-      generationConfig:{temperature:0,maxOutputTokens:this.config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(this.config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:{}),responseMimeType:"application/json",responseJsonSchema:Object.fromEntries(Object.entries(schema).filter(([key])=>key!=="$schema"))}
+      generationConfig:{temperature:0,maxOutputTokens:this.config.LLM_MAX_OUTPUT_TOKENS,...(activeModel(this.config).startsWith("gemini-2.5-")?{thinkingConfig:{thinkingBudget:0}}:{}),responseMimeType:"application/json",responseJsonSchema:geminiJsonSchema(schema)}
     } : {
       model: activeModel(this.config), temperature: 0, max_tokens: this.config.LLM_MAX_OUTPUT_TOKENS,
       messages: [{ role:'system', content:baseline ? BASELINE_PROMPT : run.promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
@@ -57,13 +58,18 @@ class MeteredProvider implements Provider {
       if (!response.ok) {
         const safeRejection = response.status >= 400 && response.status < 500;
         await this.db.llmRequest.update({where:{id:request.id},data:{status:safeRejection ? `http_${response.status}` : 'uncertain',estimatedCostUsd:safeRejection ? 0 : reserve,durationMs:Date.now()-started}});
-        await response.body?.cancel();
+        let diagnostic:unknown;let providerMessage='';
+        try {
+          const text=(await response.text()).slice(0,65536).replaceAll(key,'[REDACTED]');
+          const payload=JSON.parse(text);providerMessage=typeof payload.error?.message==='string'?payload.error.message.slice(0,2000):'';
+          diagnostic={httpStatus:response.status,provider:gemini?'gemini':'mistral',error:payload.error??null,headers:Object.fromEntries(['date','retry-after','server-timing','x-request-id','x-goog-request-id','x-cloud-trace-context'].map(name=>[name,response.headers.get(name)]).filter(([,value])=>value!==null))};
+        } catch { diagnostic={httpStatus:response.status,provider:gemini?'gemini':'mistral',note:'Provider error body was unavailable or not JSON'}; }
         if (response.status === 429 && attempt < this.config.LLM_MAX_RETRIES) {
           const retryAfter = Number(response.headers.get('retry-after'));
           await this.sleep(Math.min(5000, Math.max(250 * 2 ** attempt, Number.isFinite(retryAfter) ? retryAfter * 1000 : 0)));
           continue;
         }
-        throw new EngineError(`PROVIDER_HTTP_${response.status}`,`The configured provider rejected or could not complete the request (HTTP ${response.status}).`,response.status === 429 ? 429 : 502);
+        throw new EngineError(`PROVIDER_HTTP_${response.status}`,`The configured provider rejected or could not complete the request (HTTP ${response.status}).${providerMessage?" "+providerMessage:""}`,response.status === 429 ? 429 : 502,undefined,diagnostic);
       }
       let payload: Record<string, unknown>;
       try { payload = await response.json() as Record<string,unknown>; }

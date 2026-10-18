@@ -44,7 +44,7 @@ export class IntelligenceEngine {
     for(let i=0;i<values.length;i++)await storeClaim(tx,envelope.data.events[i],values[i],checks[i],article,run.id);
     await tx.processingRun.update({where:{id:run.id},data:{status:'completed',rawOutput,warnings:JSON.stringify(reasons.map(r=>r.message)),reviewReasons:JSON.stringify(reasons),durationMs:Date.now()-started,finishedAt:new Date()}});
    },{timeout:20000});
-  }catch(error){const safe=error instanceof EngineError?`${error.code}: ${error.message}`:'PROCESSING_FAILED: database or processing error; credentials not exposed';await this.db.processingRun.update({where:{id:run.id},data:{status:'failed',error:safe,rawOutput:rawOutput??(error instanceof EngineError?error.raw:undefined),warnings:JSON.stringify([safe]),reviewReasons:JSON.stringify([{code:'INVALID_SCHEMA',message:safe}]),durationMs:Date.now()-started,finishedAt:new Date()}});}
+  }catch(error){const safe=error instanceof EngineError?`${error.code}: ${error.message}`:'PROCESSING_FAILED: database or processing error; credentials not exposed';await this.db.processingRun.update({where:{id:run.id},data:{status:'failed',error:safe,rawOutput:rawOutput??(error instanceof EngineError?error.raw:undefined),warnings:JSON.stringify([safe]),reviewReasons:JSON.stringify([{code:'INVALID_SCHEMA',message:safe,...(error instanceof EngineError&&error.diagnostic?{providerDiagnostic:error.diagnostic}:{})}]),durationMs:Date.now()-started,finishedAt:new Date()}});}
   return this.result(run.id);
  }
 }
