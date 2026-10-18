@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { PrismaClient } from '@prisma/client';
 import { loadConfig } from '../src/config.js';
 import { createApp } from '../src/app.js';
-import { MistralProvider } from '../src/provider.js';
+import { MistralProvider, GeminiProvider } from '../src/provider.js';
 import { legacyToCurrent } from '../src/validation.js';
 import { FIXTURES } from './fixtures.js';
 
@@ -74,4 +74,33 @@ describe('Mistral request protocol, per-attempt metering and budget protection',
     const run=await runRecord();await db.llmRequest.create({data:{runId:run.id,model:config.MISTRAL_MODEL,month:new Date().toISOString().slice(0,7),status:'completed',estimatedCostUsd:8.1,inputRate:.15,outputRate:.15,pricingVerifiedAt:new Date().toISOString().slice(0,10)}});
     const app=createApp(config,db,fakeProvider());const usage=(await app.inject({url:'/api/ai/usage',headers})).json();expect(usage.budgetWarning).toBe(true);expect(usage.estimatedCostUsd).toBe(8.1);await app.close();
   });
+});
+
+
+describe('Gemini transport and cost safety (mock HTTP, no real API calls)',()=>{
+ const settings=()=>loadConfig({LLM_PROVIDER:'gemini',GEMINI_API_KEY:'test-gemini-key',LLM_PRICING_VERIFIED_AT:'2000-01-01',LLM_INPUT_USD_PER_MILLION:'0.15',LLM_OUTPUT_USD_PER_MILLION:'0.15'});
+ const input={title:'Test',content:'France and Germany held talks.',language:'en',publishedAt:'2026-10-18T00:00:00Z'};
+ const reply=(finishReason='STOP',usage=true)=>new Response(JSON.stringify({candidates:[{finishReason,content:{parts:[{text:'private reasoning',thought:true},{text:'{"events":[],"diagnostics":[]}'}]}}],...(usage?{usageMetadata:{promptTokenCount:100,candidatesTokenCount:50,thoughtsTokenCount:20}}:{})}),{status:200});
+ it('uses Google header auth and schema, excludes thoughts and bills thought tokens',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>reply()),config=settings();const raw=await new GeminiProvider(db,config,fetcher).extract(input,run.id);
+  const [url,options]=fetcher.mock.calls[0] as unknown as [string,RequestInit];const body=JSON.parse(options.body as string);
+  expect(url).toBe('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent');expect(url).not.toContain(config.GEMINI_API_KEY);expect((options.headers as Record<string,string>)['x-goog-api-key']).toBe(config.GEMINI_API_KEY);expect(body.generationConfig.responseMimeType).toBe('application/json');expect(body.generationConfig.responseJsonSchema.properties.events).toBeDefined();expect(JSON.parse(body.contents[0].parts[0].text)).toEqual(input);expect(raw).not.toContain('private reasoning');
+  const record=await db.llmRequest.findFirstOrThrow();expect(record.model).toBe('gemini-3.8-flash');expect(record.outputTokens).toBe(70);expect(record.inputRate).toBe(.75);expect(record.outputRate).toBe(3.75);expect(record.estimatedCostUsd).toBeCloseTo(.0003375);
+ });
+ it('preserves reservation and blocks subsequent calls after a 503 without usage',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>new Response('',{status:503})),provider=new GeminiProvider(db,settings(),fetcher);
+  await expect(provider.extract(input,run.id)).rejects.toMatchObject({code:'PROVIDER_HTTP_503'});expect((await db.llmRequest.findFirst())?.status).toBe('uncertain');await expect(provider.extract(input,run.id)).rejects.toMatchObject({code:'USAGE_UNCERTAIN'});expect(fetcher).toHaveBeenCalledTimes(1);
+ });
+ it('does not retry unsupported model errors or bill known rejection',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>new Response('',{status:404}));await expect(new GeminiProvider(db,settings(),fetcher).extract(input,run.id)).rejects.toMatchObject({code:'PROVIDER_HTTP_404'});expect(fetcher).toHaveBeenCalledTimes(1);expect((await db.llmRequest.findFirst())?.estimatedCostUsd).toBe(0);
+ });
+ it('rejects incomplete structured output after recording returned usage',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>reply('MAX_TOKENS'));await expect(new GeminiProvider(db,settings(),fetcher).extract(input,run.id)).rejects.toMatchObject({code:'INCOMPLETE_OUTPUT'});expect((await db.llmRequest.findFirst())?.outputTokens).toBe(70);
+ });
+ it('treats missing usage as uncertain instead of free',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>reply('STOP',false));await expect(new GeminiProvider(db,settings(),fetcher).extract(input,run.id)).rejects.toMatchObject({code:'MISSING_USAGE'});expect((await db.llmRequest.findFirst())?.status).toBe('uncertain');
+ });
+ it('requires Gemini-specific pricing for unknown models',async()=>{
+  const run=await runRecord(),fetcher=vi.fn(async()=>reply());await expect(new GeminiProvider(db,{...settings(),GEMINI_MODEL:'unknown-model'},fetcher).extract(input,run.id)).rejects.toMatchObject({code:'PRICING_UNCONFIRMED'});expect(fetcher).not.toHaveBeenCalled();
+ });
 });

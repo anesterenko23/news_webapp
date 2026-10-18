@@ -1,3 +1,4 @@
+import { activeModel } from './config.js';
 import Fastify from 'fastify';
 import { createHash, timingSafeEqual } from 'node:crypto';
 import { z, ZodError } from 'zod';
@@ -8,7 +9,7 @@ import { IntelligenceEngine } from './engine.js';
 import { canonicalInclude, claimInclude, resolveMerge, undoSourceLink } from './canonical.js';
 import { claimDto, canonicalDto } from './presentation.js';
 import { PROMPT_VERSION, BASELINE_VERSION, PREVIOUS_VERSION } from './prompt.js';
-import { EngineError, MistralProvider, type Provider } from './provider.js';
+import { EngineError, createProvider, type Provider } from './provider.js';
 import { EventQuery } from './schemas.js';
 import { aiLabHtml } from './lab.js';
 import { globeProjection } from './globe-projection.js';
@@ -16,7 +17,7 @@ import { globeProjection } from './globe-projection.js';
 const loopback = (value: string) => ['127.0.0.1','localhost','::1','[::1]','::ffff:127.0.0.1'].includes(value);
 export function createApp(config: Config, db: PrismaClient, provider?: Provider) {
   const app = Fastify({logger:false,bodyLimit:150000,requestTimeout:120000,trustProxy:false});
-  const engine = new IntelligenceEngine(db,config,provider ?? new MistralProvider(db,config));
+  const engine = new IntelligenceEngine(db,config,provider ?? createProvider(db,config));
   const localOnly = config.NODE_ENV === 'development' && loopback(config.HOST) && !config.ADMIN_API_TOKEN;
   let pending = 0;
   app.addHook('onRequest',async (request,reply) => {
@@ -103,7 +104,7 @@ export function createApp(config: Config, db: PrismaClient, provider?: Provider)
     let rates = null; try { rates = pricing(config); } catch {}
     const uncertain = await db.llmRequest.count({where:{status:{in:['uncertain','pricing_exceeded']}}});
     const stale = await db.llmRequest.count({where:{status:'reserved',createdAt:{lt:new Date(Date.now()-config.LLM_TIMEOUT_MS-60000)}}});
-    return {month,requests:requests.length,processedArticles:articles,processingRuns:runs,inputTokens:requests.reduce((sum,item)=>sum+item.inputTokens,0),outputTokens:requests.reduce((sum,item)=>sum+item.outputTokens,0),estimatedCostUsd,monthlyBudgetUsd:config.LLM_MONTHLY_BUDGET_USD,budgetWarning:estimatedCostUsd >= config.LLM_MONTHLY_BUDGET_USD*.8,processingErrors:errors,uncertainRequests:uncertain+stale,blocked:!rates || !!uncertain || !!stale || estimatedCostUsd>=config.LLM_MONTHLY_BUDGET_USD,pricing:rates,model:config.MISTRAL_MODEL,configured:!!config.MISTRAL_API_KEY,notice:'Local estimates and conservative reservations may differ from provider billing. No cached-token discount assumed.',recentRequests:requests.slice(0,30)};
+    return {month,requests:requests.length,processedArticles:articles,processingRuns:runs,inputTokens:requests.reduce((sum,item)=>sum+item.inputTokens,0),outputTokens:requests.reduce((sum,item)=>sum+item.outputTokens,0),estimatedCostUsd,monthlyBudgetUsd:config.LLM_MONTHLY_BUDGET_USD,budgetWarning:estimatedCostUsd >= config.LLM_MONTHLY_BUDGET_USD*.8,processingErrors:errors,uncertainRequests:uncertain+stale,blocked:!rates || !!uncertain || !!stale || estimatedCostUsd>=config.LLM_MONTHLY_BUDGET_USD,pricing:rates,model:activeModel(config),provider:config.LLM_PROVIDER,configured:!!(config.LLM_PROVIDER==='gemini'?config.GEMINI_API_KEY:config.MISTRAL_API_KEY),notice:'Local estimates and conservative reservations may differ from provider billing. No cached-token discount assumed.',recentRequests:requests.slice(0,30)};
   });
   return app;
 }

@@ -1,5 +1,5 @@
 import type { PrismaClient } from '@prisma/client';
-import type { Config } from './config.js';
+import { activeModel, type Config } from './config.js';
 import { z } from 'zod';
 import { normalizeArticle, originalText } from './normalization.js';
 import { Diagnostic, type ArticleInputType } from './schemas.js';
@@ -25,9 +25,9 @@ export class IntelligenceEngine {
  private async processOne(raw:unknown,n:ReturnType<typeof normalizeArticle>,retryOf:string|undefined,promptVersion:string){
   const article=await this.db.article.upsert({where:{fingerprint:n.fingerprint},update:{},create:{fingerprint:n.fingerprint,contentFingerprint:n.contentFingerprint,title:n.title,content:(raw as ArticleInputType).content,source:n.source,url:n.url,canonicalUrl:n.canonicalUrl,publishedAt:n.publishedAt,language:n.language,primarySourceId:n.primarySourceId,normalizedText:n.normalizedText,originalJson:JSON.stringify(raw),originalSource:n.originalSource,syndicationSource:n.syndicationSource,primaryDocument:n.primaryDocument,lineageId:n.lineageId}});
   let attempt=0;
-  if(retryOf){const failed=await this.db.processingRun.findUnique({where:{id:retryOf}});if(!failed||failed.articleId!==article.id||failed.status!=='failed'||failed.model!==this.config.MISTRAL_MODEL||failed.promptVersion!==promptVersion)throw new EngineError('INVALID_RETRY','Only a matching failed run can be explicitly retried',400);attempt=failed.attempt+1;}
-  const identity={articleId:article.id,model:this.config.MISTRAL_MODEL,promptVersion,attempt};
-  const previous=await this.db.processingRun.findFirst({where:retryOf?identity:{articleId:article.id,model:this.config.MISTRAL_MODEL,promptVersion},orderBy:{attempt:'desc'}});if(previous)return this.result(previous.id,true);
+  if(retryOf){const failed=await this.db.processingRun.findUnique({where:{id:retryOf}});if(!failed||failed.articleId!==article.id||failed.status!=='failed'||failed.model!==activeModel(this.config)||failed.promptVersion!==promptVersion)throw new EngineError('INVALID_RETRY','Only a matching failed run can be explicitly retried',400);attempt=failed.attempt+1;}
+  const identity={articleId:article.id,model:activeModel(this.config),promptVersion,attempt};
+  const previous=await this.db.processingRun.findFirst({where:retryOf?identity:{articleId:article.id,model:activeModel(this.config),promptVersion},orderBy:{attempt:'desc'}});if(previous)return this.result(previous.id,true);
   let run;try{run=await this.db.processingRun.create({data:{...identity,retryOf}});}catch{const raced=await this.db.processingRun.findFirst({where:identity});if(raced)return this.result(raced.id,true);throw new EngineError('DATABASE_BUSY','Cannot claim processing run',503);}
   const started=Date.now();let rawOutput:string|undefined;
   try{

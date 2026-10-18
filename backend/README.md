@@ -115,3 +115,11 @@ npm run ai:score-duplicates
 Unit/integration tests и CI используют сохранённые ответы/фикстуры, не настоящий API. ai:benchmark вызывает реальный API только при явном запуске, сохраняет work/benchmark45/live-runs.json; бюджет общий с AI Lab. ai:score анализирует сохранённые реальные ответы. ai:score-duplicates — детерминированные 10 пар без LLM. Прежний ai:evaluate оставлен как диагностический запуск 22 Phase4 фикстур; для сравнимых метрик использовать benchmark.
 
 Поддержка: src/canonical.ts — match/link/undo; entities.ts — aliases; validation.ts — технические проверки; verification.ts — независимый интерфейс; legacy-migration.ts/revalidation.ts — перенос и история; presentation.ts — API DTO. Промпты и старые валидаторы сохранены для воспроизводимого baseline.
+
+## Gemini (пробное подключение)
+
+Установить LLM_PROVIDER=gemini, GEMINI_API_KEY и GEMINI_MODEL=gemini-3.8-flash в локальном backend/.env, затем перезапустить backend. Для Mistral вернуть LLM_PROVIDER=mistral. Gemini имеет отдельные GEMINI_INPUT_USD_PER_MILLION / GEMINI_OUTPUT_USD_PER_MILLION / GEMINI_PRICING_VERIFIED_AT, чтобы не наследовать тариф Mistral. Подтверждённый стандартный тариф на18.10.2026: $0.75 input / $3.75 output за1M токенов, включая thinking; [официальные тарифы](https://ai.google.dev/gemini-api/docs/pricing). Скидки/бесплатный tier не предполагаются.
+
+Google generateContent вызывается с x-goog-api-key (ключ не в URL), responseJsonSchema и тем же версионированным промптом. Модель входит в ключ идемпотентности: сохранённый Mistral run не подменяет Gemini run. Thinking parts не парсятся как claims; thoughtsTokenCount включается в output cost. Общий бюджет, сохранение raw, правила ошибок и статусы Phase4.5 остаются общими. Для новых моделей задать подтверждённые Gemini-specific цены; неизвестные тарифы блокируются.
+
+Реальная проверка18.10.2026: models.list200, Gemini2.5Flash generateContent404 (модель недоступна новым пользователям); Gemini3.8Flash generateContent503 без usage. Ни одного успешного ответа генерации не получено, оценка качества не выполнена.503 сохраняет неопределённый расход и блокирует дальнейшие вызовы до сверки у провайдера; не обнулять резерв без подтверждения. Смена модели не обходит общий блок USAGE_UNCERTAIN. Дополнительные unit tests используют mock HTTP, а не изображают успешную реальную генерацию.
