@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { normalizeArticle } from '../src/normalization.js';
-import { Extraction } from '../src/schemas.js';
-import { anchorEvidence, validateEvidence } from '../src/validation.js';
+import { Extraction } from '../src/schemas-v1.js';
+import { anchorEvidence, validateEvidence } from '../src/validation-v1.js';
 import { findDuplicates, similarity } from '../src/deduplication.js';
 import { publicationDecision } from '../src/verification.js';
 import { loadConfig, pricing } from '../src/config.js';

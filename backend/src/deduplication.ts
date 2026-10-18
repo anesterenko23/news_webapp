@@ -1,4 +1,4 @@
-import type { Extracted } from './schemas.js';
+import type { Extracted } from './schemas-v1.js';
 const stop = new Set(['a','an','the','and','of','to','for','new','another','against','with','in','on']);
 export function normalizedHeadline(text: string) {
   return text.toLowerCase().normalize('NFKC').replace(/\bberlin\b/g,'germany').replace(/\bmoscow\b/g,'russia').replace(/\b(announces?|announced|introduces?|introduced|imposes?|imposed)\b/g,'announce').replace(/[^\p{L}\p{N}\s]/gu,' ').split(/\s+/).filter(word => word && !stop.has(word));

@@ -20,6 +20,13 @@ model Article {
   originalJson String
   createdAt DateTime @default(now())
   runs ProcessingRun[]
+  claims ExtractedClaim[]
+  canonicalSources CanonicalEventSource[]
+  contentFingerprint String @default("")
+  originalSource String?
+  syndicationSource String?
+  primaryDocument String?
+  lineageId String?
   evidence Evidence[]
   sources EventSource[]
 }
@@ -39,6 +46,8 @@ model ProcessingRun {
   createdAt DateTime @default(now())
   finishedAt DateTime?
   events Event[]
+  claims ExtractedClaim[]
+  reviewReasons String @default("[]")
   requests LlmRequest[]
   @@index([articleId, createdAt])
   @@unique([articleId, model, promptVersion, attempt])
@@ -133,4 +142,196 @@ model LlmRequest {
   durationMs Int @default(0)
   createdAt DateTime @default(now())
   @@index([month, status])
+}
+model ExtractedClaim {
+  id String @id @default(cuid())
+  legacyEventId String? @unique
+  runId String
+  run ProcessingRun @relation(fields:[runId], references:[id])
+  articleId String
+  article Article @relation(fields:[articleId], references:[id])
+  canonicalEventId String?
+  canonicalEvent CanonicalEvent? @relation(fields:[canonicalEventId], references:[id])
+  title String
+  summary String
+  eventType String
+  eventStatus String
+  actionText String
+  objectText String?
+  occurredAt DateTime?
+  publishedAt DateTime
+  confidence Float
+  rawClaim String
+  entities String @default("[]")
+  validationStatus String
+  verificationStatus String @default("NotAssessed")
+  publicationStatus String
+  validationResults String
+  reviewReasons String @default("[]")
+  createdAt DateTime @default(now())
+  participants ClaimParticipant[]
+  evidence ClaimEvidence[]
+  relationships ClaimRelationship[]
+  sources CanonicalEventSource[]
+  validationHistory ClaimValidationDecision[]
+  mergeCandidates MergeCandidate[]
+  @@index([validationStatus, publicationStatus])
+  @@index([articleId, runId])
+}
+model ClaimParticipant {
+  id String @id @default(cuid())
+  claimId String
+  claim ExtractedClaim @relation(fields:[claimId], references:[id])
+  countryCode String
+  role String
+  attributionEvidenceIds String
+  @@unique([claimId,countryCode])
+}
+model ClaimEvidence {
+  id String @id @default(cuid())
+  claimId String
+  claim ExtractedClaim @relation(fields:[claimId], references:[id])
+  temporaryId String
+  text String
+  kind String
+  startOffset Int
+  endOffset Int
+  quoteMatch String
+  semanticSupport String @default("NotAssessed")
+  sourceVerification String @default("NotAssessed")
+  links ClaimEvidenceLink[]
+  @@unique([claimId,temporaryId])
+}
+model ClaimRelationship {
+  id String @id @default(cuid())
+  claimId String
+  claim ExtractedClaim @relation(fields:[claimId], references:[id])
+  sourceCountry String
+  targetCountry String
+  type String
+  direction String
+  confidence Float
+  evidenceIds String
+  referenceIntegrity String
+  evidence ClaimEvidenceLink[]
+}
+model ClaimEvidenceLink {
+  relationshipId String
+  relationship ClaimRelationship @relation(fields:[relationshipId], references:[id])
+  evidenceId String
+  evidence ClaimEvidence @relation(fields:[evidenceId], references:[id])
+  @@id([relationshipId,evidenceId])
+}
+model CanonicalEvent {
+  id String @id @default(cuid())
+  title String
+  normalizedTitle String
+  summary String
+  eventType String
+  eventStatus String
+  actionKey String
+  objectKey String
+  occurredAt DateTime?
+  publishedAt DateTime
+  verificationStatus String @default("Unverified")
+  publicationStatus String @default("NeedsReview")
+  archived Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  claims ExtractedClaim[]
+  participants CanonicalParticipant[]
+  relationships EventRelationship[]
+  sources CanonicalEventSource[]
+  mergeCandidates MergeCandidate[]
+  revisions EventRevision[]
+  verificationDecisions VerificationDecision[]
+  @@index([eventType,eventStatus,publishedAt])
+}
+model CanonicalParticipant {
+  id String @id @default(cuid())
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  countryCode String
+  role String
+  @@unique([canonicalEventId,countryCode])
+}
+model EventRelationship {
+  id String @id @default(cuid())
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  originClaimId String
+  sourceCountry String
+  targetCountry String
+  type String
+  direction String
+  evidenceIds String
+}
+model CanonicalEventSource {
+  id String @id @default(cuid())
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  claimId String
+  claim ExtractedClaim @relation(fields:[claimId], references:[id])
+  articleId String
+  article Article @relation(fields:[articleId], references:[id])
+  active Boolean @default(true)
+  publisher String
+  originalSource String?
+  syndicationSource String?
+  primaryDocument String?
+  lineageId String?
+  independenceStatus String @default("Unknown")
+  linkReason String
+  createdAt DateTime @default(now())
+  @@unique([canonicalEventId,claimId])
+}
+model MergeCandidate {
+  id String @id @default(cuid())
+  claimId String
+  claim ExtractedClaim @relation(fields:[claimId], references:[id])
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  score Float
+  reasons String
+  status String @default("Pending")
+  reviewer String?
+  decisionNote String?
+  decidedAt DateTime?
+  createdAt DateTime @default(now())
+  @@unique([claimId,canonicalEventId])
+}
+model EventRevision {
+  id String @id @default(cuid())
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  actor String
+  reason String
+  beforeJson String
+  afterJson String
+  createdAt DateTime @default(now())
+}
+model VerificationDecision {
+  id String @id @default(cuid())
+  canonicalEventId String
+  canonicalEvent CanonicalEvent @relation(fields:[canonicalEventId], references:[id])
+  assessor String
+  method String
+  outcome String
+  sourceIndependence String
+  evidence String
+  reason String
+  createdAt DateTime @default(now())
+}
+model ClaimValidationDecision {
+ id String @id @default(cuid())
+ claimId String
+ claim ExtractedClaim @relation(fields:[claimId], references:[id])
+ validatorVersion String
+ previousStatus String
+ nextStatus String
+ beforeJson String
+ afterJson String
+ reasons String
+ createdAt DateTime @default(now())
+ @@unique([claimId,validatorVersion])
 }

@@ -1,6 +1,8 @@
 import type { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { pricing, type Config } from './config.js';
+import { outputJsonSchema as baselineJsonSchema } from './schemas-v1.js';
+import { BASELINE_PROMPT, BASELINE_VERSION, PREVIOUS_PROMPT, PREVIOUS_VERSION } from './prompt.js';
 import { outputJsonSchema } from './schemas.js';
 import { SYSTEM_PROMPT } from './prompt.js';
 
@@ -17,10 +19,12 @@ export class MistralProvider implements Provider {
     if (!this.config.MISTRAL_API_KEY) throw new EngineError('MISSING_API_KEY','Set MISTRAL_API_KEY in backend/.env',503);
     let rates: ReturnType<typeof pricing>;
     try { rates = pricing(this.config); } catch { throw new EngineError('PRICING_UNCONFIRMED','Confirm current model rates and pricing date in backend/.env',503); }
+    const run = await this.db.processingRun.findUniqueOrThrow({where:{id:runId}});
+    const baseline = run.promptVersion === BASELINE_VERSION;
     const body = JSON.stringify({
       model: this.config.MISTRAL_MODEL, temperature: 0, max_tokens: this.config.LLM_MAX_OUTPUT_TOKENS,
-      messages: [{ role:'system', content:SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
-      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema:outputJsonSchema } },
+      messages: [{ role:'system', content:baseline ? BASELINE_PROMPT : run.promptVersion===PREVIOUS_VERSION ? PREVIOUS_PROMPT : SYSTEM_PROMPT },{ role:'user', content:JSON.stringify(input) }],
+      response_format: { type:'json_schema', json_schema:{ name:'news_extraction', strict:true, schema:baseline ? baselineJsonSchema : outputJsonSchema } },
     });
     // One token per UTF-8 byte is deliberately conservative; extra room covers protocol overhead.
     const maxInput = Buffer.byteLength(body,'utf8') + 4096;

@@ -14,8 +14,9 @@ export function normalizeArticle(raw: unknown) {
   }).join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const title = clean(input.title), content = clean(input.content);
   const language = input.language ?? detectLanguage(content);
+  const contentFingerprint = createHash('sha256').update(content.normalize('NFKC').replace(/\s+/g,' ').trim()).digest('hex');
   const fingerprint = createHash('sha256').update(JSON.stringify([url.href,title,content])).digest('hex');
-  return { ...input, title, content, language, publishedAt: new Date(input.publishedAt), canonicalUrl: url.href, fingerprint, normalizedText: `${title}\n${content}`, originalJson: JSON.stringify(raw) };
+  return { ...input, title, content, language, publishedAt: new Date(input.publishedAt), canonicalUrl: url.href, fingerprint, contentFingerprint, normalizedText: `${title}\n${content}`, originalJson: JSON.stringify(raw) };
 }
 export function detectLanguage(text: string) {
   // Conservative script/function-word heuristic; uncertain languages remain undetermined.

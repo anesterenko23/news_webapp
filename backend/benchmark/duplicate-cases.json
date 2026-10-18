@@ -1,0 +1,625 @@
+{
+  "policy": "Hand-labelled event-identity comparisons. Flagging a candidate is distinct from automatic linking and independent corroboration.",
+  "cases": [
+    {
+      "id": "exact-reprint",
+      "expectedSame": true,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Berlin introduces package 17 sanctions targeting Moscow",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      }
+    },
+    {
+      "id": "different-package-same-day",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 18 against Russia",
+        "summary": "Germany announced sanctions package 18 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 18 against Russia.",
+        "objectText": "package 18",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 18 against Russia."
+      }
+    },
+    {
+      "id": "reverse-direction",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Russia announces sanctions package 17 against Germany",
+        "summary": "Russia announced sanctions package 17 against Germany.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Russia announced sanctions package 17 against Germany.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "RU",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "DE",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "RU",
+            "targetCountry": "DE",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Russia announced sanctions package 17 against Germany."
+      }
+    },
+    {
+      "id": "different-date",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-28T00:00:00Z",
+        "publishedAt": "2026-10-28T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      }
+    },
+    {
+      "id": "different-type",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "trade_restrictions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced trade restrictions against Russia."
+      }
+    },
+    {
+      "id": "different-modality",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany plans sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "planned",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany plans sanctions package 17 against Russia."
+      }
+    },
+    {
+      "id": "different-target",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "FR",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "FR",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against France."
+      }
+    },
+    {
+      "id": "same-action-new-editorial-context",
+      "expectedSame": true,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia. A spokesperson confirmed the announcement."
+      }
+    },
+    {
+      "id": "same-action-with-unknown-object-field",
+      "expectedSame": true,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": null,
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia."
+      }
+    },
+    {
+      "id": "different-package-with-identical-article",
+      "expectedSame": false,
+      "left": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 17 against Russia.",
+        "objectText": "package 17",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia. Germany announced sanctions package 18 against Russia."
+      },
+      "right": {
+        "title": "Germany announces sanctions package 17 against Russia",
+        "summary": "Germany announced sanctions package 17 against Russia.",
+        "eventType": "sanctions",
+        "eventStatus": "announced",
+        "actionText": "Germany announced sanctions package 18 against Russia.",
+        "objectText": "package 18",
+        "occurredAt": "2026-10-18T00:00:00Z",
+        "publishedAt": "2026-10-18T10:00:00Z",
+        "participants": [
+          {
+            "countryCode": "DE",
+            "role": "initiator"
+          },
+          {
+            "countryCode": "RU",
+            "role": "target"
+          }
+        ],
+        "relationships": [
+          {
+            "sourceCountry": "DE",
+            "targetCountry": "RU",
+            "type": "sanctions",
+            "direction": "directed"
+          }
+        ],
+        "body": "Germany announced sanctions package 17 against Russia. Germany announced sanctions package 18 against Russia."
+      }
+    }
+  ]
+}

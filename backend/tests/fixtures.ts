@@ -1,4 +1,4 @@
-import type { ArticleInputType, Extracted } from '../src/schemas.js';
+import type { ArticleInputType, Extracted } from '../src/schemas-v1.js';
 function event(text: string, type: Extracted['event_type'], status: Extracted['event_status'], from='DE', to='FR', bilateral=false): Extracted {
   return {title:text,summary:text,event_type:type,event_status:status,occurred_at:null,countries:[{code:from,role:bilateral?'partner':'initiator'},{code:to,role:bilateral?'partner':'target'}],relationships:[{source_country:from,target_country:to,type,direction:bilateral?'bidirectional':'directed',evidence_refs:[0],confidence:.91}],evidence:[{text}],confidence:.91};
 }

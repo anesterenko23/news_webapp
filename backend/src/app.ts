@@ -5,7 +5,9 @@ import type { PrismaClient } from '@prisma/client';
 import type { Config } from './config.js';
 import { pricing } from './config.js';
 import { IntelligenceEngine } from './engine.js';
-import { eventInclude } from './database.js';
+import { canonicalInclude, claimInclude, resolveMerge, undoSourceLink } from './canonical.js';
+import { claimDto, canonicalDto } from './presentation.js';
+import { PROMPT_VERSION, BASELINE_VERSION, PREVIOUS_VERSION } from './prompt.js';
 import { EngineError, MistralProvider, type Provider } from './provider.js';
 import { EventQuery } from './schemas.js';
 import { aiLabHtml } from './lab.js';
@@ -53,27 +55,46 @@ export function createApp(config: Config, db: PrismaClient, provider?: Provider)
     if (pending >= 4) return reply.code(429).send({error:'QUEUE_FULL',message:'Wait for pending analysis to finish'});
     pending++;
     try {
-      const {retryOf:rawRetry,...input} = z.record(z.string(),z.unknown()).parse(request.body);
+      const {retryOf:rawRetry,promptVersion:rawVersion,...input} = z.record(z.string(),z.unknown()).parse(request.body);
       const retryOf = z.string().min(1).max(100).optional().parse(rawRetry);
-      const result = await engine.process(input,retryOf);
+      const version=z.enum([PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION]).optional().parse(rawVersion);
+      const result = await engine.process(input,retryOf,version);
       return reply.code(result.processingStatus === 'failed' ? (result.error?.includes('BUDGET_EXCEEDED') ? 429 : 502) : result.processingStatus === 'processing' ? 202 : 200).send(result);
     } finally { pending--; }
   });
   async function list(query: unknown, country?: string) {
     const filters = EventQuery.parse({...query as object,...(country ? {country:country.toUpperCase()} : {})});
-    const where = { ...(filters.country ? {participants:{some:{countryCode:filters.country}}} : {}),...(filters.eventType ? {eventType:filters.eventType} : {}),...(filters.verificationStatus ? {verificationStatus:filters.verificationStatus} : {}),...((filters.from || filters.to) ? {publishedAt:{...(filters.from?{gte:new Date(filters.from)}:{}),...(filters.to?{lte:new Date(filters.to)}:{})}} : {}) };
-    const [events,total] = await Promise.all([db.event.findMany({where,include:eventInclude,orderBy:{publishedAt:'desc'},take:filters.limit,skip:filters.offset}),db.event.count({where})]);
-    return {events,total,limit:filters.limit,offset:filters.offset,dateFilter:'article publication time (UTC)'};
+    const where = { archived:false, ...(filters.country ? {participants:{some:{countryCode:filters.country}}} : {}),...(filters.eventType ? {eventType:filters.eventType} : {}),...(filters.verificationStatus ? {verificationStatus:filters.verificationStatus} : {}),...((filters.from || filters.to) ? {publishedAt:{...(filters.from?{gte:new Date(filters.from)}:{}),...(filters.to?{lte:new Date(filters.to)}:{})}} : {}) };
+    const [events,total] = await Promise.all([db.canonicalEvent.findMany({where,include:canonicalInclude,orderBy:{publishedAt:'desc'},take:filters.limit,skip:filters.offset}),db.canonicalEvent.count({where})]);
+    return {events:events.map(canonicalDto),total,limit:filters.limit,offset:filters.offset,dateFilter:'article publication time (UTC)'};
   }
   app.get('/api/events',request=>list(request.query));
   app.get<{Params:{code:string}}>('/api/countries/:code/events',request=>list(request.query,request.params.code));
   app.get<{Params:{id:string}}>('/api/events/:id',async(request,reply)=> {
-    const event = await db.event.findUnique({where:{id:request.params.id},include:eventInclude});
-    return event ? {...event,globePreview:globeProjection(event)} : reply.code(404).send({error:'EVENT_NOT_FOUND'});
+    const event = await db.canonicalEvent.findUnique({where:{id:request.params.id},include:canonicalInclude});
+    return event ? {...canonicalDto(event),globePreview:globeProjection(event)} : reply.code(404).send({error:'EVENT_NOT_FOUND'});
+  });
+  app.get<{Params:{id:string}}>('/api/claims/:id',async(request,reply)=>{
+    const claim=await db.extractedClaim.findUnique({where:{id:request.params.id},include:claimInclude});
+    return claim?claimDto(claim):reply.code(404).send({error:'CLAIM_NOT_FOUND'});
   });
   app.get('/api/review-queue',async request=> {
-    const filters = z.object({limit:z.coerce.number().int().min(1).max(100).default(50),offset:z.coerce.number().int().min(0).default(0)}).parse(request.query);
-    return {events:await db.event.findMany({where:{publicationStatus:'NeedsReview'},include:eventInclude,orderBy:{createdAt:'asc'},take:filters.limit,skip:filters.offset}),total:await db.event.count({where:{publicationStatus:'NeedsReview'}})};
+    const filters=z.object({limit:z.coerce.number().int().min(1).max(100).default(50),offset:z.coerce.number().int().min(0).default(0)}).parse(request.query);
+    const where={publicationStatus:{in:['NeedsReview','Blocked']}};
+    const [claims,total,mergeCandidates,runs,events]=await Promise.all([
+      db.extractedClaim.findMany({where,include:claimInclude,orderBy:{createdAt:'desc'},take:filters.limit,skip:filters.offset}),db.extractedClaim.count({where}),
+      db.mergeCandidate.findMany({where:{status:'Pending'},take:filters.limit}),db.processingRun.findMany({where:{status:'failed'},select:{id:true,articleId:true,reviewReasons:true,error:true},take:filters.limit}),
+      db.canonicalEvent.findMany({where:{archived:false,publicationStatus:'NeedsReview'},include:canonicalInclude,take:filters.limit})
+    ]);
+    return {claims:claims.map(claimDto),total,events:events.map(canonicalDto),mergeCandidates:mergeCandidates.map(c=>({...c,reasons:JSON.parse(c.reasons)})),failedRuns:runs.map(r=>({...r,reviewReasons:JSON.parse(r.reviewReasons)}))};
+  });
+  app.post<{Params:{id:string}}>('/api/merge-candidates/:id/resolve',async(request)=>{
+    const input=z.strictObject({decision:z.enum(['merge','separate']),reviewer:z.string().min(3).max(100),note:z.string().min(8).max(2000)}).parse(request.body);
+    try{return await resolveMerge(db,request.params.id,input);}catch{throw new EngineError('INVALID_MERGE_DECISION','Candidate missing, already decided or claim not eligible',400);}
+  });
+  app.post<{Params:{id:string}}>('/api/event-sources/:id/unlink',async request=>{
+    const input=z.strictObject({reviewer:z.string().min(3).max(100),note:z.string().min(8).max(2000)}).parse(request.body);
+    try{return await undoSourceLink(db,request.params.id,input);}catch{throw new EngineError('INVALID_SOURCE_LINK','Source link missing, inactive or not eligible',400);}
   });
   app.get('/api/ai/usage',async()=> {
     const month = new Date().toISOString().slice(0,7);

@@ -1,26 +1,22 @@
-# World Lens — Phase 4
+# World Lens — Phase 4.5
 
-Backend для ручного анализа публикаций. Основные News и Country Explorer остаются на демонстрационных данных, их внешний вид не меняется.
+Ручной административный анализ публикаций с сохранением исходных ответов, выделенных утверждений и истории решений. Основной глобус и лента продолжают использовать демонстрационные данные. Сбор новостей и независимая проверка источников пока не реализованы.
 
 ## Запуск
 
-Нужен Node.js 22.18+ и доступ к npm при первоначальной установке.
+Требуется Node.js 22.18+. После клонирования:
 
 ```powershell
 npm ci
 Copy-Item backend/.env.example backend/.env
-# Заполнить MISTRAL_API_KEY в backend/.env
+# Указать MISTRAL_API_KEY локально; существующий .env не перезаписывать.
 npm run db:migrate
 npm run backend:start
 ```
 
-Если `backend/.env` уже настроен, не перезаписывайте его. В текущем локальном окружении ключ уже настроен. Он не входит в репозиторий.
+AI Lab: http://127.0.0.1:3001/dev/ai-lab. Frontend запускается отдельно через npm run dev. Vite проксирует /api и /dev/ai-lab на backend; статический preview backend не содержит.
 
-Открыть **http://127.0.0.1:3001/dev/ai-lab**. Вставить заголовок, источник, URL, дату публикации в UTC и текст, затем нажать Analyze. Запросы к Mistral происходят только после явного запуска анализа. Повторная отправка использует сохранённый run. Ошибочный run можно явно повторить; история и прежние расходы сохраняются, повторные клики на один retry не создают новые запросы.
-
-Для разработки backend с перекомпиляцией: `npm run backend:dev`. Frontend запускается отдельно через `npm run dev`; Vite проксирует `/api` и `/dev/ai-lab` на порт 3001. Статический `npm run preview` не содержит backend, используйте прямой URL AI Lab выше.
-
-SQLite хранится в `backend/prisma/dev.db` (исключён из Git). Миграции применяются командой `npm run db:migrate`, клиент Prisma генерируется в `postinstall`. Для пользовательского DATABASE_URL относительные пути Prisma отсчитываются от `backend/prisma`; для другого расположения предпочтителен абсолютный `file:` URL.
+SQLite: backend/prisma/dev.db, исключена из Git. Перед миграцией существующей базы остановить backend и сделать копию файла БД вместе с WAL/SHM, если они существуют. db:migrate применяет SQL, генерирует Prisma Client, компилирует backend, выполняет идемпотентный перенос старых событий и версионированную повторную валидацию без LLM. Старые Event, Evidence, ReviewDecision, ProcessingRun и rawOutput остаются в базе. Неизвестный legacy Rejected требует проверки и не превращается в Refuted. Проверка отката слияния сохраняет исходные связи источников как неактивные и добавляет ревизии.
 
 ## Mistral и настройки
 
@@ -56,74 +52,66 @@ node backend/reconcile.mjs REQUEST_ID INPUT_TOKENS OUTPUT_TOKENS CONFIRMED_COST_
 
 CLI изменяет только неопределённые записи, сохраняет аудиторскую запись в run и не вызывает LLM. Не освобождайте резерв без проверки фактического расхода. Прерванный активный run после сверки помечается failed и допускает явный retry. Обычный повтор не перезапускает ошибочную обработку автоматически.
 
-## Архитектура и созданные модули
 
-`Article → normalization → Mistral extraction → Zod + evidence validation → duplicate candidates → verification/publication decision → SQLite transaction`.
+## Модель данных и статусы
 
-- `src/config.ts`: env, безопасный сетевой режим, подтверждённые тарифы.
-- `src/schemas.ts`, `src/countries.ts`: контракт статей, 12 типов событий/отношений, 8 статусов событий, роли, ISO alpha-2, JSON Schema из Zod.
-- `src/normalization.ts`: UTC, URL, удаление tracking-параметров и повторных технических строк, консервативная эвристика языка, fingerprint. Исходный JSON и текст сохраняются без замены нормализованной версией.
-- `src/prompt.ts`: версионированный промпт с примерами, отделением инструкции от недоверенного текста, планов от действий и комментаторов от участников.
-- `src/provider.ts`: официальный Mistral HTTP API, timeout, ограниченный backoff, отдельный учёт каждой попытки, budget reservations. Provider-интерфейс позволяет менять модель/реализацию без изменения pipeline.
-- `src/validation.ts`: проверка кодов, участников, направлений, self-links, ссылок на evidence, модальности, цитат и автоматически развёрнутых многосторонних графов. Различия только в пробелах привязываются к точному непрерывному фрагменту оригинала; слова и пунктуация не исправляются. Оригинальный ответ модели сохраняется отдельно.
-- `src/deduplication.ts`: нормализованные заголовки, страны, тип/статус, трёхдневное окно по event date или публикации, текстовое сходство и primarySourceId. До 1000 кандидатов на сравнение. Нет дополнительного LLM-запроса и автоматического слияния.
-- `src/verification.ts`: отдельные verification/publication статусы. В MVP валидное извлечение из одного источника **всегда Unverified / NeedsReview**, невалидное — Rejected. Автоматическая публикация отключена явной политикой. Ни confidence, ни совпадение цитаты не дают Verified.
-- `src/database.ts`, `prisma/schema.prisma`, `prisma/migrations`: статьи, runs с версиями и попытками, события, участники, связи, evidence с original offsets, источники, история решений и LLM-запросы с расходами. Результаты одного run сохраняются атомарно.
-- `src/engine.ts`: оркестрация, идемпотентность, ограниченная очередь, запись raw output/ошибок, повтор failed run только по явному retryOf.
-- `src/globe-projection.ts`: preview-контракт слоя глобуса с alpha-3 кодами и текущей палитрой. Исходная AI-категория, статус действия и статус проверки сохраняются. Проекция не подключена к публичной ленте.
-- `src/app.ts`, `src/server.ts`: Fastify API и защита доступа.
-- `src/lab.ts`: отдельный внутренний AI Lab, ввод публикаций, роли, связи, цитаты, статусы, дубликаты, raw JSON, время, токены и стоимость. Текст модели выводится через textContent.
-- `tests/fixtures.ts`: 22 вымышленные тестовые публикации. `tests/intelligence.test.ts` и `tests/api.test.ts`: unit и интеграционные проверки с отдельной временной SQLite.
-- `evaluate.mjs`: необязательный **платный** реальный прогон фикстур через запущенный backend. Не выполняется в CI.
-- `reconcile.mjs`: локальная сверка неопределённого расхода после проверки у провайдера.
+Article → ProcessingRun → ExtractedClaim → CanonicalEvent. Публикация может содержать несколько claims; каноническое событие объединяет утверждения из нескольких публикаций. Одно событие может иметь несколько отношений. Исходный rawClaim и полный rawOutput неизменяемы; текущая техническая оценка хранится отдельно и имеет ClaimValidationDecision с версией валидатора и снимками до/после.
+
+| Слой | Значения | Что означает |
+|---|---|---|
+| ValidationStatus | Valid / Invalid / NeedsRepair | Контракт, цитаты, ссылки и детерминированные ограничения |
+| VerificationStatus | NotAssessed / Unverified / Corroborated / Verified / Disputed / Refuted | Достоверность утверждения, отдельно от уверенности модели |
+| PublicationStatus | Draft / NeedsReview / Ready / Blocked | Решение о публикации |
+
+Valid из одного источника получает Unverified / NeedsReview. Invalid получает NotAssessed / Blocked; NeedsRepair — NotAssessed / NeedsReview. Ошибка evidence или неоднозначный актор не доказывает ложность новости. Политика не выдаёт Ready автоматически. В текущем pipeline нет механизма, который присваивает Verified, Corroborated, Disputed или Refuted: IndependentSourceVerifier пока возвращает NotAssessed. Количество источников, цитата и confidence не являются проверкой достоверности.
+
+QuoteMatch, ReferenceIntegrity, SemanticSupport и SourceVerification — разные результаты. SemanticSupport по умолчанию NotAssessed; точная цитата не доказывает, что она подтверждает направление связи. Отдельные правила находят Unsupported/Ambiguous, но не заменяют полноценного семантического верификатора. Подробные ограничения и реальные результаты: [EVALUATION45.md](EVALUATION45.md).
+
+## Извлечение и evidence
+
+Текущий prompt world-lens-extraction/1.2.1, предыдущие 1.1.0 и 1.2.0 сохранены и выбираются в AI Lab. Версия входит в ключ идемпотентности. Повтор идентичного ввода с той же моделью/версией возвращает прежний run, без LLM. Явный retryOf доступен только для failed run и сохраняет прежние расходы и raw.
+
+Типизированные entities разделяют страны, организации, компании, людей, города и другие сущности. Участники и концы географических отношений принимают только ISO alpha-2 из справочника. UK/USA/South Korea разрешаются централизованным alias resolver; UN/EU/NATO не являются странами. Неопределённые partners не разворачиваются в выдуманные страны. Для взаимных соглашений используются partner/partner.
+
+Модель возвращает строковые temporary evidence IDs, уникальные в ответе. Сервер проверяет все локальные ссылки и выдаёт постоянные UUID с FK-связями. Пропавшие, чужие и повторные IDs не исправляются подстановкой индекса. Цитата должна совпадать с непрерывным фрагментом заголовка/текста; допустимо только выравнивание пробелов с сохранением точных исходных offsets. action_text и object_text также должны быть дословными фрагментами. Автоматический repair-запрос не реализован: дефекты остаются в очереди с машинными кодами. Это не скрытый дополнительный расход.
+
+## Канонические события и источники
+
+Автопривязка разрешена только при совпадении типа, модальности, ролей стран, направлений отношений, времени, действия, объекта и fingerprint текста публикации. Более слабое сходство создаёт MergeCandidate без второго CanonicalEvent. Эвристическая оценка сходства не является вероятностью и не используется для проверки истинности. Смена planned/completed или дрейф объекта в перепечатке требуют review.
+
+CanonicalEventSource хранит publisher, originalSource, syndicationSource, primaryDocument, lineageId и independenceStatus. Совпадающий текст, повторное извлечение одной статьи и известная общая lineage помечаются Dependent; прочие остаются Unknown. Unknown не означает Independent. Перепечатки не повышают VerificationStatus. linkedSourceCount считает уникальные статьи, а не число запусков модели. Обратимость обеспечена активными/неактивными source links, EventRevision и сохранёнными claims/evidence.
 
 ## API
 
-Все data endpoints административные, включая чтение. Ни один endpoint не публикует события в основной frontend.
+Все endpoints данных административные, включая чтение. Production требует ADMIN_API_TOKEN и Authorization: Bearer TOKEN. Локальный development без токена разрешён только на loopback с проверкой Host/peer/Origin. Запись требует Content-Type: application/json и X-World-Lens-Client: ai-lab. Текст модели в UI выводится через textContent. Локальные .env, DB, dist и work не публикуются.
 
-| Метод и путь | Назначение |
-|---|---|
-| POST /api/articles/process | title, content, source, url, publishedAt; optional language, primarySourceId, retryOf |
-| GET /api/events | country (alpha-2), eventType, verificationStatus, from, to, limit, offset |
-| GET /api/events/:id | Событие, роли, evidence, источники, решения и globePreview |
-| GET /api/countries/:code/events | События страны, те же фильтры |
-| GET /api/review-queue | NeedsReview, пагинация limit/offset |
-| GET /api/ai/usage | Месяц, токены, расход и резервы, ошибки, недавние запросы, лимит |
-| GET /health | Проверка доступности процесса без приватных данных |
+| Метод | Путь | Назначение |
+|---|---|---|
+| POST | /api/articles/process | title, content, source, url, publishedAt; optional language, primarySourceId, originalSource, syndicationSource, primaryDocument, lineageId, promptVersion, retryOf |
+| GET | /api/events | Канонические события; country, eventType, verificationStatus, from, to, limit, offset |
+| GET | /api/events/:id | Claims, evidence, источники и их история, revisions, verificationHistory, globePreview |
+| GET | /api/claims/:id | Исходное утверждение, статусы, проверка evidence и история валидации |
+| GET | /api/countries/:code/events | Канонические события страны |
+| GET | /api/review-queue | Claims, машинные причины, merge candidates, failed runs |
+| POST | /api/merge-candidates/:id/resolve | decision: merge/separate, reviewer, note; не подтверждает достоверность |
+| POST | /api/event-sources/:id/unlink | reviewer, note; отмена привязки с сохранением истории |
+| GET | /api/ai/usage | Токены, расходы, резервы и лимит |
+| GET | /health | Доступность процесса |
 
-Date range относится к дате публикации, не к предположительно восстановленной дате события. UTC datetime должен содержать Z или offset. Лимит выдачи 100, по умолчанию 50.
+Изменение контракта Phase 4: в ответе обработки events теперь означает CanonicalEvent[], claims — ExtractedClaim[]. Невалидные claims доступны даже без canonicalEventId. Ответ также содержит rawOutput, model, promptVersion, runId, usage и canonicalEventIds. Date filters относятся к дате публикации. Pagination: default50/max100. Неудачный run сохраняется и возвращает 502, budget —429; выполняющийся run может вернуть202. Основной frontend с этими AI-данными не связан.
 
-POST требует `Content-Type: application/json` и `X-World-Lens-Client: ai-lab`. Ответ содержит articleId, runId, processingStatus, events, warnings, rawOutput, model, promptVersion, durationMs и usage. Ошибочный AI run возвращает HTTP 502 (бюджет — 429), но также сохраняется в базе; исходный HTTP код провайдера записывается в безопасную диагностику без тела ошибки и ключа. Уже выполняющийся сохранённый run может вернуть 202; повторите тот же запрос для получения результата, новый AI-вызов не создастся.
-
-Локальный development разрешён без admin token только на loopback, с проверкой Host, peer IP, Origin и специального заголовка для записи. CORS не включён. При любом сетевом/production запуске конфигурация требует ADMIN_API_TOKEN; каждый API требует `Authorization: Bearer TOKEN`. AI Lab показывает форму токена, хранит его только в памяти страницы. За reverse proxy сохранять NODE_ENV=production, использовать HTTPS, не обходить эту проверку режимом development. Локальные env, SQLite и raw run данные не коммитятся.
-
-Пример PowerShell после заполнения локального env:
-
-```powershell
-$article = @{
-  title = 'A test announcement'
-  content = 'Germany announced sanctions against Russia and confirmed military assistance to Ukraine.'
-  source = 'Fictional test fixture'
-  url = 'https://example.org/test-announcement'
-  publishedAt = '2026-10-18T10:00:00Z'
-  language = 'en'
-}
-Invoke-RestMethod -Method Post -Uri http://127.0.0.1:3001/api/articles/process -ContentType application/json -Headers @{'X-World-Lens-Client'='ai-lab'} -Body ($article | ConvertTo-Json)
-```
-
-## Проверки и ограничения
+## Проверки и сравнение
 
 ```powershell
-npm run backend:build
 npm run test:backend
-npm test
-npm run build
-# Только осознанный платный прогон с настроенным ключом и запущенным backend:
-npm run ai:evaluate
+npm run test -- --configLoader runner
+npm run build -- --configLoader runner
+# Опциональный ПЛАТНЫЙ прогон 30 размеченных публикаций на локальном backend:
+npm run ai:benchmark
+npm run ai:score
+npm run ai:score-duplicates
 ```
 
-CI использует injected provider и временную SQLite; реальные ключи не нужны. Unit-тесты golden output проверяют pipeline, а не доказывают качество LLM. Результаты фактического API-прогона записаны в [EVALUATION.md](EVALUATION.md).
+Unit/integration tests и CI используют сохранённые ответы/фикстуры, не настоящий API. ai:benchmark вызывает реальный API только при явном запуске, сохраняет work/benchmark45/live-runs.json; бюджет общий с AI Lab. ai:score анализирует сохранённые реальные ответы. ai:score-duplicates — детерминированные 10 пар без LLM. Прежний ai:evaluate оставлен как диагностический запуск 22 Phase4 фикстур; для сравнимых метрик использовать benchmark.
 
-Полноценный независимый fact-check пока отсутствует. Семантическая связь цитаты с утверждением требует review; проверки имени/модальности — только эвристики. LLM может ошибиться в evidence refs, странах, датах или разделении событий; ошибочные результаты отклоняются/отправляются на проверку, автоматического платного repair нет. Короткие неопределённые/нейтральные публикации могут давать пустой список с diagnostics. Определение языка — эвристика для нескольких письменностей, прочие случаи und. Тексты ограничены 30000 символами, до 12 событий, output cap может потребовать явного повторного анализа с другой настройкой. SQLite и очередь предназначены для локального MVP, не для распределённого ingestion. Проверка дубликатов создаёт кандидатов, но не устанавливает независимость источников или тождественность событий.
-
-RSS, NewsAPI/GDELT, публичная модерация, автоматический сбор, AI-факты на глобусе, аккаунты и автоматическое Verified в эту фазу не входят.
+Поддержка: src/canonical.ts — match/link/undo; entities.ts — aliases; validation.ts — технические проверки; verification.ts — независимый интерфейс; legacy-migration.ts/revalidation.ts — перенос и история; presentation.ts — API DTO. Промпты и старые валидаторы сохранены для воспроизводимого baseline.

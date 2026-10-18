@@ -31,7 +31,7 @@ In restricted Windows sandboxes where esbuild cannot inspect parent directories,
 - On mobile the feed starts collapsed; “Latest News” opens it, and selecting a story closes it.
 - Source links provide institutional background. All events, publication offsets and scenarios are illustrative; they are not claims of current news. Images are illustrative photographs.
 
-No backend, news API, database or user account is included.
+The main globe uses demo data. A separate administrative AI backend is available in Phase 4.5; see [backend documentation](backend/README.md) and [hardening evaluation](backend/EVALUATION45.md). Independent source verification and automatic news ingestion are not implemented.
 
 ## Architecture
 

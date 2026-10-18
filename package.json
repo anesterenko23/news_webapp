@@ -18,7 +18,10 @@
     "db:generate": "prisma generate --schema backend/prisma/schema.prisma",
     "db:migrate": "node backend/migrate.mjs",
     "test:backend": "vitest run --config backend/vitest.config.ts --configLoader runner",
-    "ai:evaluate": "node --experimental-strip-types backend/evaluate.mjs"
+    "ai:evaluate": "node --experimental-strip-types backend/evaluate.mjs",
+    "ai:benchmark": "node backend/benchmark.mjs",
+    "ai:score": "node backend/score-benchmark.mjs",
+    "ai:score-duplicates": "npm run backend:build && node backend/score-duplicates.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
