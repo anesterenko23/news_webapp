@@ -3,16 +3,16 @@ import * as THREE from 'three';
 import { DEMO_EVENTS } from '../data/events';
 import { COUNTRIES } from '../data/countries';
 import { filterEvents, RELATIONSHIP_STYLES } from '../data/types';
-import { arcPoints, coordinateVector, eventCameraPosition } from './geo';
+import { arcPoints, coordinateVector, eventCameraPosition, sphereFitDistance, arcHeight } from './geo';
 
 describe('event catalogue and filters', () => {
-  it('has eight distinct, explicitly labelled demo events with valid relationships', () => {
-    expect(DEMO_EVENTS).toHaveLength(8);
-    expect(new Set(DEMO_EVENTS.map(event => event.id)).size).toBe(8);
+  it('has 24 distinct, explicitly labelled demo events with valid relationships', () => {
+    expect(DEMO_EVENTS).toHaveLength(24);
+    expect(new Set(DEMO_EVENTS.map(event => event.id)).size).toBe(24);
     for (const event of DEMO_EVENTS) {
       expect(event.demo).toBe(true);
       expect(Number.isFinite(Date.parse(event.publishedAt))).toBe(true);
-      expect(new URL(event.source.url).protocol).toBe('https:');
+      if (event.source) expect(new URL(event.source.url).protocol).toBe('https:');
       for (const code of event.countries) expect(COUNTRIES[code]).toBeDefined();
       for (const link of event.relationships) {
         expect(event.countries).toContain(link.from);
@@ -24,11 +24,11 @@ describe('event catalogue and filters', () => {
   it('filters primary categories without changing the source or active event', () => {
     const active = DEMO_EVENTS[0];
     expect(filterEvents(DEMO_EVENTS, 'all')).toBe(DEMO_EVENTS);
-    expect(filterEvents(DEMO_EVENTS, 'trade').map(event => event.id)).toEqual(['china-us-trade', 'india-europe-trade']);
-    expect(filterEvents(DEMO_EVENTS, 'conflict').map(event => event.id)).toEqual(['russia-ukraine']);
-    expect(filterEvents(DEMO_EVENTS, 'energy')).toHaveLength(1);
-    expect(filterEvents(DEMO_EVENTS, 'military')).toHaveLength(2);
-    expect(filterEvents(DEMO_EVENTS, 'diplomacy')).toHaveLength(2);
+    expect(filterEvents(DEMO_EVENTS, 'trade')).toHaveLength(6);
+    expect(filterEvents(DEMO_EVENTS, 'conflict')).toHaveLength(3);
+    expect(filterEvents(DEMO_EVENTS, 'energy')).toHaveLength(3);
+    expect(filterEvents(DEMO_EVENTS, 'military')).toHaveLength(6);
+    expect(filterEvents(DEMO_EVENTS, 'diplomacy')).toHaveLength(6);
     expect(active.relationships.map(link => link.type)).toEqual(['military', 'conflict']);
   });
 });
@@ -60,8 +60,8 @@ describe('event framing', () => {
     for (const event of DEMO_EVENTS) {
       const camera = eventCameraPosition(event, fov, aspect);
       const direction = camera.clone().normalize();
-      expect(camera.length()).toBeGreaterThanOrEqual(2.599);
-      expect(camera.length()).toBeLessThanOrEqual(5.301);
+      expect(camera.length()).toBeGreaterThanOrEqual(sphereFitDistance(fov, aspect) - 1e-6);
+      expect(camera.length()).toBeLessThanOrEqual(30);
       for (const code of event.countries) {
         const point = coordinateVector(COUNTRIES[code].coordinates);
         const cosine = direction.dot(point);
@@ -70,5 +70,30 @@ describe('event framing', () => {
         expect(projected).toBeLessThan(Math.tan(halfAngle) * .85);
       }
     }
+  });
+});
+
+describe('container-based globe fitting', () => {
+  it.each([[1440, 800], [570, 290], [390, 450], [390, 760], [1024, 230]])('fits the complete atmosphere in a %sx%s canvas', (width, height) => {
+    const halfVertical = THREE.MathUtils.degToRad(19);
+    const halfHorizontal = Math.atan(Math.tan(halfVertical) * width / height);
+    const halfAngle = Math.min(halfVertical, halfHorizontal);
+    const distance = sphereFitDistance(38, width / height);
+    expect(Math.asin(1.025 / distance)).toBeLessThan(halfAngle);
+    for (const event of DEMO_EVENTS) {
+      const camera = eventCameraPosition(event, 38, width / height);
+      expect(Math.asin(1.025 / camera.length())).toBeLessThan(halfAngle);
+      const direction = camera.clone().normalize();
+      for (const link of event.relationships) for (const point of arcPoints(COUNTRIES[link.from].coordinates, COUNTRIES[link.to].coordinates)) {
+        const axial = point.dot(direction);
+        const radial = Math.sqrt(Math.max(0, point.lengthSq() - axial * axial));
+        expect(radial / (camera.length() - axial)).toBeLessThan(Math.tan(halfAngle));
+      }
+    }
+  });
+  it('raises longer routes further while bounding their maximum elevation', () => {
+    expect(arcHeight(.2)).toBeGreaterThan(.10);
+    expect(arcHeight(1.5)).toBeGreaterThan(arcHeight(.2));
+    expect(arcHeight(Math.PI)).toBeLessThanOrEqual(.55);
   });
 });

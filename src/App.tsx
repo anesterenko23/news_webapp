@@ -50,13 +50,16 @@ export default function App() {
       {feedOpen && <button className="feed-backdrop" aria-label="Dismiss news feed" onClick={() => setFeedOpen(false)}/>}
       <NewsFeed events={DEMO_EVENTS} selectedId={selected?.id ?? null} filter={filter} onFilter={setFilter} onSelect={selectEvent} open={feedOpen} onClose={() => setFeedOpen(false)}/>
       <section className={`map ${selected ? 'has-selection' : ''}`} aria-label="Interactive world globe">
+        <div className="globe-stage">
         <button className="feed-toggle" aria-expanded={feedOpen} aria-controls="news-feed" onClick={() => setFeedOpen(!feedOpen)}><span aria-hidden="true">☰</span> Latest News <span className="toggle-count">{String(DEMO_EVENTS.length).padStart(2, '0')}</span></button>
         <div className="map-heading"><span className="eyebrow">{selected ? 'CONNECTED WORLD' : 'A GLOBAL PERSPECTIVE'}</span>{!selected && <><h2>The world, in view.</h2><p>Select a story. Discover its connections.</p></>}</div>
         <SceneBoundary><Suspense fallback={null}><GlobeScene ref={globe} selected={selected} onReady={onReady}/></Suspense></SceneBoundary>
         {!ready && <div className="loading" role="status"><span/> Preparing your perspective</div>}
         <RelationshipLegend/>
         <div className="controls" aria-label="Globe controls"><div className="zoom-group"><button aria-label="Zoom in" title="Zoom in" onClick={() => globe.current?.zoom(.84)}><Icon type="plus"/></button><button aria-label="Zoom out" title="Zoom out" onClick={() => globe.current?.zoom(1.19)}><Icon type="minus"/></button></div><button className="reset" aria-label="Reset view" title="Reset view" onClick={() => globe.current?.reset()}><Icon type="reset"/></button></div>
-        {selected ? <NewsDetails event={selected} onClose={() => setSelected(null)} onFocus={() => globe.current?.focus(selected)}/> : <footer className="map-footer"><span><i/> EXPLORE THE GLOBE</span><p>Drag to rotate <b>·</b> Scroll to zoom</p><span className="phase-label">PHASE 02</span></footer>}
+        {!selected && <footer className="map-footer"><span><i/> EXPLORE THE GLOBE</span><p>Drag to rotate <b>·</b> Scroll to zoom</p><span className="phase-label">PHASE 2.1</span></footer>}
+        </div>
+        {selected && <NewsDetails event={selected} onClose={() => setSelected(null)} onFocus={() => globe.current?.focus(selected)}/>}
         <span className="sr-only" role="status">{selected ? `Showing ${selected.title}. ${selected.countries.length} countries and ${selected.relationships.length} ${selected.relationships.length === 1 ? 'relationship' : 'relationships'}.` : 'No event selected. Globe rotates automatically.'}</span>
       </section>
     </div>

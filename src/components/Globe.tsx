@@ -1,23 +1,24 @@
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
 import { Bloom, EffectComposer } from '@react-three/postprocessing';
-import { forwardRef, memo, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
+import { forwardRef, memo, useCallback, useEffect, useLayoutEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { mesh } from 'topojson-client';
 import countries from 'world-atlas/countries-50m.json';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { NewsEvent } from '../data/types';
-import { latLngToVector, eventCameraPosition } from '../lib/geo';
+import { latLngToVector, eventCameraPosition, sphereFitDistance } from '../lib/geo';
 import { CountryHighlight } from './CountryHighlight';
 import { RelationshipArcs } from './RelationshipArcs';
+import { CountryTooltip, type CountryTooltipHandle } from './CountryTooltip';
+import type { CountryHover } from '../lib/hover';
 export { latLngToVector } from '../lib/geo';
 
 export interface GlobeHandle { zoom: (factor: number) => void; reset: () => void; focus: (event: NewsEvent) => void }
 const HOME = new THREE.Vector3(3.2, 1.9, -0.8).normalize().multiplyScalar(3.35);
-const CAMERA_OPTIONS = { position: HOME.toArray(), fov: 38, near: .05, far: 30 };
+const CAMERA_OPTIONS = { position: HOME.toArray(), fov: 38, near: .05, far: 120 };
 const MIN_DISTANCE = 1.55;
-const MAX_DISTANCE = 5.3;
 const asset = (name: string) => `${import.meta.env.BASE_URL}textures/${name}`;
 function Linework() {
   const borders = useMemo(() => {
@@ -94,27 +95,47 @@ function Earth({ onReady }: { onReady: () => void }) {
 function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; selected: NewsEvent | null }) {
   const controls = useRef<OrbitControlsImpl>(null);
   const { camera, gl, size } = useThree();
-  useEffect(() => { const perspective = camera as THREE.PerspectiveCamera; perspective.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(19)) / Math.min(1, size.width / size.height / 1.12))); perspective.updateProjectionMatrix(); }, [camera, size.width, size.height]);
-  const lastInteraction = useRef(-10);
+  const lastInteraction = useRef(performance.now());
   const active = useRef(false);
   const targetDistance = useRef(HOME.length());
   const resetTarget = useRef<THREE.Vector3 | null>(null);
-  useEffect(() => {
-    if (selected) {
-      resetTarget.current = eventCameraPosition(selected, (camera as THREE.PerspectiveCamera).fov, size.width / size.height);
-      targetDistance.current = resetTarget.current.length();
-    } else {
-      resetTarget.current = null;
-      targetDistance.current = camera.position.length();
+  const fitDistance = useRef(HOME.length());
+  const previousLayout = useRef<{ id: string | undefined; width: number; height: number } | null>(null);
+  const reducedMotion = useMemo(() => matchMedia('(prefers-reduced-motion: reduce)').matches, []);
+  useLayoutEffect(() => {
+    const perspective = camera as THREE.PerspectiveCamera;
+    perspective.fov = 38;
+    perspective.updateProjectionMatrix();
+    const fit = selected ? eventCameraPosition(selected, perspective.fov, size.width / size.height).length() : sphereFitDistance(perspective.fov, size.width / size.height);
+    const previous = previousLayout.current;
+    const changedEvent = previous?.id !== selected?.id;
+    const resized = !previous || previous.width !== size.width || previous.height !== size.height;
+    if (resized) {
+      // Resize in the measured canvas coordinate system, preserving manual zoom.
+      const ratio = previous ? camera.position.length() / fitDistance.current : 1;
+      camera.position.setLength(fit * ratio);
+      targetDistance.current = previous ? targetDistance.current / fitDistance.current * fit : fit;
+      if (resetTarget.current) resetTarget.current.setLength(fit);
     }
+    fitDistance.current = fit;
+    if (changedEvent) {
+      resetTarget.current = selected ? eventCameraPosition(selected, perspective.fov, size.width / size.height) : camera.position.clone().normalize().multiplyScalar(fit);
+      targetDistance.current = fit;
+    }
+    previousLayout.current = { id: selected?.id, width: size.width, height: size.height };
     lastInteraction.current = performance.now();
   }, [selected, camera, size.width, size.height]);
-  const reducedMotion = useMemo(() => matchMedia('(prefers-reduced-motion: reduce)').matches, []);
+  const zoom = useCallback((factor: number) => {
+    if (resetTarget.current) targetDistance.current = camera.position.length();
+    resetTarget.current = null;
+    targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * factor, MIN_DISTANCE, Math.max(8, fitDistance.current * 2.4));
+    lastInteraction.current = performance.now();
+  }, [camera]);
   useImperativeHandle(api, () => ({
-    zoom(factor) { if (resetTarget.current) targetDistance.current = camera.position.length(); resetTarget.current = null; targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * factor, MIN_DISTANCE, MAX_DISTANCE); lastInteraction.current = performance.now(); },
-    reset() { targetDistance.current = HOME.length(); resetTarget.current = HOME.clone(); lastInteraction.current = performance.now(); },
+    zoom,
+    reset() { targetDistance.current = fitDistance.current; resetTarget.current = HOME.clone().normalize().multiplyScalar(fitDistance.current); lastInteraction.current = performance.now(); },
     focus(event) { resetTarget.current = eventCameraPosition(event, (camera as THREE.PerspectiveCamera).fov, size.width / size.height); targetDistance.current = resetTarget.current.length(); lastInteraction.current = performance.now(); }
-  }), [camera, size.width, size.height]);
+  }), [camera, size.width, size.height, zoom]);
   useFrame((_, delta) => {
     const control = controls.current;
     if (!control) return;
@@ -126,20 +147,21 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
       rotation.slerp(new THREE.Quaternion(), 1 - blend);
       const radius = THREE.MathUtils.lerp(camera.position.length(), target.length(), blend);
       camera.position.copy(direction.applyQuaternion(rotation).multiplyScalar(radius));
-      if (camera.position.distanceTo(resetTarget.current) < .001) resetTarget.current = null;
-    } else if (!active.current) camera.position.setLength(THREE.MathUtils.damp(camera.position.length(), targetDistance.current, 7, delta));
+      if (camera.position.distanceTo(target) < .001) resetTarget.current = null;
+    } else if (!active.current) camera.position.setLength(THREE.MathUtils.damp(camera.position.length(), targetDistance.current, 7, Math.min(delta, .05)));
     const elapsed = (performance.now() - lastInteraction.current) / 1000;
     control.autoRotate = !selected && !active.current && elapsed > 3 && !resetTarget.current && !reducedMotion;
     control.autoRotateSpeed = Math.min(.18, Math.max(0, (elapsed - 3) * .045));
-
   });
   useEffect(() => {
-    const wheel = (e: WheelEvent) => {e.preventDefault(); if (resetTarget.current) targetDistance.current = camera.position.length(); resetTarget.current = null; lastInteraction.current = performance.now(); targetDistance.current = THREE.MathUtils.clamp(targetDistance.current * Math.exp(e.deltaY * .001), MIN_DISTANCE, MAX_DISTANCE);};
+    const wheel = (event: WheelEvent) => { event.preventDefault(); zoom(Math.exp(THREE.MathUtils.clamp(event.deltaY, -300, 300) * .001)); };
     gl.domElement.addEventListener('wheel', wheel, { passive: false });
     return () => gl.domElement.removeEventListener('wheel', wheel);
-  }, [gl, camera]);
-  return <OrbitControls ref={controls} enablePan={false} enableZoom={false} enableDamping dampingFactor={.065} rotateSpeed={.45} minDistance={MIN_DISTANCE} maxDistance={MAX_DISTANCE} onStart={() => {active.current = true;resetTarget.current = null;}} onEnd={() => {active.current = false;lastInteraction.current = performance.now();targetDistance.current = camera.position.length();}}/>;
+  }, [gl, zoom]);
+  return <OrbitControls ref={controls} enablePan={false} enableZoom={false} enableDamping dampingFactor={.065} rotateSpeed={.45} minDistance={MIN_DISTANCE} maxDistance={80} onStart={() => { active.current = true; resetTarget.current = null; }} onEnd={() => { active.current = false; lastInteraction.current = performance.now(); targetDistance.current = camera.position.length(); }}/>;
 }
 export const GlobeScene = memo(forwardRef<GlobeHandle, { onReady: () => void; selected: NewsEvent | null }>(function GlobeScene({ onReady, selected }, ref) {
-  return <div className="globe-canvas"><Canvas camera={CAMERA_OPTIONS} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/>{selected && <><CountryHighlight event={selected}/><RelationshipArcs relationships={selected.relationships}/></>}<Controller api={ref} selected={selected}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas></div>;
+  const tooltip = useRef<CountryTooltipHandle>(null);
+  const onHover = useCallback((hover: CountryHover | null) => tooltip.current?.show(hover), []);
+  return <div className="globe-canvas"><Canvas camera={CAMERA_OPTIONS} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/>{selected && <><CountryHighlight event={selected} onHover={onHover}/><RelationshipArcs relationships={selected.relationships}/></>}<Controller api={ref} selected={selected}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas><CountryTooltip ref={tooltip} event={selected}/></div>;
 }));

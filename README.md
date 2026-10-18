@@ -1,4 +1,4 @@
-# World Lens — Phase 2
+# World Lens — Phase 2.1
 
 Interactive geographic news prototype built on the original Phase 1 globe. React, TypeScript, Three.js, React Three Fiber, Drei and HDR bloom.
 
@@ -21,11 +21,12 @@ In restricted Windows sandboxes where esbuild cannot inspect parent directories,
 
 ## Explore
 
-- The initial view has no selected event and rotates automatically.
-- Select one of eight demo stories to frame its countries, highlight their actual outlines, show all its relationships and open the details panel.
+- The initial view has no selected event and rotates automatically. The scene and compact event panel occupy separate flex rows: the panel never overlays or artificially shifts the canvas.
+- Select one of 24 demo stories to frame its countries, highlight their actual outlines, show all its relationships and open the details panel.
 - Categories filter the feed without resetting the camera or remounting the scene. A filtered-out selection remains open until another story is selected or the panel is closed.
 - Re-selecting the same story preserves the current camera position. “View on globe” deliberately recenters it.
 - Drag and scroll remain available while a story is selected. Manual dragging interrupts camera travel. Auto-rotation stays paused until the story is closed, then resumes gradually after three seconds.
+- Hover over a highlighted country to see its name and all its roles in the selected event. Tooltips ignore unrelated countries, hide during dragging, stay inside the viewport and never capture pointer input.
 - Zoom and Reset View controls remain available. Direction arrows indicate one-way or two-way relationships; conflicts use dashed red arcs.
 - On mobile the feed starts collapsed; “Latest News” opens it, and selecting a story closes it.
 - Source links provide institutional background. All events, publication offsets and scenarios are illustrative; they are not claims of current news. Images are illustrative photographs.
@@ -41,11 +42,14 @@ No backend, news API, database or user account is included.
 - `src/components/CountryHighlight.tsx`: country masks rasterized from Natural Earth polygons with translucent fills and exact outlines. Dateline-crossing rings are unwrapped, and polygon holes are retained.
 - `src/components/RelationshipArcs.tsx`: thin great-circle arcs with elevation, directional markers and normal 3D occlusion.
 - `src/components/RelationshipLegend.tsx`: shared relationship palette.
+- `src/components/CountryTooltip.tsx`: a compact, cursor-following DOM tooltip; only its own state changes on pointer movement.
+- `src/lib/countries.ts`: country hit testing against actual polygon rings, including holes and dateline handling.
+- `src/lib/hover.ts`: relationship descriptions and viewport-clamped tooltip placement.
 - `src/data/types.ts`: event contract, relationship colors and filter logic.
 - `src/data/countries.ts`: geographic coordinates and ISO country identifiers, independently maintained from events.
 - `src/data/events.ts`: replaceable sample catalogue; rendering logic does not depend on its IDs or headlines.
-- `src/lib/geo.ts`: shared projection, spherical arcs and camera framing. Camera movement follows a spherical path, avoiding travel through the globe.
-- `src/lib/geo.test.ts`: data integrity, category filtering, multiple relationships, arc altitude, dateline/antipodal safety, camera framing and horizon visibility on desktop and portrait layouts.
+- `src/lib/geo.ts`: shared projection, spherical arcs and camera framing. Camera movement follows a spherical path, avoiding travel through the globe. Standard view fits the full sphere with margin using the real canvas aspect ratio. Event framing additionally fits the actual elevated arc points, rather than an unnecessarily large bounding sphere.
+- `src/lib/geo.test.ts`: data integrity, category filtering, multiple relationships, arc altitude, dateline/antipodal safety, camera framing and horizon visibility on desktop and portrait layouts. Additional tests cover full-sphere and arc fitting in five real canvas sizes, country hit tests, multiple tooltip roles and edge placement (23 tests total).
 
 Generated geometries, country-mask textures and scene resources are disposed when their layers unmount. Earth textures use the shared loader cache. Pixel ratio is capped at 1.75, night texture anisotropy at 8, and bloom uses no multisampling. WebGL is required.
 

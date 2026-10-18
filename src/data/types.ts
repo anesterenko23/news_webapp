@@ -12,7 +12,7 @@ export interface NewsEvent {
   publishedAt: string;
   image: string;
   imageAlt: string;
-  source: { name: string; url: string };
+  source?: { name: string; url: string };
   countries: string[];
   relationships: Relationship[];
   coordinates: Coordinates;

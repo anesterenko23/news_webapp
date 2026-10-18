@@ -1,29 +1,18 @@
 import { useEffect, useMemo } from 'react';
+import type { ThreeEvent } from '@react-three/fiber';
+import type { CountryHover } from '../lib/hover';
 import * as THREE from 'three';
-import { feature } from 'topojson-client';
-import topology from 'world-atlas/countries-50m.json';
-import type { GeometryCollection, Topology } from 'topojson-specification';
+import { countryFeatures, countryAtUV, unwrapRing } from '../lib/countries';
 import { COUNTRIES } from '../data/countries';
 import { RELATIONSHIP_STYLES, type NewsEvent } from '../data/types';
 import { latLngToVector } from '../lib/geo';
 
-const countryFeatures = feature(topology as unknown as Topology, topology.objects.countries as unknown as GeometryCollection).features;
-// Unwrap dateline rings before rasterizing; shifted copies handle both map edges.
-function unwrap(ring: number[][]) {
-  let previous = ring[0][0];
-  return ring.map(([longitude, latitude]) => {
-    let lng = longitude;
-    while (lng - previous > 180) lng -= 360;
-    while (lng - previous < -180) lng += 360;
-    previous = lng;
-    return [lng, latitude];
-  });
-}
-export function CountryHighlight({ event }: { event: NewsEvent }) {
+export function CountryHighlight({ event, onHover }: { event: NewsEvent; onHover: (hover: CountryHover | null) => void }) {
   const layers = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 4096; canvas.height = 2048;
     const context = canvas.getContext('2d')!;
+
     const lines: { geometry: THREE.BufferGeometry; color: string }[] = [];
     for (const code of event.countries) {
       const country = COUNTRIES[code];
@@ -35,18 +24,18 @@ export function CountryHighlight({ event }: { event: NewsEvent }) {
       const vertices: number[] = [];
       context.fillStyle = color;
       for (const polygon of polygons) {
-        const rings = polygon.map(ring => unwrap(ring));
+        const rings = polygon.map(ring => unwrapRing(ring));
         for (const shift of [-360, 0, 360]) {
-          context.beginPath();
+          const path = new Path2D();
           for (const ring of rings) {
             ring.forEach(([lng, lat], i) => {
               const x = (lng + shift + 180) / 360 * canvas.width;
               const y = (90 - lat) / 180 * canvas.height;
-              if (i === 0) context.moveTo(x, y); else context.lineTo(x, y);
+              if (i === 0) path.moveTo(x, y); else path.lineTo(x, y);
             });
-            context.closePath();
+            path.closePath();
           }
-          context.fill('evenodd');
+          context.fill(path, 'evenodd');
         }
         for (const ring of rings) for (let i = 1; i < ring.length; i++) {
           const a = ring[i - 1], b = ring[i];
@@ -63,8 +52,14 @@ export function CountryHighlight({ event }: { event: NewsEvent }) {
     return { texture, lines };
   }, [event]);
   useEffect(() => () => { layers.texture.dispose(); layers.lines.forEach(line => line.geometry.dispose()); }, [layers]);
+  useEffect(() => () => onHover(null), [event, onHover]);
+  const move = (pointer: ThreeEvent<PointerEvent>) => {
+    if (!pointer.uv || pointer.buttons || pointer.pointerType === 'touch') { onHover(null); return; }
+    const code = countryAtUV(event.countries, pointer.uv.x, pointer.uv.y);
+    onHover(code ? { code, eventId: event.id, x: pointer.nativeEvent.clientX, y: pointer.nativeEvent.clientY } : null);
+  };
   return <group>
-    <mesh scale={1.0025} renderOrder={1}><sphereGeometry args={[1, 128, 96]}/><shaderMaterial transparent depthWrite={false} uniforms={{ mask: { value: layers.texture } }} vertexShader={'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}'} fragmentShader={'uniform sampler2D mask;varying vec2 vUv;void main(){vec4 c=texture2D(mask,vUv);if(c.a<.01)discard;gl_FragColor=vec4(pow(c.rgb,vec3(2.2)),c.a*.18);}'}/></mesh>
+    <mesh scale={1.0025} renderOrder={1} onPointerMove={move} onPointerUp={move} onPointerOut={() => onHover(null)} onPointerDown={() => onHover(null)}><sphereGeometry args={[1, 128, 96]}/><shaderMaterial transparent depthWrite={false} uniforms={{ mask: { value: layers.texture } }} vertexShader={'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}'} fragmentShader={'uniform sampler2D mask;varying vec2 vUv;void main(){vec4 c=texture2D(mask,vUv);if(c.a<.01)discard;gl_FragColor=vec4(pow(c.rgb,vec3(2.2)),c.a*.18);}'}/></mesh>
     {layers.lines.map((line, i) => <lineSegments key={i} geometry={line.geometry} renderOrder={2}><lineBasicMaterial color={line.color} transparent opacity={.9} depthWrite={false}/></lineSegments>)}
   </group>;
 }

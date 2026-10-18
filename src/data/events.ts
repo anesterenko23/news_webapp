@@ -4,7 +4,7 @@ import type { NewsEvent } from './types';
 const previewStarted = Date.now();
 const ago = (hours: number) => new Date(previewStarted - hours * 3_600_000).toISOString();
 const photo = (name: string) => `${import.meta.env.BASE_URL}textures/demo-${name}.jpg`;
-export const DEMO_EVENTS: readonly NewsEvent[] = [
+const BASE_EVENTS: readonly NewsEvent[] = [
   {
     id: 'ukraine-aid', title: 'U.S. military aid to Ukraine', category: 'military',
     description: 'Illustrative U.S. military assistance to Ukraine, shown alongside the Russia–Ukraine conflict. Two independent connections appear together.',
@@ -69,4 +69,32 @@ export const DEMO_EVENTS: readonly NewsEvent[] = [
     countries: ['BRA', 'FRA'], coordinates: { lat: 20, lng: -27 },
     relationships: [{ from: 'BRA', to: 'FRA', type: 'diplomacy', bidirectional: true }], demo: true,
   },
+];
+
+// Additional illustrative scenarios exercise the same feed and data contract at
+// 24 rows; they are not live updates or reports of actual events.
+const EXTRA_SCENARIOS: [number, string, string][] = [
+  [0, 'Air defence coordination for Ukraine', 'A demo of air defence assistance and its wider regional conflict context.'],
+  [1, 'U.S.–China dialogue on supply chains', 'An illustrative trade dialogue about supply-chain cooperation across the Pacific.'],
+  [2, 'Humanitarian access in the Russia–Ukraine conflict', 'A sample geographic view of the countries involved in humanitarian access discussions.'],
+  [3, 'France and Germany coordinate regional policy', 'A demonstration of diplomatic coordination between two European neighbours.'],
+  [4, 'Saudi–China energy supply planning', 'An illustrative energy supply relationship linking the Arabian Peninsula and East Asia.'],
+  [5, 'Japan–Australia maritime cooperation', 'A sample defence partnership focused on the western Pacific and nearby sea routes.'],
+  [6, 'India–Germany industrial trade dialogue', 'An illustrative exchange on industrial trade between Europe and South Asia.'],
+  [7, 'Brazil–France environmental cooperation', 'A sample diplomatic connection for cooperation on environmental questions.'],
+  [0, 'U.S.–Ukraine assistance logistics', 'An illustrative assistance logistics scenario, alongside the regional conflict relationship.'],
+  [1, 'China–U.S. talks on trade standards', 'A sample trade cooperation scenario demonstrating a trans-Pacific geographic connection.'],
+  [2, 'Russia–Ukraine conflict: regional context', 'A demonstration of conflict geography, with a raised connection between the participating countries.'],
+  [3, 'German–French diplomatic consultation', 'An illustrative bilateral consultation in the shared European geographic context.'],
+  [4, 'Saudi–China long-term energy cooperation', 'A demonstration of an energy supply connection between two distant regions.'],
+  [5, 'Australia and Japan discuss defence training', 'An illustrative military cooperation scenario connecting the two Pacific partners.'],
+  [6, 'India–Germany transport and trade links', 'A sample trade corridor discussion across the European and South Asian regions.'],
+  [7, 'France–Brazil climate dialogue', 'An illustrative diplomatic exchange on climate cooperation across the Atlantic.'],
+];
+export const DEMO_EVENTS: readonly NewsEvent[] = [
+  ...BASE_EVENTS,
+  ...EXTRA_SCENARIOS.map(([base, title, description], index) => ({
+    ...BASE_EVENTS[base], id: `demo-scenario-${index + 9}`, title, description,
+    publishedAt: ago(20 + index), demo: true,
+  })),
 ];
