@@ -64,3 +64,15 @@ Generated geometries, country-mask textures and scene resources are disposed whe
 - Country flag images: [FlagCDN](https://flagcdn.com/), locally cached.
 
 The provided mockup is a design reference, not a background image. The globe remains a real, interactive 3D scene.
+
+## Phase 3: Country Explorer
+
+The header switches between News and Country Explorer without remounting the WebGL canvas. Country selection is tested against the complete Natural Earth territory surface, including islands, holes and the date line. Hover outlines and names are independent of event participation. Pointer movement beyond six pixels is treated as rotation, not selection. Country selection uses geographic focus coordinates and preserves the large globe framing; arcs never cause zooming out.
+
+The generated `src/data/country-catalogue.json` maps all 241 map features to 240 countries/territories. Standard entries use ISO alpha-3 keys; map-only entities without ISO identifiers have explicit `MAP_` keys. Search uses English names, aliases and ISO codes. Regenerate with `node scripts/prepare-countries.mjs`. Metadata derives from [world-countries / mledoze countries](https://github.com/mledoze/countries), licensed under [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/); the derived catalogue retains that license. Boundary data remains Natural Earth public-domain data.
+
+`src/lib/relationships.ts` derives a relationship index from local event evidence. Identity includes ordered endpoints, category and direction; bilateral links canonicalize endpoint order. Events can support multiple relationships and each relationship retains multiple event IDs. Country statistics and related events are derived from this index and the same event catalogue. Nothing infers geopolitical relationships from missing data.
+
+Country graphs show at most six relationships, ordered by evidence count, then event recency. Category filters apply before the cap; the full filtered list remains accessible and selecting a hidden item pins it into the visible six. An active relationship dims the other arcs and narrows evidence in the left panel. Selecting evidence opens the existing event overlay. Countries without recorded scenarios have an explicit empty state. Mode switches clear incompatible selections while retaining the camera and News category filter.
+
+Verification includes 33 tests covering catalogue coverage, whole-territory picking, island polygons, aliases, relationship aggregation/direction, graph caps, drag rejection and large country camera framing, alongside existing News and globe tests.

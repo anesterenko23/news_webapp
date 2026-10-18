@@ -7,12 +7,15 @@ import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { mesh } from 'topojson-client';
 import countries from 'world-atlas/countries-50m.json';
 import type { Topology, GeometryCollection } from 'topojson-specification';
+import type { CameraFocus, GlobeSelection } from '../data/explorer';
+import type { CountryRelationship } from '../lib/relationships';
+import { CountryInteraction } from './CountryInteraction';
 import type { NewsEvent } from '../data/types';
-import { latLngToVector, eventCameraPosition, sphereFitDistance } from '../lib/geo';
+import { latLngToVector, eventCameraPosition, sphereFitDistance, cameraFocusPosition } from '../lib/geo';
 import { CountryHighlight } from './CountryHighlight';
 import { RelationshipArcs } from './RelationshipArcs';
 import { CountryTooltip, type CountryTooltipHandle } from './CountryTooltip';
-import type { CountryHover } from '../lib/hover';
+import type { GlobeHover } from '../lib/hover';
 export { latLngToVector } from '../lib/geo';
 
 export interface GlobeHandle { zoom: (factor: number) => void; reset: () => void; focus: (event: NewsEvent) => void }
@@ -92,7 +95,7 @@ function Earth({ onReady }: { onReady: () => void }) {
   useEffect(onReady, [onReady]);
   return <group><mesh><sphereGeometry args={[1, 128, 96]}/><shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/></mesh><Linework/><mesh scale={1.012}><sphereGeometry args={[1, 96, 64]}/><shaderMaterial transparent depthWrite={false} side={THREE.BackSide} blending={THREE.AdditiveBlending} vertexShader={`varying vec3 n;varying vec3 p;void main(){n=normalize(normalMatrix*normal);vec4 v=modelViewMatrix*vec4(position,1.);p=v.xyz;gl_Position=projectionMatrix*v;}`} fragmentShader={`varying vec3 n;varying vec3 p;void main(){float rim=pow(max(0.,1.+dot(normalize(n),normalize(-p))),3.);gl_FragColor=vec4(pow(vec3(.18,.41,.78),vec3(2.2)),rim*.38);}`}/></mesh></group>;
 }
-function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; selected: NewsEvent | null }) {
+function Controller({ api, focus, paused }: { api: React.ForwardedRef<GlobeHandle>; focus: CameraFocus | null; paused: boolean }) {
   const controls = useRef<OrbitControlsImpl>(null);
   const { camera, gl, size } = useThree();
   const lastInteraction = useRef(performance.now());
@@ -106,9 +109,9 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
     const perspective = camera as THREE.PerspectiveCamera;
     perspective.fov = 46;
     perspective.updateProjectionMatrix();
-    const fit = selected ? eventCameraPosition(selected, perspective.fov, size.width / size.height).length() : sphereFitDistance(perspective.fov, size.width / size.height);
+    const fit = focus ? cameraFocusPosition(focus, perspective.fov, size.width / size.height).length() : sphereFitDistance(perspective.fov, size.width / size.height);
     const previous = previousLayout.current;
-    const changedEvent = previous?.id !== selected?.id;
+    const changedEvent = previous?.id !== focus?.key;
     const resized = !previous || previous.width !== size.width || previous.height !== size.height;
     if (resized) {
       // Resize in the measured canvas coordinate system, preserving manual zoom.
@@ -119,12 +122,12 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
     }
     fitDistance.current = fit;
     if (changedEvent) {
-      resetTarget.current = selected ? eventCameraPosition(selected, perspective.fov, size.width / size.height) : camera.position.clone().normalize().multiplyScalar(fit);
-      targetDistance.current = fit;
+      resetTarget.current = focus ? cameraFocusPosition(focus, perspective.fov, size.width / size.height) : null;
+      targetDistance.current = focus ? fit : camera.position.length();
     }
-    previousLayout.current = { id: selected?.id, width: size.width, height: size.height };
+    previousLayout.current = { id: focus?.key, width: size.width, height: size.height };
     lastInteraction.current = performance.now();
-  }, [selected, camera, size.width, size.height]);
+  }, [focus, camera, size.width, size.height]);
   const zoom = useCallback((factor: number) => {
     if (resetTarget.current) targetDistance.current = camera.position.length();
     resetTarget.current = null;
@@ -150,7 +153,7 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
       if (camera.position.distanceTo(target) < .001) resetTarget.current = null;
     } else if (!active.current) camera.position.setLength(THREE.MathUtils.damp(camera.position.length(), targetDistance.current, 7, Math.min(delta, .05)));
     const elapsed = (performance.now() - lastInteraction.current) / 1000;
-    control.autoRotate = !selected && !active.current && elapsed > 3 && !resetTarget.current && !reducedMotion;
+    control.autoRotate = !paused && !active.current && elapsed > 3 && !resetTarget.current && !reducedMotion;
     control.autoRotateSpeed = Math.min(.18, Math.max(0, (elapsed - 3) * .045));
   });
   useEffect(() => {
@@ -160,8 +163,26 @@ function Controller({ api, selected }: { api: React.ForwardedRef<GlobeHandle>; s
   }, [gl, zoom]);
   return <OrbitControls ref={controls} enablePan={false} enableZoom={false} enableDamping dampingFactor={.065} rotateSpeed={.45} minDistance={MIN_DISTANCE} maxDistance={80} onStart={() => { active.current = true; resetTarget.current = null; }} onEnd={() => { active.current = false; lastInteraction.current = performance.now(); targetDistance.current = camera.position.length(); }}/>;
 }
-export const GlobeScene = memo(forwardRef<GlobeHandle, { onReady: () => void; selected: NewsEvent | null }>(function GlobeScene({ onReady, selected }, ref) {
+interface GlobeSceneProps {
+  onReady: () => void;
+  selected: NewsEvent | null;
+  selection: GlobeSelection | null;
+  focus: CameraFocus | null;
+  explorer: boolean;
+  paused: boolean;
+  relationships: readonly CountryRelationship[];
+  selectedRelationshipId: string | null;
+  onCountrySelect: (code: string) => void;
+  onRelationshipSelect: (id: string) => void;
+}
+export const GlobeScene = memo(forwardRef<GlobeHandle, GlobeSceneProps>(function GlobeScene({ onReady, selected, selection, focus, explorer, paused, relationships, selectedRelationshipId, onCountrySelect, onRelationshipSelect }, ref) {
   const tooltip = useRef<CountryTooltipHandle>(null);
-  const onHover = useCallback((hover: CountryHover | null) => tooltip.current?.show(hover), []);
-  return <div className="globe-canvas"><Canvas camera={CAMERA_OPTIONS} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}><Earth onReady={onReady}/>{selected && <><CountryHighlight event={selected} onHover={onHover}/><RelationshipArcs relationships={selected.relationships}/></>}<Controller api={ref} selected={selected}/><EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer></Canvas><CountryTooltip ref={tooltip} event={selected}/></div>;
+  const onHover = useCallback((hover: GlobeHover | null) => tooltip.current?.show(hover), []);
+  return <div className="globe-canvas"><Canvas camera={CAMERA_OPTIONS} dpr={[1, 1.75]} gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }} fallback={<div className="scene-message">WebGL is required to explore the globe.</div>}>
+    <Earth onReady={onReady}/>
+    {selection && <><CountryHighlight event={selection} onHover={onHover}/><RelationshipArcs relationships={selection.relationships} selectedId={selectedRelationshipId} onSelect={explorer ? onRelationshipSelect : undefined} onHover={onHover}/></>}
+    {explorer && <CountryInteraction onSelect={onCountrySelect} onHover={onHover}/>}
+    <Controller api={ref} focus={focus} paused={paused}/>
+    <EffectComposer multisampling={0}><Bloom luminanceThreshold={.8} luminanceSmoothing={.25} intensity={.70} mipmapBlur radius={.55}/></EffectComposer>
+  </Canvas><CountryTooltip ref={tooltip} event={selected} explorer={explorer} relationships={relationships}/></div>;
 }));

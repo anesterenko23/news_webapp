@@ -1,0 +1,6571 @@
+{
+  "ZWE": {
+    "id": "716",
+    "mapName": "Zimbabwe",
+    "mapNames": [
+      "Zimbabwe"
+    ],
+    "alpha2": "ZW",
+    "alpha3": "ZWE",
+    "name": "Zimbabwe",
+    "region": "Africa",
+    "flag": "zw",
+    "coordinates": {
+      "lat": -20,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": -20,
+      "lng": 30
+    },
+    "aliases": [
+      "ZW",
+      "Republic of Zimbabwe",
+      "ZWE",
+      "Zimbabwe"
+    ]
+  },
+  "ZMB": {
+    "id": "894",
+    "mapName": "Zambia",
+    "mapNames": [
+      "Zambia"
+    ],
+    "alpha2": "ZM",
+    "alpha3": "ZMB",
+    "name": "Zambia",
+    "region": "Africa",
+    "flag": "zm",
+    "coordinates": {
+      "lat": -15,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": -15,
+      "lng": 30
+    },
+    "aliases": [
+      "ZM",
+      "Republic of Zambia",
+      "ZMB",
+      "Zambia"
+    ]
+  },
+  "YEM": {
+    "id": "887",
+    "mapName": "Yemen",
+    "mapNames": [
+      "Yemen"
+    ],
+    "alpha2": "YE",
+    "alpha3": "YEM",
+    "name": "Yemen",
+    "region": "Asia",
+    "flag": "ye",
+    "coordinates": {
+      "lat": 15,
+      "lng": 48
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": 48
+    },
+    "aliases": [
+      "YE",
+      "Yemeni Republic",
+      "al-Jumhūriyyah al-Yamaniyyah",
+      "Republic of Yemen",
+      "YEM",
+      "Yemen"
+    ]
+  },
+  "VNM": {
+    "id": "704",
+    "mapName": "Vietnam",
+    "mapNames": [
+      "Vietnam"
+    ],
+    "alpha2": "VN",
+    "alpha3": "VNM",
+    "name": "Vietnam",
+    "region": "Asia",
+    "flag": "vn",
+    "coordinates": {
+      "lat": 16.16666666,
+      "lng": 107.83333333
+    },
+    "focusCoordinates": {
+      "lat": 16.16666666,
+      "lng": 107.83333333
+    },
+    "aliases": [
+      "VN",
+      "Socialist Republic of Vietnam",
+      "Cộng hòa Xã hội chủ nghĩa Việt Nam",
+      "Viet Nam",
+      "VNM",
+      "Vietnam"
+    ]
+  },
+  "VEN": {
+    "id": "862",
+    "mapName": "Venezuela",
+    "mapNames": [
+      "Venezuela"
+    ],
+    "alpha2": "VE",
+    "alpha3": "VEN",
+    "name": "Venezuela",
+    "region": "Americas",
+    "flag": "ve",
+    "coordinates": {
+      "lat": 8,
+      "lng": -66
+    },
+    "focusCoordinates": {
+      "lat": 8,
+      "lng": -66
+    },
+    "aliases": [
+      "VE",
+      "Bolivarian Republic of Venezuela",
+      "Venezuela, Bolivarian Republic of",
+      "República Bolivariana de Venezuela",
+      "VEN",
+      "Venezuela"
+    ]
+  },
+  "VAT": {
+    "id": "336",
+    "mapName": "Vatican",
+    "mapNames": [
+      "Vatican"
+    ],
+    "alpha2": "VA",
+    "alpha3": "VAT",
+    "name": "Vatican City",
+    "region": "Europe",
+    "flag": "va",
+    "coordinates": {
+      "lat": 41.9,
+      "lng": 12.45
+    },
+    "focusCoordinates": {
+      "lat": 41.9,
+      "lng": 12.45
+    },
+    "aliases": [
+      "VA",
+      "Holy See (Vatican City State)",
+      "Vatican City State",
+      "Vatican",
+      "Stato della Città del Vaticano",
+      "Vatican City",
+      "VAT"
+    ]
+  },
+  "VUT": {
+    "id": "548",
+    "mapName": "Vanuatu",
+    "mapNames": [
+      "Vanuatu"
+    ],
+    "alpha2": "VU",
+    "alpha3": "VUT",
+    "name": "Vanuatu",
+    "region": "Oceania",
+    "flag": "vu",
+    "coordinates": {
+      "lat": -16,
+      "lng": 167
+    },
+    "focusCoordinates": {
+      "lat": -16,
+      "lng": 167
+    },
+    "aliases": [
+      "VU",
+      "Republic of Vanuatu",
+      "Ripablik blong Vanuatu",
+      "République de Vanuatu",
+      "VUT",
+      "Vanuatu"
+    ]
+  },
+  "UZB": {
+    "id": "860",
+    "mapName": "Uzbekistan",
+    "mapNames": [
+      "Uzbekistan"
+    ],
+    "alpha2": "UZ",
+    "alpha3": "UZB",
+    "name": "Uzbekistan",
+    "region": "Asia",
+    "flag": "uz",
+    "coordinates": {
+      "lat": 41,
+      "lng": 64
+    },
+    "focusCoordinates": {
+      "lat": 41,
+      "lng": 64
+    },
+    "aliases": [
+      "UZ",
+      "Republic of Uzbekistan",
+      "O‘zbekiston Respublikasi",
+      "Ўзбекистон Республикаси",
+      "UZB",
+      "Uzbekistan"
+    ]
+  },
+  "URY": {
+    "id": "858",
+    "mapName": "Uruguay",
+    "mapNames": [
+      "Uruguay"
+    ],
+    "alpha2": "UY",
+    "alpha3": "URY",
+    "name": "Uruguay",
+    "region": "Americas",
+    "flag": "uy",
+    "coordinates": {
+      "lat": -33,
+      "lng": -56
+    },
+    "focusCoordinates": {
+      "lat": -33,
+      "lng": -56
+    },
+    "aliases": [
+      "UY",
+      "Oriental Republic of Uruguay",
+      "República Oriental del Uruguay",
+      "URY",
+      "Uruguay"
+    ]
+  },
+  "FSM": {
+    "id": "583",
+    "mapName": "Micronesia",
+    "mapNames": [
+      "Micronesia"
+    ],
+    "alpha2": "FM",
+    "alpha3": "FSM",
+    "name": "Micronesia",
+    "region": "Oceania",
+    "flag": "fm",
+    "coordinates": {
+      "lat": 6.91666666,
+      "lng": 158.25
+    },
+    "focusCoordinates": {
+      "lat": 6.91666666,
+      "lng": 158.25
+    },
+    "aliases": [
+      "FM",
+      "Federated States of Micronesia",
+      "Micronesia, Federated States of",
+      "FSM",
+      "Micronesia"
+    ]
+  },
+  "MHL": {
+    "id": "584",
+    "mapName": "Marshall Is.",
+    "mapNames": [
+      "Marshall Is."
+    ],
+    "alpha2": "MH",
+    "alpha3": "MHL",
+    "name": "Marshall Islands",
+    "region": "Oceania",
+    "flag": "mh",
+    "coordinates": {
+      "lat": 9,
+      "lng": 168
+    },
+    "focusCoordinates": {
+      "lat": 9,
+      "lng": 168
+    },
+    "aliases": [
+      "MH",
+      "Republic of the Marshall Islands",
+      "Aolepān Aorōkin M̧ajeļ",
+      "MHL",
+      "Marshall Is."
+    ]
+  },
+  "MNP": {
+    "id": "580",
+    "mapName": "N. Mariana Is.",
+    "mapNames": [
+      "N. Mariana Is."
+    ],
+    "alpha2": "MP",
+    "alpha3": "MNP",
+    "name": "Northern Mariana Islands",
+    "region": "Oceania",
+    "flag": "mp",
+    "coordinates": {
+      "lat": 15.2,
+      "lng": 145.75
+    },
+    "focusCoordinates": {
+      "lat": 15.2,
+      "lng": 145.75
+    },
+    "aliases": [
+      "MP",
+      "Commonwealth of the Northern Mariana Islands",
+      "Sankattan Siha Na Islas Mariånas",
+      "MNP",
+      "N. Mariana Is."
+    ]
+  },
+  "VIR": {
+    "id": "850",
+    "mapName": "U.S. Virgin Is.",
+    "mapNames": [
+      "U.S. Virgin Is."
+    ],
+    "alpha2": "VI",
+    "alpha3": "VIR",
+    "name": "United States Virgin Islands",
+    "region": "Americas",
+    "flag": "vi",
+    "coordinates": {
+      "lat": 18.35,
+      "lng": -64.933333
+    },
+    "focusCoordinates": {
+      "lat": 18.35,
+      "lng": -64.933333
+    },
+    "aliases": [
+      "VI",
+      "Virgin Islands, U.S.",
+      "Virgin Islands of the United States",
+      "VIR",
+      "U.S. Virgin Is."
+    ]
+  },
+  "GUM": {
+    "id": "316",
+    "mapName": "Guam",
+    "mapNames": [
+      "Guam"
+    ],
+    "alpha2": "GU",
+    "alpha3": "GUM",
+    "name": "Guam",
+    "region": "Oceania",
+    "flag": "gu",
+    "coordinates": {
+      "lat": 13.46666666,
+      "lng": 144.78333333
+    },
+    "focusCoordinates": {
+      "lat": 13.46666666,
+      "lng": 144.78333333
+    },
+    "aliases": [
+      "GU",
+      "Guåhån",
+      "Guam",
+      "GUM"
+    ]
+  },
+  "ASM": {
+    "id": "016",
+    "mapName": "American Samoa",
+    "mapNames": [
+      "American Samoa"
+    ],
+    "alpha2": "AS",
+    "alpha3": "ASM",
+    "name": "American Samoa",
+    "region": "Oceania",
+    "flag": "as",
+    "coordinates": {
+      "lat": -14.33333333,
+      "lng": -170
+    },
+    "focusCoordinates": {
+      "lat": -14.33333333,
+      "lng": -170
+    },
+    "aliases": [
+      "AS",
+      "Amerika Sāmoa",
+      "Amelika Sāmoa",
+      "Sāmoa Amelika",
+      "American Samoa",
+      "ASM"
+    ]
+  },
+  "PRI": {
+    "id": "630",
+    "mapName": "Puerto Rico",
+    "mapNames": [
+      "Puerto Rico"
+    ],
+    "alpha2": "PR",
+    "alpha3": "PRI",
+    "name": "Puerto Rico",
+    "region": "Americas",
+    "flag": "pr",
+    "coordinates": {
+      "lat": 18.25,
+      "lng": -66.5
+    },
+    "focusCoordinates": {
+      "lat": 18.25,
+      "lng": -66.5
+    },
+    "aliases": [
+      "PR",
+      "Commonwealth of Puerto Rico",
+      "Estado Libre Asociado de Puerto Rico",
+      "PRI",
+      "Puerto Rico"
+    ]
+  },
+  "USA": {
+    "id": "840",
+    "mapName": "United States of America",
+    "mapNames": [
+      "United States of America"
+    ],
+    "alpha2": "US",
+    "alpha3": "USA",
+    "name": "United States",
+    "region": "Americas",
+    "flag": "us",
+    "coordinates": {
+      "lat": 38,
+      "lng": -97
+    },
+    "focusCoordinates": {
+      "lat": 38,
+      "lng": -97
+    },
+    "aliases": [
+      "US",
+      "USA",
+      "United States of America",
+      "America"
+    ]
+  },
+  "SGS": {
+    "id": "239",
+    "mapName": "S. Geo. and the Is.",
+    "mapNames": [
+      "S. Geo. and the Is."
+    ],
+    "alpha2": "GS",
+    "alpha3": "SGS",
+    "name": "South Georgia",
+    "region": "Antarctic",
+    "flag": "gs",
+    "coordinates": {
+      "lat": -54.5,
+      "lng": -37
+    },
+    "focusCoordinates": {
+      "lat": -54.5,
+      "lng": -37
+    },
+    "aliases": [
+      "GS",
+      "South Georgia and the South Sandwich Islands",
+      "SGS",
+      "S. Geo. and the Is."
+    ]
+  },
+  "IOT": {
+    "id": "086",
+    "mapName": "Br. Indian Ocean Ter.",
+    "mapNames": [
+      "Br. Indian Ocean Ter."
+    ],
+    "alpha2": "IO",
+    "alpha3": "IOT",
+    "name": "British Indian Ocean Territory",
+    "region": "Africa",
+    "flag": "io",
+    "coordinates": {
+      "lat": -6,
+      "lng": 71.5
+    },
+    "focusCoordinates": {
+      "lat": -6,
+      "lng": 71.5
+    },
+    "aliases": [
+      "IO",
+      "British Indian Ocean Territory",
+      "IOT",
+      "Br. Indian Ocean Ter."
+    ]
+  },
+  "SHN": {
+    "id": "654",
+    "mapName": "Saint Helena",
+    "mapNames": [
+      "Saint Helena"
+    ],
+    "alpha2": "SH",
+    "alpha3": "SHN",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "region": "Africa",
+    "flag": "sh",
+    "coordinates": {
+      "lat": -15.95,
+      "lng": -5.72
+    },
+    "focusCoordinates": {
+      "lat": -15.95,
+      "lng": -5.72
+    },
+    "aliases": [
+      "Saint Helena",
+      "St. Helena, Ascension and Tristan da Cunha",
+      "Saint Helena, Ascension and Tristan da Cunha",
+      "SH",
+      "SHN"
+    ]
+  },
+  "PCN": {
+    "id": "612",
+    "mapName": "Pitcairn Is.",
+    "mapNames": [
+      "Pitcairn Is."
+    ],
+    "alpha2": "PN",
+    "alpha3": "PCN",
+    "name": "Pitcairn Islands",
+    "region": "Oceania",
+    "flag": "pn",
+    "coordinates": {
+      "lat": -25.06666666,
+      "lng": -130.1
+    },
+    "focusCoordinates": {
+      "lat": -25.06666666,
+      "lng": -130.1
+    },
+    "aliases": [
+      "PN",
+      "Pitcairn",
+      "Pitcairn Henderson Ducie and Oeno Islands",
+      "Pitcairn Group of Islands",
+      "PCN",
+      "Pitcairn Is."
+    ]
+  },
+  "AIA": {
+    "id": "660",
+    "mapName": "Anguilla",
+    "mapNames": [
+      "Anguilla"
+    ],
+    "alpha2": "AI",
+    "alpha3": "AIA",
+    "name": "Anguilla",
+    "region": "Americas",
+    "flag": "ai",
+    "coordinates": {
+      "lat": 18.25,
+      "lng": -63.16666666
+    },
+    "focusCoordinates": {
+      "lat": 18.25,
+      "lng": -63.16666666
+    },
+    "aliases": [
+      "AI",
+      "Anguilla",
+      "AIA"
+    ]
+  },
+  "FLK": {
+    "id": "238",
+    "mapName": "Falkland Is.",
+    "mapNames": [
+      "Falkland Is."
+    ],
+    "alpha2": "FK",
+    "alpha3": "FLK",
+    "name": "Falkland Islands",
+    "region": "Americas",
+    "flag": "fk",
+    "coordinates": {
+      "lat": -51.75,
+      "lng": -59
+    },
+    "focusCoordinates": {
+      "lat": -51.75,
+      "lng": -59
+    },
+    "aliases": [
+      "FK",
+      "Islas Malvinas",
+      "Falkland Islands (Malvinas)",
+      "Falkland Islands",
+      "FLK",
+      "Falkland Is."
+    ]
+  },
+  "CYM": {
+    "id": "136",
+    "mapName": "Cayman Is.",
+    "mapNames": [
+      "Cayman Is."
+    ],
+    "alpha2": "KY",
+    "alpha3": "CYM",
+    "name": "Cayman Islands",
+    "region": "Americas",
+    "flag": "ky",
+    "coordinates": {
+      "lat": 19.5,
+      "lng": -80.5
+    },
+    "focusCoordinates": {
+      "lat": 19.5,
+      "lng": -80.5
+    },
+    "aliases": [
+      "KY",
+      "Cayman Islands",
+      "CYM",
+      "Cayman Is."
+    ]
+  },
+  "BMU": {
+    "id": "060",
+    "mapName": "Bermuda",
+    "mapNames": [
+      "Bermuda"
+    ],
+    "alpha2": "BM",
+    "alpha3": "BMU",
+    "name": "Bermuda",
+    "region": "Americas",
+    "flag": "bm",
+    "coordinates": {
+      "lat": 32.33333333,
+      "lng": -64.75
+    },
+    "focusCoordinates": {
+      "lat": 32.33333333,
+      "lng": -64.75
+    },
+    "aliases": [
+      "BM",
+      "The Islands of Bermuda",
+      "The Bermudas",
+      "Somers Isles",
+      "Bermuda",
+      "BMU"
+    ]
+  },
+  "VGB": {
+    "id": "092",
+    "mapName": "British Virgin Is.",
+    "mapNames": [
+      "British Virgin Is."
+    ],
+    "alpha2": "VG",
+    "alpha3": "VGB",
+    "name": "British Virgin Islands",
+    "region": "Americas",
+    "flag": "vg",
+    "coordinates": {
+      "lat": 18.431383,
+      "lng": -64.62305
+    },
+    "focusCoordinates": {
+      "lat": 18.431383,
+      "lng": -64.62305
+    },
+    "aliases": [
+      "VG",
+      "Virgin Islands, British",
+      "Virgin Islands",
+      "VGB",
+      "British Virgin Is."
+    ]
+  },
+  "TCA": {
+    "id": "796",
+    "mapName": "Turks and Caicos Is.",
+    "mapNames": [
+      "Turks and Caicos Is."
+    ],
+    "alpha2": "TC",
+    "alpha3": "TCA",
+    "name": "Turks and Caicos Islands",
+    "region": "Americas",
+    "flag": "tc",
+    "coordinates": {
+      "lat": 21.75,
+      "lng": -71.58333333
+    },
+    "focusCoordinates": {
+      "lat": 21.75,
+      "lng": -71.58333333
+    },
+    "aliases": [
+      "TC",
+      "Turks and Caicos Islands",
+      "TCA",
+      "Turks and Caicos Is."
+    ]
+  },
+  "MSR": {
+    "id": "500",
+    "mapName": "Montserrat",
+    "mapNames": [
+      "Montserrat"
+    ],
+    "alpha2": "MS",
+    "alpha3": "MSR",
+    "name": "Montserrat",
+    "region": "Americas",
+    "flag": "ms",
+    "coordinates": {
+      "lat": 16.75,
+      "lng": -62.2
+    },
+    "focusCoordinates": {
+      "lat": 16.75,
+      "lng": -62.2
+    },
+    "aliases": [
+      "MS",
+      "Montserrat",
+      "MSR"
+    ]
+  },
+  "JEY": {
+    "id": "832",
+    "mapName": "Jersey",
+    "mapNames": [
+      "Jersey"
+    ],
+    "alpha2": "JE",
+    "alpha3": "JEY",
+    "name": "Jersey",
+    "region": "Europe",
+    "flag": "je",
+    "coordinates": {
+      "lat": 49.25,
+      "lng": -2.16666666
+    },
+    "focusCoordinates": {
+      "lat": 49.25,
+      "lng": -2.16666666
+    },
+    "aliases": [
+      "JE",
+      "Bailiwick of Jersey",
+      "Bailliage de Jersey",
+      "Bailliage dé Jèrri",
+      "JEY",
+      "Jersey"
+    ]
+  },
+  "GGY": {
+    "id": "831",
+    "mapName": "Guernsey",
+    "mapNames": [
+      "Guernsey"
+    ],
+    "alpha2": "GG",
+    "alpha3": "GGY",
+    "name": "Guernsey",
+    "region": "Europe",
+    "flag": "gg",
+    "coordinates": {
+      "lat": 49.46666666,
+      "lng": -2.58333333
+    },
+    "focusCoordinates": {
+      "lat": 49.46666666,
+      "lng": -2.58333333
+    },
+    "aliases": [
+      "GG",
+      "Bailiwick of Guernsey",
+      "Bailliage de Guernesey",
+      "GGY",
+      "Guernsey"
+    ]
+  },
+  "IMN": {
+    "id": "833",
+    "mapName": "Isle of Man",
+    "mapNames": [
+      "Isle of Man"
+    ],
+    "alpha2": "IM",
+    "alpha3": "IMN",
+    "name": "Isle of Man",
+    "region": "Europe",
+    "flag": "im",
+    "coordinates": {
+      "lat": 54.25,
+      "lng": -4.5
+    },
+    "focusCoordinates": {
+      "lat": 54.25,
+      "lng": -4.5
+    },
+    "aliases": [
+      "IM",
+      "Ellan Vannin",
+      "Mann",
+      "Mannin",
+      "Isle of Man",
+      "IMN"
+    ]
+  },
+  "GBR": {
+    "id": "826",
+    "mapName": "United Kingdom",
+    "mapNames": [
+      "United Kingdom"
+    ],
+    "alpha2": "GB",
+    "alpha3": "GBR",
+    "name": "United Kingdom",
+    "region": "Europe",
+    "flag": "gb",
+    "coordinates": {
+      "lat": 54,
+      "lng": -2
+    },
+    "focusCoordinates": {
+      "lat": 54,
+      "lng": -2
+    },
+    "aliases": [
+      "GB",
+      "UK",
+      "Great Britain",
+      "Britain",
+      "United Kingdom",
+      "United Kingdom of Great Britain and Northern Ireland",
+      "GBR"
+    ]
+  },
+  "ARE": {
+    "id": "784",
+    "mapName": "United Arab Emirates",
+    "mapNames": [
+      "United Arab Emirates"
+    ],
+    "alpha2": "AE",
+    "alpha3": "ARE",
+    "name": "United Arab Emirates",
+    "region": "Asia",
+    "flag": "ae",
+    "coordinates": {
+      "lat": 24,
+      "lng": 54
+    },
+    "focusCoordinates": {
+      "lat": 24,
+      "lng": 54
+    },
+    "aliases": [
+      "AE",
+      "UAE",
+      "Emirates",
+      "United Arab Emirates",
+      "ARE"
+    ]
+  },
+  "UKR": {
+    "id": "804",
+    "mapName": "Ukraine",
+    "mapNames": [
+      "Ukraine"
+    ],
+    "alpha2": "UA",
+    "alpha3": "UKR",
+    "name": "Ukraine",
+    "region": "Europe",
+    "flag": "ua",
+    "coordinates": {
+      "lat": 49,
+      "lng": 32
+    },
+    "focusCoordinates": {
+      "lat": 49,
+      "lng": 32
+    },
+    "aliases": [
+      "UA",
+      "Ukrayina",
+      "Ukraine",
+      "UKR"
+    ]
+  },
+  "UGA": {
+    "id": "800",
+    "mapName": "Uganda",
+    "mapNames": [
+      "Uganda"
+    ],
+    "alpha2": "UG",
+    "alpha3": "UGA",
+    "name": "Uganda",
+    "region": "Africa",
+    "flag": "ug",
+    "coordinates": {
+      "lat": 1,
+      "lng": 32
+    },
+    "focusCoordinates": {
+      "lat": 1,
+      "lng": 32
+    },
+    "aliases": [
+      "UG",
+      "Republic of Uganda",
+      "Jamhuri ya Uganda",
+      "UGA",
+      "Uganda"
+    ]
+  },
+  "TKM": {
+    "id": "795",
+    "mapName": "Turkmenistan",
+    "mapNames": [
+      "Turkmenistan"
+    ],
+    "alpha2": "TM",
+    "alpha3": "TKM",
+    "name": "Turkmenistan",
+    "region": "Asia",
+    "flag": "tm",
+    "coordinates": {
+      "lat": 40,
+      "lng": 60
+    },
+    "focusCoordinates": {
+      "lat": 40,
+      "lng": 60
+    },
+    "aliases": [
+      "TM",
+      "Turkmenistan",
+      "TKM"
+    ]
+  },
+  "TUR": {
+    "id": "792",
+    "mapName": "Turkey",
+    "mapNames": [
+      "Turkey"
+    ],
+    "alpha2": "TR",
+    "alpha3": "TUR",
+    "name": "Türkiye",
+    "region": "Asia",
+    "flag": "tr",
+    "coordinates": {
+      "lat": 39,
+      "lng": 35
+    },
+    "focusCoordinates": {
+      "lat": 39,
+      "lng": 35
+    },
+    "aliases": [
+      "TR",
+      "Turkiye",
+      "Republic of Turkey",
+      "Türkiye Cumhuriyeti",
+      "Republic of Türkiye",
+      "TUR",
+      "Turkey"
+    ]
+  },
+  "TUN": {
+    "id": "788",
+    "mapName": "Tunisia",
+    "mapNames": [
+      "Tunisia"
+    ],
+    "alpha2": "TN",
+    "alpha3": "TUN",
+    "name": "Tunisia",
+    "region": "Africa",
+    "flag": "tn",
+    "coordinates": {
+      "lat": 34,
+      "lng": 9
+    },
+    "focusCoordinates": {
+      "lat": 34,
+      "lng": 9
+    },
+    "aliases": [
+      "TN",
+      "Republic of Tunisia",
+      "al-Jumhūriyyah at-Tūnisiyyah",
+      "Tunisian Republic",
+      "TUN",
+      "Tunisia"
+    ]
+  },
+  "TTO": {
+    "id": "780",
+    "mapName": "Trinidad and Tobago",
+    "mapNames": [
+      "Trinidad and Tobago"
+    ],
+    "alpha2": "TT",
+    "alpha3": "TTO",
+    "name": "Trinidad and Tobago",
+    "region": "Americas",
+    "flag": "tt",
+    "coordinates": {
+      "lat": 11,
+      "lng": -61
+    },
+    "focusCoordinates": {
+      "lat": 11,
+      "lng": -61
+    },
+    "aliases": [
+      "TT",
+      "Republic of Trinidad and Tobago",
+      "TTO",
+      "Trinidad and Tobago"
+    ]
+  },
+  "TON": {
+    "id": "776",
+    "mapName": "Tonga",
+    "mapNames": [
+      "Tonga"
+    ],
+    "alpha2": "TO",
+    "alpha3": "TON",
+    "name": "Tonga",
+    "region": "Oceania",
+    "flag": "to",
+    "coordinates": {
+      "lat": -20,
+      "lng": -175
+    },
+    "focusCoordinates": {
+      "lat": -20,
+      "lng": -175
+    },
+    "aliases": [
+      "TO",
+      "Kingdom of Tonga",
+      "TON",
+      "Tonga"
+    ]
+  },
+  "TGO": {
+    "id": "768",
+    "mapName": "Togo",
+    "mapNames": [
+      "Togo"
+    ],
+    "alpha2": "TG",
+    "alpha3": "TGO",
+    "name": "Togo",
+    "region": "Africa",
+    "flag": "tg",
+    "coordinates": {
+      "lat": 8,
+      "lng": 1.16666666
+    },
+    "focusCoordinates": {
+      "lat": 8,
+      "lng": 1.16666666
+    },
+    "aliases": [
+      "TG",
+      "Togolese",
+      "Togolese Republic",
+      "République Togolaise",
+      "TGO",
+      "Togo"
+    ]
+  },
+  "TLS": {
+    "id": "626",
+    "mapName": "Timor-Leste",
+    "mapNames": [
+      "Timor-Leste"
+    ],
+    "alpha2": "TL",
+    "alpha3": "TLS",
+    "name": "Timor-Leste",
+    "region": "Asia",
+    "flag": "tl",
+    "coordinates": {
+      "lat": -8.83333333,
+      "lng": 125.91666666
+    },
+    "focusCoordinates": {
+      "lat": -8.83333333,
+      "lng": 125.91666666
+    },
+    "aliases": [
+      "TL",
+      "East Timor",
+      "Timor",
+      "Democratic Republic of Timor-Leste",
+      "República Democrática de Timor-Leste",
+      "Repúblika Demokrátika Timór-Leste",
+      "Timór Lorosa'e",
+      "Timor Lorosae",
+      "TLS",
+      "Timor-Leste"
+    ]
+  },
+  "THA": {
+    "id": "764",
+    "mapName": "Thailand",
+    "mapNames": [
+      "Thailand"
+    ],
+    "alpha2": "TH",
+    "alpha3": "THA",
+    "name": "Thailand",
+    "region": "Asia",
+    "flag": "th",
+    "coordinates": {
+      "lat": 15,
+      "lng": 100
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": 100
+    },
+    "aliases": [
+      "TH",
+      "Prathet",
+      "Thai",
+      "Kingdom of Thailand",
+      "ราชอาณาจักรไทย",
+      "Ratcha Anachak Thai",
+      "THA",
+      "Thailand"
+    ]
+  },
+  "TZA": {
+    "id": "834",
+    "mapName": "Tanzania",
+    "mapNames": [
+      "Tanzania"
+    ],
+    "alpha2": "TZ",
+    "alpha3": "TZA",
+    "name": "Tanzania",
+    "region": "Africa",
+    "flag": "tz",
+    "coordinates": {
+      "lat": -6,
+      "lng": 35
+    },
+    "focusCoordinates": {
+      "lat": -6,
+      "lng": 35
+    },
+    "aliases": [
+      "TZ",
+      "Tanzania, United Republic of",
+      "United Republic of Tanzania",
+      "Jamhuri ya Muungano wa Tanzania",
+      "TZA",
+      "Tanzania"
+    ]
+  },
+  "TJK": {
+    "id": "762",
+    "mapName": "Tajikistan",
+    "mapNames": [
+      "Tajikistan"
+    ],
+    "alpha2": "TJ",
+    "alpha3": "TJK",
+    "name": "Tajikistan",
+    "region": "Asia",
+    "flag": "tj",
+    "coordinates": {
+      "lat": 39,
+      "lng": 71
+    },
+    "focusCoordinates": {
+      "lat": 39,
+      "lng": 71
+    },
+    "aliases": [
+      "TJ",
+      "Toçikiston",
+      "Republic of Tajikistan",
+      "Ҷумҳурии Тоҷикистон",
+      "Çumhuriyi Toçikiston",
+      "TJK",
+      "Tajikistan"
+    ]
+  },
+  "TWN": {
+    "id": "158",
+    "mapName": "Taiwan",
+    "mapNames": [
+      "Taiwan"
+    ],
+    "alpha2": "TW",
+    "alpha3": "TWN",
+    "name": "Taiwan",
+    "region": "Asia",
+    "flag": "tw",
+    "coordinates": {
+      "lat": 23.5,
+      "lng": 121
+    },
+    "focusCoordinates": {
+      "lat": 23.5,
+      "lng": 121
+    },
+    "aliases": [
+      "TW",
+      "Táiwān",
+      "Republic of China",
+      "中華民國",
+      "Zhōnghuá Mínguó",
+      "Chinese Taipei",
+      "Republic of China (Taiwan)",
+      "TWN",
+      "Taiwan"
+    ]
+  },
+  "SYR": {
+    "id": "760",
+    "mapName": "Syria",
+    "mapNames": [
+      "Syria"
+    ],
+    "alpha2": "SY",
+    "alpha3": "SYR",
+    "name": "Syria",
+    "region": "Asia",
+    "flag": "sy",
+    "coordinates": {
+      "lat": 35,
+      "lng": 38
+    },
+    "focusCoordinates": {
+      "lat": 35,
+      "lng": 38
+    },
+    "aliases": [
+      "SY",
+      "Syrian Arab Republic",
+      "Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah",
+      "SYR",
+      "Syria"
+    ]
+  },
+  "CHE": {
+    "id": "756",
+    "mapName": "Switzerland",
+    "mapNames": [
+      "Switzerland"
+    ],
+    "alpha2": "CH",
+    "alpha3": "CHE",
+    "name": "Switzerland",
+    "region": "Europe",
+    "flag": "ch",
+    "coordinates": {
+      "lat": 47,
+      "lng": 8
+    },
+    "focusCoordinates": {
+      "lat": 47,
+      "lng": 8
+    },
+    "aliases": [
+      "CH",
+      "Swiss Confederation",
+      "Schweiz",
+      "Suisse",
+      "Svizzera",
+      "Svizra",
+      "CHE",
+      "Switzerland"
+    ]
+  },
+  "SWE": {
+    "id": "752",
+    "mapName": "Sweden",
+    "mapNames": [
+      "Sweden"
+    ],
+    "alpha2": "SE",
+    "alpha3": "SWE",
+    "name": "Sweden",
+    "region": "Europe",
+    "flag": "se",
+    "coordinates": {
+      "lat": 62,
+      "lng": 15
+    },
+    "focusCoordinates": {
+      "lat": 62,
+      "lng": 15
+    },
+    "aliases": [
+      "SE",
+      "Kingdom of Sweden",
+      "Konungariket Sverige",
+      "SWE",
+      "Sweden"
+    ]
+  },
+  "SWZ": {
+    "id": "748",
+    "mapName": "eSwatini",
+    "mapNames": [
+      "eSwatini"
+    ],
+    "alpha2": "SZ",
+    "alpha3": "SWZ",
+    "name": "Eswatini",
+    "region": "Africa",
+    "flag": "sz",
+    "coordinates": {
+      "lat": -26.5,
+      "lng": 31.5
+    },
+    "focusCoordinates": {
+      "lat": -26.5,
+      "lng": 31.5
+    },
+    "aliases": [
+      "SZ",
+      "Swaziland",
+      "weSwatini",
+      "Swatini",
+      "Ngwane",
+      "Kingdom of Eswatini",
+      "Umbuso weSwatini",
+      "SWZ",
+      "eSwatini"
+    ]
+  },
+  "SUR": {
+    "id": "740",
+    "mapName": "Suriname",
+    "mapNames": [
+      "Suriname"
+    ],
+    "alpha2": "SR",
+    "alpha3": "SUR",
+    "name": "Suriname",
+    "region": "Americas",
+    "flag": "sr",
+    "coordinates": {
+      "lat": 4,
+      "lng": -56
+    },
+    "focusCoordinates": {
+      "lat": 4,
+      "lng": -56
+    },
+    "aliases": [
+      "SR",
+      "Sarnam",
+      "Sranangron",
+      "Republic of Suriname",
+      "Republiek Suriname",
+      "SUR",
+      "Suriname"
+    ]
+  },
+  "SSD": {
+    "id": "728",
+    "mapName": "S. Sudan",
+    "mapNames": [
+      "S. Sudan"
+    ],
+    "alpha2": "SS",
+    "alpha3": "SSD",
+    "name": "South Sudan",
+    "region": "Africa",
+    "flag": "ss",
+    "coordinates": {
+      "lat": 7,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": 7,
+      "lng": 30
+    },
+    "aliases": [
+      "SS",
+      "Republic of South Sudan",
+      "SSD",
+      "S. Sudan"
+    ]
+  },
+  "SDN": {
+    "id": "729",
+    "mapName": "Sudan",
+    "mapNames": [
+      "Sudan"
+    ],
+    "alpha2": "SD",
+    "alpha3": "SDN",
+    "name": "Sudan",
+    "region": "Africa",
+    "flag": "sd",
+    "coordinates": {
+      "lat": 15,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": 30
+    },
+    "aliases": [
+      "SD",
+      "Republic of the Sudan",
+      "Jumhūrīyat as-Sūdān",
+      "SDN",
+      "Sudan"
+    ]
+  },
+  "LKA": {
+    "id": "144",
+    "mapName": "Sri Lanka",
+    "mapNames": [
+      "Sri Lanka"
+    ],
+    "alpha2": "LK",
+    "alpha3": "LKA",
+    "name": "Sri Lanka",
+    "region": "Asia",
+    "flag": "lk",
+    "coordinates": {
+      "lat": 7,
+      "lng": 81
+    },
+    "focusCoordinates": {
+      "lat": 7,
+      "lng": 81
+    },
+    "aliases": [
+      "LK",
+      "ilaṅkai",
+      "Democratic Socialist Republic of Sri Lanka",
+      "LKA",
+      "Sri Lanka"
+    ]
+  },
+  "ESP": {
+    "id": "724",
+    "mapName": "Spain",
+    "mapNames": [
+      "Spain"
+    ],
+    "alpha2": "ES",
+    "alpha3": "ESP",
+    "name": "Spain",
+    "region": "Europe",
+    "flag": "es",
+    "coordinates": {
+      "lat": 40,
+      "lng": -4
+    },
+    "focusCoordinates": {
+      "lat": 40,
+      "lng": -4
+    },
+    "aliases": [
+      "ES",
+      "Kingdom of Spain",
+      "Reino de España",
+      "ESP",
+      "Spain"
+    ]
+  },
+  "KOR": {
+    "id": "410",
+    "mapName": "South Korea",
+    "mapNames": [
+      "South Korea"
+    ],
+    "alpha2": "KR",
+    "alpha3": "KOR",
+    "name": "South Korea",
+    "region": "Asia",
+    "flag": "kr",
+    "coordinates": {
+      "lat": 37,
+      "lng": 127.5
+    },
+    "focusCoordinates": {
+      "lat": 37,
+      "lng": 127.5
+    },
+    "aliases": [
+      "KR",
+      "Korea, Republic of",
+      "Republic of Korea",
+      "남한",
+      "남조선",
+      "South Korea",
+      "KOR"
+    ]
+  },
+  "ZAF": {
+    "id": "710",
+    "mapName": "South Africa",
+    "mapNames": [
+      "South Africa"
+    ],
+    "alpha2": "ZA",
+    "alpha3": "ZAF",
+    "name": "South Africa",
+    "region": "Africa",
+    "flag": "za",
+    "coordinates": {
+      "lat": -29,
+      "lng": 24
+    },
+    "focusCoordinates": {
+      "lat": -29,
+      "lng": 24
+    },
+    "aliases": [
+      "ZA",
+      "RSA",
+      "Suid-Afrika",
+      "Republic of South Africa",
+      "ZAF",
+      "South Africa"
+    ]
+  },
+  "SOM": {
+    "id": "706",
+    "mapName": "Somalia",
+    "mapNames": [
+      "Somalia"
+    ],
+    "alpha2": "SO",
+    "alpha3": "SOM",
+    "name": "Somalia",
+    "region": "Africa",
+    "flag": "so",
+    "coordinates": {
+      "lat": 10,
+      "lng": 49
+    },
+    "focusCoordinates": {
+      "lat": 10,
+      "lng": 49
+    },
+    "aliases": [
+      "SO",
+      "aṣ-Ṣūmāl",
+      "Federal Republic of Somalia",
+      "Jamhuuriyadda Federaalka Soomaaliya",
+      "Jumhūriyyat aṣ-Ṣūmāl al-Fiderāliyya",
+      "SOM",
+      "Somalia"
+    ]
+  },
+  "MAP_SOMALILAND": {
+    "id": "Somaliland",
+    "mapName": "Somaliland",
+    "mapNames": [
+      "Somaliland"
+    ],
+    "alpha2": null,
+    "alpha3": null,
+    "name": "Somaliland",
+    "region": "Geographic territory",
+    "flag": "",
+    "coordinates": {
+      "lat": 10.039099988151795,
+      "lng": 45.577800081798294
+    },
+    "focusCoordinates": {
+      "lat": 10.039099988151795,
+      "lng": 45.577800081798294
+    },
+    "aliases": [
+      "Somaliland"
+    ]
+  },
+  "SLB": {
+    "id": "090",
+    "mapName": "Solomon Is.",
+    "mapNames": [
+      "Solomon Is."
+    ],
+    "alpha2": "SB",
+    "alpha3": "SLB",
+    "name": "Solomon Islands",
+    "region": "Oceania",
+    "flag": "sb",
+    "coordinates": {
+      "lat": -8,
+      "lng": 159
+    },
+    "focusCoordinates": {
+      "lat": -8,
+      "lng": 159
+    },
+    "aliases": [
+      "SB",
+      "Solomon Islands",
+      "SLB",
+      "Solomon Is."
+    ]
+  },
+  "SVK": {
+    "id": "703",
+    "mapName": "Slovakia",
+    "mapNames": [
+      "Slovakia"
+    ],
+    "alpha2": "SK",
+    "alpha3": "SVK",
+    "name": "Slovakia",
+    "region": "Europe",
+    "flag": "sk",
+    "coordinates": {
+      "lat": 48.66666666,
+      "lng": 19.5
+    },
+    "focusCoordinates": {
+      "lat": 48.66666666,
+      "lng": 19.5
+    },
+    "aliases": [
+      "SK",
+      "Slovak Republic",
+      "Slovenská republika",
+      "SVK",
+      "Slovakia"
+    ]
+  },
+  "SVN": {
+    "id": "705",
+    "mapName": "Slovenia",
+    "mapNames": [
+      "Slovenia"
+    ],
+    "alpha2": "SI",
+    "alpha3": "SVN",
+    "name": "Slovenia",
+    "region": "Europe",
+    "flag": "si",
+    "coordinates": {
+      "lat": 46.11666666,
+      "lng": 14.81666666
+    },
+    "focusCoordinates": {
+      "lat": 46.11666666,
+      "lng": 14.81666666
+    },
+    "aliases": [
+      "SI",
+      "Republic of Slovenia",
+      "Republika Slovenija",
+      "SVN",
+      "Slovenia"
+    ]
+  },
+  "SGP": {
+    "id": "702",
+    "mapName": "Singapore",
+    "mapNames": [
+      "Singapore"
+    ],
+    "alpha2": "SG",
+    "alpha3": "SGP",
+    "name": "Singapore",
+    "region": "Asia",
+    "flag": "sg",
+    "coordinates": {
+      "lat": 1.36666666,
+      "lng": 103.8
+    },
+    "focusCoordinates": {
+      "lat": 1.36666666,
+      "lng": 103.8
+    },
+    "aliases": [
+      "SG",
+      "Singapura",
+      "Republik Singapura",
+      "新加坡共和国",
+      "Republic of Singapore",
+      "SGP",
+      "Singapore"
+    ]
+  },
+  "SLE": {
+    "id": "694",
+    "mapName": "Sierra Leone",
+    "mapNames": [
+      "Sierra Leone"
+    ],
+    "alpha2": "SL",
+    "alpha3": "SLE",
+    "name": "Sierra Leone",
+    "region": "Africa",
+    "flag": "sl",
+    "coordinates": {
+      "lat": 8.5,
+      "lng": -11.5
+    },
+    "focusCoordinates": {
+      "lat": 8.5,
+      "lng": -11.5
+    },
+    "aliases": [
+      "SL",
+      "Republic of Sierra Leone",
+      "SLE",
+      "Sierra Leone"
+    ]
+  },
+  "SYC": {
+    "id": "690",
+    "mapName": "Seychelles",
+    "mapNames": [
+      "Seychelles"
+    ],
+    "alpha2": "SC",
+    "alpha3": "SYC",
+    "name": "Seychelles",
+    "region": "Africa",
+    "flag": "sc",
+    "coordinates": {
+      "lat": -4.58333333,
+      "lng": 55.66666666
+    },
+    "focusCoordinates": {
+      "lat": -4.58333333,
+      "lng": 55.66666666
+    },
+    "aliases": [
+      "SC",
+      "Republic of Seychelles",
+      "Repiblik Sesel",
+      "République des Seychelles",
+      "SYC",
+      "Seychelles"
+    ]
+  },
+  "SRB": {
+    "id": "688",
+    "mapName": "Serbia",
+    "mapNames": [
+      "Serbia"
+    ],
+    "alpha2": "RS",
+    "alpha3": "SRB",
+    "name": "Serbia",
+    "region": "Europe",
+    "flag": "rs",
+    "coordinates": {
+      "lat": 44,
+      "lng": 21
+    },
+    "focusCoordinates": {
+      "lat": 44,
+      "lng": 21
+    },
+    "aliases": [
+      "RS",
+      "Srbija",
+      "Republika Srbija",
+      "Србија",
+      "Република Србија",
+      "Republic of Serbia",
+      "SRB",
+      "Serbia"
+    ]
+  },
+  "SEN": {
+    "id": "686",
+    "mapName": "Senegal",
+    "mapNames": [
+      "Senegal"
+    ],
+    "alpha2": "SN",
+    "alpha3": "SEN",
+    "name": "Senegal",
+    "region": "Africa",
+    "flag": "sn",
+    "coordinates": {
+      "lat": 14,
+      "lng": -14
+    },
+    "focusCoordinates": {
+      "lat": 14,
+      "lng": -14
+    },
+    "aliases": [
+      "SN",
+      "Republic of Senegal",
+      "République du Sénégal",
+      "SEN",
+      "Senegal"
+    ]
+  },
+  "SAU": {
+    "id": "682",
+    "mapName": "Saudi Arabia",
+    "mapNames": [
+      "Saudi Arabia"
+    ],
+    "alpha2": "SA",
+    "alpha3": "SAU",
+    "name": "Saudi Arabia",
+    "region": "Asia",
+    "flag": "sa",
+    "coordinates": {
+      "lat": 24,
+      "lng": 45
+    },
+    "focusCoordinates": {
+      "lat": 25,
+      "lng": 45
+    },
+    "aliases": [
+      "Saudi",
+      "SA",
+      "Kingdom of Saudi Arabia",
+      "Al-Mamlakah al-‘Arabiyyah as-Su‘ūdiyyah",
+      "SAU",
+      "Saudi Arabia"
+    ]
+  },
+  "STP": {
+    "id": "678",
+    "mapName": "São Tomé and Principe",
+    "mapNames": [
+      "São Tomé and Principe"
+    ],
+    "alpha2": "ST",
+    "alpha3": "STP",
+    "name": "São Tomé and Príncipe",
+    "region": "Africa",
+    "flag": "st",
+    "coordinates": {
+      "lat": 1,
+      "lng": 7
+    },
+    "focusCoordinates": {
+      "lat": 1,
+      "lng": 7
+    },
+    "aliases": [
+      "ST",
+      "Democratic Republic of São Tomé and Príncipe",
+      "Sao Tome and Principe",
+      "República Democrática de São Tomé e Príncipe",
+      "STP",
+      "São Tomé and Principe"
+    ]
+  },
+  "SMR": {
+    "id": "674",
+    "mapName": "San Marino",
+    "mapNames": [
+      "San Marino"
+    ],
+    "alpha2": "SM",
+    "alpha3": "SMR",
+    "name": "San Marino",
+    "region": "Europe",
+    "flag": "sm",
+    "coordinates": {
+      "lat": 43.76666666,
+      "lng": 12.41666666
+    },
+    "focusCoordinates": {
+      "lat": 43.76666666,
+      "lng": 12.41666666
+    },
+    "aliases": [
+      "SM",
+      "Republic of San Marino",
+      "Repubblica di San Marino",
+      "Most Serene Republic of San Marino",
+      "SMR",
+      "San Marino"
+    ]
+  },
+  "WSM": {
+    "id": "882",
+    "mapName": "Samoa",
+    "mapNames": [
+      "Samoa"
+    ],
+    "alpha2": "WS",
+    "alpha3": "WSM",
+    "name": "Samoa",
+    "region": "Oceania",
+    "flag": "ws",
+    "coordinates": {
+      "lat": -13.58333333,
+      "lng": -172.33333333
+    },
+    "focusCoordinates": {
+      "lat": -13.58333333,
+      "lng": -172.33333333
+    },
+    "aliases": [
+      "WS",
+      "Independent State of Samoa",
+      "Malo Saʻoloto Tutoʻatasi o Sāmoa",
+      "WSM",
+      "Samoa"
+    ]
+  },
+  "VCT": {
+    "id": "670",
+    "mapName": "St. Vin. and Gren.",
+    "mapNames": [
+      "St. Vin. and Gren."
+    ],
+    "alpha2": "VC",
+    "alpha3": "VCT",
+    "name": "Saint Vincent and the Grenadines",
+    "region": "Americas",
+    "flag": "vc",
+    "coordinates": {
+      "lat": 13.25,
+      "lng": -61.2
+    },
+    "focusCoordinates": {
+      "lat": 13.25,
+      "lng": -61.2
+    },
+    "aliases": [
+      "VC",
+      "Saint Vincent and the Grenadines",
+      "VCT",
+      "St. Vin. and Gren."
+    ]
+  },
+  "LCA": {
+    "id": "662",
+    "mapName": "Saint Lucia",
+    "mapNames": [
+      "Saint Lucia"
+    ],
+    "alpha2": "LC",
+    "alpha3": "LCA",
+    "name": "Saint Lucia",
+    "region": "Americas",
+    "flag": "lc",
+    "coordinates": {
+      "lat": 13.88333333,
+      "lng": -60.96666666
+    },
+    "focusCoordinates": {
+      "lat": 13.88333333,
+      "lng": -60.96666666
+    },
+    "aliases": [
+      "LC",
+      "Saint Lucia",
+      "LCA"
+    ]
+  },
+  "KNA": {
+    "id": "659",
+    "mapName": "St. Kitts and Nevis",
+    "mapNames": [
+      "St. Kitts and Nevis"
+    ],
+    "alpha2": "KN",
+    "alpha3": "KNA",
+    "name": "Saint Kitts and Nevis",
+    "region": "Americas",
+    "flag": "kn",
+    "coordinates": {
+      "lat": 17.33333333,
+      "lng": -62.75
+    },
+    "focusCoordinates": {
+      "lat": 17.33333333,
+      "lng": -62.75
+    },
+    "aliases": [
+      "KN",
+      "Federation of Saint Christopher and Nevis",
+      "KNA",
+      "St. Kitts and Nevis"
+    ]
+  },
+  "RWA": {
+    "id": "646",
+    "mapName": "Rwanda",
+    "mapNames": [
+      "Rwanda"
+    ],
+    "alpha2": "RW",
+    "alpha3": "RWA",
+    "name": "Rwanda",
+    "region": "Africa",
+    "flag": "rw",
+    "coordinates": {
+      "lat": -2,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": -2,
+      "lng": 30
+    },
+    "aliases": [
+      "RW",
+      "Republic of Rwanda",
+      "Repubulika y'u Rwanda",
+      "République du Rwanda",
+      "RWA",
+      "Rwanda"
+    ]
+  },
+  "RUS": {
+    "id": "643",
+    "mapName": "Russia",
+    "mapNames": [
+      "Russia"
+    ],
+    "alpha2": "RU",
+    "alpha3": "RUS",
+    "name": "Russia",
+    "region": "Europe",
+    "flag": "ru",
+    "coordinates": {
+      "lat": 56,
+      "lng": 38
+    },
+    "focusCoordinates": {
+      "lat": 60,
+      "lng": 100
+    },
+    "aliases": [
+      "RU",
+      "Russian Federation",
+      "Российская Федерация",
+      "RUS",
+      "Russia"
+    ]
+  },
+  "ROU": {
+    "id": "642",
+    "mapName": "Romania",
+    "mapNames": [
+      "Romania"
+    ],
+    "alpha2": "RO",
+    "alpha3": "ROU",
+    "name": "Romania",
+    "region": "Europe",
+    "flag": "ro",
+    "coordinates": {
+      "lat": 46,
+      "lng": 25
+    },
+    "focusCoordinates": {
+      "lat": 46,
+      "lng": 25
+    },
+    "aliases": [
+      "RO",
+      "Rumania",
+      "Roumania",
+      "România",
+      "Romania",
+      "ROU"
+    ]
+  },
+  "QAT": {
+    "id": "634",
+    "mapName": "Qatar",
+    "mapNames": [
+      "Qatar"
+    ],
+    "alpha2": "QA",
+    "alpha3": "QAT",
+    "name": "Qatar",
+    "region": "Asia",
+    "flag": "qa",
+    "coordinates": {
+      "lat": 25.5,
+      "lng": 51.25
+    },
+    "focusCoordinates": {
+      "lat": 25.5,
+      "lng": 51.25
+    },
+    "aliases": [
+      "QA",
+      "State of Qatar",
+      "Dawlat Qaṭar",
+      "QAT",
+      "Qatar"
+    ]
+  },
+  "PRT": {
+    "id": "620",
+    "mapName": "Portugal",
+    "mapNames": [
+      "Portugal"
+    ],
+    "alpha2": "PT",
+    "alpha3": "PRT",
+    "name": "Portugal",
+    "region": "Europe",
+    "flag": "pt",
+    "coordinates": {
+      "lat": 39.5,
+      "lng": -8
+    },
+    "focusCoordinates": {
+      "lat": 39.5,
+      "lng": -8
+    },
+    "aliases": [
+      "PT",
+      "Portuguesa",
+      "Portuguese Republic",
+      "República Portuguesa",
+      "PRT",
+      "Portugal"
+    ]
+  },
+  "POL": {
+    "id": "616",
+    "mapName": "Poland",
+    "mapNames": [
+      "Poland"
+    ],
+    "alpha2": "PL",
+    "alpha3": "POL",
+    "name": "Poland",
+    "region": "Europe",
+    "flag": "pl",
+    "coordinates": {
+      "lat": 52,
+      "lng": 20
+    },
+    "focusCoordinates": {
+      "lat": 52,
+      "lng": 20
+    },
+    "aliases": [
+      "PL",
+      "Republic of Poland",
+      "Rzeczpospolita Polska",
+      "POL",
+      "Poland"
+    ]
+  },
+  "PHL": {
+    "id": "608",
+    "mapName": "Philippines",
+    "mapNames": [
+      "Philippines"
+    ],
+    "alpha2": "PH",
+    "alpha3": "PHL",
+    "name": "Philippines",
+    "region": "Asia",
+    "flag": "ph",
+    "coordinates": {
+      "lat": 13,
+      "lng": 122
+    },
+    "focusCoordinates": {
+      "lat": 13,
+      "lng": 122
+    },
+    "aliases": [
+      "PH",
+      "Republic of the Philippines",
+      "Repúblika ng Pilipinas",
+      "PHL",
+      "Philippines"
+    ]
+  },
+  "PER": {
+    "id": "604",
+    "mapName": "Peru",
+    "mapNames": [
+      "Peru"
+    ],
+    "alpha2": "PE",
+    "alpha3": "PER",
+    "name": "Peru",
+    "region": "Americas",
+    "flag": "pe",
+    "coordinates": {
+      "lat": -10,
+      "lng": -76
+    },
+    "focusCoordinates": {
+      "lat": -10,
+      "lng": -76
+    },
+    "aliases": [
+      "PE",
+      "Republic of Peru",
+      "República del Perú",
+      "PER",
+      "Peru"
+    ]
+  },
+  "PRY": {
+    "id": "600",
+    "mapName": "Paraguay",
+    "mapNames": [
+      "Paraguay"
+    ],
+    "alpha2": "PY",
+    "alpha3": "PRY",
+    "name": "Paraguay",
+    "region": "Americas",
+    "flag": "py",
+    "coordinates": {
+      "lat": -23,
+      "lng": -58
+    },
+    "focusCoordinates": {
+      "lat": -23,
+      "lng": -58
+    },
+    "aliases": [
+      "PY",
+      "Republic of Paraguay",
+      "República del Paraguay",
+      "Tetã Paraguái",
+      "PRY",
+      "Paraguay"
+    ]
+  },
+  "PNG": {
+    "id": "598",
+    "mapName": "Papua New Guinea",
+    "mapNames": [
+      "Papua New Guinea"
+    ],
+    "alpha2": "PG",
+    "alpha3": "PNG",
+    "name": "Papua New Guinea",
+    "region": "Oceania",
+    "flag": "pg",
+    "coordinates": {
+      "lat": -6,
+      "lng": 147
+    },
+    "focusCoordinates": {
+      "lat": -6,
+      "lng": 147
+    },
+    "aliases": [
+      "PG",
+      "Independent State of Papua New Guinea",
+      "Independen Stet bilong Papua Niugini",
+      "PNG",
+      "Papua New Guinea"
+    ]
+  },
+  "PAN": {
+    "id": "591",
+    "mapName": "Panama",
+    "mapNames": [
+      "Panama"
+    ],
+    "alpha2": "PA",
+    "alpha3": "PAN",
+    "name": "Panama",
+    "region": "Americas",
+    "flag": "pa",
+    "coordinates": {
+      "lat": 9,
+      "lng": -80
+    },
+    "focusCoordinates": {
+      "lat": 9,
+      "lng": -80
+    },
+    "aliases": [
+      "PA",
+      "Republic of Panama",
+      "República de Panamá",
+      "PAN",
+      "Panama"
+    ]
+  },
+  "PLW": {
+    "id": "585",
+    "mapName": "Palau",
+    "mapNames": [
+      "Palau"
+    ],
+    "alpha2": "PW",
+    "alpha3": "PLW",
+    "name": "Palau",
+    "region": "Oceania",
+    "flag": "pw",
+    "coordinates": {
+      "lat": 7.5,
+      "lng": 134.5
+    },
+    "focusCoordinates": {
+      "lat": 7.5,
+      "lng": 134.5
+    },
+    "aliases": [
+      "PW",
+      "Republic of Palau",
+      "Beluu er a Belau",
+      "PLW",
+      "Palau"
+    ]
+  },
+  "PAK": {
+    "id": "586",
+    "mapName": "Pakistan",
+    "mapNames": [
+      "Pakistan"
+    ],
+    "alpha2": "PK",
+    "alpha3": "PAK",
+    "name": "Pakistan",
+    "region": "Asia",
+    "flag": "pk",
+    "coordinates": {
+      "lat": 30,
+      "lng": 70
+    },
+    "focusCoordinates": {
+      "lat": 30,
+      "lng": 70
+    },
+    "aliases": [
+      "PK",
+      "Pākistān",
+      "Islamic Republic of Pakistan",
+      "Islāmī Jumhūriya'eh Pākistān",
+      "PAK",
+      "Pakistan"
+    ]
+  },
+  "OMN": {
+    "id": "512",
+    "mapName": "Oman",
+    "mapNames": [
+      "Oman"
+    ],
+    "alpha2": "OM",
+    "alpha3": "OMN",
+    "name": "Oman",
+    "region": "Asia",
+    "flag": "om",
+    "coordinates": {
+      "lat": 21,
+      "lng": 57
+    },
+    "focusCoordinates": {
+      "lat": 21,
+      "lng": 57
+    },
+    "aliases": [
+      "OM",
+      "Sultanate of Oman",
+      "Salṭanat ʻUmān",
+      "OMN",
+      "Oman"
+    ]
+  },
+  "NOR": {
+    "id": "578",
+    "mapName": "Norway",
+    "mapNames": [
+      "Norway"
+    ],
+    "alpha2": "NO",
+    "alpha3": "NOR",
+    "name": "Norway",
+    "region": "Europe",
+    "flag": "no",
+    "coordinates": {
+      "lat": 62,
+      "lng": 10
+    },
+    "focusCoordinates": {
+      "lat": 62,
+      "lng": 10
+    },
+    "aliases": [
+      "NO",
+      "Norge",
+      "Noreg",
+      "Kingdom of Norway",
+      "Kongeriket Norge",
+      "Kongeriket Noreg",
+      "NOR",
+      "Norway"
+    ]
+  },
+  "PRK": {
+    "id": "408",
+    "mapName": "North Korea",
+    "mapNames": [
+      "North Korea"
+    ],
+    "alpha2": "KP",
+    "alpha3": "PRK",
+    "name": "North Korea",
+    "region": "Asia",
+    "flag": "kp",
+    "coordinates": {
+      "lat": 40,
+      "lng": 127
+    },
+    "focusCoordinates": {
+      "lat": 40,
+      "lng": 127
+    },
+    "aliases": [
+      "KP",
+      "Democratic People's Republic of Korea",
+      "DPRK",
+      "조선민주주의인민공화국",
+      "Chosŏn Minjujuŭi Inmin Konghwaguk",
+      "Korea, Democratic People's Republic of",
+      "북한",
+      "북조선",
+      "North Korea",
+      "PRK"
+    ]
+  },
+  "NGA": {
+    "id": "566",
+    "mapName": "Nigeria",
+    "mapNames": [
+      "Nigeria"
+    ],
+    "alpha2": "NG",
+    "alpha3": "NGA",
+    "name": "Nigeria",
+    "region": "Africa",
+    "flag": "ng",
+    "coordinates": {
+      "lat": 10,
+      "lng": 8
+    },
+    "focusCoordinates": {
+      "lat": 10,
+      "lng": 8
+    },
+    "aliases": [
+      "NG",
+      "Nijeriya",
+      "Naíjíríà",
+      "Federal Republic of Nigeria",
+      "NGA",
+      "Nigeria"
+    ]
+  },
+  "NER": {
+    "id": "562",
+    "mapName": "Niger",
+    "mapNames": [
+      "Niger"
+    ],
+    "alpha2": "NE",
+    "alpha3": "NER",
+    "name": "Niger",
+    "region": "Africa",
+    "flag": "ne",
+    "coordinates": {
+      "lat": 16,
+      "lng": 8
+    },
+    "focusCoordinates": {
+      "lat": 16,
+      "lng": 8
+    },
+    "aliases": [
+      "NE",
+      "Nijar",
+      "Republic of Niger",
+      "NER",
+      "Niger"
+    ]
+  },
+  "NIC": {
+    "id": "558",
+    "mapName": "Nicaragua",
+    "mapNames": [
+      "Nicaragua"
+    ],
+    "alpha2": "NI",
+    "alpha3": "NIC",
+    "name": "Nicaragua",
+    "region": "Americas",
+    "flag": "ni",
+    "coordinates": {
+      "lat": 13,
+      "lng": -85
+    },
+    "focusCoordinates": {
+      "lat": 13,
+      "lng": -85
+    },
+    "aliases": [
+      "NI",
+      "Republic of Nicaragua",
+      "República de Nicaragua",
+      "NIC",
+      "Nicaragua"
+    ]
+  },
+  "NZL": {
+    "id": "554",
+    "mapName": "New Zealand",
+    "mapNames": [
+      "New Zealand"
+    ],
+    "alpha2": "NZ",
+    "alpha3": "NZL",
+    "name": "New Zealand",
+    "region": "Oceania",
+    "flag": "nz",
+    "coordinates": {
+      "lat": -41,
+      "lng": 174
+    },
+    "focusCoordinates": {
+      "lat": -41,
+      "lng": 174
+    },
+    "aliases": [
+      "NZ",
+      "Aotearoa",
+      "New Zealand",
+      "NZL"
+    ]
+  },
+  "NIU": {
+    "id": "570",
+    "mapName": "Niue",
+    "mapNames": [
+      "Niue"
+    ],
+    "alpha2": "NU",
+    "alpha3": "NIU",
+    "name": "Niue",
+    "region": "Oceania",
+    "flag": "nu",
+    "coordinates": {
+      "lat": -19.03333333,
+      "lng": -169.86666666
+    },
+    "focusCoordinates": {
+      "lat": -19.03333333,
+      "lng": -169.86666666
+    },
+    "aliases": [
+      "NU",
+      "Niue",
+      "NIU"
+    ]
+  },
+  "COK": {
+    "id": "184",
+    "mapName": "Cook Is.",
+    "mapNames": [
+      "Cook Is."
+    ],
+    "alpha2": "CK",
+    "alpha3": "COK",
+    "name": "Cook Islands",
+    "region": "Oceania",
+    "flag": "ck",
+    "coordinates": {
+      "lat": -21.23333333,
+      "lng": -159.76666666
+    },
+    "focusCoordinates": {
+      "lat": -21.23333333,
+      "lng": -159.76666666
+    },
+    "aliases": [
+      "CK",
+      "Kūki 'Āirani",
+      "Cook Islands",
+      "COK",
+      "Cook Is."
+    ]
+  },
+  "NLD": {
+    "id": "528",
+    "mapName": "Netherlands",
+    "mapNames": [
+      "Netherlands"
+    ],
+    "alpha2": "NL",
+    "alpha3": "NLD",
+    "name": "Netherlands",
+    "region": "Europe",
+    "flag": "nl",
+    "coordinates": {
+      "lat": 52.5,
+      "lng": 5.75
+    },
+    "focusCoordinates": {
+      "lat": 52.5,
+      "lng": 5.75
+    },
+    "aliases": [
+      "NL",
+      "Holland",
+      "Nederland",
+      "The Netherlands",
+      "Kingdom of the Netherlands",
+      "NLD",
+      "Netherlands"
+    ]
+  },
+  "ABW": {
+    "id": "533",
+    "mapName": "Aruba",
+    "mapNames": [
+      "Aruba"
+    ],
+    "alpha2": "AW",
+    "alpha3": "ABW",
+    "name": "Aruba",
+    "region": "Americas",
+    "flag": "aw",
+    "coordinates": {
+      "lat": 12.5,
+      "lng": -69.96666666
+    },
+    "focusCoordinates": {
+      "lat": 12.5,
+      "lng": -69.96666666
+    },
+    "aliases": [
+      "AW",
+      "Aruba",
+      "ABW"
+    ]
+  },
+  "CUW": {
+    "id": "531",
+    "mapName": "Curaçao",
+    "mapNames": [
+      "Curaçao"
+    ],
+    "alpha2": "CW",
+    "alpha3": "CUW",
+    "name": "Curaçao",
+    "region": "Americas",
+    "flag": "cw",
+    "coordinates": {
+      "lat": 12.116667,
+      "lng": -68.933333
+    },
+    "focusCoordinates": {
+      "lat": 12.116667,
+      "lng": -68.933333
+    },
+    "aliases": [
+      "CW",
+      "Curacao",
+      "Kòrsou",
+      "Country of Curaçao",
+      "Land Curaçao",
+      "Pais Kòrsou",
+      "CUW",
+      "Curaçao"
+    ]
+  },
+  "NPL": {
+    "id": "524",
+    "mapName": "Nepal",
+    "mapNames": [
+      "Nepal"
+    ],
+    "alpha2": "NP",
+    "alpha3": "NPL",
+    "name": "Nepal",
+    "region": "Asia",
+    "flag": "np",
+    "coordinates": {
+      "lat": 28,
+      "lng": 84
+    },
+    "focusCoordinates": {
+      "lat": 28,
+      "lng": 84
+    },
+    "aliases": [
+      "NP",
+      "Federal Democratic Republic of Nepal",
+      "Loktāntrik Ganatantra Nepāl",
+      "NPL",
+      "Nepal"
+    ]
+  },
+  "NRU": {
+    "id": "520",
+    "mapName": "Nauru",
+    "mapNames": [
+      "Nauru"
+    ],
+    "alpha2": "NR",
+    "alpha3": "NRU",
+    "name": "Nauru",
+    "region": "Oceania",
+    "flag": "nr",
+    "coordinates": {
+      "lat": -0.53333333,
+      "lng": 166.91666666
+    },
+    "focusCoordinates": {
+      "lat": -0.53333333,
+      "lng": 166.91666666
+    },
+    "aliases": [
+      "NR",
+      "Naoero",
+      "Pleasant Island",
+      "Republic of Nauru",
+      "Ripublik Naoero",
+      "NRU",
+      "Nauru"
+    ]
+  },
+  "NAM": {
+    "id": "516",
+    "mapName": "Namibia",
+    "mapNames": [
+      "Namibia"
+    ],
+    "alpha2": "NA",
+    "alpha3": "NAM",
+    "name": "Namibia",
+    "region": "Africa",
+    "flag": "na",
+    "coordinates": {
+      "lat": -22,
+      "lng": 17
+    },
+    "focusCoordinates": {
+      "lat": -22,
+      "lng": 17
+    },
+    "aliases": [
+      "NA",
+      "Namibië",
+      "Republic of Namibia",
+      "NAM",
+      "Namibia"
+    ]
+  },
+  "MOZ": {
+    "id": "508",
+    "mapName": "Mozambique",
+    "mapNames": [
+      "Mozambique"
+    ],
+    "alpha2": "MZ",
+    "alpha3": "MOZ",
+    "name": "Mozambique",
+    "region": "Africa",
+    "flag": "mz",
+    "coordinates": {
+      "lat": -18.25,
+      "lng": 35
+    },
+    "focusCoordinates": {
+      "lat": -18.25,
+      "lng": 35
+    },
+    "aliases": [
+      "MZ",
+      "Republic of Mozambique",
+      "República de Moçambique",
+      "MOZ",
+      "Mozambique"
+    ]
+  },
+  "MAR": {
+    "id": "504",
+    "mapName": "Morocco",
+    "mapNames": [
+      "Morocco"
+    ],
+    "alpha2": "MA",
+    "alpha3": "MAR",
+    "name": "Morocco",
+    "region": "Africa",
+    "flag": "ma",
+    "coordinates": {
+      "lat": 32,
+      "lng": -5
+    },
+    "focusCoordinates": {
+      "lat": 32,
+      "lng": -5
+    },
+    "aliases": [
+      "MA",
+      "Kingdom of Morocco",
+      "Al-Mamlakah al-Maġribiyah",
+      "MAR",
+      "Morocco"
+    ]
+  },
+  "ESH": {
+    "id": "732",
+    "mapName": "W. Sahara",
+    "mapNames": [
+      "W. Sahara"
+    ],
+    "alpha2": "EH",
+    "alpha3": "ESH",
+    "name": "Western Sahara",
+    "region": "Africa",
+    "flag": "eh",
+    "coordinates": {
+      "lat": 24.5,
+      "lng": -13
+    },
+    "focusCoordinates": {
+      "lat": 24.5,
+      "lng": -13
+    },
+    "aliases": [
+      "EH",
+      "Taneẓroft Tutrimt",
+      "Sahrawi Arab Democratic Republic",
+      "ESH",
+      "W. Sahara"
+    ]
+  },
+  "MNE": {
+    "id": "499",
+    "mapName": "Montenegro",
+    "mapNames": [
+      "Montenegro"
+    ],
+    "alpha2": "ME",
+    "alpha3": "MNE",
+    "name": "Montenegro",
+    "region": "Europe",
+    "flag": "me",
+    "coordinates": {
+      "lat": 42.5,
+      "lng": 19.3
+    },
+    "focusCoordinates": {
+      "lat": 42.5,
+      "lng": 19.3
+    },
+    "aliases": [
+      "ME",
+      "Crna Gora",
+      "Montenegro",
+      "MNE"
+    ]
+  },
+  "MNG": {
+    "id": "496",
+    "mapName": "Mongolia",
+    "mapNames": [
+      "Mongolia"
+    ],
+    "alpha2": "MN",
+    "alpha3": "MNG",
+    "name": "Mongolia",
+    "region": "Asia",
+    "flag": "mn",
+    "coordinates": {
+      "lat": 46,
+      "lng": 105
+    },
+    "focusCoordinates": {
+      "lat": 46,
+      "lng": 105
+    },
+    "aliases": [
+      "MN",
+      "Mongolia",
+      "MNG"
+    ]
+  },
+  "MDA": {
+    "id": "498",
+    "mapName": "Moldova",
+    "mapNames": [
+      "Moldova"
+    ],
+    "alpha2": "MD",
+    "alpha3": "MDA",
+    "name": "Moldova",
+    "region": "Europe",
+    "flag": "md",
+    "coordinates": {
+      "lat": 47,
+      "lng": 29
+    },
+    "focusCoordinates": {
+      "lat": 47,
+      "lng": 29
+    },
+    "aliases": [
+      "MD",
+      "Moldova, Republic of",
+      "Republic of Moldova",
+      "Republica Moldova",
+      "MDA",
+      "Moldova"
+    ]
+  },
+  "MCO": {
+    "id": "492",
+    "mapName": "Monaco",
+    "mapNames": [
+      "Monaco"
+    ],
+    "alpha2": "MC",
+    "alpha3": "MCO",
+    "name": "Monaco",
+    "region": "Europe",
+    "flag": "mc",
+    "coordinates": {
+      "lat": 43.73333333,
+      "lng": 7.4
+    },
+    "focusCoordinates": {
+      "lat": 43.73333333,
+      "lng": 7.4
+    },
+    "aliases": [
+      "MC",
+      "Principality of Monaco",
+      "Principauté de Monaco",
+      "MCO",
+      "Monaco"
+    ]
+  },
+  "MEX": {
+    "id": "484",
+    "mapName": "Mexico",
+    "mapNames": [
+      "Mexico"
+    ],
+    "alpha2": "MX",
+    "alpha3": "MEX",
+    "name": "Mexico",
+    "region": "Americas",
+    "flag": "mx",
+    "coordinates": {
+      "lat": 23,
+      "lng": -102
+    },
+    "focusCoordinates": {
+      "lat": 23,
+      "lng": -102
+    },
+    "aliases": [
+      "MX",
+      "Mexicanos",
+      "United Mexican States",
+      "Estados Unidos Mexicanos",
+      "MEX",
+      "Mexico"
+    ]
+  },
+  "MUS": {
+    "id": "480",
+    "mapName": "Mauritius",
+    "mapNames": [
+      "Mauritius"
+    ],
+    "alpha2": "MU",
+    "alpha3": "MUS",
+    "name": "Mauritius",
+    "region": "Africa",
+    "flag": "mu",
+    "coordinates": {
+      "lat": -20.28333333,
+      "lng": 57.55
+    },
+    "focusCoordinates": {
+      "lat": -20.28333333,
+      "lng": 57.55
+    },
+    "aliases": [
+      "MU",
+      "Republic of Mauritius",
+      "République de Maurice",
+      "MUS",
+      "Mauritius"
+    ]
+  },
+  "MRT": {
+    "id": "478",
+    "mapName": "Mauritania",
+    "mapNames": [
+      "Mauritania"
+    ],
+    "alpha2": "MR",
+    "alpha3": "MRT",
+    "name": "Mauritania",
+    "region": "Africa",
+    "flag": "mr",
+    "coordinates": {
+      "lat": 20,
+      "lng": -12
+    },
+    "focusCoordinates": {
+      "lat": 20,
+      "lng": -12
+    },
+    "aliases": [
+      "MR",
+      "Islamic Republic of Mauritania",
+      "al-Jumhūriyyah al-ʾIslāmiyyah al-Mūrītāniyyah",
+      "MRT",
+      "Mauritania"
+    ]
+  },
+  "MLT": {
+    "id": "470",
+    "mapName": "Malta",
+    "mapNames": [
+      "Malta"
+    ],
+    "alpha2": "MT",
+    "alpha3": "MLT",
+    "name": "Malta",
+    "region": "Europe",
+    "flag": "mt",
+    "coordinates": {
+      "lat": 35.83333333,
+      "lng": 14.58333333
+    },
+    "focusCoordinates": {
+      "lat": 35.83333333,
+      "lng": 14.58333333
+    },
+    "aliases": [
+      "MT",
+      "Republic of Malta",
+      "Repubblika ta' Malta",
+      "MLT",
+      "Malta"
+    ]
+  },
+  "MLI": {
+    "id": "466",
+    "mapName": "Mali",
+    "mapNames": [
+      "Mali"
+    ],
+    "alpha2": "ML",
+    "alpha3": "MLI",
+    "name": "Mali",
+    "region": "Africa",
+    "flag": "ml",
+    "coordinates": {
+      "lat": 17,
+      "lng": -4
+    },
+    "focusCoordinates": {
+      "lat": 17,
+      "lng": -4
+    },
+    "aliases": [
+      "ML",
+      "Republic of Mali",
+      "République du Mali",
+      "MLI",
+      "Mali"
+    ]
+  },
+  "MDV": {
+    "id": "462",
+    "mapName": "Maldives",
+    "mapNames": [
+      "Maldives"
+    ],
+    "alpha2": "MV",
+    "alpha3": "MDV",
+    "name": "Maldives",
+    "region": "Asia",
+    "flag": "mv",
+    "coordinates": {
+      "lat": 3.25,
+      "lng": 73
+    },
+    "focusCoordinates": {
+      "lat": 3.25,
+      "lng": 73
+    },
+    "aliases": [
+      "MV",
+      "Maldive Islands",
+      "Republic of the Maldives",
+      "Dhivehi Raajjeyge Jumhooriyya",
+      "MDV",
+      "Maldives"
+    ]
+  },
+  "MYS": {
+    "id": "458",
+    "mapName": "Malaysia",
+    "mapNames": [
+      "Malaysia"
+    ],
+    "alpha2": "MY",
+    "alpha3": "MYS",
+    "name": "Malaysia",
+    "region": "Asia",
+    "flag": "my",
+    "coordinates": {
+      "lat": 2.5,
+      "lng": 112.5
+    },
+    "focusCoordinates": {
+      "lat": 2.5,
+      "lng": 112.5
+    },
+    "aliases": [
+      "MY",
+      "Malaysia",
+      "MYS"
+    ]
+  },
+  "MWI": {
+    "id": "454",
+    "mapName": "Malawi",
+    "mapNames": [
+      "Malawi"
+    ],
+    "alpha2": "MW",
+    "alpha3": "MWI",
+    "name": "Malawi",
+    "region": "Africa",
+    "flag": "mw",
+    "coordinates": {
+      "lat": -13.5,
+      "lng": 34
+    },
+    "focusCoordinates": {
+      "lat": -13.5,
+      "lng": 34
+    },
+    "aliases": [
+      "MW",
+      "Republic of Malawi",
+      "MWI",
+      "Malawi"
+    ]
+  },
+  "MDG": {
+    "id": "450",
+    "mapName": "Madagascar",
+    "mapNames": [
+      "Madagascar"
+    ],
+    "alpha2": "MG",
+    "alpha3": "MDG",
+    "name": "Madagascar",
+    "region": "Africa",
+    "flag": "mg",
+    "coordinates": {
+      "lat": -20,
+      "lng": 47
+    },
+    "focusCoordinates": {
+      "lat": -20,
+      "lng": 47
+    },
+    "aliases": [
+      "MG",
+      "Republic of Madagascar",
+      "Repoblikan'i Madagasikara",
+      "République de Madagascar",
+      "MDG",
+      "Madagascar"
+    ]
+  },
+  "MKD": {
+    "id": "807",
+    "mapName": "Macedonia",
+    "mapNames": [
+      "Macedonia"
+    ],
+    "alpha2": "MK",
+    "alpha3": "MKD",
+    "name": "North Macedonia",
+    "region": "Europe",
+    "flag": "mk",
+    "coordinates": {
+      "lat": 41.83333333,
+      "lng": 22
+    },
+    "focusCoordinates": {
+      "lat": 41.83333333,
+      "lng": 22
+    },
+    "aliases": [
+      "MK",
+      "The former Yugoslav Republic of Macedonia",
+      "Republic of North Macedonia",
+      "Macedonia, The Former Yugoslav Republic of",
+      "Република Северна Македонија",
+      "Macedonia",
+      "MKD"
+    ]
+  },
+  "LUX": {
+    "id": "442",
+    "mapName": "Luxembourg",
+    "mapNames": [
+      "Luxembourg"
+    ],
+    "alpha2": "LU",
+    "alpha3": "LUX",
+    "name": "Luxembourg",
+    "region": "Europe",
+    "flag": "lu",
+    "coordinates": {
+      "lat": 49.75,
+      "lng": 6.16666666
+    },
+    "focusCoordinates": {
+      "lat": 49.75,
+      "lng": 6.16666666
+    },
+    "aliases": [
+      "LU",
+      "Grand Duchy of Luxembourg",
+      "Grand-Duché de Luxembourg",
+      "Großherzogtum Luxemburg",
+      "Groussherzogtum Lëtzebuerg",
+      "LUX",
+      "Luxembourg"
+    ]
+  },
+  "LTU": {
+    "id": "440",
+    "mapName": "Lithuania",
+    "mapNames": [
+      "Lithuania"
+    ],
+    "alpha2": "LT",
+    "alpha3": "LTU",
+    "name": "Lithuania",
+    "region": "Europe",
+    "flag": "lt",
+    "coordinates": {
+      "lat": 56,
+      "lng": 24
+    },
+    "focusCoordinates": {
+      "lat": 56,
+      "lng": 24
+    },
+    "aliases": [
+      "LT",
+      "Republic of Lithuania",
+      "Lietuvos Respublika",
+      "LTU",
+      "Lithuania"
+    ]
+  },
+  "LIE": {
+    "id": "438",
+    "mapName": "Liechtenstein",
+    "mapNames": [
+      "Liechtenstein"
+    ],
+    "alpha2": "LI",
+    "alpha3": "LIE",
+    "name": "Liechtenstein",
+    "region": "Europe",
+    "flag": "li",
+    "coordinates": {
+      "lat": 47.26666666,
+      "lng": 9.53333333
+    },
+    "focusCoordinates": {
+      "lat": 47.26666666,
+      "lng": 9.53333333
+    },
+    "aliases": [
+      "LI",
+      "Principality of Liechtenstein",
+      "Fürstentum Liechtenstein",
+      "LIE",
+      "Liechtenstein"
+    ]
+  },
+  "LBY": {
+    "id": "434",
+    "mapName": "Libya",
+    "mapNames": [
+      "Libya"
+    ],
+    "alpha2": "LY",
+    "alpha3": "LBY",
+    "name": "Libya",
+    "region": "Africa",
+    "flag": "ly",
+    "coordinates": {
+      "lat": 25,
+      "lng": 17
+    },
+    "focusCoordinates": {
+      "lat": 25,
+      "lng": 17
+    },
+    "aliases": [
+      "LY",
+      "State of Libya",
+      "Dawlat Libya",
+      "LBY",
+      "Libya"
+    ]
+  },
+  "LBR": {
+    "id": "430",
+    "mapName": "Liberia",
+    "mapNames": [
+      "Liberia"
+    ],
+    "alpha2": "LR",
+    "alpha3": "LBR",
+    "name": "Liberia",
+    "region": "Africa",
+    "flag": "lr",
+    "coordinates": {
+      "lat": 6.5,
+      "lng": -9.5
+    },
+    "focusCoordinates": {
+      "lat": 6.5,
+      "lng": -9.5
+    },
+    "aliases": [
+      "LR",
+      "Republic of Liberia",
+      "LBR",
+      "Liberia"
+    ]
+  },
+  "LSO": {
+    "id": "426",
+    "mapName": "Lesotho",
+    "mapNames": [
+      "Lesotho"
+    ],
+    "alpha2": "LS",
+    "alpha3": "LSO",
+    "name": "Lesotho",
+    "region": "Africa",
+    "flag": "ls",
+    "coordinates": {
+      "lat": -29.5,
+      "lng": 28.5
+    },
+    "focusCoordinates": {
+      "lat": -29.5,
+      "lng": 28.5
+    },
+    "aliases": [
+      "LS",
+      "Kingdom of Lesotho",
+      "Muso oa Lesotho",
+      "LSO",
+      "Lesotho"
+    ]
+  },
+  "LBN": {
+    "id": "422",
+    "mapName": "Lebanon",
+    "mapNames": [
+      "Lebanon"
+    ],
+    "alpha2": "LB",
+    "alpha3": "LBN",
+    "name": "Lebanon",
+    "region": "Asia",
+    "flag": "lb",
+    "coordinates": {
+      "lat": 33.83333333,
+      "lng": 35.83333333
+    },
+    "focusCoordinates": {
+      "lat": 33.83333333,
+      "lng": 35.83333333
+    },
+    "aliases": [
+      "LB",
+      "Lebanese Republic",
+      "Al-Jumhūrīyah Al-Libnānīyah",
+      "LBN",
+      "Lebanon"
+    ]
+  },
+  "LVA": {
+    "id": "428",
+    "mapName": "Latvia",
+    "mapNames": [
+      "Latvia"
+    ],
+    "alpha2": "LV",
+    "alpha3": "LVA",
+    "name": "Latvia",
+    "region": "Europe",
+    "flag": "lv",
+    "coordinates": {
+      "lat": 57,
+      "lng": 25
+    },
+    "focusCoordinates": {
+      "lat": 57,
+      "lng": 25
+    },
+    "aliases": [
+      "LV",
+      "Republic of Latvia",
+      "Latvijas Republika",
+      "LVA",
+      "Latvia"
+    ]
+  },
+  "LAO": {
+    "id": "418",
+    "mapName": "Laos",
+    "mapNames": [
+      "Laos"
+    ],
+    "alpha2": "LA",
+    "alpha3": "LAO",
+    "name": "Laos",
+    "region": "Asia",
+    "flag": "la",
+    "coordinates": {
+      "lat": 18,
+      "lng": 105
+    },
+    "focusCoordinates": {
+      "lat": 18,
+      "lng": 105
+    },
+    "aliases": [
+      "LA",
+      "Lao",
+      "Lao People's Democratic Republic",
+      "Sathalanalat Paxathipatai Paxaxon Lao",
+      "LAO",
+      "Laos"
+    ]
+  },
+  "KGZ": {
+    "id": "417",
+    "mapName": "Kyrgyzstan",
+    "mapNames": [
+      "Kyrgyzstan"
+    ],
+    "alpha2": "KG",
+    "alpha3": "KGZ",
+    "name": "Kyrgyzstan",
+    "region": "Asia",
+    "flag": "kg",
+    "coordinates": {
+      "lat": 41,
+      "lng": 75
+    },
+    "focusCoordinates": {
+      "lat": 41,
+      "lng": 75
+    },
+    "aliases": [
+      "KG",
+      "Киргизия",
+      "Kyrgyz Republic",
+      "Кыргыз Республикасы",
+      "Kyrgyz Respublikasy",
+      "KGZ",
+      "Kyrgyzstan"
+    ]
+  },
+  "KWT": {
+    "id": "414",
+    "mapName": "Kuwait",
+    "mapNames": [
+      "Kuwait"
+    ],
+    "alpha2": "KW",
+    "alpha3": "KWT",
+    "name": "Kuwait",
+    "region": "Asia",
+    "flag": "kw",
+    "coordinates": {
+      "lat": 29.5,
+      "lng": 45.75
+    },
+    "focusCoordinates": {
+      "lat": 29.5,
+      "lng": 45.75
+    },
+    "aliases": [
+      "KW",
+      "State of Kuwait",
+      "Dawlat al-Kuwait",
+      "KWT",
+      "Kuwait"
+    ]
+  },
+  "UNK": {
+    "id": "Kosovo",
+    "mapName": "Kosovo",
+    "mapNames": [
+      "Kosovo"
+    ],
+    "alpha2": "XK",
+    "alpha3": "UNK",
+    "name": "Kosovo",
+    "region": "Europe",
+    "flag": "xk",
+    "coordinates": {
+      "lat": 42.666667,
+      "lng": 21.166667
+    },
+    "focusCoordinates": {
+      "lat": 42.666667,
+      "lng": 21.166667
+    },
+    "aliases": [
+      "XK",
+      "Република Косово",
+      "Republic of Kosovo",
+      "UNK",
+      "Kosovo"
+    ]
+  },
+  "KIR": {
+    "id": "296",
+    "mapName": "Kiribati",
+    "mapNames": [
+      "Kiribati"
+    ],
+    "alpha2": "KI",
+    "alpha3": "KIR",
+    "name": "Kiribati",
+    "region": "Oceania",
+    "flag": "ki",
+    "coordinates": {
+      "lat": 1.41666666,
+      "lng": 173
+    },
+    "focusCoordinates": {
+      "lat": 1.41666666,
+      "lng": 173
+    },
+    "aliases": [
+      "KI",
+      "Republic of Kiribati",
+      "Ribaberiki Kiribati",
+      "Independent and Sovereign Republic of Kiribati",
+      "KIR",
+      "Kiribati"
+    ]
+  },
+  "KEN": {
+    "id": "404",
+    "mapName": "Kenya",
+    "mapNames": [
+      "Kenya"
+    ],
+    "alpha2": "KE",
+    "alpha3": "KEN",
+    "name": "Kenya",
+    "region": "Africa",
+    "flag": "ke",
+    "coordinates": {
+      "lat": 1,
+      "lng": 38
+    },
+    "focusCoordinates": {
+      "lat": 1,
+      "lng": 38
+    },
+    "aliases": [
+      "KE",
+      "Republic of Kenya",
+      "Jamhuri ya Kenya",
+      "KEN",
+      "Kenya"
+    ]
+  },
+  "KAZ": {
+    "id": "398",
+    "mapName": "Kazakhstan",
+    "mapNames": [
+      "Kazakhstan"
+    ],
+    "alpha2": "KZ",
+    "alpha3": "KAZ",
+    "name": "Kazakhstan",
+    "region": "Asia",
+    "flag": "kz",
+    "coordinates": {
+      "lat": 48,
+      "lng": 68
+    },
+    "focusCoordinates": {
+      "lat": 48,
+      "lng": 68
+    },
+    "aliases": [
+      "KZ",
+      "Qazaqstan",
+      "Казахстан",
+      "Republic of Kazakhstan",
+      "Қазақстан Республикасы",
+      "Qazaqstan Respublïkası",
+      "Республика Казахстан",
+      "Respublika Kazakhstan",
+      "KAZ",
+      "Kazakhstan"
+    ]
+  },
+  "JOR": {
+    "id": "400",
+    "mapName": "Jordan",
+    "mapNames": [
+      "Jordan"
+    ],
+    "alpha2": "JO",
+    "alpha3": "JOR",
+    "name": "Jordan",
+    "region": "Asia",
+    "flag": "jo",
+    "coordinates": {
+      "lat": 31,
+      "lng": 36
+    },
+    "focusCoordinates": {
+      "lat": 31,
+      "lng": 36
+    },
+    "aliases": [
+      "JO",
+      "Hashemite Kingdom of Jordan",
+      "al-Mamlakah al-Urdunīyah al-Hāshimīyah",
+      "JOR",
+      "Jordan"
+    ]
+  },
+  "JPN": {
+    "id": "392",
+    "mapName": "Japan",
+    "mapNames": [
+      "Japan"
+    ],
+    "alpha2": "JP",
+    "alpha3": "JPN",
+    "name": "Japan",
+    "region": "Asia",
+    "flag": "jp",
+    "coordinates": {
+      "lat": 36,
+      "lng": 138
+    },
+    "focusCoordinates": {
+      "lat": 36,
+      "lng": 138
+    },
+    "aliases": [
+      "JP",
+      "Nippon",
+      "Nihon",
+      "Japan",
+      "JPN"
+    ]
+  },
+  "JAM": {
+    "id": "388",
+    "mapName": "Jamaica",
+    "mapNames": [
+      "Jamaica"
+    ],
+    "alpha2": "JM",
+    "alpha3": "JAM",
+    "name": "Jamaica",
+    "region": "Americas",
+    "flag": "jm",
+    "coordinates": {
+      "lat": 18.25,
+      "lng": -77.5
+    },
+    "focusCoordinates": {
+      "lat": 18.25,
+      "lng": -77.5
+    },
+    "aliases": [
+      "JM",
+      "Jamaica",
+      "JAM"
+    ]
+  },
+  "ITA": {
+    "id": "380",
+    "mapName": "Italy",
+    "mapNames": [
+      "Italy"
+    ],
+    "alpha2": "IT",
+    "alpha3": "ITA",
+    "name": "Italy",
+    "region": "Europe",
+    "flag": "it",
+    "coordinates": {
+      "lat": 42.83333333,
+      "lng": 12.83333333
+    },
+    "focusCoordinates": {
+      "lat": 42.83333333,
+      "lng": 12.83333333
+    },
+    "aliases": [
+      "IT",
+      "Italian Republic",
+      "Repubblica italiana",
+      "ITA",
+      "Italy"
+    ]
+  },
+  "ISR": {
+    "id": "376",
+    "mapName": "Israel",
+    "mapNames": [
+      "Israel"
+    ],
+    "alpha2": "IL",
+    "alpha3": "ISR",
+    "name": "Israel",
+    "region": "Asia",
+    "flag": "il",
+    "coordinates": {
+      "lat": 31.47,
+      "lng": 35.13
+    },
+    "focusCoordinates": {
+      "lat": 31.47,
+      "lng": 35.13
+    },
+    "aliases": [
+      "IL",
+      "State of Israel",
+      "Medīnat Yisrā'el",
+      "ISR",
+      "Israel"
+    ]
+  },
+  "PSE": {
+    "id": "275",
+    "mapName": "Palestine",
+    "mapNames": [
+      "Palestine"
+    ],
+    "alpha2": "PS",
+    "alpha3": "PSE",
+    "name": "Palestine",
+    "region": "Asia",
+    "flag": "ps",
+    "coordinates": {
+      "lat": 31.9,
+      "lng": 35.2
+    },
+    "focusCoordinates": {
+      "lat": 31.9,
+      "lng": 35.2
+    },
+    "aliases": [
+      "PS",
+      "Palestine, State of",
+      "State of Palestine",
+      "Dawlat Filasṭin",
+      "PSE",
+      "Palestine"
+    ]
+  },
+  "IRL": {
+    "id": "372",
+    "mapName": "Ireland",
+    "mapNames": [
+      "Ireland"
+    ],
+    "alpha2": "IE",
+    "alpha3": "IRL",
+    "name": "Ireland",
+    "region": "Europe",
+    "flag": "ie",
+    "coordinates": {
+      "lat": 53,
+      "lng": -8
+    },
+    "focusCoordinates": {
+      "lat": 53,
+      "lng": -8
+    },
+    "aliases": [
+      "IE",
+      "Éire",
+      "Republic of Ireland",
+      "Poblacht na hÉireann",
+      "IRL",
+      "Ireland"
+    ]
+  },
+  "IRQ": {
+    "id": "368",
+    "mapName": "Iraq",
+    "mapNames": [
+      "Iraq"
+    ],
+    "alpha2": "IQ",
+    "alpha3": "IRQ",
+    "name": "Iraq",
+    "region": "Asia",
+    "flag": "iq",
+    "coordinates": {
+      "lat": 33,
+      "lng": 44
+    },
+    "focusCoordinates": {
+      "lat": 33,
+      "lng": 44
+    },
+    "aliases": [
+      "IQ",
+      "Republic of Iraq",
+      "Jumhūriyyat al-‘Irāq",
+      "IRQ",
+      "Iraq"
+    ]
+  },
+  "IRN": {
+    "id": "364",
+    "mapName": "Iran",
+    "mapNames": [
+      "Iran"
+    ],
+    "alpha2": "IR",
+    "alpha3": "IRN",
+    "name": "Iran",
+    "region": "Asia",
+    "flag": "ir",
+    "coordinates": {
+      "lat": 32,
+      "lng": 53
+    },
+    "focusCoordinates": {
+      "lat": 32,
+      "lng": 53
+    },
+    "aliases": [
+      "IR",
+      "Islamic Republic of Iran",
+      "Iran, Islamic Republic of",
+      "Jomhuri-ye Eslāmi-ye Irān",
+      "IRN",
+      "Iran"
+    ]
+  },
+  "IDN": {
+    "id": "360",
+    "mapName": "Indonesia",
+    "mapNames": [
+      "Indonesia"
+    ],
+    "alpha2": "ID",
+    "alpha3": "IDN",
+    "name": "Indonesia",
+    "region": "Asia",
+    "flag": "id",
+    "coordinates": {
+      "lat": -5,
+      "lng": 120
+    },
+    "focusCoordinates": {
+      "lat": -5,
+      "lng": 120
+    },
+    "aliases": [
+      "ID",
+      "Republic of Indonesia",
+      "Republik Indonesia",
+      "IDN",
+      "Indonesia"
+    ]
+  },
+  "IND": {
+    "id": "356",
+    "mapName": "India",
+    "mapNames": [
+      "India"
+    ],
+    "alpha2": "IN",
+    "alpha3": "IND",
+    "name": "India",
+    "region": "Asia",
+    "flag": "in",
+    "coordinates": {
+      "lat": 22,
+      "lng": 79
+    },
+    "focusCoordinates": {
+      "lat": 20,
+      "lng": 77
+    },
+    "aliases": [
+      "IN",
+      "Bhārat",
+      "Republic of India",
+      "Bharat Ganrajya",
+      "இந்தியா",
+      "IND",
+      "India"
+    ]
+  },
+  "ISL": {
+    "id": "352",
+    "mapName": "Iceland",
+    "mapNames": [
+      "Iceland"
+    ],
+    "alpha2": "IS",
+    "alpha3": "ISL",
+    "name": "Iceland",
+    "region": "Europe",
+    "flag": "is",
+    "coordinates": {
+      "lat": 65,
+      "lng": -18
+    },
+    "focusCoordinates": {
+      "lat": 65,
+      "lng": -18
+    },
+    "aliases": [
+      "IS",
+      "Island",
+      "Republic of Iceland",
+      "Lýðveldið Ísland",
+      "Iceland",
+      "ISL"
+    ]
+  },
+  "HUN": {
+    "id": "348",
+    "mapName": "Hungary",
+    "mapNames": [
+      "Hungary"
+    ],
+    "alpha2": "HU",
+    "alpha3": "HUN",
+    "name": "Hungary",
+    "region": "Europe",
+    "flag": "hu",
+    "coordinates": {
+      "lat": 47,
+      "lng": 20
+    },
+    "focusCoordinates": {
+      "lat": 47,
+      "lng": 20
+    },
+    "aliases": [
+      "HU",
+      "Hungary",
+      "HUN"
+    ]
+  },
+  "HND": {
+    "id": "340",
+    "mapName": "Honduras",
+    "mapNames": [
+      "Honduras"
+    ],
+    "alpha2": "HN",
+    "alpha3": "HND",
+    "name": "Honduras",
+    "region": "Americas",
+    "flag": "hn",
+    "coordinates": {
+      "lat": 15,
+      "lng": -86.5
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": -86.5
+    },
+    "aliases": [
+      "HN",
+      "Republic of Honduras",
+      "República de Honduras",
+      "HND",
+      "Honduras"
+    ]
+  },
+  "HTI": {
+    "id": "332",
+    "mapName": "Haiti",
+    "mapNames": [
+      "Haiti"
+    ],
+    "alpha2": "HT",
+    "alpha3": "HTI",
+    "name": "Haiti",
+    "region": "Americas",
+    "flag": "ht",
+    "coordinates": {
+      "lat": 19,
+      "lng": -72.41666666
+    },
+    "focusCoordinates": {
+      "lat": 19,
+      "lng": -72.41666666
+    },
+    "aliases": [
+      "HT",
+      "Republic of Haiti",
+      "République d'Haïti",
+      "Repiblik Ayiti",
+      "HTI",
+      "Haiti"
+    ]
+  },
+  "GUY": {
+    "id": "328",
+    "mapName": "Guyana",
+    "mapNames": [
+      "Guyana"
+    ],
+    "alpha2": "GY",
+    "alpha3": "GUY",
+    "name": "Guyana",
+    "region": "Americas",
+    "flag": "gy",
+    "coordinates": {
+      "lat": 5,
+      "lng": -59
+    },
+    "focusCoordinates": {
+      "lat": 5,
+      "lng": -59
+    },
+    "aliases": [
+      "GY",
+      "Co-operative Republic of Guyana",
+      "GUY",
+      "Guyana"
+    ]
+  },
+  "GNB": {
+    "id": "624",
+    "mapName": "Guinea-Bissau",
+    "mapNames": [
+      "Guinea-Bissau"
+    ],
+    "alpha2": "GW",
+    "alpha3": "GNB",
+    "name": "Guinea-Bissau",
+    "region": "Africa",
+    "flag": "gw",
+    "coordinates": {
+      "lat": 12,
+      "lng": -15
+    },
+    "focusCoordinates": {
+      "lat": 12,
+      "lng": -15
+    },
+    "aliases": [
+      "GW",
+      "Republic of Guinea-Bissau",
+      "República da Guiné-Bissau",
+      "GNB",
+      "Guinea-Bissau"
+    ]
+  },
+  "GIN": {
+    "id": "324",
+    "mapName": "Guinea",
+    "mapNames": [
+      "Guinea"
+    ],
+    "alpha2": "GN",
+    "alpha3": "GIN",
+    "name": "Guinea",
+    "region": "Africa",
+    "flag": "gn",
+    "coordinates": {
+      "lat": 11,
+      "lng": -10
+    },
+    "focusCoordinates": {
+      "lat": 11,
+      "lng": -10
+    },
+    "aliases": [
+      "GN",
+      "Republic of Guinea",
+      "République de Guinée",
+      "GIN",
+      "Guinea"
+    ]
+  },
+  "GTM": {
+    "id": "320",
+    "mapName": "Guatemala",
+    "mapNames": [
+      "Guatemala"
+    ],
+    "alpha2": "GT",
+    "alpha3": "GTM",
+    "name": "Guatemala",
+    "region": "Americas",
+    "flag": "gt",
+    "coordinates": {
+      "lat": 15.5,
+      "lng": -90.25
+    },
+    "focusCoordinates": {
+      "lat": 15.5,
+      "lng": -90.25
+    },
+    "aliases": [
+      "GT",
+      "Republic of Guatemala",
+      "GTM",
+      "Guatemala"
+    ]
+  },
+  "GRD": {
+    "id": "308",
+    "mapName": "Grenada",
+    "mapNames": [
+      "Grenada"
+    ],
+    "alpha2": "GD",
+    "alpha3": "GRD",
+    "name": "Grenada",
+    "region": "Americas",
+    "flag": "gd",
+    "coordinates": {
+      "lat": 12.11666666,
+      "lng": -61.66666666
+    },
+    "focusCoordinates": {
+      "lat": 12.11666666,
+      "lng": -61.66666666
+    },
+    "aliases": [
+      "GD",
+      "Grenada",
+      "GRD"
+    ]
+  },
+  "GRC": {
+    "id": "300",
+    "mapName": "Greece",
+    "mapNames": [
+      "Greece"
+    ],
+    "alpha2": "GR",
+    "alpha3": "GRC",
+    "name": "Greece",
+    "region": "Europe",
+    "flag": "gr",
+    "coordinates": {
+      "lat": 39,
+      "lng": 22
+    },
+    "focusCoordinates": {
+      "lat": 39,
+      "lng": 22
+    },
+    "aliases": [
+      "GR",
+      "Elláda",
+      "Hellenic Republic",
+      "Ελληνική Δημοκρατία",
+      "GRC",
+      "Greece"
+    ]
+  },
+  "GHA": {
+    "id": "288",
+    "mapName": "Ghana",
+    "mapNames": [
+      "Ghana"
+    ],
+    "alpha2": "GH",
+    "alpha3": "GHA",
+    "name": "Ghana",
+    "region": "Africa",
+    "flag": "gh",
+    "coordinates": {
+      "lat": 8,
+      "lng": -2
+    },
+    "focusCoordinates": {
+      "lat": 8,
+      "lng": -2
+    },
+    "aliases": [
+      "GH",
+      "Republic of Ghana",
+      "GHA",
+      "Ghana"
+    ]
+  },
+  "DEU": {
+    "id": "276",
+    "mapName": "Germany",
+    "mapNames": [
+      "Germany"
+    ],
+    "alpha2": "DE",
+    "alpha3": "DEU",
+    "name": "Germany",
+    "region": "Europe",
+    "flag": "de",
+    "coordinates": {
+      "lat": 51,
+      "lng": 10
+    },
+    "focusCoordinates": {
+      "lat": 51,
+      "lng": 9
+    },
+    "aliases": [
+      "DE",
+      "Federal Republic of Germany",
+      "Bundesrepublik Deutschland",
+      "DEU",
+      "Germany"
+    ]
+  },
+  "GEO": {
+    "id": "268",
+    "mapName": "Georgia",
+    "mapNames": [
+      "Georgia"
+    ],
+    "alpha2": "GE",
+    "alpha3": "GEO",
+    "name": "Georgia",
+    "region": "Asia",
+    "flag": "ge",
+    "coordinates": {
+      "lat": 42,
+      "lng": 43.5
+    },
+    "focusCoordinates": {
+      "lat": 42,
+      "lng": 43.5
+    },
+    "aliases": [
+      "GE",
+      "Sakartvelo",
+      "Georgia",
+      "GEO"
+    ]
+  },
+  "GMB": {
+    "id": "270",
+    "mapName": "Gambia",
+    "mapNames": [
+      "Gambia"
+    ],
+    "alpha2": "GM",
+    "alpha3": "GMB",
+    "name": "Gambia",
+    "region": "Africa",
+    "flag": "gm",
+    "coordinates": {
+      "lat": 13.46666666,
+      "lng": -16.56666666
+    },
+    "focusCoordinates": {
+      "lat": 13.46666666,
+      "lng": -16.56666666
+    },
+    "aliases": [
+      "GM",
+      "Republic of the Gambia",
+      "GMB",
+      "Gambia"
+    ]
+  },
+  "GAB": {
+    "id": "266",
+    "mapName": "Gabon",
+    "mapNames": [
+      "Gabon"
+    ],
+    "alpha2": "GA",
+    "alpha3": "GAB",
+    "name": "Gabon",
+    "region": "Africa",
+    "flag": "ga",
+    "coordinates": {
+      "lat": -1,
+      "lng": 11.75
+    },
+    "focusCoordinates": {
+      "lat": -1,
+      "lng": 11.75
+    },
+    "aliases": [
+      "GA",
+      "Gabonese Republic",
+      "République Gabonaise",
+      "GAB",
+      "Gabon"
+    ]
+  },
+  "FRA": {
+    "id": "250",
+    "mapName": "France",
+    "mapNames": [
+      "France"
+    ],
+    "alpha2": "FR",
+    "alpha3": "FRA",
+    "name": "France",
+    "region": "Europe",
+    "flag": "fr",
+    "coordinates": {
+      "lat": 47,
+      "lng": 2
+    },
+    "focusCoordinates": {
+      "lat": 46,
+      "lng": 2
+    },
+    "aliases": [
+      "FR",
+      "French Republic",
+      "République française",
+      "FRA",
+      "France"
+    ]
+  },
+  "SPM": {
+    "id": "666",
+    "mapName": "St. Pierre and Miquelon",
+    "mapNames": [
+      "St. Pierre and Miquelon"
+    ],
+    "alpha2": "PM",
+    "alpha3": "SPM",
+    "name": "Saint Pierre and Miquelon",
+    "region": "Americas",
+    "flag": "pm",
+    "coordinates": {
+      "lat": 46.83333333,
+      "lng": -56.33333333
+    },
+    "focusCoordinates": {
+      "lat": 46.83333333,
+      "lng": -56.33333333
+    },
+    "aliases": [
+      "PM",
+      "Collectivité territoriale de Saint-Pierre-et-Miquelon",
+      "Saint Pierre and Miquelon",
+      "SPM",
+      "St. Pierre and Miquelon"
+    ]
+  },
+  "WLF": {
+    "id": "876",
+    "mapName": "Wallis and Futuna Is.",
+    "mapNames": [
+      "Wallis and Futuna Is."
+    ],
+    "alpha2": "WF",
+    "alpha3": "WLF",
+    "name": "Wallis and Futuna",
+    "region": "Oceania",
+    "flag": "wf",
+    "coordinates": {
+      "lat": -13.3,
+      "lng": -176.2
+    },
+    "focusCoordinates": {
+      "lat": -13.3,
+      "lng": -176.2
+    },
+    "aliases": [
+      "WF",
+      "Territory of the Wallis and Futuna Islands",
+      "Territoire des îles Wallis et Futuna",
+      "WLF",
+      "Wallis and Futuna Is."
+    ]
+  },
+  "MAF": {
+    "id": "663",
+    "mapName": "St-Martin",
+    "mapNames": [
+      "St-Martin"
+    ],
+    "alpha2": "MF",
+    "alpha3": "MAF",
+    "name": "Saint Martin",
+    "region": "Americas",
+    "flag": "mf",
+    "coordinates": {
+      "lat": 18.08333333,
+      "lng": -63.95
+    },
+    "focusCoordinates": {
+      "lat": 18.08333333,
+      "lng": -63.95
+    },
+    "aliases": [
+      "MF",
+      "Collectivity of Saint Martin",
+      "Collectivité de Saint-Martin",
+      "Saint Martin (French part)",
+      "Saint Martin",
+      "MAF",
+      "St-Martin"
+    ]
+  },
+  "BLM": {
+    "id": "652",
+    "mapName": "St-Barthélemy",
+    "mapNames": [
+      "St-Barthélemy"
+    ],
+    "alpha2": "BL",
+    "alpha3": "BLM",
+    "name": "Saint Barthélemy",
+    "region": "Americas",
+    "flag": "bl",
+    "coordinates": {
+      "lat": 18.5,
+      "lng": -63.41666666
+    },
+    "focusCoordinates": {
+      "lat": 18.5,
+      "lng": -63.41666666
+    },
+    "aliases": [
+      "BL",
+      "St. Barthelemy",
+      "Collectivity of Saint Barthélemy",
+      "Collectivité de Saint-Barthélemy",
+      "BLM",
+      "St-Barthélemy"
+    ]
+  },
+  "PYF": {
+    "id": "258",
+    "mapName": "Fr. Polynesia",
+    "mapNames": [
+      "Fr. Polynesia"
+    ],
+    "alpha2": "PF",
+    "alpha3": "PYF",
+    "name": "French Polynesia",
+    "region": "Oceania",
+    "flag": "pf",
+    "coordinates": {
+      "lat": -15,
+      "lng": -140
+    },
+    "focusCoordinates": {
+      "lat": -15,
+      "lng": -140
+    },
+    "aliases": [
+      "PF",
+      "Polynésie française",
+      "French Polynesia",
+      "Pōrīnetia Farāni",
+      "PYF",
+      "Fr. Polynesia"
+    ]
+  },
+  "NCL": {
+    "id": "540",
+    "mapName": "New Caledonia",
+    "mapNames": [
+      "New Caledonia"
+    ],
+    "alpha2": "NC",
+    "alpha3": "NCL",
+    "name": "New Caledonia",
+    "region": "Oceania",
+    "flag": "nc",
+    "coordinates": {
+      "lat": -21.5,
+      "lng": 165.5
+    },
+    "focusCoordinates": {
+      "lat": -21.5,
+      "lng": 165.5
+    },
+    "aliases": [
+      "NC",
+      "New Caledonia",
+      "NCL"
+    ]
+  },
+  "ATF": {
+    "id": "260",
+    "mapName": "Fr. S. Antarctic Lands",
+    "mapNames": [
+      "Fr. S. Antarctic Lands"
+    ],
+    "alpha2": "TF",
+    "alpha3": "ATF",
+    "name": "French Southern and Antarctic Lands",
+    "region": "Antarctic",
+    "flag": "tf",
+    "coordinates": {
+      "lat": -49.25,
+      "lng": 69.167
+    },
+    "focusCoordinates": {
+      "lat": -49.25,
+      "lng": 69.167
+    },
+    "aliases": [
+      "TF",
+      "French Southern Territories",
+      "Territory of the French Southern and Antarctic Lands",
+      "ATF",
+      "Fr. S. Antarctic Lands"
+    ]
+  },
+  "ALA": {
+    "id": "248",
+    "mapName": "Åland",
+    "mapNames": [
+      "Åland"
+    ],
+    "alpha2": "AX",
+    "alpha3": "ALA",
+    "name": "Åland Islands",
+    "region": "Europe",
+    "flag": "ax",
+    "coordinates": {
+      "lat": 60.116667,
+      "lng": 19.9
+    },
+    "focusCoordinates": {
+      "lat": 60.116667,
+      "lng": 19.9
+    },
+    "aliases": [
+      "AX",
+      "Aaland",
+      "Aland",
+      "Ahvenanmaa",
+      "Åland Islands",
+      "ALA",
+      "Åland"
+    ]
+  },
+  "FIN": {
+    "id": "246",
+    "mapName": "Finland",
+    "mapNames": [
+      "Finland"
+    ],
+    "alpha2": "FI",
+    "alpha3": "FIN",
+    "name": "Finland",
+    "region": "Europe",
+    "flag": "fi",
+    "coordinates": {
+      "lat": 64,
+      "lng": 26
+    },
+    "focusCoordinates": {
+      "lat": 64,
+      "lng": 26
+    },
+    "aliases": [
+      "FI",
+      "Suomi",
+      "Republic of Finland",
+      "Suomen tasavalta",
+      "Republiken Finland",
+      "FIN",
+      "Finland"
+    ]
+  },
+  "FJI": {
+    "id": "242",
+    "mapName": "Fiji",
+    "mapNames": [
+      "Fiji"
+    ],
+    "alpha2": "FJ",
+    "alpha3": "FJI",
+    "name": "Fiji",
+    "region": "Oceania",
+    "flag": "fj",
+    "coordinates": {
+      "lat": -18,
+      "lng": 175
+    },
+    "focusCoordinates": {
+      "lat": -18,
+      "lng": 175
+    },
+    "aliases": [
+      "FJ",
+      "Viti",
+      "Republic of Fiji",
+      "Matanitu ko Viti",
+      "Fijī Gaṇarājya",
+      "FJI",
+      "Fiji"
+    ]
+  },
+  "ETH": {
+    "id": "231",
+    "mapName": "Ethiopia",
+    "mapNames": [
+      "Ethiopia"
+    ],
+    "alpha2": "ET",
+    "alpha3": "ETH",
+    "name": "Ethiopia",
+    "region": "Africa",
+    "flag": "et",
+    "coordinates": {
+      "lat": 8,
+      "lng": 38
+    },
+    "focusCoordinates": {
+      "lat": 8,
+      "lng": 38
+    },
+    "aliases": [
+      "ET",
+      "ʾĪtyōṗṗyā",
+      "Federal Democratic Republic of Ethiopia",
+      "የኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ",
+      "ETH",
+      "Ethiopia"
+    ]
+  },
+  "EST": {
+    "id": "233",
+    "mapName": "Estonia",
+    "mapNames": [
+      "Estonia"
+    ],
+    "alpha2": "EE",
+    "alpha3": "EST",
+    "name": "Estonia",
+    "region": "Europe",
+    "flag": "ee",
+    "coordinates": {
+      "lat": 59,
+      "lng": 26
+    },
+    "focusCoordinates": {
+      "lat": 59,
+      "lng": 26
+    },
+    "aliases": [
+      "EE",
+      "Eesti",
+      "Republic of Estonia",
+      "Eesti Vabariik",
+      "EST",
+      "Estonia"
+    ]
+  },
+  "ERI": {
+    "id": "232",
+    "mapName": "Eritrea",
+    "mapNames": [
+      "Eritrea"
+    ],
+    "alpha2": "ER",
+    "alpha3": "ERI",
+    "name": "Eritrea",
+    "region": "Africa",
+    "flag": "er",
+    "coordinates": {
+      "lat": 15,
+      "lng": 39
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": 39
+    },
+    "aliases": [
+      "ER",
+      "State of Eritrea",
+      "ሃገረ ኤርትራ",
+      "Dawlat Iritriyá",
+      "ʾErtrā",
+      "Iritriyā",
+      "ERI",
+      "Eritrea"
+    ]
+  },
+  "GNQ": {
+    "id": "226",
+    "mapName": "Eq. Guinea",
+    "mapNames": [
+      "Eq. Guinea"
+    ],
+    "alpha2": "GQ",
+    "alpha3": "GNQ",
+    "name": "Equatorial Guinea",
+    "region": "Africa",
+    "flag": "gq",
+    "coordinates": {
+      "lat": 2,
+      "lng": 10
+    },
+    "focusCoordinates": {
+      "lat": 2,
+      "lng": 10
+    },
+    "aliases": [
+      "GQ",
+      "Republic of Equatorial Guinea",
+      "República de Guinea Ecuatorial",
+      "République de Guinée équatoriale",
+      "República da Guiné Equatorial",
+      "GNQ",
+      "Eq. Guinea"
+    ]
+  },
+  "SLV": {
+    "id": "222",
+    "mapName": "El Salvador",
+    "mapNames": [
+      "El Salvador"
+    ],
+    "alpha2": "SV",
+    "alpha3": "SLV",
+    "name": "El Salvador",
+    "region": "Americas",
+    "flag": "sv",
+    "coordinates": {
+      "lat": 13.83333333,
+      "lng": -88.91666666
+    },
+    "focusCoordinates": {
+      "lat": 13.83333333,
+      "lng": -88.91666666
+    },
+    "aliases": [
+      "SV",
+      "Republic of El Salvador",
+      "República de El Salvador",
+      "SLV",
+      "El Salvador"
+    ]
+  },
+  "EGY": {
+    "id": "818",
+    "mapName": "Egypt",
+    "mapNames": [
+      "Egypt"
+    ],
+    "alpha2": "EG",
+    "alpha3": "EGY",
+    "name": "Egypt",
+    "region": "Africa",
+    "flag": "eg",
+    "coordinates": {
+      "lat": 27,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": 27,
+      "lng": 30
+    },
+    "aliases": [
+      "EG",
+      "Arab Republic of Egypt",
+      "EGY",
+      "Egypt"
+    ]
+  },
+  "ECU": {
+    "id": "218",
+    "mapName": "Ecuador",
+    "mapNames": [
+      "Ecuador"
+    ],
+    "alpha2": "EC",
+    "alpha3": "ECU",
+    "name": "Ecuador",
+    "region": "Americas",
+    "flag": "ec",
+    "coordinates": {
+      "lat": -2,
+      "lng": -77.5
+    },
+    "focusCoordinates": {
+      "lat": -2,
+      "lng": -77.5
+    },
+    "aliases": [
+      "EC",
+      "Republic of Ecuador",
+      "República del Ecuador",
+      "ECU",
+      "Ecuador"
+    ]
+  },
+  "DOM": {
+    "id": "214",
+    "mapName": "Dominican Rep.",
+    "mapNames": [
+      "Dominican Rep."
+    ],
+    "alpha2": "DO",
+    "alpha3": "DOM",
+    "name": "Dominican Republic",
+    "region": "Americas",
+    "flag": "do",
+    "coordinates": {
+      "lat": 19,
+      "lng": -70.66666666
+    },
+    "focusCoordinates": {
+      "lat": 19,
+      "lng": -70.66666666
+    },
+    "aliases": [
+      "DO",
+      "Dominican Republic",
+      "DOM",
+      "Dominican Rep."
+    ]
+  },
+  "DMA": {
+    "id": "212",
+    "mapName": "Dominica",
+    "mapNames": [
+      "Dominica"
+    ],
+    "alpha2": "DM",
+    "alpha3": "DMA",
+    "name": "Dominica",
+    "region": "Americas",
+    "flag": "dm",
+    "coordinates": {
+      "lat": 15.41666666,
+      "lng": -61.33333333
+    },
+    "focusCoordinates": {
+      "lat": 15.41666666,
+      "lng": -61.33333333
+    },
+    "aliases": [
+      "DM",
+      "Dominique",
+      "Wai‘tu kubuli",
+      "Commonwealth of Dominica",
+      "DMA",
+      "Dominica"
+    ]
+  },
+  "DJI": {
+    "id": "262",
+    "mapName": "Djibouti",
+    "mapNames": [
+      "Djibouti"
+    ],
+    "alpha2": "DJ",
+    "alpha3": "DJI",
+    "name": "Djibouti",
+    "region": "Africa",
+    "flag": "dj",
+    "coordinates": {
+      "lat": 11.5,
+      "lng": 43
+    },
+    "focusCoordinates": {
+      "lat": 11.5,
+      "lng": 43
+    },
+    "aliases": [
+      "DJ",
+      "Jabuuti",
+      "Gabuuti",
+      "Republic of Djibouti",
+      "République de Djibouti",
+      "Gabuutih Ummuuno",
+      "Jamhuuriyadda Jabuuti",
+      "DJI",
+      "Djibouti"
+    ]
+  },
+  "GRL": {
+    "id": "304",
+    "mapName": "Greenland",
+    "mapNames": [
+      "Greenland"
+    ],
+    "alpha2": "GL",
+    "alpha3": "GRL",
+    "name": "Greenland",
+    "region": "Americas",
+    "flag": "gl",
+    "coordinates": {
+      "lat": 72,
+      "lng": -40
+    },
+    "focusCoordinates": {
+      "lat": 72,
+      "lng": -40
+    },
+    "aliases": [
+      "GL",
+      "Grønland",
+      "Greenland",
+      "GRL"
+    ]
+  },
+  "FRO": {
+    "id": "234",
+    "mapName": "Faeroe Is.",
+    "mapNames": [
+      "Faeroe Is."
+    ],
+    "alpha2": "FO",
+    "alpha3": "FRO",
+    "name": "Faroe Islands",
+    "region": "Europe",
+    "flag": "fo",
+    "coordinates": {
+      "lat": 62,
+      "lng": -7
+    },
+    "focusCoordinates": {
+      "lat": 62,
+      "lng": -7
+    },
+    "aliases": [
+      "FO",
+      "Føroyar",
+      "Færøerne",
+      "Faeroe Islands",
+      "Faroe Islands",
+      "FRO",
+      "Faeroe Is."
+    ]
+  },
+  "DNK": {
+    "id": "208",
+    "mapName": "Denmark",
+    "mapNames": [
+      "Denmark"
+    ],
+    "alpha2": "DK",
+    "alpha3": "DNK",
+    "name": "Denmark",
+    "region": "Europe",
+    "flag": "dk",
+    "coordinates": {
+      "lat": 56,
+      "lng": 10
+    },
+    "focusCoordinates": {
+      "lat": 56,
+      "lng": 10
+    },
+    "aliases": [
+      "DK",
+      "Danmark",
+      "Kingdom of Denmark",
+      "Kongeriget Danmark",
+      "DNK",
+      "Denmark"
+    ]
+  },
+  "CZE": {
+    "id": "203",
+    "mapName": "Czechia",
+    "mapNames": [
+      "Czechia"
+    ],
+    "alpha2": "CZ",
+    "alpha3": "CZE",
+    "name": "Czechia",
+    "region": "Europe",
+    "flag": "cz",
+    "coordinates": {
+      "lat": 49.75,
+      "lng": 15.5
+    },
+    "focusCoordinates": {
+      "lat": 49.75,
+      "lng": 15.5
+    },
+    "aliases": [
+      "CZ",
+      "Česká republika",
+      "Česko",
+      "Czech Republic",
+      "CZE",
+      "Czechia"
+    ]
+  },
+  "MAP_N__CYPRUS": {
+    "id": "N. Cyprus",
+    "mapName": "N. Cyprus",
+    "mapNames": [
+      "N. Cyprus"
+    ],
+    "alpha2": null,
+    "alpha3": null,
+    "name": "N. Cyprus",
+    "region": "Geographic territory",
+    "flag": "",
+    "coordinates": {
+      "lat": 35.20247654329172,
+      "lng": 33.533435334353356
+    },
+    "focusCoordinates": {
+      "lat": 35.20247654329172,
+      "lng": 33.533435334353356
+    },
+    "aliases": [
+      "N. Cyprus"
+    ]
+  },
+  "CYP": {
+    "id": "196",
+    "mapName": "Cyprus",
+    "mapNames": [
+      "Cyprus"
+    ],
+    "alpha2": "CY",
+    "alpha3": "CYP",
+    "name": "Cyprus",
+    "region": "Europe",
+    "flag": "cy",
+    "coordinates": {
+      "lat": 35,
+      "lng": 33
+    },
+    "focusCoordinates": {
+      "lat": 35,
+      "lng": 33
+    },
+    "aliases": [
+      "CY",
+      "Kýpros",
+      "Kıbrıs",
+      "Republic of Cyprus",
+      "Κυπριακή Δημοκρατία",
+      "Kıbrıs Cumhuriyeti",
+      "CYP",
+      "Cyprus"
+    ]
+  },
+  "CUB": {
+    "id": "192",
+    "mapName": "Cuba",
+    "mapNames": [
+      "Cuba"
+    ],
+    "alpha2": "CU",
+    "alpha3": "CUB",
+    "name": "Cuba",
+    "region": "Americas",
+    "flag": "cu",
+    "coordinates": {
+      "lat": 21.5,
+      "lng": -80
+    },
+    "focusCoordinates": {
+      "lat": 21.5,
+      "lng": -80
+    },
+    "aliases": [
+      "CU",
+      "Republic of Cuba",
+      "República de Cuba",
+      "CUB",
+      "Cuba"
+    ]
+  },
+  "HRV": {
+    "id": "191",
+    "mapName": "Croatia",
+    "mapNames": [
+      "Croatia"
+    ],
+    "alpha2": "HR",
+    "alpha3": "HRV",
+    "name": "Croatia",
+    "region": "Europe",
+    "flag": "hr",
+    "coordinates": {
+      "lat": 45.16666666,
+      "lng": 15.5
+    },
+    "focusCoordinates": {
+      "lat": 45.16666666,
+      "lng": 15.5
+    },
+    "aliases": [
+      "HR",
+      "Hrvatska",
+      "Republic of Croatia",
+      "Republika Hrvatska",
+      "HRV",
+      "Croatia"
+    ]
+  },
+  "CIV": {
+    "id": "384",
+    "mapName": "Côte d'Ivoire",
+    "mapNames": [
+      "Côte d'Ivoire"
+    ],
+    "alpha2": "CI",
+    "alpha3": "CIV",
+    "name": "Ivory Coast",
+    "region": "Africa",
+    "flag": "ci",
+    "coordinates": {
+      "lat": 8,
+      "lng": -5
+    },
+    "focusCoordinates": {
+      "lat": 8,
+      "lng": -5
+    },
+    "aliases": [
+      "CI",
+      "Côte d'Ivoire",
+      "Cote d'Ivoire",
+      "Ivory Coast",
+      "Republic of Côte d'Ivoire",
+      "République de Côte d'Ivoire",
+      "CIV"
+    ]
+  },
+  "CRI": {
+    "id": "188",
+    "mapName": "Costa Rica",
+    "mapNames": [
+      "Costa Rica"
+    ],
+    "alpha2": "CR",
+    "alpha3": "CRI",
+    "name": "Costa Rica",
+    "region": "Americas",
+    "flag": "cr",
+    "coordinates": {
+      "lat": 10,
+      "lng": -84
+    },
+    "focusCoordinates": {
+      "lat": 10,
+      "lng": -84
+    },
+    "aliases": [
+      "CR",
+      "Republic of Costa Rica",
+      "República de Costa Rica",
+      "CRI",
+      "Costa Rica"
+    ]
+  },
+  "COD": {
+    "id": "180",
+    "mapName": "Dem. Rep. Congo",
+    "mapNames": [
+      "Dem. Rep. Congo"
+    ],
+    "alpha2": "CD",
+    "alpha3": "COD",
+    "name": "DR Congo",
+    "region": "Africa",
+    "flag": "cd",
+    "coordinates": {
+      "lat": 0,
+      "lng": 25
+    },
+    "focusCoordinates": {
+      "lat": 0,
+      "lng": 25
+    },
+    "aliases": [
+      "CD",
+      "DR Congo",
+      "Congo-Kinshasa",
+      "Congo, the Democratic Republic of the",
+      "Democratic Republic of Congo",
+      "DRC",
+      "Democratic Republic of the Congo",
+      "COD",
+      "Dem. Rep. Congo"
+    ]
+  },
+  "COG": {
+    "id": "178",
+    "mapName": "Congo",
+    "mapNames": [
+      "Congo"
+    ],
+    "alpha2": "CG",
+    "alpha3": "COG",
+    "name": "Republic of the Congo",
+    "region": "Africa",
+    "flag": "cg",
+    "coordinates": {
+      "lat": -1,
+      "lng": 15
+    },
+    "focusCoordinates": {
+      "lat": -1,
+      "lng": 15
+    },
+    "aliases": [
+      "CG",
+      "Congo",
+      "Congo-Brazzaville",
+      "Republic of the Congo",
+      "COG"
+    ]
+  },
+  "COM": {
+    "id": "174",
+    "mapName": "Comoros",
+    "mapNames": [
+      "Comoros"
+    ],
+    "alpha2": "KM",
+    "alpha3": "COM",
+    "name": "Comoros",
+    "region": "Africa",
+    "flag": "km",
+    "coordinates": {
+      "lat": -12.16666666,
+      "lng": 44.25
+    },
+    "focusCoordinates": {
+      "lat": -12.16666666,
+      "lng": 44.25
+    },
+    "aliases": [
+      "KM",
+      "Union of the Comoros",
+      "Union des Comores",
+      "Udzima wa Komori",
+      "al-Ittiḥād al-Qumurī",
+      "COM",
+      "Comoros"
+    ]
+  },
+  "COL": {
+    "id": "170",
+    "mapName": "Colombia",
+    "mapNames": [
+      "Colombia"
+    ],
+    "alpha2": "CO",
+    "alpha3": "COL",
+    "name": "Colombia",
+    "region": "Americas",
+    "flag": "co",
+    "coordinates": {
+      "lat": 4,
+      "lng": -72
+    },
+    "focusCoordinates": {
+      "lat": 4,
+      "lng": -72
+    },
+    "aliases": [
+      "CO",
+      "Republic of Colombia",
+      "República de Colombia",
+      "COL",
+      "Colombia"
+    ]
+  },
+  "CHN": {
+    "id": "156",
+    "mapName": "China",
+    "mapNames": [
+      "China"
+    ],
+    "alpha2": "CN",
+    "alpha3": "CHN",
+    "name": "China",
+    "region": "Asia",
+    "flag": "cn",
+    "coordinates": {
+      "lat": 35,
+      "lng": 104
+    },
+    "focusCoordinates": {
+      "lat": 35,
+      "lng": 105
+    },
+    "aliases": [
+      "CN",
+      "Zhōngguó",
+      "Zhongguo",
+      "Zhonghua",
+      "People's Republic of China",
+      "中华人民共和国",
+      "Zhōnghuá Rénmín Gònghéguó",
+      "CHN",
+      "China"
+    ]
+  },
+  "MAC": {
+    "id": "446",
+    "mapName": "Macao",
+    "mapNames": [
+      "Macao"
+    ],
+    "alpha2": "MO",
+    "alpha3": "MAC",
+    "name": "Macau",
+    "region": "Asia",
+    "flag": "mo",
+    "coordinates": {
+      "lat": 22.16666666,
+      "lng": 113.55
+    },
+    "focusCoordinates": {
+      "lat": 22.16666666,
+      "lng": 113.55
+    },
+    "aliases": [
+      "MO",
+      "澳门",
+      "Macao",
+      "Macao Special Administrative Region of the People's Republic of China",
+      "中華人民共和國澳門特別行政區",
+      "Região Administrativa Especial de Macau da República Popular da China",
+      "MAC"
+    ]
+  },
+  "HKG": {
+    "id": "344",
+    "mapName": "Hong Kong",
+    "mapNames": [
+      "Hong Kong"
+    ],
+    "alpha2": "HK",
+    "alpha3": "HKG",
+    "name": "Hong Kong",
+    "region": "Asia",
+    "flag": "hk",
+    "coordinates": {
+      "lat": 22.267,
+      "lng": 114.188
+    },
+    "focusCoordinates": {
+      "lat": 22.267,
+      "lng": 114.188
+    },
+    "aliases": [
+      "HK",
+      "Hong Kong Special Administrative Region of the People's Republic of China",
+      "HKG",
+      "Hong Kong"
+    ]
+  },
+  "CHL": {
+    "id": "152",
+    "mapName": "Chile",
+    "mapNames": [
+      "Chile"
+    ],
+    "alpha2": "CL",
+    "alpha3": "CHL",
+    "name": "Chile",
+    "region": "Americas",
+    "flag": "cl",
+    "coordinates": {
+      "lat": -30,
+      "lng": -71
+    },
+    "focusCoordinates": {
+      "lat": -30,
+      "lng": -71
+    },
+    "aliases": [
+      "CL",
+      "Republic of Chile",
+      "República de Chile",
+      "CHL",
+      "Chile"
+    ]
+  },
+  "TCD": {
+    "id": "148",
+    "mapName": "Chad",
+    "mapNames": [
+      "Chad"
+    ],
+    "alpha2": "TD",
+    "alpha3": "TCD",
+    "name": "Chad",
+    "region": "Africa",
+    "flag": "td",
+    "coordinates": {
+      "lat": 15,
+      "lng": 19
+    },
+    "focusCoordinates": {
+      "lat": 15,
+      "lng": 19
+    },
+    "aliases": [
+      "TD",
+      "Tchad",
+      "Republic of Chad",
+      "République du Tchad",
+      "TCD",
+      "Chad"
+    ]
+  },
+  "CAF": {
+    "id": "140",
+    "mapName": "Central African Rep.",
+    "mapNames": [
+      "Central African Rep."
+    ],
+    "alpha2": "CF",
+    "alpha3": "CAF",
+    "name": "Central African Republic",
+    "region": "Africa",
+    "flag": "cf",
+    "coordinates": {
+      "lat": 7,
+      "lng": 21
+    },
+    "focusCoordinates": {
+      "lat": 7,
+      "lng": 21
+    },
+    "aliases": [
+      "CF",
+      "Central African Republic",
+      "République centrafricaine",
+      "CAF",
+      "Central African Rep."
+    ]
+  },
+  "CPV": {
+    "id": "132",
+    "mapName": "Cabo Verde",
+    "mapNames": [
+      "Cabo Verde"
+    ],
+    "alpha2": "CV",
+    "alpha3": "CPV",
+    "name": "Cape Verde",
+    "region": "Africa",
+    "flag": "cv",
+    "coordinates": {
+      "lat": 16,
+      "lng": -24
+    },
+    "focusCoordinates": {
+      "lat": 16,
+      "lng": -24
+    },
+    "aliases": [
+      "CV",
+      "Republic of Cabo Verde",
+      "República de Cabo Verde",
+      "CPV",
+      "Cabo Verde"
+    ]
+  },
+  "CAN": {
+    "id": "124",
+    "mapName": "Canada",
+    "mapNames": [
+      "Canada"
+    ],
+    "alpha2": "CA",
+    "alpha3": "CAN",
+    "name": "Canada",
+    "region": "Americas",
+    "flag": "ca",
+    "coordinates": {
+      "lat": 60,
+      "lng": -95
+    },
+    "focusCoordinates": {
+      "lat": 60,
+      "lng": -95
+    },
+    "aliases": [
+      "CA",
+      "Canada",
+      "CAN"
+    ]
+  },
+  "CMR": {
+    "id": "120",
+    "mapName": "Cameroon",
+    "mapNames": [
+      "Cameroon"
+    ],
+    "alpha2": "CM",
+    "alpha3": "CMR",
+    "name": "Cameroon",
+    "region": "Africa",
+    "flag": "cm",
+    "coordinates": {
+      "lat": 6,
+      "lng": 12
+    },
+    "focusCoordinates": {
+      "lat": 6,
+      "lng": 12
+    },
+    "aliases": [
+      "CM",
+      "Republic of Cameroon",
+      "République du Cameroun",
+      "CMR",
+      "Cameroon"
+    ]
+  },
+  "KHM": {
+    "id": "116",
+    "mapName": "Cambodia",
+    "mapNames": [
+      "Cambodia"
+    ],
+    "alpha2": "KH",
+    "alpha3": "KHM",
+    "name": "Cambodia",
+    "region": "Asia",
+    "flag": "kh",
+    "coordinates": {
+      "lat": 13,
+      "lng": 105
+    },
+    "focusCoordinates": {
+      "lat": 13,
+      "lng": 105
+    },
+    "aliases": [
+      "KH",
+      "Kingdom of Cambodia",
+      "KHM",
+      "Cambodia"
+    ]
+  },
+  "MMR": {
+    "id": "104",
+    "mapName": "Myanmar",
+    "mapNames": [
+      "Myanmar"
+    ],
+    "alpha2": "MM",
+    "alpha3": "MMR",
+    "name": "Myanmar",
+    "region": "Asia",
+    "flag": "mm",
+    "coordinates": {
+      "lat": 22,
+      "lng": 98
+    },
+    "focusCoordinates": {
+      "lat": 22,
+      "lng": 98
+    },
+    "aliases": [
+      "MM",
+      "Burma",
+      "Republic of the Union of Myanmar",
+      "Pyidaunzu Thanmăda Myăma Nainngandaw",
+      "MMR",
+      "Myanmar"
+    ]
+  },
+  "BDI": {
+    "id": "108",
+    "mapName": "Burundi",
+    "mapNames": [
+      "Burundi"
+    ],
+    "alpha2": "BI",
+    "alpha3": "BDI",
+    "name": "Burundi",
+    "region": "Africa",
+    "flag": "bi",
+    "coordinates": {
+      "lat": -3.5,
+      "lng": 30
+    },
+    "focusCoordinates": {
+      "lat": -3.5,
+      "lng": 30
+    },
+    "aliases": [
+      "BI",
+      "Republic of Burundi",
+      "Republika y'Uburundi",
+      "République du Burundi",
+      "BDI",
+      "Burundi"
+    ]
+  },
+  "BFA": {
+    "id": "854",
+    "mapName": "Burkina Faso",
+    "mapNames": [
+      "Burkina Faso"
+    ],
+    "alpha2": "BF",
+    "alpha3": "BFA",
+    "name": "Burkina Faso",
+    "region": "Africa",
+    "flag": "bf",
+    "coordinates": {
+      "lat": 13,
+      "lng": -2
+    },
+    "focusCoordinates": {
+      "lat": 13,
+      "lng": -2
+    },
+    "aliases": [
+      "BF",
+      "Burkina Faso",
+      "BFA"
+    ]
+  },
+  "BGR": {
+    "id": "100",
+    "mapName": "Bulgaria",
+    "mapNames": [
+      "Bulgaria"
+    ],
+    "alpha2": "BG",
+    "alpha3": "BGR",
+    "name": "Bulgaria",
+    "region": "Europe",
+    "flag": "bg",
+    "coordinates": {
+      "lat": 43,
+      "lng": 25
+    },
+    "focusCoordinates": {
+      "lat": 43,
+      "lng": 25
+    },
+    "aliases": [
+      "BG",
+      "Republic of Bulgaria",
+      "Република България",
+      "BGR",
+      "Bulgaria"
+    ]
+  },
+  "BRN": {
+    "id": "096",
+    "mapName": "Brunei",
+    "mapNames": [
+      "Brunei"
+    ],
+    "alpha2": "BN",
+    "alpha3": "BRN",
+    "name": "Brunei",
+    "region": "Asia",
+    "flag": "bn",
+    "coordinates": {
+      "lat": 4.5,
+      "lng": 114.66666666
+    },
+    "focusCoordinates": {
+      "lat": 4.5,
+      "lng": 114.66666666
+    },
+    "aliases": [
+      "BN",
+      "Brunei Darussalam",
+      "Nation of Brunei",
+      "the Abode of Peace",
+      "Nation of Brunei, Abode of Peace",
+      "BRN",
+      "Brunei"
+    ]
+  },
+  "BRA": {
+    "id": "076",
+    "mapName": "Brazil",
+    "mapNames": [
+      "Brazil"
+    ],
+    "alpha2": "BR",
+    "alpha3": "BRA",
+    "name": "Brazil",
+    "region": "Americas",
+    "flag": "br",
+    "coordinates": {
+      "lat": -14,
+      "lng": -52
+    },
+    "focusCoordinates": {
+      "lat": -10,
+      "lng": -55
+    },
+    "aliases": [
+      "BR",
+      "Brasil",
+      "Federative Republic of Brazil",
+      "República Federativa do Brasil",
+      "BRA",
+      "Brazil"
+    ]
+  },
+  "BWA": {
+    "id": "072",
+    "mapName": "Botswana",
+    "mapNames": [
+      "Botswana"
+    ],
+    "alpha2": "BW",
+    "alpha3": "BWA",
+    "name": "Botswana",
+    "region": "Africa",
+    "flag": "bw",
+    "coordinates": {
+      "lat": -22,
+      "lng": 24
+    },
+    "focusCoordinates": {
+      "lat": -22,
+      "lng": 24
+    },
+    "aliases": [
+      "BW",
+      "Republic of Botswana",
+      "Lefatshe la Botswana",
+      "BWA",
+      "Botswana"
+    ]
+  },
+  "BIH": {
+    "id": "070",
+    "mapName": "Bosnia and Herz.",
+    "mapNames": [
+      "Bosnia and Herz."
+    ],
+    "alpha2": "BA",
+    "alpha3": "BIH",
+    "name": "Bosnia and Herzegovina",
+    "region": "Europe",
+    "flag": "ba",
+    "coordinates": {
+      "lat": 44,
+      "lng": 18
+    },
+    "focusCoordinates": {
+      "lat": 44,
+      "lng": 18
+    },
+    "aliases": [
+      "BA",
+      "Bosnia-Herzegovina",
+      "Босна и Херцеговина",
+      "Bosnia and Herzegovina",
+      "BIH",
+      "Bosnia and Herz."
+    ]
+  },
+  "BOL": {
+    "id": "068",
+    "mapName": "Bolivia",
+    "mapNames": [
+      "Bolivia"
+    ],
+    "alpha2": "BO",
+    "alpha3": "BOL",
+    "name": "Bolivia",
+    "region": "Americas",
+    "flag": "bo",
+    "coordinates": {
+      "lat": -17,
+      "lng": -65
+    },
+    "focusCoordinates": {
+      "lat": -17,
+      "lng": -65
+    },
+    "aliases": [
+      "BO",
+      "Buliwya",
+      "Wuliwya",
+      "Bolivia, Plurinational State of",
+      "Plurinational State of Bolivia",
+      "Estado Plurinacional de Bolivia",
+      "Buliwya Mamallaqta",
+      "Wuliwya Suyu",
+      "Tetã Volívia",
+      "BOL",
+      "Bolivia"
+    ]
+  },
+  "BTN": {
+    "id": "064",
+    "mapName": "Bhutan",
+    "mapNames": [
+      "Bhutan"
+    ],
+    "alpha2": "BT",
+    "alpha3": "BTN",
+    "name": "Bhutan",
+    "region": "Asia",
+    "flag": "bt",
+    "coordinates": {
+      "lat": 27.5,
+      "lng": 90.5
+    },
+    "focusCoordinates": {
+      "lat": 27.5,
+      "lng": 90.5
+    },
+    "aliases": [
+      "BT",
+      "Kingdom of Bhutan",
+      "BTN",
+      "Bhutan"
+    ]
+  },
+  "BEN": {
+    "id": "204",
+    "mapName": "Benin",
+    "mapNames": [
+      "Benin"
+    ],
+    "alpha2": "BJ",
+    "alpha3": "BEN",
+    "name": "Benin",
+    "region": "Africa",
+    "flag": "bj",
+    "coordinates": {
+      "lat": 9.5,
+      "lng": 2.25
+    },
+    "focusCoordinates": {
+      "lat": 9.5,
+      "lng": 2.25
+    },
+    "aliases": [
+      "BJ",
+      "Republic of Benin",
+      "République du Bénin",
+      "BEN",
+      "Benin"
+    ]
+  },
+  "BLZ": {
+    "id": "084",
+    "mapName": "Belize",
+    "mapNames": [
+      "Belize"
+    ],
+    "alpha2": "BZ",
+    "alpha3": "BLZ",
+    "name": "Belize",
+    "region": "Americas",
+    "flag": "bz",
+    "coordinates": {
+      "lat": 17.25,
+      "lng": -88.75
+    },
+    "focusCoordinates": {
+      "lat": 17.25,
+      "lng": -88.75
+    },
+    "aliases": [
+      "BZ",
+      "Belize",
+      "BLZ"
+    ]
+  },
+  "BEL": {
+    "id": "056",
+    "mapName": "Belgium",
+    "mapNames": [
+      "Belgium"
+    ],
+    "alpha2": "BE",
+    "alpha3": "BEL",
+    "name": "Belgium",
+    "region": "Europe",
+    "flag": "be",
+    "coordinates": {
+      "lat": 50.83333333,
+      "lng": 4
+    },
+    "focusCoordinates": {
+      "lat": 50.83333333,
+      "lng": 4
+    },
+    "aliases": [
+      "BE",
+      "België",
+      "Belgie",
+      "Belgien",
+      "Belgique",
+      "Kingdom of Belgium",
+      "Koninkrijk België",
+      "Royaume de Belgique",
+      "Königreich Belgien",
+      "BEL",
+      "Belgium"
+    ]
+  },
+  "BLR": {
+    "id": "112",
+    "mapName": "Belarus",
+    "mapNames": [
+      "Belarus"
+    ],
+    "alpha2": "BY",
+    "alpha3": "BLR",
+    "name": "Belarus",
+    "region": "Europe",
+    "flag": "by",
+    "coordinates": {
+      "lat": 53,
+      "lng": 28
+    },
+    "focusCoordinates": {
+      "lat": 53,
+      "lng": 28
+    },
+    "aliases": [
+      "BY",
+      "Bielaruś",
+      "Republic of Belarus",
+      "Белоруссия",
+      "Республика Белоруссия",
+      "BLR",
+      "Belarus"
+    ]
+  },
+  "BRB": {
+    "id": "052",
+    "mapName": "Barbados",
+    "mapNames": [
+      "Barbados"
+    ],
+    "alpha2": "BB",
+    "alpha3": "BRB",
+    "name": "Barbados",
+    "region": "Americas",
+    "flag": "bb",
+    "coordinates": {
+      "lat": 13.16666666,
+      "lng": -59.53333333
+    },
+    "focusCoordinates": {
+      "lat": 13.16666666,
+      "lng": -59.53333333
+    },
+    "aliases": [
+      "BB",
+      "Barbados",
+      "BRB"
+    ]
+  },
+  "BGD": {
+    "id": "050",
+    "mapName": "Bangladesh",
+    "mapNames": [
+      "Bangladesh"
+    ],
+    "alpha2": "BD",
+    "alpha3": "BGD",
+    "name": "Bangladesh",
+    "region": "Asia",
+    "flag": "bd",
+    "coordinates": {
+      "lat": 24,
+      "lng": 90
+    },
+    "focusCoordinates": {
+      "lat": 24,
+      "lng": 90
+    },
+    "aliases": [
+      "BD",
+      "People's Republic of Bangladesh",
+      "Gônôprôjatôntri Bangladesh",
+      "BGD",
+      "Bangladesh"
+    ]
+  },
+  "BHR": {
+    "id": "048",
+    "mapName": "Bahrain",
+    "mapNames": [
+      "Bahrain"
+    ],
+    "alpha2": "BH",
+    "alpha3": "BHR",
+    "name": "Bahrain",
+    "region": "Asia",
+    "flag": "bh",
+    "coordinates": {
+      "lat": 26,
+      "lng": 50.55
+    },
+    "focusCoordinates": {
+      "lat": 26,
+      "lng": 50.55
+    },
+    "aliases": [
+      "BH",
+      "Kingdom of Bahrain",
+      "Mamlakat al-Baḥrayn",
+      "BHR",
+      "Bahrain"
+    ]
+  },
+  "BHS": {
+    "id": "044",
+    "mapName": "Bahamas",
+    "mapNames": [
+      "Bahamas"
+    ],
+    "alpha2": "BS",
+    "alpha3": "BHS",
+    "name": "Bahamas",
+    "region": "Americas",
+    "flag": "bs",
+    "coordinates": {
+      "lat": 24.25,
+      "lng": -76
+    },
+    "focusCoordinates": {
+      "lat": 24.25,
+      "lng": -76
+    },
+    "aliases": [
+      "BS",
+      "Commonwealth of the Bahamas",
+      "BHS",
+      "Bahamas"
+    ]
+  },
+  "AZE": {
+    "id": "031",
+    "mapName": "Azerbaijan",
+    "mapNames": [
+      "Azerbaijan"
+    ],
+    "alpha2": "AZ",
+    "alpha3": "AZE",
+    "name": "Azerbaijan",
+    "region": "Asia",
+    "flag": "az",
+    "coordinates": {
+      "lat": 40.5,
+      "lng": 47.5
+    },
+    "focusCoordinates": {
+      "lat": 40.5,
+      "lng": 47.5
+    },
+    "aliases": [
+      "AZ",
+      "Republic of Azerbaijan",
+      "Azərbaycan Respublikası",
+      "AZE",
+      "Azerbaijan"
+    ]
+  },
+  "AUT": {
+    "id": "040",
+    "mapName": "Austria",
+    "mapNames": [
+      "Austria"
+    ],
+    "alpha2": "AT",
+    "alpha3": "AUT",
+    "name": "Austria",
+    "region": "Europe",
+    "flag": "at",
+    "coordinates": {
+      "lat": 47.33333333,
+      "lng": 13.33333333
+    },
+    "focusCoordinates": {
+      "lat": 47.33333333,
+      "lng": 13.33333333
+    },
+    "aliases": [
+      "AT",
+      "Osterreich",
+      "Oesterreich",
+      "Republic of Austria",
+      "AUT",
+      "Austria"
+    ]
+  },
+  "AUS": {
+    "id": "036",
+    "mapName": "Australia",
+    "mapNames": [
+      "Australia",
+      "Ashmore and Cartier Is."
+    ],
+    "alpha2": "AU",
+    "alpha3": "AUS",
+    "name": "Australia",
+    "region": "Oceania",
+    "flag": "au",
+    "coordinates": {
+      "lat": -25,
+      "lng": 134
+    },
+    "focusCoordinates": {
+      "lat": -27,
+      "lng": 133
+    },
+    "aliases": [
+      "AU",
+      "Commonwealth of Australia",
+      "AUS",
+      "Australia"
+    ]
+  },
+  "MAP_INDIAN_OCEAN_TER_": {
+    "id": "Indian Ocean Ter.",
+    "mapName": "Indian Ocean Ter.",
+    "mapNames": [
+      "Indian Ocean Ter."
+    ],
+    "alpha2": null,
+    "alpha3": null,
+    "name": "Indian Ocean Ter.",
+    "region": "Geographic territory",
+    "flag": "",
+    "coordinates": {
+      "lat": -12.164913148830136,
+      "lng": 96.84199699139849
+    },
+    "focusCoordinates": {
+      "lat": -12.164913148830136,
+      "lng": 96.84199699139849
+    },
+    "aliases": [
+      "Indian Ocean Ter."
+    ]
+  },
+  "HMD": {
+    "id": "334",
+    "mapName": "Heard I. and McDonald Is.",
+    "mapNames": [
+      "Heard I. and McDonald Is."
+    ],
+    "alpha2": "HM",
+    "alpha3": "HMD",
+    "name": "Heard Island and McDonald Islands",
+    "region": "Antarctic",
+    "flag": "hm",
+    "coordinates": {
+      "lat": -53.1,
+      "lng": 72.51666666
+    },
+    "focusCoordinates": {
+      "lat": -53.1,
+      "lng": 72.51666666
+    },
+    "aliases": [
+      "HM",
+      "Heard Island and McDonald Islands",
+      "HMD",
+      "Heard I. and McDonald Is."
+    ]
+  },
+  "NFK": {
+    "id": "574",
+    "mapName": "Norfolk Island",
+    "mapNames": [
+      "Norfolk Island"
+    ],
+    "alpha2": "NF",
+    "alpha3": "NFK",
+    "name": "Norfolk Island",
+    "region": "Oceania",
+    "flag": "nf",
+    "coordinates": {
+      "lat": -29.03333333,
+      "lng": 167.95
+    },
+    "focusCoordinates": {
+      "lat": -29.03333333,
+      "lng": 167.95
+    },
+    "aliases": [
+      "NF",
+      "Territory of Norfolk Island",
+      "Teratri of Norf'k Ailen",
+      "NFK",
+      "Norfolk Island"
+    ]
+  },
+  "ARM": {
+    "id": "051",
+    "mapName": "Armenia",
+    "mapNames": [
+      "Armenia"
+    ],
+    "alpha2": "AM",
+    "alpha3": "ARM",
+    "name": "Armenia",
+    "region": "Asia",
+    "flag": "am",
+    "coordinates": {
+      "lat": 40,
+      "lng": 45
+    },
+    "focusCoordinates": {
+      "lat": 40,
+      "lng": 45
+    },
+    "aliases": [
+      "AM",
+      "Hayastan",
+      "Republic of Armenia",
+      "Հայաստանի Հանրապետություն",
+      "ARM",
+      "Armenia"
+    ]
+  },
+  "ARG": {
+    "id": "032",
+    "mapName": "Argentina",
+    "mapNames": [
+      "Argentina"
+    ],
+    "alpha2": "AR",
+    "alpha3": "ARG",
+    "name": "Argentina",
+    "region": "Americas",
+    "flag": "ar",
+    "coordinates": {
+      "lat": -34,
+      "lng": -64
+    },
+    "focusCoordinates": {
+      "lat": -34,
+      "lng": -64
+    },
+    "aliases": [
+      "AR",
+      "Argentine Republic",
+      "República Argentina",
+      "ARG",
+      "Argentina"
+    ]
+  },
+  "ATG": {
+    "id": "028",
+    "mapName": "Antigua and Barb.",
+    "mapNames": [
+      "Antigua and Barb."
+    ],
+    "alpha2": "AG",
+    "alpha3": "ATG",
+    "name": "Antigua and Barbuda",
+    "region": "Americas",
+    "flag": "ag",
+    "coordinates": {
+      "lat": 17.05,
+      "lng": -61.8
+    },
+    "focusCoordinates": {
+      "lat": 17.05,
+      "lng": -61.8
+    },
+    "aliases": [
+      "AG",
+      "Antigua and Barbuda",
+      "ATG",
+      "Antigua and Barb."
+    ]
+  },
+  "AGO": {
+    "id": "024",
+    "mapName": "Angola",
+    "mapNames": [
+      "Angola"
+    ],
+    "alpha2": "AO",
+    "alpha3": "AGO",
+    "name": "Angola",
+    "region": "Africa",
+    "flag": "ao",
+    "coordinates": {
+      "lat": -12.5,
+      "lng": 18.5
+    },
+    "focusCoordinates": {
+      "lat": -12.5,
+      "lng": 18.5
+    },
+    "aliases": [
+      "AO",
+      "República de Angola",
+      "ʁɛpublika de an'ɡɔla",
+      "Republic of Angola",
+      "AGO",
+      "Angola"
+    ]
+  },
+  "AND": {
+    "id": "020",
+    "mapName": "Andorra",
+    "mapNames": [
+      "Andorra"
+    ],
+    "alpha2": "AD",
+    "alpha3": "AND",
+    "name": "Andorra",
+    "region": "Europe",
+    "flag": "ad",
+    "coordinates": {
+      "lat": 42.5,
+      "lng": 1.5
+    },
+    "focusCoordinates": {
+      "lat": 42.5,
+      "lng": 1.5
+    },
+    "aliases": [
+      "AD",
+      "Principality of Andorra",
+      "Principat d'Andorra",
+      "AND",
+      "Andorra"
+    ]
+  },
+  "DZA": {
+    "id": "012",
+    "mapName": "Algeria",
+    "mapNames": [
+      "Algeria"
+    ],
+    "alpha2": "DZ",
+    "alpha3": "DZA",
+    "name": "Algeria",
+    "region": "Africa",
+    "flag": "dz",
+    "coordinates": {
+      "lat": 28,
+      "lng": 3
+    },
+    "focusCoordinates": {
+      "lat": 28,
+      "lng": 3
+    },
+    "aliases": [
+      "DZ",
+      "Dzayer",
+      "Algérie",
+      "People's Democratic Republic of Algeria",
+      "DZA",
+      "Algeria"
+    ]
+  },
+  "ALB": {
+    "id": "008",
+    "mapName": "Albania",
+    "mapNames": [
+      "Albania"
+    ],
+    "alpha2": "AL",
+    "alpha3": "ALB",
+    "name": "Albania",
+    "region": "Europe",
+    "flag": "al",
+    "coordinates": {
+      "lat": 41,
+      "lng": 20
+    },
+    "focusCoordinates": {
+      "lat": 41,
+      "lng": 20
+    },
+    "aliases": [
+      "AL",
+      "Shqipëri",
+      "Shqipëria",
+      "Shqipnia",
+      "Republic of Albania",
+      "ALB",
+      "Albania"
+    ]
+  },
+  "AFG": {
+    "id": "004",
+    "mapName": "Afghanistan",
+    "mapNames": [
+      "Afghanistan"
+    ],
+    "alpha2": "AF",
+    "alpha3": "AFG",
+    "name": "Afghanistan",
+    "region": "Asia",
+    "flag": "af",
+    "coordinates": {
+      "lat": 33,
+      "lng": 65
+    },
+    "focusCoordinates": {
+      "lat": 33,
+      "lng": 65
+    },
+    "aliases": [
+      "AF",
+      "Afġānistān",
+      "Islamic Republic of Afghanistan",
+      "AFG",
+      "Afghanistan"
+    ]
+  },
+  "MAP_SIACHEN_GLACIER": {
+    "id": "Siachen Glacier",
+    "mapName": "Siachen Glacier",
+    "mapNames": [
+      "Siachen Glacier"
+    ],
+    "alpha2": null,
+    "alpha3": null,
+    "name": "Siachen Glacier",
+    "region": "Geographic territory",
+    "flag": "",
+    "coordinates": {
+      "lat": 35.39451347080437,
+      "lng": 77.23560092743784
+    },
+    "focusCoordinates": {
+      "lat": 35.39451347080437,
+      "lng": 77.23560092743784
+    },
+    "aliases": [
+      "Siachen Glacier"
+    ]
+  },
+  "ATA": {
+    "id": "010",
+    "mapName": "Antarctica",
+    "mapNames": [
+      "Antarctica"
+    ],
+    "alpha2": "AQ",
+    "alpha3": "ATA",
+    "name": "Antarctica",
+    "region": "Antarctic",
+    "flag": "aq",
+    "coordinates": {
+      "lat": -90,
+      "lng": 0
+    },
+    "focusCoordinates": {
+      "lat": -90,
+      "lng": 0
+    },
+    "aliases": [
+      "AQ",
+      "Antarctica",
+      "ATA"
+    ]
+  },
+  "SXM": {
+    "id": "534",
+    "mapName": "Sint Maarten",
+    "mapNames": [
+      "Sint Maarten"
+    ],
+    "alpha2": "SX",
+    "alpha3": "SXM",
+    "name": "Sint Maarten",
+    "region": "Americas",
+    "flag": "sx",
+    "coordinates": {
+      "lat": 18.033333,
+      "lng": -63.05
+    },
+    "focusCoordinates": {
+      "lat": 18.033333,
+      "lng": -63.05
+    },
+    "aliases": [
+      "SX",
+      "Sint Maarten (Dutch part)",
+      "Sint Maarten",
+      "SXM"
+    ]
+  }
+}

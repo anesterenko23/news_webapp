@@ -68,7 +68,7 @@ describe('large globe camera framing', () => {
   it('never moves the camera out to fit a relationship arc', () => {
     for (const event of DEMO_EVENTS) {
       const withArcs = eventCameraPosition(event, 46, 1.5);
-      const withoutArcs = eventCameraPosition({ ...event, relationships: [] }, 46, 1.5);
+      const withoutArcs = eventCameraPosition({ countries: event.countries, coordinates: event.coordinates }, 46, 1.5);
       expect(withArcs.distanceTo(withoutArcs)).toBeLessThan(1e-8);
     }
   });

@@ -2,12 +2,13 @@ import { useEffect, useMemo } from 'react';
 import type { ThreeEvent } from '@react-three/fiber';
 import type { CountryHover } from '../lib/hover';
 import * as THREE from 'three';
-import { countryFeatures, countryAtUV, unwrapRing } from '../lib/countries';
+import { countryFeature, countryAtUV, unwrapRing } from '../lib/countries';
 import { COUNTRIES } from '../data/countries';
-import { RELATIONSHIP_STYLES, type NewsEvent } from '../data/types';
+import { RELATIONSHIP_STYLES } from '../data/types';
+import type { GlobeSelection } from '../data/explorer';
 import { latLngToVector } from '../lib/geo';
 
-export function CountryHighlight({ event, onHover }: { event: NewsEvent; onHover: (hover: CountryHover | null) => void }) {
+export function CountryHighlight({ event, onHover }: { event: GlobeSelection; onHover: (hover: CountryHover | null) => void }) {
   const layers = useMemo(() => {
     const canvas = document.createElement('canvas');
     canvas.width = 4096; canvas.height = 2048;
@@ -16,11 +17,11 @@ export function CountryHighlight({ event, onHover }: { event: NewsEvent; onHover
     const lines: { geometry: THREE.BufferGeometry; color: string }[] = [];
     for (const code of event.countries) {
       const country = COUNTRIES[code];
-      const participant = countryFeatures.find(item => Number(item.id) === Number(country.id));
+      const participant = countryFeature(code);
       if (!participant?.geometry || !('coordinates' in participant.geometry)) continue;
       const relationship = event.relationships.find(link => link.to === code) ?? event.relationships.find(link => link.from === code);
-      const color = RELATIONSHIP_STYLES[relationship?.type ?? 'other'].color;
-      const polygons = participant.geometry.type === 'Polygon' ? [participant.geometry.coordinates] : participant.geometry.type === 'MultiPolygon' ? participant.geometry.coordinates : [];
+      const color = code === event.primaryCountry ? '#7bbbf1' : RELATIONSHIP_STYLES[relationship?.type ?? 'other'].color;
+      const polygons = participant.geometry.coordinates;
       const vertices: number[] = [];
       context.fillStyle = color;
       for (const polygon of polygons) {

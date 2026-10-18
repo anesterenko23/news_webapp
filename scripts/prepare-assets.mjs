@@ -1,4 +1,4 @@
-import { mkdir, access, writeFile, rename, rm } from 'node:fs/promises';
+import { mkdir, access, writeFile, rename, rm, readFile } from 'node:fs/promises';
 const directory = new URL('../public/textures/', import.meta.url);
 await mkdir(directory, { recursive: true });
 // The licensed 8K city-light atlas is versioned with the app: no upstream
@@ -43,3 +43,18 @@ for (const [filename, source] of Object.entries(sources)) {
     throw new Error(`Could not prepare ${filename}. Check your internet connection and run npm run assets again.`, { cause: error });
   }
 }
+
+// Profile flags are static presentation assets, not news or external metrics.
+// Missing optional flags fall back to their ISO label without breaking setup.
+const catalogue = JSON.parse(await readFile(new URL('../src/data/country-catalogue.json', import.meta.url), 'utf8'));
+const flags = [...new Set(Object.values(catalogue).map(country => country.flag).filter(Boolean))];
+for (let i = 0; i < flags.length; i += 8) await Promise.all(flags.slice(i, i + 8).map(async code => {
+  const destination = new URL(`flag-${code}.png`, directory);
+  try { await access(destination); return; } catch {}
+  try {
+    const response = await fetch(`https://flagcdn.com/w40/${code}.png`, { signal: AbortSignal.timeout(8000) });
+    if (!response.ok) return;
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes[0] === 0x89 && bytes[1] === 0x50) await writeFile(destination, bytes);
+  } catch { /* Optional flag: the profile has an ISO fallback. */ }
+}));

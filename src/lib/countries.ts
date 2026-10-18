@@ -13,20 +13,29 @@ export function unwrapRing(ring: number[][]) {
     return [lng, latitude];
   });
 }
+export function countryFeature(code: string) {
+  const matches = countryFeatures.filter(item => COUNTRIES[code].mapNames.includes((item.properties as { name?: string })?.name ?? ''));
+  const coordinates = matches.flatMap(item => item.geometry.type === 'Polygon' ? [item.geometry.coordinates] : item.geometry.type === 'MultiPolygon' ? item.geometry.coordinates : []);
+  return { geometry: { type: 'MultiPolygon' as const, coordinates } };
+}
 type Polygon = number[][][];
 const polygonCache = new Map<string, Polygon[]>();
 function polygonsFor(code: string): Polygon[] {
   const cached = polygonCache.get(code); if (cached) return cached;
-  const geometry = countryFeatures.find(item => Number(item.id) === Number(COUNTRIES[code].id))?.geometry;
-  const polygons = geometry?.type === 'Polygon' ? [geometry.coordinates] : geometry?.type === 'MultiPolygon' ? geometry.coordinates : [];
+  const geometry = countryFeature(code).geometry;
+  const polygons = geometry.coordinates;
   const unwrapped = polygons.map(polygon => polygon.map(unwrapRing));
   polygonCache.set(code, unwrapped);
   return unwrapped;
 }
+const boundsCache = new WeakMap<number[][], { minX: number; maxX: number; minY: number; maxY: number }>();
 function insideRing(lng: number, lat: number, ring: number[][]) {
   let x = lng;
   while (x - ring[0][0] > 180) x -= 360;
   while (x - ring[0][0] < -180) x += 360;
+  let bounds = boundsCache.get(ring);
+  if (!bounds) { bounds = { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity }; for (const [px, py] of ring) { bounds.minX = Math.min(bounds.minX, px); bounds.maxX = Math.max(bounds.maxX, px); bounds.minY = Math.min(bounds.minY, py); bounds.maxY = Math.max(bounds.maxY, py); } boundsCache.set(ring, bounds); }
+  if (x < bounds.minX || x > bounds.maxX || lat < bounds.minY || lat > bounds.maxY) return false;
   let inside = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
     const [xi, yi] = ring[i], [xj, yj] = ring[j];

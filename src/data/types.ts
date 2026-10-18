@@ -2,7 +2,7 @@ export type RelationshipType = 'conflict' | 'trade' | 'diplomacy' | 'military' |
 export type NewsCategory = Exclude<RelationshipType, 'other'>;
 export type NewsFilter = 'all' | NewsCategory;
 export interface Coordinates { lat: number; lng: number }
-export interface Country { id: string; name: string; flag: string; coordinates: Coordinates }
+export interface Country { id: string; mapName: string; mapNames: string[]; alpha2: string | null; alpha3: string | null; name: string; region: string; flag: string; coordinates: Coordinates; focusCoordinates: Coordinates; aliases: string[] }
 export interface Relationship { from: string; to: string; type: RelationshipType; bidirectional?: boolean }
 export interface NewsEvent {
   id: string;

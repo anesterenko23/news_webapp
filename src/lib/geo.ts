@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import type { Coordinates, NewsEvent } from '../data/types';
+import type { CameraFocus } from '../data/explorer';
 import { COUNTRIES } from '../data/countries';
 /** World-atlas, texture UVs and event layers share this geographic convention. */
 export function latLngToVector(lat: number, lng: number, radius = 1): THREE.Vector3 {
@@ -33,7 +34,7 @@ export function arcPoints(from: Coordinates, to: Coordinates, segments = 96) {
   });
 }
 /** A compromise surface view; arc height and extent never change camera scale. */
-export function eventViewDirection(event: NewsEvent) {
+export function eventViewDirection(event: Pick<NewsEvent, 'countries' | 'coordinates'>) {
   const points = event.countries.map(code => coordinateVector(COUNTRIES[code].coordinates));
   const candidates = [coordinateVector(event.coordinates), points.reduce((sum, point) => sum.add(point), new THREE.Vector3())];
   for (let i = 0; i < points.length; i++) for (let j = i + 1; j < points.length; j++) candidates.push(points[i].clone().add(points[j]));
@@ -44,11 +45,18 @@ export function eventViewDirection(event: NewsEvent) {
     return extent < bestExtent ? candidate : best;
   });
 }
-export function eventCameraPosition(event: NewsEvent, verticalFov: number, aspect: number) {
+export function eventCameraPosition(event: Pick<NewsEvent, 'countries' | 'coordinates'>, verticalFov: number, aspect: number) {
   const direction = eventViewDirection(event);
   const extent = Math.max(...event.countries.map(code => direction.angleTo(coordinateVector(COUNTRIES[code].coordinates))));
   // Nearby participants get a gentle approach; wide pairs keep the large base
   // view. Never zoom out to frame the whole route, including its hidden part.
   const coverage = aspect < .8 ? (extent < 1 ? .92 : .90) : (extent < 1 ? .79 : .77);
   return direction.multiplyScalar(sphereFitDistance(verticalFov, aspect, 1.025, coverage));
+}
+
+export function cameraFocusPosition(focus: CameraFocus, verticalFov: number, aspect: number) {
+  if (focus.kind === 'event') return eventCameraPosition(focus.event, verticalFov, aspect);
+  if (focus.kind === 'relationship') return eventCameraPosition({ countries: [focus.relationship.from, focus.relationship.to], coordinates: COUNTRIES[focus.relationship.from].coordinates }, verticalFov, aspect);
+  const coordinates = COUNTRIES[focus.code].focusCoordinates;
+  return coordinateVector({ lat: THREE.MathUtils.clamp(coordinates.lat, -70, 70), lng: coordinates.lng }).multiplyScalar(sphereFitDistance(verticalFov, aspect, 1.025, aspect < .8 ? .91 : .79));
 }

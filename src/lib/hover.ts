@@ -1,6 +1,8 @@
 import type { NewsEvent, RelationshipType } from '../data/types';
 import { COUNTRIES } from '../data/countries';
-export interface CountryHover { code: string; eventId: string; x: number; y: number }
+export interface CountryHover { code: string; eventId?: string; x: number; y: number }
+export interface ArcHover { relationshipId: string; x: number; y: number }
+export type GlobeHover = CountryHover | ArcHover;
 export function countryRoles(code: string, event: NewsEvent): { type: RelationshipType; text: string }[] {
   return event.relationships.filter(link => link.from === code || link.to === code).map(link => {
     const outgoing = link.from === code;
