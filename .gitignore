@@ -4,3 +4,13 @@ dist/
 *.tsbuildinfo
 public/textures/*
 !public/textures/earth-lights-8k.jpg
+
+.env
+.env.*
+!.env.example
+backend/prisma/*.db*
+backend/dist/
+backend/generated/
+
+backend/.test-*.db*
+work/

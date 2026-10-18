@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url = env("DATABASE_URL")
+}
+model Article {
+  id String @id @default(cuid())
+  fingerprint String @unique
+  title String
+  content String
+  source String
+  url String
+  canonicalUrl String
+  publishedAt DateTime
+  language String
+  primarySourceId String?
+  normalizedText String
+  originalJson String
+  createdAt DateTime @default(now())
+  runs ProcessingRun[]
+  evidence Evidence[]
+  sources EventSource[]
+}
+model ProcessingRun {
+  id String @id @default(cuid())
+  articleId String
+  article Article @relation(fields: [articleId], references: [id])
+  model String
+  promptVersion String
+  attempt Int @default(0)
+  retryOf String?
+  status String @default("processing")
+  rawOutput String?
+  warnings String @default("[]")
+  error String?
+  durationMs Int @default(0)
+  createdAt DateTime @default(now())
+  finishedAt DateTime?
+  events Event[]
+  requests LlmRequest[]
+  @@index([articleId, createdAt])
+  @@unique([articleId, model, promptVersion, attempt])
+}
+model Event {
+  id String @id @default(cuid())
+  runId String
+  run ProcessingRun @relation(fields: [runId], references: [id])
+  title String
+  summary String
+  eventType String
+  eventStatus String
+  occurredAt DateTime?
+  publishedAt DateTime
+  verificationStatus String @default("Unverified")
+  publicationStatus String @default("NeedsReview")
+  confidence Float
+  warnings String
+  duplicateCandidates String @default("[]")
+  createdAt DateTime @default(now())
+  participants EventParticipant[]
+  relationships Relationship[]
+  evidence Evidence[]
+  sources EventSource[]
+  decisions ReviewDecision[]
+  @@index([eventType, publishedAt])
+  @@index([publicationStatus, verificationStatus])
+}
+model EventParticipant {
+  id String @id @default(cuid())
+  eventId String
+  event Event @relation(fields: [eventId], references: [id])
+  countryCode String
+  role String
+  @@unique([eventId, countryCode])
+  @@index([countryCode])
+}
+model Relationship {
+  id String @id @default(cuid())
+  eventId String
+  event Event @relation(fields: [eventId], references: [id])
+  sourceCountry String
+  targetCountry String
+  type String
+  direction String
+  confidence Float
+  evidenceRefs String
+  @@index([sourceCountry, targetCountry, type])
+}
+model Evidence {
+  id String @id @default(cuid())
+  eventId String
+  event Event @relation(fields: [eventId], references: [id])
+  articleId String
+  article Article @relation(fields: [articleId], references: [id])
+  ordinal Int
+  text String
+  startOffset Int
+  endOffset Int
+  @@unique([eventId, ordinal])
+}
+model EventSource {
+  id String @id @default(cuid())
+  eventId String
+  event Event @relation(fields: [eventId], references: [id])
+  articleId String
+  article Article @relation(fields: [articleId], references: [id])
+  @@unique([eventId, articleId])
+}
+model ReviewDecision {
+  id String @id @default(cuid())
+  eventId String
+  event Event @relation(fields: [eventId], references: [id])
+  reviewer String
+  decision String
+  note String
+  createdAt DateTime @default(now())
+}
+model LlmRequest {
+  id String @id @default(cuid())
+  runId String
+  run ProcessingRun @relation(fields: [runId], references: [id])
+  model String
+  month String
+  status String @default("reserved")
+  inputTokens Int @default(0)
+  outputTokens Int @default(0)
+  estimatedCostUsd Float
+  inputRate Float
+  outputRate Float
+  pricingVerifiedAt String
+  durationMs Int @default(0)
+  createdAt DateTime @default(now())
+  @@index([month, status])
+}

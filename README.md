@@ -76,3 +76,9 @@ The generated `src/data/country-catalogue.json` maps all 241 map features to 240
 Country graphs show at most six relationships, ordered by evidence count, then event recency. Category filters apply before the cap; the full filtered list remains accessible and selecting a hidden item pins it into the visible six. An active relationship dims the other arcs and narrows evidence in the left panel. Selecting evidence opens the existing event overlay. Countries without recorded scenarios have an explicit empty state. Mode switches clear incompatible selections while retaining the camera and News category filter.
 
 Verification includes 33 tests covering catalogue coverage, whole-territory picking, island polygons, aliases, relationship aggregation/direction, graph caps, drag rejection and large country camera framing, alongside existing News and globe tests.
+
+## Phase 4: AI News Intelligence Engine
+
+The existing globe and demo feed remain unchanged. A separate Fastify / TypeScript / Prisma / SQLite backend provides manual Mistral extraction, evidence validation, duplicate candidates, review decisions and budget accounting. Open http://127.0.0.1:3001/dev/ai-lab after `npm run db:migrate` and `npm run backend:start`.
+
+See [backend/README.md](backend/README.md) for setup, architecture, API contracts, auth, model pricing, tests and limitations. Real API evaluation details are in [backend/EVALUATION.md](backend/EVALUATION.md). API keys, raw local runs and databases are excluded from Git.
