@@ -1,92 +1,26 @@
-# World Lens — Phase 2.1
+# World Lens — Phase 5
 
-Interactive geographic news prototype built on the original Phase 1 globe. React, TypeScript, Three.js, React Three Fiber, Drei and HDR bloom.
+Interactive news globe and Country Explorer with a manual intelligence pipeline:
+
+GOV.UK Atom / Content API → News Collection → JSON batch (1–20 articles) → external ChatGPT → validated import → globe.
+
+No model clients, inference, API keys, cost tracking or AI Lab are part of the running application.
 
 ## Run
 
-Requires Node.js 22.12+ or Node.js 24. Internet is needed during initial asset preparation.
+Node 22.18+. Run npm ci, copy backend/.env.example to backend/.env, then npm run db:migrate. Start npm run backend:dev and npm run dev in two terminals. Open http://127.0.0.1:5173/ and choose News Collection. Backend collection is also at http://127.0.0.1:3001/collection. Network mode requires a 32-character ADMIN_API_TOKEN; local defaults use loopback and origin checks.
 
-```sh
-npm ci
-npm run dev
-```
+1. Fetch News and select publications, or Create Batch (20) for the oldest unprocessed articles.
+2. Export JSON from Batch History; repeat downloads return the stored snapshot.
+3. Download the permanent ChatGPT prompt and send it with the export to external ChatGPT.
+4. Upload the returned JSON, Validate & Preview, inspect counts/errors, Confirm Import.
+5. Imported events appear on the globe. needs_review remains off the globe. Published does not mean independently verified.
+6. Correct analysis using Replace Analysis on its original batch. Review added/updated/removed events and confirm. Previous original JSON versions remain downloadable in View Batch.
 
-```sh
-npm test
-npm run build
-npm run preview
-```
+[Architecture / limits](docs/manual-pipeline.md) · [Permanent ChatGPT prompt](docs/chatgpt-analysis-prompt.txt) · [API](backend/README.md)
 
-In restricted Windows sandboxes where esbuild cannot inspect parent directories, pass `-- --configLoader runner` to test/build/preview. The built preview is independent of the development dependency optimizer.
+## Checks
 
-## Explore
+npm run test:backend; npm test -- --configLoader runner; npm run backend:build; npm run build -- --configLoader runner.
 
-- The initial view has no selected event and rotates automatically. The WebGL scene always fills the entire right-hand area. The compact event card floats over its lower edge and never changes canvas dimensions.
-- Select one of 24 demo stories to frame its countries, highlight their actual outlines, show all its relationships and open the details panel.
-- Categories filter the feed without resetting the camera or remounting the scene. A filtered-out selection remains open until another story is selected or the panel is closed.
-- Re-selecting the same story preserves the current camera position. “View on globe” deliberately recenters it.
-- Drag and scroll remain available while a story is selected. Manual dragging interrupts camera travel. Auto-rotation stays paused until the story is closed, then resumes gradually after three seconds.
-- Hover over a highlighted country to see its name and all its roles in the selected event. Tooltips ignore unrelated countries, hide during dragging, stay inside the viewport and never capture pointer input.
-- Zoom and Reset View controls remain available. Direction arrows indicate one-way or two-way relationships; conflicts use dashed red arcs.
-- On mobile the feed starts collapsed; “Latest News” opens it, and selecting a story closes it.
-- Source links provide institutional background. All events, publication offsets and scenarios are illustrative; they are not claims of current news. Images are illustrative photographs.
-
-The main globe uses demo data. A separate administrative AI backend is available in Phase 4.5; see [backend documentation](backend/README.md) and [hardening evaluation](backend/EVALUATION45.md). Independent source verification and automatic news ingestion are not implemented.
-
-## Architecture
-
-- `src/App.tsx`: single selected-event state, filter and mobile feed state.
-- `src/components/NewsFeed.tsx`, `NewsFilters.tsx`, `NewsItem.tsx`: independent scrolling news feed and category selection.
-- `src/components/NewsDetails.tsx`: selected story, participants, independent relationships and background link.
-- `src/components/Globe.tsx`: original Earth materials, textures, atmosphere, city bloom, borders and controls, extended as `GlobeScene` with optional event layers. Memoized to isolate feed-only changes. Public ref exposes `zoom()`, `reset()` and `focus(event)`.
-- `src/components/CountryHighlight.tsx`: country masks rasterized from Natural Earth polygons with translucent fills and exact outlines. Dateline-crossing rings are unwrapped, and polygon holes are retained.
-- `src/components/RelationshipArcs.tsx`: thin great-circle arcs with elevation, directional markers and normal 3D occlusion.
-- `src/components/RelationshipLegend.tsx`: shared relationship palette.
-- `src/components/CountryTooltip.tsx`: a compact, cursor-following DOM tooltip; only its own state changes on pointer movement.
-- `src/lib/countries.ts`: country hit testing against actual polygon rings, including holes and dateline handling.
-- `src/lib/hover.ts`: relationship descriptions and viewport-clamped tooltip placement.
-- `src/data/types.ts`: event contract, relationship colors and filter logic.
-- `src/data/countries.ts`: geographic coordinates and ISO country identifiers, independently maintained from events.
-- `src/data/events.ts`: replaceable sample catalogue; rendering logic does not depend on its IDs or headlines.
-- `src/lib/geo.ts`: shared projection, spherical arcs and camera framing. Camera movement follows a spherical path, avoiding travel through the globe. A 46° field of view and projected-diameter calculation keep Earth at about 630–650 px on a 1648×928 desktop. Event framing uses a compromise country view with the same or slightly closer camera distance. Arc height and extent never influence camera distance; routes may be partially occluded or leave the frame.
-- `src/lib/geo.test.ts`: data integrity, category filtering, multiple relationships, arc altitude, dateline/antipodal safety, camera framing and horizon visibility on desktop and portrait layouts. Additional tests cover full-sphere sizing and arc-independent camera scale in five real canvas sizes, country hit tests, multiple tooltip roles and edge placement (25 tests total).
-
-Generated geometries, country-mask textures and scene resources are disposed when their layers unmount. Earth textures use the shared loader cache. Pixel ratio is capped at 1.75, night texture anisotropy at 8, and bloom uses no multisampling. WebGL is required.
-
-## Assets
-
-`npm ci` and the predev/prebuild hooks run `scripts/prepare-assets.mjs`. The essential 8K night atlas is committed in `public/textures/earth-lights-8k.jpg`. The script downloads other missing assets into ignored `public/textures/`. Assets are served locally at runtime; no remote photo or map requests are required while exploring. Retry with `npm run assets` if initial preparation fails.
-
-- Earth day and elevation: NASA-derived imagery from [webgl-earth](https://github.com/turban/webgl-earth/tree/master/images).
-- 8K Earth Night Map by [Solar System Scope / INOVE](https://www.solarsystemscope.com/textures/), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), based on NASA imagery. The shader isolates the city emission, recolors it to warm gold and applies HDR bloom.
-- Country boundaries: [world-atlas](https://github.com/topojson/world-atlas), based on public-domain [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/). Geographic reference boundaries are not a statement on territorial claims.
-- Illustrative news photographs: [Unsplash](https://unsplash.com/license); image source IDs are recorded in the asset preparation script. They do not depict the fictional scenarios.
-- Country flag images: [FlagCDN](https://flagcdn.com/), locally cached.
-
-The provided mockup is a design reference, not a background image. The globe remains a real, interactive 3D scene.
-
-## Phase 3: Country Explorer
-
-The header switches between News and Country Explorer without remounting the WebGL canvas. Country selection is tested against the complete Natural Earth territory surface, including islands, holes and the date line. Hover outlines and names are independent of event participation. Pointer movement beyond six pixels is treated as rotation, not selection. Country selection uses geographic focus coordinates and preserves the large globe framing; arcs never cause zooming out.
-
-The generated `src/data/country-catalogue.json` maps all 241 map features to 240 countries/territories. Standard entries use ISO alpha-3 keys; map-only entities without ISO identifiers have explicit `MAP_` keys. Search uses English names, aliases and ISO codes. Regenerate with `node scripts/prepare-countries.mjs`. Metadata derives from [world-countries / mledoze countries](https://github.com/mledoze/countries), licensed under [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/); the derived catalogue retains that license. Boundary data remains Natural Earth public-domain data.
-
-`src/lib/relationships.ts` derives a relationship index from local event evidence. Identity includes ordered endpoints, category and direction; bilateral links canonicalize endpoint order. Events can support multiple relationships and each relationship retains multiple event IDs. Country statistics and related events are derived from this index and the same event catalogue. Nothing infers geopolitical relationships from missing data.
-
-Country graphs show at most six relationships, ordered by evidence count, then event recency. Category filters apply before the cap; the full filtered list remains accessible and selecting a hidden item pins it into the visible six. An active relationship dims the other arcs and narrows evidence in the left panel. Selecting evidence opens the existing event overlay. Countries without recorded scenarios have an explicit empty state. Mode switches clear incompatible selections while retaining the camera and News category filter.
-
-Verification includes 33 tests covering catalogue coverage, whole-territory picking, island polygons, aliases, relationship aggregation/direction, graph caps, drag rejection and large country camera framing, alongside existing News and globe tests.
-
-## Phase 4: AI News Intelligence Engine
-
-The existing globe and demo feed remain unchanged. A separate Fastify / TypeScript / Prisma / SQLite backend provides manual Mistral extraction, evidence validation, duplicate candidates, review decisions and budget accounting. Open http://127.0.0.1:3001/dev/ai-lab after `npm run db:migrate` and `npm run backend:start`.
-
-See [backend/README.md](backend/README.md) for setup, architecture, API contracts, auth, model pricing, tests and limitations. Real API evaluation details are in [backend/EVALUATION.md](backend/EVALUATION.md). API keys, raw local runs and databases are excluded from Git.
-
-## Phase 4.6 — isolated model comparison
-
-[Benchmark tool and dry-run](benchmark/model-comparison/README.md) compare explicit Ministral/Gemini IDs on100 new source texts. Paid generation requires human budget/plan approval. Manual ground truth is pending; no winner or quality claims are fabricated. The main World Lens interface and provider configuration are unchanged.
-
-## Phase 4.7 — simplified semantic extraction
-
-The default analysis contract is now `world-lens-semantic/4.7.0`: the LLM supplies participant names, actions, relationships, source-stated reasons and evidence. A backend mapper resolves ISO codes and organizations, creates IDs and source offsets, and retains uncertain claims for review. Existing canonical events, deduplication, history and older extraction versions remain available. See [architecture, contract and validation](docs/phase47-intelligence.md). AI Lab exposes the new mode; provider selection and the main globe are unchanged.
+The additive migration preserves all historical domain data. Old test events are not automatically published. Globe materials, textures, territory picking and camera framing are retained.

@@ -11,7 +11,7 @@ describe('event catalogue and filters', () => {
     expect(new Set(DEMO_EVENTS.map(event => event.id)).size).toBe(24);
     for (const event of DEMO_EVENTS) {
       expect(event.demo).toBe(true);
-      expect(Number.isFinite(Date.parse(event.publishedAt))).toBe(true);
+      expect(Number.isFinite(Date.parse(event.publishedAt!))).toBe(true);
       if (event.source) expect(new URL(event.source.url).protocol).toBe('https:');
       for (const code of event.countries) expect(COUNTRIES[code]).toBeDefined();
       for (const link of event.relationships) {

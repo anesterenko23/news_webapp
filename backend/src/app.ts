@@ -1,111 +1,315 @@
-import { activeModel } from './config.js';
-import Fastify from 'fastify';
-import { createHash, timingSafeEqual } from 'node:crypto';
-import { z, ZodError } from 'zod';
-import type { PrismaClient } from '@prisma/client';
-import type { Config } from './config.js';
-import { pricing } from './config.js';
-import { IntelligenceEngine } from './engine.js';
-import { canonicalInclude, claimInclude, resolveMerge, undoSourceLink } from './canonical.js';
-import { claimDto, canonicalDto } from './presentation.js';
-import { PROMPT_VERSION, BASELINE_VERSION, PREVIOUS_VERSION } from './prompt.js';
-import { EngineError, createProvider, type Provider } from './provider.js';
-import { EventQuery } from './schemas.js';
-import { aiLabHtml } from './lab.js';
-import { globeProjection } from './globe-projection.js';
-import { SEMANTIC_VERSION } from './semantic-contract.js';
-
-const loopback = (value: string) => ['127.0.0.1','localhost','::1','[::1]','::ffff:127.0.0.1'].includes(value);
-export function createApp(config: Config, db: PrismaClient, provider?: Provider) {
-  const app = Fastify({logger:false,bodyLimit:150000,requestTimeout:120000,trustProxy:false});
-  const engine = new IntelligenceEngine(db,config,provider ?? createProvider(db,config));
-  const localOnly = config.NODE_ENV === 'development' && loopback(config.HOST) && !config.ADMIN_API_TOKEN;
-  let pending = 0;
-  app.addHook('onRequest',async (request,reply) => {
-    reply.header('Cache-Control','no-store').header('X-Content-Type-Options','nosniff').header('Referrer-Policy','no-referrer').header('X-Frame-Options','DENY');
-    if (request.url.split('?')[0] === '/health') return;
-    const origin = request.headers.origin;
-    const expectedOrigin = `${request.protocol}://${request.headers.host}`;
-    if (origin && origin !== expectedOrigin) {
+import Fastify from "fastify";
+import { createHash, timingSafeEqual } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { z, ZodError } from "zod";
+import type { PrismaClient } from "@prisma/client";
+import type { Config } from "./config.js";
+import { SOURCES, collect } from "./collector.js";
+import {
+  createBatch,
+  getBatch,
+  exportBatch,
+  previewImport,
+  importBatch,
+  PipelineError,
+} from "./batches.js";
+import { exportJsonSchema, importJsonSchema } from "./batch-contract.js";
+import { collectionHtml } from "./collection-ui.js";
+import { globeEvents } from "./manual-globe.js";
+const local = (v: string) =>
+  ["127.0.0.1", "localhost", "::1", "[::1]", "::ffff:127.0.0.1"].includes(v);
+export function createApp(
+  config: Config,
+  db: PrismaClient,
+  fetcher: typeof fetch = fetch,
+) {
+  const app = Fastify({
+    logger: false,
+    bodyLimit: 10000000,
+    requestTimeout: 120000,
+    trustProxy: false,
+  });
+  const localOnly =
+    config.NODE_ENV === "development" &&
+    local(config.HOST) &&
+    !config.ADMIN_API_TOKEN;
+  app.addHook("onRequest", async (req, reply) => {
+    reply
+      .header("Cache-Control", "no-store")
+      .header("X-Content-Type-Options", "nosniff")
+      .header("Referrer-Policy", "no-referrer")
+      .header("X-Frame-Options", "DENY");
+    if (req.url === "/health") return;
+    if (
+      req.headers.origin &&
+      req.headers.origin !== `${req.protocol}://${req.headers.host}`
+    ) {
       let allowed = false;
-      try { const parsed = new URL(origin); allowed = localOnly && loopback(parsed.hostname) && ['3001','5173','5174'].includes(parsed.port); } catch {}
-      if (!allowed) return reply.code(403).send({error:'ORIGIN_DENIED'});
+      try {
+        const u = new URL(req.headers.origin);
+        allowed =
+          localOnly &&
+          local(u.hostname) &&
+          ["3001", "5173", "5174"].includes(u.port);
+      } catch {}
+      if (!allowed) return reply.code(403).send({ error: "ORIGIN_DENIED" });
     }
     if (localOnly) {
-      let host = '';
-      try { host = new URL(`http://${request.headers.host}`).hostname; } catch {}
-      if (!loopback(request.ip) || !loopback(host)) return reply.code(403).send({error:'LOOPBACK_ONLY'});
+      let host = "";
+      try {
+        host = new URL("http://" + req.headers.host).hostname;
+      } catch {}
+      if (!local(req.ip) || !local(host))
+        return reply.code(403).send({ error: "LOOPBACK_ONLY" });
     }
-    // The shell contains no data. All API calls still require authorization in network mode.
-    if (request.method === 'GET' && request.url === '/dev/ai-lab') return;
+    if (req.method === "GET" && req.url === "/collection") return;
     if (!localOnly) {
-      const token = request.headers.authorization?.replace(/^Bearer /,'') ?? '';
-      const digest = (value: string) => createHash('sha256').update(value).digest();
-      if (!config.ADMIN_API_TOKEN || !timingSafeEqual(digest(token),digest(config.ADMIN_API_TOKEN))) return reply.code(401).send({error:'UNAUTHORIZED'});
+      const digest = (s: string) => createHash("sha256").update(s).digest();
+      if (
+        !config.ADMIN_API_TOKEN ||
+        !timingSafeEqual(
+          digest(req.headers.authorization?.replace(/^Bearer /, "") ?? ""),
+          digest(config.ADMIN_API_TOKEN),
+        )
+      )
+        return reply.code(401).send({ error: "UNAUTHORIZED" });
     }
-    if (!['GET','HEAD'].includes(request.method) && request.headers['x-world-lens-client'] !== 'ai-lab') return reply.code(403).send({error:'CLIENT_HEADER_REQUIRED',message:'Send X-World-Lens-Client: ai-lab'});
+    if (
+      !["GET", "HEAD"].includes(req.method) &&
+      req.headers["x-world-lens-client"] !== "collection"
+    )
+      return reply.code(403).send({ error: "CLIENT_HEADER_REQUIRED" });
   });
-  app.setErrorHandler((error, _request, reply) => {
-    if (error instanceof ZodError) return reply.code(400).send({error:'INVALID_INPUT',issues:error.issues.map(issue=>({path:issue.path,message:issue.message}))});
-    if (error instanceof EngineError) return reply.code(error.statusCode).send({error:error.code,message:error.message});
-    if (error instanceof Error && 'statusCode' in error && typeof error.statusCode === 'number' && error.statusCode < 500) return reply.code(error.statusCode).send({error:'INVALID_REQUEST'});
-    return reply.code(500).send({error:'INTERNAL_ERROR',message:'Request failed; no provider credentials are exposed'});
+  app.setErrorHandler((e, _req, reply) => {
+    if (e instanceof ZodError)
+      return reply.code(400).send({ error: "INVALID_INPUT", issues: e.issues });
+    if (e instanceof PipelineError)
+      return reply
+        .code(e.statusCode)
+        .send({ error: e.code, message: e.message, details: e.details });
+    if (
+      e instanceof Error &&
+      "code" in e &&
+      (e.code === "P2002" || e.code === "P2034" || e.code === "P2028")
+    )
+      return reply
+        .code(409)
+        .send({
+          error: "CONCURRENT_CHANGE",
+          message:
+            "Another request changed this batch or selection. Refresh and retry.",
+        });
+    if (
+      e instanceof Error &&
+      "statusCode" in e &&
+      typeof e.statusCode === "number" &&
+      e.statusCode < 500
+    )
+      return reply.code(e.statusCode).send({ error: "INVALID_REQUEST" });
+    return reply
+      .code(500)
+      .send({
+        error: "REQUEST_FAILED",
+        message:
+          "No changes were saved. Check source availability or server logs.",
+      });
   });
-  app.get('/health',async()=>({status:'ok',service:'world-lens-intelligence'}));
-  app.get('/dev/ai-lab',async(_request,reply)=>reply.header('Content-Security-Policy',"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'").type('text/html; charset=utf-8').send(aiLabHtml(!localOnly)));
-  app.post('/api/articles/process',async(request,reply)=> {
-    if (pending >= 4) return reply.code(429).send({error:'QUEUE_FULL',message:'Wait for pending analysis to finish'});
-    pending++;
+  app.get("/health", async () => ({
+    status: "ok",
+    service: "world-lens-manual-news",
+  }));
+  app.get("/collection", async (_req, reply) =>
+    reply
+      .header(
+        "Content-Security-Policy",
+        "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'",
+      )
+      .type("text/html; charset=utf-8")
+      .send(collectionHtml(!localOnly)),
+  );
+  app.get("/api/sources", async () => SOURCES);
+  let fetching = false;
+  app.post("/api/collection/fetch", async (req) => {
+    const { sourceId } = z
+      .strictObject({ sourceId: z.enum(["govuk"]) })
+      .parse(req.body);
+    if (fetching)
+      throw new PipelineError(
+        "FETCH_RUNNING",
+        "Collection is already running",
+        409,
+      );
+    fetching = true;
     try {
-      const {retryOf:rawRetry,promptVersion:rawVersion,...input} = z.record(z.string(),z.unknown()).parse(request.body);
-      const retryOf = z.string().min(1).max(100).optional().parse(rawRetry);
-      const version=z.enum([SEMANTIC_VERSION,PROMPT_VERSION,BASELINE_VERSION,PREVIOUS_VERSION]).optional().parse(rawVersion);
-      const result = await engine.process(input,retryOf,version);
-      return reply.code(result.processingStatus === 'failed' ? (result.error?.includes('BUDGET_EXCEEDED') ? 429 : 502) : result.processingStatus === 'processing' ? 202 : 200).send(result);
-    } finally { pending--; }
+      return await collect(db, sourceId, fetcher);
+    } finally {
+      fetching = false;
+    }
   });
-  async function list(query: unknown, country?: string) {
-    const filters = EventQuery.parse({...query as object,...(country ? {country:country.toUpperCase()} : {})});
-    const where = { archived:false, ...(filters.country ? {participants:{some:{countryCode:filters.country}}} : {}),...(filters.eventType ? {eventType:filters.eventType} : {}),...(filters.verificationStatus ? {verificationStatus:filters.verificationStatus} : {}),...((filters.from || filters.to) ? {publishedAt:{...(filters.from?{gte:new Date(filters.from)}:{}),...(filters.to?{lte:new Date(filters.to)}:{})}} : {}) };
-    const [events,total] = await Promise.all([db.canonicalEvent.findMany({where,include:canonicalInclude,orderBy:{publishedAt:'desc'},take:filters.limit,skip:filters.offset}),db.canonicalEvent.count({where})]);
-    return {events:events.map(canonicalDto),total,limit:filters.limit,offset:filters.offset,dateFilter:'article publication time (UTC)'};
-  }
-  app.get('/api/events',request=>list(request.query));
-  app.get<{Params:{code:string}}>('/api/countries/:code/events',request=>list(request.query,request.params.code));
-  app.get<{Params:{id:string}}>('/api/events/:id',async(request,reply)=> {
-    const event = await db.canonicalEvent.findUnique({where:{id:request.params.id},include:canonicalInclude});
-    return event ? {...canonicalDto(event),globePreview:globeProjection({...event,analysis:canonicalDto(event).analysis})} : reply.code(404).send({error:'EVENT_NOT_FOUND'});
-  });
-  app.get<{Params:{id:string}}>('/api/claims/:id',async(request,reply)=>{
-    const claim=await db.extractedClaim.findUnique({where:{id:request.params.id},include:claimInclude});
-    return claim?claimDto(claim):reply.code(404).send({error:'CLAIM_NOT_FOUND'});
-  });
-  app.get('/api/review-queue',async request=> {
-    const filters=z.object({limit:z.coerce.number().int().min(1).max(100).default(50),offset:z.coerce.number().int().min(0).default(0)}).parse(request.query);
-    const where={publicationStatus:{in:['NeedsReview','Blocked']}};
-    const [claims,total,mergeCandidates,runs,events]=await Promise.all([
-      db.extractedClaim.findMany({where,include:claimInclude,orderBy:{createdAt:'desc'},take:filters.limit,skip:filters.offset}),db.extractedClaim.count({where}),
-      db.mergeCandidate.findMany({where:{status:'Pending'},take:filters.limit}),db.processingRun.findMany({where:{status:'failed'},select:{id:true,articleId:true,reviewReasons:true,error:true},take:filters.limit}),
-      db.canonicalEvent.findMany({where:{archived:false,publicationStatus:'NeedsReview'},include:canonicalInclude,take:filters.limit})
+  app.get("/api/collection", async (req) => {
+    const q = z
+      .object({
+        source: z.string().optional(),
+        status: z.string().optional(),
+        contentStatus: z.string().optional(),
+        search: z.string().max(300).optional(),
+        from: z.iso.date().optional(),
+        to: z.iso.date().optional(),
+        offset: z.coerce.number().int().min(0).default(0),
+      })
+      .parse(req.query);
+    const where = {
+      ...(q.source ? { source: q.source } : {}),
+      ...(q.status ? { analysisStatus: q.status } : {}),
+      ...(q.contentStatus ? { contentStatus: q.contentStatus } : {}),
+      ...(q.search ? { title: { contains: q.search } } : {}),
+      ...(q.from || q.to
+        ? {
+            publishedAt: {
+              ...(q.from ? { gte: new Date(q.from) } : {}),
+              ...(q.to ? { lt: new Date(Date.parse(q.to) + 86400000) } : {}),
+            },
+          }
+        : {}),
+    };
+    const [articles, total] = await Promise.all([
+      db.collectedArticle.findMany({
+        where,
+        orderBy: { collectedAt: "desc" },
+        take: 100,
+        skip: q.offset,
+        select: {
+          id: true,
+          source: true,
+          sourceUrl: true,
+          title: true,
+          url: true,
+          publishedAt: true,
+          collectedAt: true,
+          author: true,
+          language: true,
+          contentStatus: true,
+          analysisStatus: true,
+          analysisBatchId: true,
+          analysisVersion: true,
+          reservation: true,
+          eventSources: {
+            where: {
+              event: { archived: false, publicationStatus: "Published" },
+            },
+            select: { eventId: true },
+          },
+        },
+      }),
+      db.collectedArticle.count({ where }),
     ]);
-    return {claims:claims.map(claimDto),total,events:events.map(canonicalDto),mergeCandidates:mergeCandidates.map(c=>({...c,reasons:JSON.parse(c.reasons)})),failedRuns:runs.map(r=>({...r,reviewReasons:JSON.parse(r.reviewReasons)}))};
+    return { articles, total, offset: q.offset, limit: 100 };
   });
-  app.post<{Params:{id:string}}>('/api/merge-candidates/:id/resolve',async(request)=>{
-    const input=z.strictObject({decision:z.enum(['merge','separate']),reviewer:z.string().min(3).max(100),note:z.string().min(8).max(2000)}).parse(request.body);
-    try{return await resolveMerge(db,request.params.id,input);}catch{throw new EngineError('INVALID_MERGE_DECISION','Candidate missing, already decided or claim not eligible',400);}
+  app.get<{ Params: { id: string } }>("/api/collection/:id", async (req) => {
+    const a = await db.collectedArticle.findUnique({
+      where: { id: req.params.id },
+    });
+    if (!a) throw new PipelineError("NOT_FOUND", "Article not found", 404);
+    return a;
   });
-  app.post<{Params:{id:string}}>('/api/event-sources/:id/unlink',async request=>{
-    const input=z.strictObject({reviewer:z.string().min(3).max(100),note:z.string().min(8).max(2000)}).parse(request.body);
-    try{return await undoSourceLink(db,request.params.id,input);}catch{throw new EngineError('INVALID_SOURCE_LINK','Source link missing, inactive or not eligible',400);}
+  app.post("/api/batches", async (req) => {
+    const { articleIds } = z
+      .strictObject({
+        articleIds: z.array(z.string()).min(1).max(20).optional(),
+      })
+      .parse(req.body);
+    return createBatch(db, articleIds);
   });
-  app.get('/api/ai/usage',async()=> {
-    const month = new Date().toISOString().slice(0,7);
-    const [requests,articles,errors,runs] = await Promise.all([db.llmRequest.findMany({where:{month},orderBy:{createdAt:'desc'}}),db.article.count(),db.processingRun.count({where:{status:'failed'}}),db.processingRun.count()]);
-    const estimatedCostUsd = requests.reduce((sum,item)=>sum+item.estimatedCostUsd,0);
-    let rates = null; try { rates = pricing(config); } catch {}
-    const uncertain = await db.llmRequest.count({where:{status:{in:['uncertain','pricing_exceeded']}}});
-    const stale = await db.llmRequest.count({where:{status:'reserved',createdAt:{lt:new Date(Date.now()-config.LLM_TIMEOUT_MS-60000)}}});
-    return {month,requests:requests.length,processedArticles:articles,processingRuns:runs,inputTokens:requests.reduce((sum,item)=>sum+item.inputTokens,0),outputTokens:requests.reduce((sum,item)=>sum+item.outputTokens,0),estimatedCostUsd,monthlyBudgetUsd:config.LLM_MONTHLY_BUDGET_USD,budgetWarning:estimatedCostUsd >= config.LLM_MONTHLY_BUDGET_USD*.8,processingErrors:errors,uncertainRequests:uncertain+stale,blocked:!rates || !!uncertain || !!stale || estimatedCostUsd>=config.LLM_MONTHLY_BUDGET_USD,pricing:rates,model:activeModel(config),provider:config.LLM_PROVIDER,configured:!!(config.LLM_PROVIDER==='gemini'?config.GEMINI_API_KEY:config.MISTRAL_API_KEY),notice:'Local estimates and conservative reservations may differ from provider billing. No cached-token discount assumed.',recentRequests:requests.slice(0,30)};
+  app.get("/api/batches", async () => {
+    const batches = await db.newsBatch.findMany({
+      orderBy: { createdAt: "desc" },
+      include: {
+        _count: { select: { articles: true } },
+        events: {
+          where: { archived: false },
+          select: { id: true, _count: { select: { relationships: true } } },
+        },
+      },
+    });
+    return batches.map((b) => ({
+      ...b,
+      exportJson: undefined,
+      events: undefined,
+      articleCount: b._count.articles,
+      eventsCount: b.events.length,
+      relationshipsCount: b.events.reduce(
+        (n, e) => n + e._count.relationships,
+        0,
+      ),
+    }));
   });
+  app.get<{ Params: { id: string } }>("/api/batches/:id", (req) =>
+    getBatch(db, req.params.id),
+  );
+  app.get<{ Params: { id: string } }>(
+    "/api/batches/:id/export",
+    async (req, reply) =>
+      reply
+        .header(
+          "Content-Disposition",
+          `attachment; filename="${req.params.id.replace(/[^a-zA-Z0-9_-]/g, "")}.json"`,
+        )
+        .type("application/json; charset=utf-8")
+        .send(await exportBatch(db, req.params.id)),
+  );
+  const input = z.strictObject({
+    rawJson: z.string().min(1).max(8000000),
+    mode: z.enum(["import", "replace"]).default("import"),
+  });
+  app.post("/api/import/preview", (req) => {
+    const p = input.parse(req.body);
+    return previewImport(db, p.rawJson, p.mode);
+  });
+  app.post("/api/import/confirm", (req) => {
+    const p = input
+      .extend({
+        confirm: z.literal(true),
+        baseVersion: z.number().int().min(0),
+        checksum: z.string().length(64),
+      })
+      .parse(req.body);
+    return importBatch(db, p.rawJson, p);
+  });
+  app.get<{ Params: { id: string } }>(
+    "/api/analyses/:id/raw",
+    async (req, reply) => {
+      const a = await db.analysisImport.findUnique({
+        where: { id: req.params.id },
+      });
+      if (!a) throw new PipelineError("NOT_FOUND", "Analysis not found", 404);
+      return reply.type("application/json; charset=utf-8").send(a.rawJson);
+    },
+  );
+  app.get("/api/schemas/export", async () => exportJsonSchema);
+  app.get("/api/schemas/import", async () => importJsonSchema);
+  app.get("/api/analysis-prompt", async (_req, reply) =>
+    reply
+      .type("text/plain; charset=utf-8")
+      .send(
+        await readFile(
+          new URL("../../docs/chatgpt-analysis-prompt.txt", import.meta.url),
+          "utf8",
+        ),
+      ),
+  );
+  app.get("/api/globe/events", async () => ({ events: await globeEvents(db) }));
+  app.get("/api/events", async () => ({ events: await globeEvents(db) }));
+  app.get<{ Params: { code: string } }>(
+    "/api/countries/:code/events",
+    async (req) => ({
+      events: (await globeEvents(db)).filter(
+        (e) =>
+          e.countries.includes(req.params.code.toUpperCase()) ||
+          e.participants.some(
+            (p) => p.countryCode === req.params.code.toUpperCase(),
+          ),
+      ),
+    }),
+  );
   return app;
 }

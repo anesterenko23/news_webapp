@@ -17,15 +17,7 @@
     "backend:build": "tsc -p backend/tsconfig.json",
     "db:generate": "prisma generate --schema backend/prisma/schema.prisma",
     "db:migrate": "node backend/migrate.mjs",
-    "test:backend": "vitest run --config backend/vitest.config.ts --configLoader runner",
-    "ai:evaluate": "node --experimental-strip-types backend/evaluate.mjs",
-    "ai:benchmark": "node backend/benchmark.mjs",
-    "ai:score": "node backend/score-benchmark.mjs",
-    "ai:score-duplicates": "npm run backend:build && node backend/score-duplicates.mjs",
-    "compare:dry": "npm run backend:build && node benchmark/model-comparison/tools/dry-run.mjs",
-    "compare:run": "node benchmark/model-comparison/tools/run.mjs",
-    "compare:score": "node benchmark/model-comparison/tools/analyze.mjs && node benchmark/model-comparison/tools/report.mjs",
-    "compare:fetch-corpus": "node benchmark/model-comparison/tools/hydrate.mjs --fetch-sources"
+    "test:backend": "vitest run --config backend/vitest.config.ts --configLoader runner"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
@@ -33,6 +25,7 @@
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.2.0",
     "dotenv": "^18.0.8",
+    "fast-xml-parser": "^5.11.2",
     "fastify": "^5.12.7",
     "postprocessing": "^6.39.5",
     "react": "^19.1.1",
@@ -40,8 +33,8 @@
     "three": "^0.180.0",
     "three-stdlib": "^2.36.1",
     "topojson-client": "^3.1.0",
-    "zod": "^4.6.7",
-    "world-countries": "^5.1.0"
+    "world-countries": "^5.1.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

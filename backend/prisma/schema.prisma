@@ -335,3 +335,112 @@ model ClaimValidationDecision {
  createdAt DateTime @default(now())
  @@unique([claimId,validatorVersion])
 }
+
+// Legacy intelligence tables above are retained read-only for historical data.
+model CollectedArticle {
+ id String @id @default(cuid())
+ source String
+ sourceUrl String
+ sourceArticleId String?
+ url String @unique
+ title String
+ publishedAt DateTime?
+ collectedAt DateTime @default(now())
+ author String?
+ language String
+ content String
+ contentStatus String
+ contentHash String
+ originalJson String
+ analysisStatus String @default("collected")
+ analyzedAt DateTime?
+ analysisBatchId String?
+ analysisVersion Int @default(0)
+ analysisResultId String?
+ memberships BatchArticle[]
+ reservation BatchReservation?
+ eventSources ImportedEventSource[]
+ @@unique([source,sourceArticleId])
+ @@index([analysisStatus,collectedAt])
+ @@index([source,contentHash])
+}
+model NewsBatch {
+ id String @id @default(cuid())
+ schemaVersion String @default("1.0")
+ createdAt DateTime @default(now())
+ status String @default("active")
+ exportJson String
+ exportedAt DateTime?
+ importedAt DateTime?
+ importChecksum String?
+ importVersion Int @default(0)
+ articles BatchArticle[]
+ reservations BatchReservation[]
+ analyses AnalysisImport[]
+ events ImportedEvent[]
+}
+model BatchArticle {
+ batchId String
+ batch NewsBatch @relation(fields:[batchId],references:[id])
+ articleId String
+ article CollectedArticle @relation(fields:[articleId],references:[id])
+ ordinal Int
+ @@id([batchId,articleId])
+ @@unique([batchId,ordinal])
+}
+model BatchReservation {
+ articleId String @id
+ article CollectedArticle @relation(fields:[articleId],references:[id])
+ batchId String
+ batch NewsBatch @relation(fields:[batchId],references:[id])
+}
+model AnalysisImport {
+ id String @id @default(cuid())
+ batchId String
+ batch NewsBatch @relation(fields:[batchId],references:[id])
+ version Int
+ checksum String
+ rawJson String
+ createdAt DateTime @default(now())
+ events ImportedEvent[]
+ @@unique([batchId,version])
+}
+model ImportedEvent {
+ id String @id @default(cuid())
+ batchId String
+ batch NewsBatch @relation(fields:[batchId],references:[id])
+ articleId String
+ eventKey String
+ analysisId String
+ analysis AnalysisImport @relation(fields:[analysisId],references:[id])
+ title String
+ summary String
+ eventType String
+ eventStatus String
+ reason String?
+ publishedAt DateTime?
+ verificationStatus String @default("Unverified")
+ publicationStatus String
+ archived Boolean @default(false)
+ participantsJson String
+ rawJson String
+ relationships ImportedRelationship[]
+ sources ImportedEventSource[]
+ @@unique([batchId,articleId,eventKey])
+}
+model ImportedRelationship {
+ id String @id @default(cuid())
+ eventId String
+ event ImportedEvent @relation(fields:[eventId],references:[id])
+ from String
+ to String
+ type String
+ direction String
+}
+model ImportedEventSource {
+ eventId String
+ event ImportedEvent @relation(fields:[eventId],references:[id])
+ articleId String
+ article CollectedArticle @relation(fields:[articleId],references:[id])
+ @@id([eventId,articleId])
+}

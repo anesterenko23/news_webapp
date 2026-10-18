@@ -9,5 +9,4 @@ const generate=spawnSync(process.execPath,[fileURLToPath(new URL('../node_module
 if(generate.status!==0)process.exit(generate.status??1);
 const compile=spawnSync(process.execPath,[fileURLToPath(new URL('../node_modules/typescript/bin/tsc',import.meta.url)),'-p',fileURLToPath(new URL('./tsconfig.json',import.meta.url))],{stdio:'inherit',env:process.env});
 if(compile.status!==0)process.exit(compile.status??1);
-const backfill=spawnSync(process.execPath,[fileURLToPath(new URL('./dist/backfill.js',import.meta.url))],{stdio:'inherit',env:process.env});
-process.exit(backfill.status??1);
+process.exit(0);

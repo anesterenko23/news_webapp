@@ -1,3 +1,13 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-export default defineConfig({ plugins: [react()], base: './', server: { proxy: { '/api': { target: 'http://127.0.0.1:3001', changeOrigin: true }, '/dev/ai-lab': { target: 'http://127.0.0.1:3001', changeOrigin: true } } } });
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+const apiTarget = process.env.WORLD_LENS_API_TARGET ?? "http://127.0.0.1:3001";
+export default defineConfig({
+  plugins: [react()],
+  base: "./",
+  server: {
+    proxy: {
+      "/api": { target: apiTarget, changeOrigin: true },
+      "/collection": { target: apiTarget, changeOrigin: true },
+    },
+  },
+});

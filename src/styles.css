@@ -23,3 +23,6 @@
 @media(max-width:760px){.header{padding:0 14px}.brand>span{font-size:17px}.brand small{font-size:8px;letter-spacing:.7px}.header nav{gap:10px}.header nav>button{display:none}.header nav .mode-switch button{font-size:10px;padding:7px 6px}.mode-switch{gap:0}.explorer-panel{width:min(390px,92vw)}}
 .quick-countries{display:flex;flex-wrap:wrap;gap:7px;padding:9px}.quick-countries button{background:#14232e;border:1px solid #ffffff15;border-radius:5px;padding:7px 10px;font-size:11px;color:#b7ccdc}
 .explorer-intro{font-size:21px;font-weight:400;margin:16px 10px}.explorer-panel .news-tags{display:flex}.explorer-panel .tag{font-size:8px;padding:4px 7px}
+
+.service-notice{position:absolute;z-index:20;top:85px;right:20px;padding:12px 18px;background:#1b2a35;border:1px solid #465769;border-radius:8px;font-size:13px}.import-status{color:#94a8b7;font-size:11px}
+.header nav > a{color:#b5c1cb;text-decoration:none;font-size:13px}.header nav > a:hover{color:#f0f7ff}

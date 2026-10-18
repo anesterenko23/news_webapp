@@ -1,14 +1,22 @@
-import { revalidateStoredClaims } from './revalidation.js';
-import { backfillLegacy } from './legacy-migration.js';
-import { loadConfig } from './config.js';
-import { createDatabase } from './database.js';
-import { createApp } from './app.js';
-const config = loadConfig();
-const db = createDatabase(config);
-const app = createApp(config,db);
+import { loadConfig } from "./config.js";
+import { createDatabase } from "./database.js";
+import { createApp } from "./app.js";
+const config = loadConfig(),
+  db = createDatabase(config),
+  app = createApp(config, db);
 await db.$connect();
-await backfillLegacy(db);
-await revalidateStoredClaims(db);
-await app.listen({host:config.HOST,port:config.PORT});
-console.log(`World Lens AI Lab: http://${config.HOST}:${config.PORT}/dev/ai-lab`);
-for (const signal of ['SIGINT','SIGTERM'] as const) process.on(signal,()=> { void app.close().then(()=>db.$disconnect()).then(()=>process.exit(0)); });
+await app.listen({ host: config.HOST, port: config.PORT });
+console.log(
+  "World Lens News Collection: http://" +
+    config.HOST +
+    ":" +
+    config.PORT +
+    "/collection",
+);
+for (const signal of ["SIGINT", "SIGTERM"] as const)
+  process.on(signal, () => {
+    void app
+      .close()
+      .then(() => db.$disconnect())
+      .then(() => process.exit(0));
+  });
